@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, createSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Search, Sparkles, Leaf, Heart, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { diseases } from "@/data/diseases";
@@ -12,13 +12,17 @@ const HeroSection = () => {
   const [suggestions, setSuggestions] = useState<typeof diseases>([]);
   const navigate = useNavigate();
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate({
-        pathname: "/search",
-        search: createSearchParams({ q: searchQuery.trim() }).toString(),
-      });
+  const handleSearch = () => {
+    const trimmedQuery = searchQuery.trim();
+    if (trimmedQuery) {
+      navigate("/search?q=" + encodeURIComponent(trimmedQuery));
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSearch();
     }
   };
 
@@ -79,18 +83,20 @@ const HeroSection = () => {
 
           {/* Search Box */}
           <div className="relative max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
-            <form onSubmit={handleSearch} className="relative">
+            <div className="relative">
               <div className="relative flex items-center">
                 <Search className="absolute left-5 h-5 w-5 text-muted-foreground" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => handleInputChange(e.target.value)}
+                  onKeyDown={handleKeyDown}
                   placeholder="Search diseases, symptoms, or remedies..."
                   className="w-full h-14 md:h-16 pl-14 pr-36 rounded-2xl border-2 border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all shadow-card text-base"
                 />
                 <Button
-                  type="submit"
+                  type="button"
+                  onClick={handleSearch}
                   variant="gold"
                   size="lg"
                   className="absolute right-2 h-10 md:h-12"
@@ -98,7 +104,7 @@ const HeroSection = () => {
                   Search
                 </Button>
               </div>
-            </form>
+            </div>
 
             {/* Suggestions Dropdown */}
             {suggestions.length > 0 && (
