@@ -1,21 +1,34 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, Sparkles, Leaf, Heart, Brain } from "lucide-react";
+import { Search, Sparkles, Leaf, Heart, Brain, Pill, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { diseases } from "@/data/diseases";
+import { medicines } from "@/data/medicines";
+import { remedies } from "@/data/remedies";
 
 // Normalize string for better search matching
 const normalize = (str: string) => str.toLowerCase().replace(/[\s-_]/g, "");
 
+type SuggestionItem = {
+  id: string;
+  name: string;
+  category: string;
+  type: "disease" | "medicine" | "remedy";
+};
+
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [suggestions, setSuggestions] = useState<typeof diseases>([]);
+  const [suggestions, setSuggestions] = useState<SuggestionItem[]>([]);
   const navigate = useNavigate();
 
   const handleSearch = () => {
     const trimmedQuery = searchQuery.trim();
     if (trimmedQuery) {
-      navigate("/search?q=" + encodeURIComponent(trimmedQuery));
+      // Use object format to ensure proper URL construction
+      navigate({
+        pathname: "/search",
+        search: `q=${encodeURIComponent(trimmedQuery)}`
+      });
     }
   };
 
@@ -26,22 +39,101 @@ const HeroSection = () => {
     }
   };
 
+  const handleSuggestionClick = (item: SuggestionItem) => {
+    setSuggestions([]);
+    setSearchQuery("");
+    if (item.type === "disease") {
+      navigate(`/diseases/${item.id}`);
+    } else if (item.type === "medicine") {
+      navigate(`/medicines/${item.id}`);
+    } else {
+      navigate(`/remedies/${item.id}`);
+    }
+  };
+
   const handleInputChange = (value: string) => {
     setSearchQuery(value);
     if (value.length > 1) {
       const normalizedValue = normalize(value);
-      const filtered = diseases.filter(
-        (d) =>
-          d.name.toLowerCase().includes(value.toLowerCase()) ||
+      const lowerValue = value.toLowerCase();
+      
+      // Filter diseases
+      const filteredDiseases: SuggestionItem[] = diseases
+        .filter((d) =>
+          d.name.toLowerCase().includes(lowerValue) ||
           normalize(d.name).includes(normalizedValue) ||
           d.symptoms.some((s) => 
-            s.toLowerCase().includes(value.toLowerCase()) || 
+            s.toLowerCase().includes(lowerValue) || 
             normalize(s).includes(normalizedValue)
           )
-      ).slice(0, 5);
-      setSuggestions(filtered);
+        )
+        .slice(0, 3)
+        .map((d) => ({
+          id: d.id,
+          name: d.name,
+          category: d.category,
+          type: "disease" as const
+        }));
+
+      // Filter medicines
+      const filteredMedicines: SuggestionItem[] = medicines
+        .filter((m) =>
+          m.name.toLowerCase().includes(lowerValue) ||
+          normalize(m.name).includes(normalizedValue) ||
+          m.uses.some((u) => 
+            u.toLowerCase().includes(lowerValue) || 
+            normalize(u).includes(normalizedValue)
+          )
+        )
+        .slice(0, 3)
+        .map((m) => ({
+          id: m.id,
+          name: m.name,
+          category: m.brand,
+          type: "medicine" as const
+        }));
+
+      // Filter remedies
+      const filteredRemedies: SuggestionItem[] = remedies
+        .filter((r) =>
+          r.title.toLowerCase().includes(lowerValue) ||
+          normalize(r.title).includes(normalizedValue) ||
+          r.problem.toLowerCase().includes(lowerValue) ||
+          normalize(r.problem).includes(normalizedValue)
+        )
+        .slice(0, 2)
+        .map((r) => ({
+          id: r.id,
+          name: r.title,
+          category: r.problem,
+          type: "remedy" as const
+        }));
+
+      setSuggestions([...filteredDiseases, ...filteredMedicines, ...filteredRemedies]);
     } else {
       setSuggestions([]);
+    }
+  };
+
+  const getIcon = (type: SuggestionItem["type"]) => {
+    switch (type) {
+      case "disease":
+        return <Heart className="h-4 w-4 text-primary flex-shrink-0" />;
+      case "medicine":
+        return <Pill className="h-4 w-4 text-accent flex-shrink-0" />;
+      case "remedy":
+        return <Home className="h-4 w-4 text-secondary flex-shrink-0" />;
+    }
+  };
+
+  const getTypeLabel = (type: SuggestionItem["type"]) => {
+    switch (type) {
+      case "disease":
+        return "Disease";
+      case "medicine":
+        return "Medicine";
+      case "remedy":
+        return "Remedy";
     }
   };
 
@@ -109,19 +201,31 @@ const HeroSection = () => {
             {/* Suggestions Dropdown */}
             {suggestions.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-2 bg-card rounded-xl border border-border shadow-elevated z-50 overflow-hidden animate-scale-in">
-                {suggestions.map((disease) => (
+                {suggestions.map((item) => (
                   <button
-                    key={disease.id}
-                    onClick={() => navigate(`/diseases/${disease.id}`)}
+                    key={`${item.type}-${item.id}`}
+                    onClick={() => handleSuggestionClick(item)}
                     className="w-full px-5 py-3 text-left hover:bg-muted transition-colors flex items-center gap-3"
                   >
-                    <Leaf className="h-4 w-4 text-primary flex-shrink-0" />
-                    <div>
-                      <p className="font-medium text-foreground">{disease.name}</p>
-                      <p className="text-xs text-muted-foreground">{disease.category}</p>
+                    {getIcon(item.type)}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-foreground truncate">{item.name}</p>
+                      <p className="text-xs text-muted-foreground truncate">{item.category}</p>
                     </div>
+                    <span className="text-xs px-2 py-1 rounded-full bg-muted text-muted-foreground">
+                      {getTypeLabel(item.type)}
+                    </span>
                   </button>
                 ))}
+                <button
+                  onClick={handleSearch}
+                  className="w-full px-5 py-3 text-left hover:bg-muted transition-colors flex items-center gap-3 border-t border-border"
+                >
+                  <Search className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                  <span className="text-muted-foreground">
+                    Search all results for "<span className="text-foreground font-medium">{searchQuery}</span>"
+                  </span>
+                </button>
               </div>
             )}
           </div>
