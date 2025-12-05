@@ -58,7 +58,7 @@ const App = () => (
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           {/* Catch encoded search URLs */}
-          <Route path="/search%3F*" element={<SearchRedirect />} />
+          <Route path="/search%3F/*" element={<SearchRedirect />} />
           <Route path="*" element={<SearchRedirect />} />
         </Routes>
       </BrowserRouter>
