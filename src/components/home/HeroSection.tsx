@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, createSearchParams } from "react-router-dom";
 import { Search, Sparkles, Leaf, Heart, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { diseases } from "@/data/diseases";
@@ -15,7 +15,10 @@ const HeroSection = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+      navigate({
+        pathname: "/search",
+        search: createSearchParams({ q: searchQuery.trim() }).toString(),
+      });
     }
   };
 
