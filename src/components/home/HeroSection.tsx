@@ -4,6 +4,9 @@ import { Search, Sparkles, Leaf, Heart, Brain } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { diseases } from "@/data/diseases";
 
+// Normalize string for better search matching
+const normalize = (str: string) => str.toLowerCase().replace(/[\s-_]/g, "");
+
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState<typeof diseases>([]);
@@ -19,10 +22,15 @@ const HeroSection = () => {
   const handleInputChange = (value: string) => {
     setSearchQuery(value);
     if (value.length > 1) {
+      const normalizedValue = normalize(value);
       const filtered = diseases.filter(
         (d) =>
           d.name.toLowerCase().includes(value.toLowerCase()) ||
-          d.symptoms.some((s) => s.toLowerCase().includes(value.toLowerCase()))
+          normalize(d.name).includes(normalizedValue) ||
+          d.symptoms.some((s) => 
+            s.toLowerCase().includes(value.toLowerCase()) || 
+            normalize(s).includes(normalizedValue)
+          )
       ).slice(0, 5);
       setSuggestions(filtered);
     } else {
