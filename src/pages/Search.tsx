@@ -6,6 +6,9 @@ import { medicines } from "@/data/medicines";
 import { remedies } from "@/data/remedies";
 import { Search as SearchIcon, Pill, Leaf, Activity } from "lucide-react";
 
+// Normalize string for better search matching
+const normalize = (str: string) => str.toLowerCase().replace(/[\s-_]/g, "");
+
 const Search = () => {
   const [searchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") || "");
@@ -15,9 +18,26 @@ const Search = () => {
   }, [searchParams]);
 
   const q = query.toLowerCase();
-  const filteredDiseases = diseases.filter((d) => d.name.toLowerCase().includes(q) || d.symptoms.some((s) => s.toLowerCase().includes(q)));
-  const filteredMedicines = medicines.filter((m) => m.name.toLowerCase().includes(q) || m.uses.some((u) => u.toLowerCase().includes(q)));
-  const filteredRemedies = remedies.filter((r) => r.title.toLowerCase().includes(q) || r.problem.toLowerCase().includes(q));
+  const normalizedQ = normalize(query);
+  
+  const filteredDiseases = diseases.filter((d) => 
+    d.name.toLowerCase().includes(q) || 
+    normalize(d.name).includes(normalizedQ) ||
+    d.symptoms.some((s) => s.toLowerCase().includes(q) || normalize(s).includes(normalizedQ))
+  );
+  
+  const filteredMedicines = medicines.filter((m) => 
+    m.name.toLowerCase().includes(q) || 
+    normalize(m.name).includes(normalizedQ) ||
+    m.uses.some((u) => u.toLowerCase().includes(q) || normalize(u).includes(normalizedQ))
+  );
+  
+  const filteredRemedies = remedies.filter((r) => 
+    r.title.toLowerCase().includes(q) || 
+    normalize(r.title).includes(normalizedQ) ||
+    r.problem.toLowerCase().includes(q) || 
+    normalize(r.problem).includes(normalizedQ)
+  );
 
   return (
     <Layout>
