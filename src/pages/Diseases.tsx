@@ -1,12 +1,18 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { diseases, diseaseCategories } from "@/data/diseases";
 import { Search, Filter } from "lucide-react";
 
 const Diseases = () => {
+  const [searchParams] = useSearchParams();
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(searchParams.get("category") || "");
+
+  useEffect(() => {
+    const urlCategory = searchParams.get("category");
+    if (urlCategory) setCategory(urlCategory);
+  }, [searchParams]);
 
   const filtered = diseases.filter((d) => {
     const matchesSearch = d.name.toLowerCase().includes(search.toLowerCase()) ||

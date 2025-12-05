@@ -18,10 +18,10 @@ const Footer = () => {
       { name: "Joint Health", href: "/diseases?category=Musculoskeletal" },
     ],
     about: [
-      { name: "About Ayurveda", href: "#" },
-      { name: "Dosha Types", href: "#" },
-      { name: "Privacy Policy", href: "#" },
-      { name: "Disclaimer", href: "#" },
+      { name: "About Ayurveda", href: "/about-ayurveda" },
+      { name: "Dosha Types", href: "/dosha-types" },
+      { name: "Privacy Policy", href: "/privacy-policy" },
+      { name: "Disclaimer", href: "/disclaimer" },
     ],
   };
 

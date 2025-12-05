@@ -12,6 +12,10 @@ import Remedies from "./pages/Remedies";
 import RemedyDetail from "./pages/RemedyDetail";
 import Search from "./pages/Search";
 import DoctorAI from "./pages/DoctorAI";
+import AboutAyurveda from "./pages/AboutAyurveda";
+import DoshaTypes from "./pages/DoshaTypes";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Disclaimer from "./pages/Disclaimer";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -49,6 +53,10 @@ const App = () => (
           <Route path="/remedies/:id" element={<RemedyDetail />} />
           <Route path="/search" element={<Search />} />
           <Route path="/doctor-ai" element={<DoctorAI />} />
+          <Route path="/about-ayurveda" element={<AboutAyurveda />} />
+          <Route path="/dosha-types" element={<DoshaTypes />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
           {/* Catch encoded search URLs */}
           <Route path="/search%3F*" element={<SearchRedirect />} />
           <Route path="*" element={<SearchRedirect />} />
