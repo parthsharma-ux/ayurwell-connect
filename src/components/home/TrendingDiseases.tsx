@@ -1,58 +1,67 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Activity } from "lucide-react";
+import { ArrowRight, Activity, Sparkles } from "lucide-react";
 import { diseases } from "@/data/diseases";
 
 const TrendingDiseases = () => {
   const trendingDiseases = diseases.slice(0, 8);
 
   const getDoshaColor = (dosha: string) => {
-    if (dosha.includes("Vata")) return "bg-blue-100 text-blue-700";
-    if (dosha.includes("Pitta")) return "bg-red-100 text-red-700";
-    if (dosha.includes("Kapha")) return "bg-green-100 text-green-700";
-    return "bg-muted text-muted-foreground";
+    if (dosha.includes("Vata")) return "bg-blue-500/20 text-blue-400 border-blue-500/30";
+    if (dosha.includes("Pitta")) return "bg-primary/20 text-primary border-primary/30";
+    if (dosha.includes("Kapha")) return "bg-secondary/20 text-secondary border-secondary/30";
+    return "bg-muted text-muted-foreground border-border";
   };
 
   return (
-    <section className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-4">
+    <section className="py-20 md:py-28 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[120px]" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
-          <div>
-            <div className="flex items-center gap-2 text-primary mb-2">
-              <Activity className="h-5 w-5" />
-              <span className="text-sm font-medium uppercase tracking-wide">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <div className="animate-fade-in-up">
+            <div className="flex items-center gap-2 text-primary mb-3">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Activity className="h-5 w-5" />
+              </div>
+              <span className="text-sm font-medium uppercase tracking-widest">
                 Common Ailments
               </span>
             </div>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Trending Health Concerns
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+              Trending Health{" "}
+              <span className="text-gradient-terracotta">Concerns</span>
             </h2>
-            <p className="text-muted-foreground mt-2 max-w-lg">
+            <p className="text-muted-foreground mt-3 max-w-lg text-lg">
               Explore Ayurvedic solutions for the most searched health conditions
             </p>
           </div>
           <Link
             to="/diseases"
-            className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
+            className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all group animate-fade-in-up"
+            style={{ animationDelay: "0.2s" }}
           >
             View all diseases
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
 
         {/* Disease Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {trendingDiseases.map((disease, index) => (
             <Link
               key={disease.id}
               to={`/diseases/${disease.id}`}
-              className="group bg-card rounded-2xl p-6 border border-border hover:border-primary/30 hover:shadow-card transition-all duration-300 animate-fade-in-up"
+              className="group glass-premium rounded-2xl p-6 border border-border/30 hover:border-primary/40 hover-lift transition-all duration-300 animate-fade-in-up"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
               <div className="flex items-start justify-between mb-4">
-                <div className={`px-3 py-1 rounded-full text-xs font-medium ${getDoshaColor(disease.dosha_involved)}`}>
+                <div className={`px-3 py-1.5 rounded-full text-xs font-medium border ${getDoshaColor(disease.dosha_involved)}`}>
                   {disease.dosha_involved}
                 </div>
+                <Sparkles className="h-4 w-4 text-accent/50 opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               
               <h3 className="font-display text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
@@ -60,7 +69,7 @@ const TrendingDiseases = () => {
               </h3>
               
               {disease.hindi_name && (
-                <p className="text-sm text-muted-foreground mb-3">
+                <p className="text-sm text-muted-foreground mb-3 italic">
                   {disease.hindi_name}
                 </p>
               )}
@@ -69,17 +78,18 @@ const TrendingDiseases = () => {
                 {disease.symptoms.slice(0, 3).map((symptom, i) => (
                   <span
                     key={i}
-                    className="text-xs px-2 py-1 bg-muted text-muted-foreground rounded-md"
+                    className="text-xs px-2.5 py-1 bg-muted/50 text-muted-foreground rounded-lg"
                   >
                     {symptom}
                   </span>
                 ))}
               </div>
               
-              <div className="mt-4 pt-4 border-t border-border flex items-center justify-between text-sm">
+              <div className="mt-5 pt-4 border-t border-border/30 flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">{disease.category}</span>
-                <span className="text-primary font-medium group-hover:translate-x-1 transition-transform">
-                  Learn more →
+                <span className="text-primary font-medium flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Explore
+                  <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </div>
             </Link>
