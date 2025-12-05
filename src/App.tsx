@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import Diseases from "./pages/Diseases";
 import DiseaseDetail from "./pages/DiseaseDetail";
@@ -15,6 +15,23 @@ import DoctorAI from "./pages/DoctorAI";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+// Component to handle encoded search URLs
+const SearchRedirect = () => {
+  const location = useLocation();
+  // Decode the pathname to extract query params if they were incorrectly encoded
+  const decodedPath = decodeURIComponent(location.pathname);
+  
+  // Check if the pathname contains encoded query params (e.g., /search?q=test was encoded as /search%3Fq=test)
+  if (decodedPath.includes("?")) {
+    const [path, queryString] = decodedPath.split("?");
+    if (path === "/search" && queryString) {
+      return <Navigate to={`/search?${queryString}`} replace />;
+    }
+  }
+  
+  return <NotFound />;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -32,7 +49,9 @@ const App = () => (
           <Route path="/remedies/:id" element={<RemedyDetail />} />
           <Route path="/search" element={<Search />} />
           <Route path="/doctor-ai" element={<DoctorAI />} />
-          <Route path="*" element={<NotFound />} />
+          {/* Catch encoded search URLs */}
+          <Route path="/search%3F*" element={<SearchRedirect />} />
+          <Route path="*" element={<SearchRedirect />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
