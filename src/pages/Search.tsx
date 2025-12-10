@@ -1,14 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { diseases } from "@/data/diseases";
 import { medicines } from "@/data/medicines";
 import { remedies } from "@/data/remedies";
-import { Search as SearchIcon, Pill, Leaf, Activity, Filter, X, Sparkles } from "lucide-react";
+import { Search as SearchIcon, Pill, Leaf, Activity, Filter, X, Sparkles, Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-// Normalize string for better search matching
-const normalize = (str: string) => str.toLowerCase().replace(/[\s-_]/g, "");
+import { normalize, findDidYouMean, popularDiseases } from "@/lib/fuzzySearch";
 
 type FilterCategory = "all" | "diseases" | "medicines" | "remedies";
 
@@ -16,6 +14,7 @@ const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") || "");
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("all");
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     setQuery(searchParams.get("q") || "");
@@ -23,34 +22,52 @@ const Search = () => {
 
   const handleSearch = (newQuery: string) => {
     setQuery(newQuery);
+    setIsSearching(true);
     if (newQuery.trim()) {
       setSearchParams({ q: newQuery.trim() });
     }
+    // Simulate search delay for UX
+    setTimeout(() => setIsSearching(false), 200);
+  };
+
+  const handleDidYouMeanClick = (term: string) => {
+    handleSearch(term);
   };
 
   const q = query.toLowerCase();
   const normalizedQ = normalize(query);
   
-  const filteredDiseases = diseases.filter((d) => 
+  const filteredDiseases = useMemo(() => diseases.filter((d) => 
     d.name.toLowerCase().includes(q) || 
     normalize(d.name).includes(normalizedQ) ||
     d.symptoms.some((s) => s.toLowerCase().includes(q) || normalize(s).includes(normalizedQ))
-  );
+  ), [q, normalizedQ]);
   
-  const filteredMedicines = medicines.filter((m) => 
+  const filteredMedicines = useMemo(() => medicines.filter((m) => 
     m.name.toLowerCase().includes(q) || 
     normalize(m.name).includes(normalizedQ) ||
     m.uses.some((u) => u.toLowerCase().includes(q) || normalize(u).includes(normalizedQ))
-  );
+  ), [q, normalizedQ]);
   
-  const filteredRemedies = remedies.filter((r) => 
+  const filteredRemedies = useMemo(() => remedies.filter((r) => 
     r.title.toLowerCase().includes(q) || 
     normalize(r.title).includes(normalizedQ) ||
     r.problem.toLowerCase().includes(q) || 
     normalize(r.problem).includes(normalizedQ)
-  );
+  ), [q, normalizedQ]);
 
   const totalResults = filteredDiseases.length + filteredMedicines.length + filteredRemedies.length;
+
+  // "Did you mean?" suggestions
+  const didYouMean = useMemo(() => {
+    if (totalResults > 0 || query.length < 3) return [];
+    const allItems = [
+      ...diseases.map(d => ({ name: d.name })),
+      ...medicines.map(m => ({ name: m.name })),
+      ...remedies.map(r => ({ name: r.title, title: r.title }))
+    ];
+    return findDidYouMean(query, allItems, 0.35, 5);
+  }, [query, totalResults]);
 
   const filters: { id: FilterCategory; label: string; count: number; icon: React.ReactNode; color: string }[] = [
     { id: "all", label: "All Results", count: totalResults, icon: <Sparkles className="h-4 w-4" />, color: "text-accent" },
@@ -287,9 +304,22 @@ const Search = () => {
                 </section>
               )}
 
-              {/* No Results */}
-              {!filteredDiseases.length && !filteredMedicines.length && !filteredRemedies.length && (
+              {/* Loading State */}
+              {isSearching && (
                 <div className="text-center py-20 animate-fade-in">
+                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6">
+                    <Loader2 className="h-10 w-10 text-primary animate-spin" />
+                  </div>
+                  <h3 className="font-display text-2xl font-bold mb-2">Searching...</h3>
+                  <p className="text-muted-foreground text-lg">
+                    Finding Ayurvedic solutions for you
+                  </p>
+                </div>
+              )}
+
+              {/* No Results */}
+              {!isSearching && !filteredDiseases.length && !filteredMedicines.length && !filteredRemedies.length && (
+                <div className="text-center py-16 animate-fade-in">
                   <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-muted mb-6">
                     <SearchIcon className="h-10 w-10 text-muted-foreground" />
                   </div>
@@ -297,9 +327,46 @@ const Search = () => {
                   <p className="text-muted-foreground text-lg mb-6">
                     We couldn't find anything for "{query}"
                   </p>
-                  <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                    Try searching with different keywords or browse our categories
-                  </p>
+
+                  {/* Did You Mean? */}
+                  {didYouMean.length > 0 && (
+                    <div className="max-w-md mx-auto mb-8 p-5 glass-premium rounded-2xl border border-border/30">
+                      <div className="flex items-center justify-center gap-2 mb-4">
+                        <AlertCircle className="h-5 w-5 text-accent" />
+                        <span className="font-medium">Did you mean?</span>
+                      </div>
+                      <div className="flex flex-wrap justify-center gap-2">
+                        {didYouMean.map((term, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleDidYouMeanClick(term)}
+                            className="px-4 py-2 text-sm rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-medium"
+                          >
+                            {term}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Common Diseases Fallback */}
+                  <div className="max-w-lg mx-auto p-6 glass-premium rounded-2xl border border-border/30">
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                      <Sparkles className="h-5 w-5 text-accent" />
+                      <span className="font-medium">Try these common diseases</span>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {popularDiseases.map((disease, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => handleDidYouMeanClick(disease.split("(")[0].trim())}
+                          className="px-4 py-2 text-sm rounded-full bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          {disease.split("(")[0].trim()}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
