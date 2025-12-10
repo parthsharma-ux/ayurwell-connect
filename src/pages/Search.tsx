@@ -1,12 +1,15 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { diseases } from "@/data/diseases";
 import { medicines } from "@/data/medicines";
 import { remedies } from "@/data/remedies";
-import { Search as SearchIcon, Pill, Leaf, Activity, Filter, X, Sparkles, Loader2, AlertCircle } from "lucide-react";
+import { Search as SearchIcon, Pill, Leaf, Activity, Filter, X, Sparkles, Loader2, AlertCircle, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { normalize, findDidYouMean, popularDiseases } from "@/lib/fuzzySearch";
+import { useVoiceSearch } from "@/hooks/useVoiceSearch";
+import VoiceSearchButton from "@/components/VoiceSearchButton";
+import { useToast } from "@/hooks/use-toast";
 
 type FilterCategory = "all" | "diseases" | "medicines" | "remedies";
 
@@ -15,6 +18,29 @@ const Search = () => {
   const [query, setQuery] = useState(searchParams.get("q") || "");
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("all");
   const [isSearching, setIsSearching] = useState(false);
+  const { toast } = useToast();
+
+  // Voice Search
+  const handleVoiceResult = useCallback((transcript: string) => {
+    handleSearch(transcript);
+    toast({
+      title: "🎤 Voice captured",
+      description: `Searching for "${transcript}"`,
+    });
+  }, []);
+
+  const handleVoiceError = useCallback((error: string) => {
+    toast({
+      variant: "destructive",
+      title: "Voice Search Error",
+      description: error,
+    });
+  }, []);
+
+  const { isListening, isSupported, interimTranscript, toggleListening } = useVoiceSearch({
+    onResult: handleVoiceResult,
+    onError: handleVoiceError,
+  });
 
   useEffect(() => {
     setQuery(searchParams.get("q") || "");
@@ -104,20 +130,44 @@ const Search = () => {
                 <SearchIcon className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                 <input
                   type="text"
-                  value={query}
+                  value={isListening ? interimTranscript || query : query}
                   onChange={(e) => handleSearch(e.target.value)}
-                  placeholder="Search diseases, medicines, remedies..."
-                  className="w-full h-14 pl-14 pr-6 rounded-2xl border border-border bg-card/80 backdrop-blur-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20 text-lg transition-all shadow-card"
+                  placeholder={isListening ? "Listening... speak now" : "Search diseases, medicines, remedies..."}
+                  className="w-full h-14 pl-14 pr-28 rounded-2xl border border-border bg-card/80 backdrop-blur-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20 text-lg transition-all shadow-card"
+                  disabled={isListening}
                 />
-                {query && (
-                  <button
-                    onClick={() => handleSearch("")}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-muted transition-colors"
-                  >
-                    <X className="h-5 w-5 text-muted-foreground" />
-                  </button>
-                )}
+                <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                  <VoiceSearchButton
+                    isListening={isListening}
+                    isSupported={isSupported}
+                    onClick={toggleListening}
+                    size="sm"
+                  />
+                  {query && !isListening && (
+                    <button
+                      onClick={() => handleSearch("")}
+                      className="p-1 rounded-full hover:bg-muted transition-colors"
+                    >
+                      <X className="h-5 w-5 text-muted-foreground" />
+                    </button>
+                  )}
+                </div>
               </div>
+
+              {/* Voice Listening Indicator */}
+              {isListening && (
+                <div className="mt-4 p-4 glass-premium rounded-xl border border-primary/50 shadow-glow-terracotta animate-scale-in">
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="relative">
+                      <Mic className="h-5 w-5 text-primary animate-pulse" />
+                      <span className="absolute -top-1 -right-1 h-2 w-2 bg-primary rounded-full animate-ping" />
+                    </div>
+                    <span className="text-foreground font-medium text-sm">
+                      {interimTranscript || "Listening... speak your symptom"}
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

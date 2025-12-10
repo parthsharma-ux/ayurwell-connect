@@ -1,11 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, Sparkles, Leaf, Heart, Brain, Pill, Home, ArrowRight, Loader2, AlertCircle } from "lucide-react";
+import { Search, Sparkles, Leaf, Heart, Brain, Pill, Home, ArrowRight, Loader2, AlertCircle, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { diseases } from "@/data/diseases";
 import { medicines } from "@/data/medicines";
 import { remedies } from "@/data/remedies";
 import { normalize, findDidYouMean, popularDiseases } from "@/lib/fuzzySearch";
+import { useVoiceSearch } from "@/hooks/useVoiceSearch";
+import VoiceSearchButton from "@/components/VoiceSearchButton";
+import { useToast } from "@/hooks/use-toast";
 
 type SuggestionItem = {
   id: string;
@@ -21,6 +24,30 @@ const HeroSection = () => {
   const [didYouMean, setDidYouMean] = useState<string[]>([]);
   const [showNoResults, setShowNoResults] = useState(false);
   const navigate = useNavigate();
+  const { toast } = useToast();
+
+  // Voice Search
+  const handleVoiceResult = useCallback((transcript: string) => {
+    setSearchQuery(transcript);
+    handleInputChange(transcript);
+    toast({
+      title: "🎤 Voice captured",
+      description: `Searching for "${transcript}"`,
+    });
+  }, []);
+
+  const handleVoiceError = useCallback((error: string) => {
+    toast({
+      variant: "destructive",
+      title: "Voice Search Error",
+      description: error,
+    });
+  }, []);
+
+  const { isListening, isSupported, interimTranscript, toggleListening } = useVoiceSearch({
+    onResult: handleVoiceResult,
+    onError: handleVoiceError,
+  });
 
   const handleSearch = () => {
     const trimmedQuery = searchQuery.trim();
@@ -228,24 +255,49 @@ const HeroSection = () => {
                 <Search className="absolute left-5 h-5 w-5 text-muted-foreground z-10" />
                 <input
                   type="text"
-                  value={searchQuery}
+                  value={isListening ? interimTranscript || searchQuery : searchQuery}
                   onChange={(e) => handleInputChange(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Search diseases, medicines, or remedies..."
-                  className="w-full h-16 md:h-18 pl-14 pr-40 rounded-2xl border border-border/50 bg-card/90 backdrop-blur-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/20 transition-all text-lg shadow-elevated"
+                  placeholder={isListening ? "Listening... speak now" : "Search diseases, medicines, or remedies..."}
+                  className="w-full h-16 md:h-18 pl-14 pr-52 rounded-2xl border border-border/50 bg-card/90 backdrop-blur-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/20 transition-all text-lg shadow-elevated"
+                  disabled={isListening}
                 />
-                <Button
-                  type="button"
-                  onClick={handleSearch}
-                  variant="gold"
-                  size="lg"
-                  className="absolute right-2 h-12 shadow-glow-gold group/btn"
-                >
-                  <span className="hidden sm:inline">Search</span>
-                  <ArrowRight className="h-5 w-5 sm:ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
+                <div className="absolute right-2 flex items-center gap-2">
+                  <VoiceSearchButton
+                    isListening={isListening}
+                    isSupported={isSupported}
+                    onClick={toggleListening}
+                    size="md"
+                  />
+                  <Button
+                    type="button"
+                    onClick={handleSearch}
+                    variant="gold"
+                    size="lg"
+                    className="h-12 shadow-glow-gold group/btn"
+                    disabled={isListening}
+                  >
+                    <span className="hidden sm:inline">Search</span>
+                    <ArrowRight className="h-5 w-5 sm:ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                  </Button>
+                </div>
               </div>
             </div>
+
+            {/* Voice Listening Indicator */}
+            {isListening && (
+              <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-primary/50 shadow-glow-terracotta z-50 p-6 animate-scale-in">
+                <div className="flex items-center justify-center gap-3">
+                  <div className="relative">
+                    <Mic className="h-6 w-6 text-primary animate-pulse" />
+                    <span className="absolute -top-1 -right-1 h-3 w-3 bg-primary rounded-full animate-ping" />
+                  </div>
+                  <span className="text-foreground font-medium">
+                    {interimTranscript || "Listening... speak your symptom or disease"}
+                  </span>
+                </div>
+              </div>
+            )}
 
             {/* Loading Indicator */}
             {isSearching && searchQuery.length > 1 && (
