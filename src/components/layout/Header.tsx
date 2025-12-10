@@ -11,6 +11,7 @@ const Header = () => {
     { name: "Diseases", href: "/diseases" },
     { name: "Medicines", href: "/medicines" },
     { name: "Remedies", href: "/remedies" },
+    { name: "Kits", href: "/kits" },
     { name: "AI Doctor", href: "/doctor-ai" },
   ];
 
