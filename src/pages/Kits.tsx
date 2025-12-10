@@ -3,6 +3,7 @@ import { Heart, ShoppingCart, Info, Package, MessageCircle } from 'lucide-react'
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { useCart } from '@/contexts/CartContext';
 
 const kits = [
   { id: 1, name: 'Immunity Booster Kit', price: 799, short: 'Amla, Giloy & Tulsi formulation for daily immunity', duration: '30 days' },
@@ -20,6 +21,8 @@ const kits = [
 ];
 
 const Kits = () => {
+  const { addToCart } = useCart();
+
   return (
     <Layout>
       <div className="min-h-screen bg-background py-12 px-4 sm:px-8 lg:px-16">
@@ -111,7 +114,12 @@ const Kits = () => {
                     <span className="text-xl font-bold text-primary">₹{kit.price}</span>
 
                     <div className="flex items-center gap-2">
-                      <Button size="sm" variant="gold" className="shadow-glow-gold">
+                      <Button 
+                        size="sm" 
+                        variant="gold" 
+                        className="shadow-glow-gold"
+                        onClick={() => addToCart({ id: kit.id, name: kit.name, price: kit.price, duration: kit.duration })}
+                      >
                         <ShoppingCart className="h-4 w-4" />
                       </Button>
                       <Button size="sm" variant="outline">
