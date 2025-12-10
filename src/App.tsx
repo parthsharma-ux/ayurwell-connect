@@ -16,6 +16,7 @@ import AboutAyurveda from "./pages/AboutAyurveda";
 import DoshaTypes from "./pages/DoshaTypes";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Disclaimer from "./pages/Disclaimer";
+import Kits from "./pages/Kits";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +58,7 @@ const App = () => (
           <Route path="/dosha-types" element={<DoshaTypes />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/kits" element={<Kits />} />
           {/* Catch encoded search URLs */}
           <Route path="/search%3F/*" element={<SearchRedirect />} />
           <Route path="*" element={<SearchRedirect />} />
