@@ -1,13 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, Sparkles, Leaf, Heart, Brain, Pill, Home, ArrowRight } from "lucide-react";
+import { Search, Sparkles, Leaf, Heart, Brain, Pill, Home, ArrowRight, Loader2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { diseases } from "@/data/diseases";
 import { medicines } from "@/data/medicines";
 import { remedies } from "@/data/remedies";
-
-// Normalize string for better search matching
-const normalize = (str: string) => str.toLowerCase().replace(/[\s-_]/g, "");
+import { normalize, findDidYouMean, popularDiseases } from "@/lib/fuzzySearch";
 
 type SuggestionItem = {
   id: string;
@@ -19,12 +17,17 @@ type SuggestionItem = {
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState<SuggestionItem[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [didYouMean, setDidYouMean] = useState<string[]>([]);
+  const [showNoResults, setShowNoResults] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = () => {
     const trimmedQuery = searchQuery.trim();
     if (trimmedQuery) {
       setSuggestions([]);
+      setDidYouMean([]);
+      setShowNoResults(false);
       navigate({
         pathname: "/search",
         search: `q=${encodeURIComponent(trimmedQuery)}`
@@ -41,6 +44,8 @@ const HeroSection = () => {
 
   const handleSuggestionClick = (item: SuggestionItem) => {
     setSuggestions([]);
+    setDidYouMean([]);
+    setShowNoResults(false);
     setSearchQuery("");
     if (item.type === "disease") {
       navigate(`/diseases/${item.id}`);
@@ -51,66 +56,97 @@ const HeroSection = () => {
     }
   };
 
-  const handleInputChange = (value: string) => {
+  const handleDidYouMeanClick = (term: string) => {
+    setSearchQuery(term);
+    handleInputChange(term);
+  };
+
+  const handleInputChange = useCallback((value: string) => {
     setSearchQuery(value);
+    setDidYouMean([]);
+    setShowNoResults(false);
+    
     if (value.length > 1) {
-      const normalizedValue = normalize(value);
-      const lowerValue = value.toLowerCase();
+      setIsSearching(true);
       
-      const filteredDiseases: SuggestionItem[] = diseases
-        .filter((d) =>
-          d.name.toLowerCase().includes(lowerValue) ||
-          normalize(d.name).includes(normalizedValue) ||
-          d.symptoms.some((s) => 
-            s.toLowerCase().includes(lowerValue) || 
-            normalize(s).includes(normalizedValue)
+      // Debounce the search
+      const timeoutId = setTimeout(() => {
+        const normalizedValue = normalize(value);
+        const lowerValue = value.toLowerCase();
+        
+        const filteredDiseases: SuggestionItem[] = diseases
+          .filter((d) =>
+            d.name.toLowerCase().includes(lowerValue) ||
+            normalize(d.name).includes(normalizedValue) ||
+            d.symptoms.some((s) => 
+              s.toLowerCase().includes(lowerValue) || 
+              normalize(s).includes(normalizedValue)
+            )
           )
-        )
-        .slice(0, 3)
-        .map((d) => ({
-          id: d.id,
-          name: d.name,
-          category: d.category,
-          type: "disease" as const
-        }));
+          .slice(0, 3)
+          .map((d) => ({
+            id: d.id,
+            name: d.name,
+            category: d.category,
+            type: "disease" as const
+          }));
 
-      const filteredMedicines: SuggestionItem[] = medicines
-        .filter((m) =>
-          m.name.toLowerCase().includes(lowerValue) ||
-          normalize(m.name).includes(normalizedValue) ||
-          m.uses.some((u) => 
-            u.toLowerCase().includes(lowerValue) || 
-            normalize(u).includes(normalizedValue)
+        const filteredMedicines: SuggestionItem[] = medicines
+          .filter((m) =>
+            m.name.toLowerCase().includes(lowerValue) ||
+            normalize(m.name).includes(normalizedValue) ||
+            m.uses.some((u) => 
+              u.toLowerCase().includes(lowerValue) || 
+              normalize(u).includes(normalizedValue)
+            )
           )
-        )
-        .slice(0, 3)
-        .map((m) => ({
-          id: m.id,
-          name: m.name,
-          category: m.brand,
-          type: "medicine" as const
-        }));
+          .slice(0, 3)
+          .map((m) => ({
+            id: m.id,
+            name: m.name,
+            category: m.brand,
+            type: "medicine" as const
+          }));
 
-      const filteredRemedies: SuggestionItem[] = remedies
-        .filter((r) =>
-          r.title.toLowerCase().includes(lowerValue) ||
-          normalize(r.title).includes(normalizedValue) ||
-          r.problem.toLowerCase().includes(lowerValue) ||
-          normalize(r.problem).includes(normalizedValue)
-        )
-        .slice(0, 2)
-        .map((r) => ({
-          id: r.id,
-          name: r.title,
-          category: r.problem,
-          type: "remedy" as const
-        }));
+        const filteredRemedies: SuggestionItem[] = remedies
+          .filter((r) =>
+            r.title.toLowerCase().includes(lowerValue) ||
+            normalize(r.title).includes(normalizedValue) ||
+            r.problem.toLowerCase().includes(lowerValue) ||
+            normalize(r.problem).includes(normalizedValue)
+          )
+          .slice(0, 2)
+          .map((r) => ({
+            id: r.id,
+            name: r.title,
+            category: r.problem,
+            type: "remedy" as const
+          }));
 
-      setSuggestions([...filteredDiseases, ...filteredMedicines, ...filteredRemedies]);
+        const allSuggestions = [...filteredDiseases, ...filteredMedicines, ...filteredRemedies];
+        setSuggestions(allSuggestions);
+        
+        // If no results, find "Did you mean?" suggestions
+        if (allSuggestions.length === 0 && value.length >= 3) {
+          const allItems = [
+            ...diseases.map(d => ({ name: d.name })),
+            ...medicines.map(m => ({ name: m.name })),
+            ...remedies.map(r => ({ name: r.title, title: r.title }))
+          ];
+          const fuzzyMatches = findDidYouMean(value, allItems, 0.35, 3);
+          setDidYouMean(fuzzyMatches);
+          setShowNoResults(fuzzyMatches.length === 0);
+        }
+        
+        setIsSearching(false);
+      }, 150);
+      
+      return () => clearTimeout(timeoutId);
     } else {
       setSuggestions([]);
+      setIsSearching(false);
     }
-  };
+  }, []);
 
   const getIcon = (type: SuggestionItem["type"]) => {
     switch (type) {
@@ -211,8 +247,18 @@ const HeroSection = () => {
               </div>
             </div>
 
+            {/* Loading Indicator */}
+            {isSearching && searchQuery.length > 1 && (
+              <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 p-6 animate-scale-in">
+                <div className="flex items-center justify-center gap-3">
+                  <Loader2 className="h-5 w-5 text-primary animate-spin" />
+                  <span className="text-muted-foreground">Searching...</span>
+                </div>
+              </div>
+            )}
+
             {/* Suggestions Dropdown */}
-            {suggestions.length > 0 && (
+            {!isSearching && suggestions.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 overflow-hidden animate-scale-in">
                 {suggestions.map((item) => (
                   <button
@@ -243,6 +289,73 @@ const HeroSection = () => {
                     Search all results for "<span className="text-primary font-semibold">{searchQuery}</span>"
                   </span>
                   <ArrowRight className="h-4 w-4 text-primary ml-auto" />
+                </button>
+              </div>
+            )}
+
+            {/* Did You Mean? Suggestions */}
+            {!isSearching && didYouMean.length > 0 && suggestions.length === 0 && (
+              <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 p-5 animate-scale-in">
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertCircle className="h-4 w-4 text-accent" />
+                  <span className="text-sm text-muted-foreground">Did you mean?</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {didYouMean.map((term, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleDidYouMeanClick(term)}
+                      className="px-4 py-2 text-sm rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors font-medium"
+                    >
+                      {term}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={handleSearch}
+                  className="w-full mt-4 px-4 py-3 text-left hover:bg-muted/50 transition-colors flex items-center gap-3 rounded-xl border border-border/30"
+                >
+                  <Search className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">
+                    Search anyway for "<span className="text-foreground font-medium">{searchQuery}</span>"
+                  </span>
+                </button>
+              </div>
+            )}
+
+            {/* No Results - Try Common Diseases */}
+            {!isSearching && showNoResults && searchQuery.length >= 3 && (
+              <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 p-5 animate-scale-in">
+                <div className="text-center mb-4">
+                  <p className="text-muted-foreground text-sm">
+                    No matches for "<span className="text-foreground font-medium">{searchQuery}</span>"
+                  </p>
+                </div>
+                <div className="border-t border-border/30 pt-4">
+                  <p className="text-sm text-muted-foreground mb-3 flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-accent" />
+                    Try these common diseases:
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {popularDiseases.slice(0, 6).map((disease, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => handleDidYouMeanClick(disease.split("(")[0].trim())}
+                        className="px-3 py-1.5 text-xs rounded-full bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {disease.split("(")[0].trim()}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <button
+                  onClick={handleSearch}
+                  className="w-full mt-4 px-4 py-3 text-left hover:bg-muted/50 transition-colors flex items-center gap-3 rounded-xl border border-border/30"
+                >
+                  <Search className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm text-muted-foreground">
+                    Search anyway for "<span className="text-foreground font-medium">{searchQuery}</span>"
+                  </span>
                 </button>
               </div>
             )}
