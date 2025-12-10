@@ -1,11 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Search, Menu, X, Leaf, MessageCircle, Sparkles } from "lucide-react";
+import { Search, Menu, X, Leaf, Sparkles, ShoppingCart } from "lucide-react";
 import { useState } from "react";
+import { useCart } from "@/contexts/CartContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { totalItems, setIsCartOpen } = useCart();
 
   const navLinks = [
     { name: "Diseases", href: "/diseases" },
@@ -58,6 +60,21 @@ const Header = () => {
               className="text-muted-foreground hover:text-foreground hover:bg-muted/50"
             >
               <Search className="h-5 w-5" />
+            </Button>
+
+            {/* Cart Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsCartOpen(true)}
+              className="relative text-muted-foreground hover:text-foreground hover:bg-muted/50"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-gold text-background text-xs font-bold flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
             </Button>
             
             <Button

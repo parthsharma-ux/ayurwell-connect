@@ -3,6 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { CartProvider } from "@/contexts/CartContext";
+import CartDrawer from "@/components/cart/CartDrawer";
 import Index from "./pages/Index";
 import Diseases from "./pages/Diseases";
 import DiseaseDetail from "./pages/DiseaseDetail";
@@ -40,31 +42,34 @@ const SearchRedirect = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/diseases" element={<Diseases />} />
-          <Route path="/diseases/:id" element={<DiseaseDetail />} />
-          <Route path="/medicines" element={<Medicines />} />
-          <Route path="/medicines/:id" element={<MedicineDetail />} />
-          <Route path="/remedies" element={<Remedies />} />
-          <Route path="/remedies/:id" element={<RemedyDetail />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/doctor-ai" element={<DoctorAI />} />
-          <Route path="/about-ayurveda" element={<AboutAyurveda />} />
-          <Route path="/dosha-types" element={<DoshaTypes />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/disclaimer" element={<Disclaimer />} />
-          <Route path="/kits" element={<Kits />} />
-          {/* Catch encoded search URLs */}
-          <Route path="/search%3F/*" element={<SearchRedirect />} />
-          <Route path="*" element={<SearchRedirect />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <CartProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <CartDrawer />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/diseases" element={<Diseases />} />
+            <Route path="/diseases/:id" element={<DiseaseDetail />} />
+            <Route path="/medicines" element={<Medicines />} />
+            <Route path="/medicines/:id" element={<MedicineDetail />} />
+            <Route path="/remedies" element={<Remedies />} />
+            <Route path="/remedies/:id" element={<RemedyDetail />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/doctor-ai" element={<DoctorAI />} />
+            <Route path="/about-ayurveda" element={<AboutAyurveda />} />
+            <Route path="/dosha-types" element={<DoshaTypes />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/disclaimer" element={<Disclaimer />} />
+            <Route path="/kits" element={<Kits />} />
+            {/* Catch encoded search URLs */}
+            <Route path="/search%3F/*" element={<SearchRedirect />} />
+            <Route path="*" element={<SearchRedirect />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </CartProvider>
   </QueryClientProvider>
 );
 
