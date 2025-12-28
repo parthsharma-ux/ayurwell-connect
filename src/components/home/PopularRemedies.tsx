@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Clock, Leaf, ChefHat } from "lucide-react";
 import { remedies } from "@/data/remedies";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const PopularRemedies = () => {
   const popularRemedies = remedies.slice(0, 6);
+  const { t } = useLanguage();
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -21,32 +23,30 @@ const PopularRemedies = () => {
   return (
     <section className="py-16 md:py-24 bg-muted/30">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
           <div>
             <div className="flex items-center gap-2 text-secondary mb-2">
               <ChefHat className="h-5 w-5" />
               <span className="text-sm font-medium uppercase tracking-wide">
-                Natural Solutions
+                {t("remedies_label")}
               </span>
             </div>
             <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-              Popular Home Remedies
+              {t("remedies_title")}
             </h2>
             <p className="text-muted-foreground mt-2 max-w-lg">
-              Time-tested remedies using kitchen ingredients for everyday ailments
+              {t("remedies_subtitle")}
             </p>
           </div>
           <Link
             to="/remedies"
             className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
           >
-            View all remedies
+            {t("remedies_view_all")}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        {/* Remedies Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {popularRemedies.map((remedy, index) => (
             <Link
@@ -55,7 +55,6 @@ const PopularRemedies = () => {
               className="group bg-card rounded-2xl overflow-hidden border border-border hover:border-secondary/30 hover:shadow-card transition-all duration-300 animate-fade-in-up"
               style={{ animationDelay: `${index * 0.05}s` }}
             >
-              {/* Card Header */}
               <div className="p-6 pb-4">
                 <div className="flex items-start justify-between mb-3">
                   <span className="text-xs font-medium text-primary bg-primary/10 px-2.5 py-1 rounded-full">
@@ -70,7 +69,6 @@ const PopularRemedies = () => {
                   {remedy.title}
                 </h3>
                 
-                {/* Ingredients preview */}
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Leaf className="h-4 w-4 text-secondary" />
                   <span>
@@ -80,14 +78,13 @@ const PopularRemedies = () => {
                 </div>
               </div>
 
-              {/* Card Footer */}
               <div className="px-6 py-4 bg-muted/50 border-t border-border flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Clock className="h-4 w-4" />
                   <span>{remedy.preparation_time}</span>
                 </div>
                 <span className="text-secondary font-medium text-sm group-hover:translate-x-1 transition-transform">
-                  See recipe →
+                  {t("remedies_see_recipe")}
                 </span>
               </div>
             </Link>
