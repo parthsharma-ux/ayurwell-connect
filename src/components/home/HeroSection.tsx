@@ -9,6 +9,7 @@ import { normalize, findDidYouMean, popularDiseases } from "@/lib/fuzzySearch";
 import { useVoiceSearch } from "@/hooks/useVoiceSearch";
 import VoiceSearchButton from "@/components/VoiceSearchButton";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type SuggestionItem = {
   id: string;
@@ -25,16 +26,17 @@ const HeroSection = () => {
   const [showNoResults, setShowNoResults] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t, language } = useLanguage();
 
   // Voice Search
   const handleVoiceResult = useCallback((transcript: string) => {
     setSearchQuery(transcript);
     handleInputChange(transcript);
     toast({
-      title: "🎤 Voice captured",
-      description: `Searching for "${transcript}"`,
+      title: t("hero_voice_captured"),
+      description: `${t("hero_searching_for")} "${transcript}"`,
     });
-  }, []);
+  }, [t]);
 
   const handleVoiceError = useCallback((error: string) => {
     toast({
@@ -96,7 +98,6 @@ const HeroSection = () => {
     if (value.length > 1) {
       setIsSearching(true);
       
-      // Debounce the search
       const timeoutId = setTimeout(() => {
         const normalizedValue = normalize(value);
         const lowerValue = value.toLowerCase();
@@ -153,7 +154,6 @@ const HeroSection = () => {
         const allSuggestions = [...filteredDiseases, ...filteredMedicines, ...filteredRemedies];
         setSuggestions(allSuggestions);
         
-        // If no results, find "Did you mean?" suggestions
         if (allSuggestions.length === 0 && value.length >= 3) {
           const allItems = [
             ...diseases.map(d => ({ name: d.name })),
@@ -189,66 +189,53 @@ const HeroSection = () => {
   const getTypeLabel = (type: SuggestionItem["type"]) => {
     switch (type) {
       case "disease":
-        return "Disease";
+        return t("nav_diseases");
       case "medicine":
-        return "Medicine";
+        return t("nav_medicines");
       case "remedy":
-        return "Remedy";
+        return t("nav_remedies");
     }
   };
 
-  const popularSearches = [
-    "Diabetes",
-    "Joint Pain",
-    "Acidity",
-    "Hair Fall",
-    "Anxiety",
-    "Cold & Cough",
-  ];
+  const popularSearches = language === "hi" 
+    ? [t("popular_diabetes"), t("popular_joint_pain"), t("popular_acidity"), t("popular_hair_fall"), t("popular_anxiety"), t("popular_cold_cough")]
+    : ["Diabetes", "Joint Pain", "Acidity", "Hair Fall", "Anxiety", "Cold & Cough"];
 
   return (
     <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Premium gradient background */}
       <div className="absolute inset-0 bg-hero-pattern" />
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background/95" />
       
-      {/* Animated glow orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px] animate-pulse-soft" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-[100px] animate-pulse-soft" style={{ animationDelay: "1s" }} />
       <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-secondary/10 rounded-full blur-[80px] animate-pulse-soft" style={{ animationDelay: "2s" }} />
       
-      {/* Grid overlay */}
       <div className="absolute inset-0 bg-grid-pattern opacity-30" />
 
       <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Premium Badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-premium text-sm font-medium mb-8 animate-fade-in-up shadow-glow-gold">
             <Sparkles className="h-4 w-4 text-accent" />
-            <span className="text-gradient-premium">India's #1 Ayurvedic Health Platform</span>
+            <span className="text-gradient-premium">{t("hero_badge")}</span>
           </div>
 
-          {/* Heading */}
           <h1 className="font-display text-4xl md:text-5xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in-up leading-tight" style={{ animationDelay: "0.1s" }}>
-            Discover the Power of{" "}
+            {t("hero_title_1")}{" "}
             <span className="text-gradient-terracotta relative">
-              Ayurveda
+              {t("hero_title_2")}
               <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-full opacity-50" />
             </span>
           </h1>
 
-          {/* Subheading */}
           <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto animate-fade-in-up leading-relaxed" style={{ animationDelay: "0.2s" }}>
-            Search any disease or symptom to unlock{" "}
-            <span className="text-primary font-medium">ancient remedies</span>,{" "}
-            <span className="text-accent font-medium">natural medicines</span>, and{" "}
-            <span className="text-secondary font-medium">holistic wellness</span> tips.
+            {t("hero_subtitle_1")}{" "}
+            <span className="text-primary font-medium">{t("hero_subtitle_2")}</span>,{" "}
+            <span className="text-accent font-medium">{t("hero_subtitle_3")}</span>, and{" "}
+            <span className="text-secondary font-medium">{t("hero_subtitle_4")}</span>.
           </p>
 
-          {/* Search Box */}
           <div className="relative max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
             <div className="relative group">
-              {/* Glow effect */}
               <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
               
               <div className="relative flex items-center">
@@ -258,7 +245,7 @@ const HeroSection = () => {
                   value={isListening ? interimTranscript || searchQuery : searchQuery}
                   onChange={(e) => handleInputChange(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder={isListening ? "Listening... speak now" : "Search diseases, medicines, or remedies..."}
+                  placeholder={isListening ? t("hero_search_listening") : t("hero_search_placeholder")}
                   className="w-full h-16 md:h-18 pl-14 pr-52 rounded-2xl border border-border/50 bg-card/90 backdrop-blur-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/20 transition-all text-lg shadow-elevated"
                   disabled={isListening}
                 />
@@ -277,14 +264,13 @@ const HeroSection = () => {
                     className="h-12 shadow-glow-gold group/btn"
                     disabled={isListening}
                   >
-                    <span className="hidden sm:inline">Search</span>
+                    <span className="hidden sm:inline">{t("hero_search_button")}</span>
                     <ArrowRight className="h-5 w-5 sm:ml-2 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </div>
               </div>
             </div>
 
-            {/* Voice Listening Indicator */}
             {isListening && (
               <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-primary/50 shadow-glow-terracotta z-50 p-6 animate-scale-in">
                 <div className="flex items-center justify-center gap-3">
@@ -293,23 +279,21 @@ const HeroSection = () => {
                     <span className="absolute -top-1 -right-1 h-3 w-3 bg-primary rounded-full animate-ping" />
                   </div>
                   <span className="text-foreground font-medium">
-                    {interimTranscript || "Listening... speak your symptom or disease"}
+                    {interimTranscript || t("hero_search_listening")}
                   </span>
                 </div>
               </div>
             )}
 
-            {/* Loading Indicator */}
             {isSearching && searchQuery.length > 1 && (
               <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 p-6 animate-scale-in">
                 <div className="flex items-center justify-center gap-3">
                   <Loader2 className="h-5 w-5 text-primary animate-spin" />
-                  <span className="text-muted-foreground">Searching...</span>
+                  <span className="text-muted-foreground">{t("common_loading")}</span>
                 </div>
               </div>
             )}
 
-            {/* Suggestions Dropdown */}
             {!isSearching && suggestions.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 overflow-hidden animate-scale-in">
                 {suggestions.map((item) => (
@@ -338,19 +322,18 @@ const HeroSection = () => {
                     <Search className="h-4 w-4 text-primary" />
                   </div>
                   <span className="text-muted-foreground">
-                    Search all results for "<span className="text-primary font-semibold">{searchQuery}</span>"
+                    {t("common_search_anyway")} "<span className="text-primary font-semibold">{searchQuery}</span>"
                   </span>
                   <ArrowRight className="h-4 w-4 text-primary ml-auto" />
                 </button>
               </div>
             )}
 
-            {/* Did You Mean? Suggestions */}
             {!isSearching && didYouMean.length > 0 && suggestions.length === 0 && (
               <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 p-5 animate-scale-in">
                 <div className="flex items-center gap-2 mb-3">
                   <AlertCircle className="h-4 w-4 text-accent" />
-                  <span className="text-sm text-muted-foreground">Did you mean?</span>
+                  <span className="text-sm text-muted-foreground">{t("common_did_you_mean")}</span>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {didYouMean.map((term, idx) => (
@@ -369,24 +352,23 @@ const HeroSection = () => {
                 >
                   <Search className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">
-                    Search anyway for "<span className="text-foreground font-medium">{searchQuery}</span>"
+                    {t("common_search_anyway")} "<span className="text-foreground font-medium">{searchQuery}</span>"
                   </span>
                 </button>
               </div>
             )}
 
-            {/* No Results - Try Common Diseases */}
             {!isSearching && showNoResults && searchQuery.length >= 3 && (
               <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 p-5 animate-scale-in">
                 <div className="text-center mb-4">
                   <p className="text-muted-foreground text-sm">
-                    No matches for "<span className="text-foreground font-medium">{searchQuery}</span>"
+                    {t("common_no_results")} "<span className="text-foreground font-medium">{searchQuery}</span>"
                   </p>
                 </div>
                 <div className="border-t border-border/30 pt-4">
                   <p className="text-sm text-muted-foreground mb-3 flex items-center gap-2">
                     <Sparkles className="h-4 w-4 text-accent" />
-                    Try these common diseases:
+                    {t("common_try_common")}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {popularDiseases.slice(0, 6).map((disease, idx) => (
@@ -406,55 +388,41 @@ const HeroSection = () => {
                 >
                   <Search className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">
-                    Search anyway for "<span className="text-foreground font-medium">{searchQuery}</span>"
+                    {t("common_search_anyway")} "<span className="text-foreground font-medium">{searchQuery}</span>"
                   </span>
                 </button>
               </div>
             )}
           </div>
 
-          {/* Popular Searches */}
           <div className="mt-8 flex flex-wrap justify-center gap-3 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            <span className="text-sm text-muted-foreground py-2">Popular:</span>
-            {popularSearches.map((term) => (
+            <span className="text-sm text-muted-foreground">{t("hero_popular_searches")}</span>
+            {popularSearches.map((search) => (
               <button
-                key={term}
-                onClick={() => handleInputChange(term)}
-                className="px-4 py-2 text-sm rounded-full glass hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-all hover:shadow-soft"
+                key={search}
+                onClick={() => {
+                  setSearchQuery(search);
+                  handleInputChange(search);
+                }}
+                className="text-sm px-4 py-1.5 rounded-full glass-premium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
               >
-                {term}
+                {search}
               </button>
             ))}
           </div>
 
-          {/* Stats */}
-          <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-            <div className="text-center group">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors group-hover:shadow-glow-terracotta">
-                <Heart className="h-7 w-7 text-primary" />
-              </div>
-              <div className="font-display text-3xl md:text-4xl font-bold text-foreground">
-                1000<span className="text-primary">+</span>
-              </div>
-              <p className="text-sm text-muted-foreground mt-1">Diseases</p>
+          <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+            <div className="text-center">
+              <p className="font-display text-3xl md:text-4xl font-bold text-gradient-terracotta">{t("stat_diseases")}</p>
+              <p className="text-sm text-muted-foreground mt-1">{t("stat_documented_diseases")}</p>
             </div>
-            <div className="text-center group">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-accent/10 mb-4 group-hover:bg-accent/20 transition-colors group-hover:shadow-glow-gold">
-                <Leaf className="h-7 w-7 text-accent" />
-              </div>
-              <div className="font-display text-3xl md:text-4xl font-bold text-foreground">
-                10K<span className="text-accent">+</span>
-              </div>
-              <p className="text-sm text-muted-foreground mt-1">Medicines</p>
+            <div className="text-center">
+              <p className="font-display text-3xl md:text-4xl font-bold text-gradient-gold">{t("stat_medicines")}</p>
+              <p className="text-sm text-muted-foreground mt-1">{t("stat_herbal_medicines")}</p>
             </div>
-            <div className="text-center group">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-secondary/10 mb-4 group-hover:bg-secondary/20 transition-colors group-hover:shadow-glow-sage">
-                <Brain className="h-7 w-7 text-secondary" />
-              </div>
-              <div className="font-display text-3xl md:text-4xl font-bold text-foreground">
-                1000<span className="text-secondary">+</span>
-              </div>
-              <p className="text-sm text-muted-foreground mt-1">Remedies</p>
+            <div className="text-center">
+              <p className="font-display text-3xl md:text-4xl font-bold text-gradient-premium">{t("stat_remedies")}</p>
+              <p className="text-sm text-muted-foreground mt-1">{t("stat_home_remedies")}</p>
             </div>
           </div>
         </div>

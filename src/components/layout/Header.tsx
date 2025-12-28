@@ -3,18 +3,21 @@ import { Button } from "@/components/ui/button";
 import { Search, Menu, X, Leaf, Sparkles, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageToggle from "@/components/LanguageToggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { totalItems, setIsCartOpen } = useCart();
+  const { t } = useLanguage();
 
   const navLinks = [
-    { name: "Diseases", href: "/diseases" },
-    { name: "Medicines", href: "/medicines" },
-    { name: "Remedies", href: "/remedies" },
-    { name: "Kits", href: "/kits" },
-    { name: "AI Doctor", href: "/doctor-ai" },
+    { name: t("nav_diseases"), href: "/diseases" },
+    { name: t("nav_medicines"), href: "/medicines" },
+    { name: t("nav_remedies"), href: "/remedies" },
+    { name: t("nav_kits"), href: "/kits" },
+    { name: t("nav_ai_doctor"), href: "/doctor-ai" },
   ];
 
   return (
@@ -32,7 +35,7 @@ const Header = () => {
                 AyurVeda
               </span>
               <span className="text-[10px] text-muted-foreground -mt-0.5 tracking-wider uppercase">
-                Heal Naturally
+                {t("header_tagline")}
               </span>
             </div>
           </Link>
@@ -41,7 +44,7 @@ const Header = () => {
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.href}
                 to={link.href}
                 className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group rounded-lg hover:bg-muted/50"
               >
@@ -53,6 +56,11 @@ const Header = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
+            {/* Language Toggle */}
+            <div className="hidden sm:block">
+              <LanguageToggle />
+            </div>
+
             <Button
               variant="ghost"
               size="icon"
@@ -84,7 +92,7 @@ const Header = () => {
               className="hidden sm:flex items-center gap-2 shadow-glow-gold"
             >
               <Sparkles className="h-4 w-4" />
-              AI Doctor
+              {t("nav_ai_doctor")}
             </Button>
 
             {/* Mobile Menu Button */}
@@ -107,9 +115,14 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border/30 animate-fade-in">
             <nav className="flex flex-col gap-1">
+              {/* Mobile Language Toggle */}
+              <div className="px-4 py-2 mb-2">
+                <LanguageToggle />
+              </div>
+              
               {navLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.href}
                   to={link.href}
                   className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
                   onClick={() => setIsMenuOpen(false)}
@@ -127,7 +140,7 @@ const Header = () => {
                 className="mt-2 mx-4"
               >
                 <Sparkles className="h-4 w-4 mr-2" />
-                AI Doctor
+                {t("nav_ai_doctor")}
               </Button>
             </nav>
           </div>
