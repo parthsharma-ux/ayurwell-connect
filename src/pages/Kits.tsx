@@ -1,38 +1,11 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Heart, ShoppingCart, Info, Package, MessageCircle } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/contexts/CartContext';
-
-// Kit images
-import kitImmunity from '@/assets/kits/kit-immunity.jpg';
-import kitDigestion from '@/assets/kits/kit-digestion.jpg';
-import kitStress from '@/assets/kits/kit-stress.jpg';
-import kitWomen from '@/assets/kits/kit-women.jpg';
-import kitHairSkin from '@/assets/kits/kit-hair-skin.jpg';
-import kitDetox from '@/assets/kits/kit-detox.jpg';
-import kitJoint from '@/assets/kits/kit-joint.jpg';
-import kitSleep from '@/assets/kits/kit-sleep.jpg';
-import kitEnergy from '@/assets/kits/kit-energy.jpg';
-import kitDaily from '@/assets/kits/kit-daily.jpg';
-import kitPitta from '@/assets/kits/kit-pitta.jpg';
-import kitCustom from '@/assets/kits/kit-custom.jpg';
-
-const kits = [
-  { id: 1, name: 'Immunity Booster Kit', price: 799, short: 'Amla, Giloy & Tulsi formulation for daily immunity', duration: '30 days', image: kitImmunity },
-  { id: 2, name: 'Digestion Care Kit', price: 699, short: 'Triphala based digestive support', duration: '30 days', image: kitDigestion },
-  { id: 3, name: 'Stress Relief Kit', price: 899, short: 'Ashwagandha + Brahmi calm blend', duration: '30 days', image: kitStress },
-  { id: 4, name: 'Women Wellness Kit', price: 999, short: 'Shatavari & herbs for hormonal balance', duration: '30 days', image: kitWomen },
-  { id: 5, name: 'Hair & Skin Glow Kit', price: 899, short: 'Bhringraj, Amla & natural oils', duration: '30 days', image: kitHairSkin },
-  { id: 6, name: 'Detox & Rejuvenate Kit', price: 1099, short: 'Gentle liver and gut detox', duration: '14 days', image: kitDetox },
-  { id: 7, name: 'Joint Mobility Kit', price: 1199, short: 'Boswellia & turmeric joint support', duration: '30 days', image: kitJoint },
-  { id: 8, name: 'Sleep Support Kit', price: 649, short: 'Herbal nighttime blend for restful sleep', duration: '30 days', image: kitSleep },
-  { id: 9, name: 'Energy & Vitality Kit', price: 749, short: 'Herbal tonic for daily energy', duration: '30 days', image: kitEnergy },
-  { id: 10, name: 'Classic Daily Wellness', price: 549, short: 'Everyday wellness trifecta', duration: '30 days', image: kitDaily },
-  { id: 11, name: 'Pitta Balance Kit', price: 799, short: 'Cooling herbs for Pitta balance', duration: '30 days', image: kitPitta },
-  { id: 12, name: 'Customized Starter Kit', price: 1299, short: 'Personalized herbs + mini consult', duration: '30 days', image: kitCustom }
-];
+import { kits } from '@/data/kits';
 
 const Kits = () => {
   const { addToCart } = useCart();
@@ -137,9 +110,11 @@ const Kits = () => {
                       >
                         <ShoppingCart className="h-4 w-4" />
                       </Button>
-                      <Button size="sm" variant="outline">
-                        <Info className="h-4 w-4" />
-                      </Button>
+                      <Link to={`/kits/${kit.slug}`}>
+                        <Button size="sm" variant="outline">
+                          <Info className="h-4 w-4" />
+                        </Button>
+                      </Link>
                     </div>
                   </div>
 
