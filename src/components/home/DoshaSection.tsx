@@ -1,33 +1,36 @@
 import { Wind, Flame, Droplets } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const DoshaSection = () => {
+  const { t } = useLanguage();
+
   const doshas = [
     {
-      name: "Vata",
-      hindi: "वात",
+      name: t("dosha_vata_full"),
+      hindi: t("dosha_vata_hindi"),
       icon: Wind,
       color: "blue",
-      description: "Air & Space elements. Governs movement, breathing, and nervous system.",
-      characteristics: ["Creative", "Energetic", "Flexible", "Quick-thinking"],
-      imbalance: ["Anxiety", "Dry skin", "Joint pain", "Insomnia"],
+      description: t("dosha_vata_description"),
+      characteristics: [t("dosha_vata_char_1"), t("dosha_vata_char_2"), t("dosha_vata_char_3"), t("dosha_vata_char_4")],
+      imbalance: [t("dosha_vata_imb_1"), t("dosha_vata_imb_2"), t("dosha_vata_imb_3"), t("dosha_vata_imb_4")],
     },
     {
-      name: "Pitta",
-      hindi: "पित्त",
+      name: t("dosha_pitta_full"),
+      hindi: t("dosha_pitta_hindi"),
       icon: Flame,
       color: "red",
-      description: "Fire & Water elements. Governs digestion, metabolism, and transformation.",
-      characteristics: ["Intelligent", "Focused", "Ambitious", "Confident"],
-      imbalance: ["Acidity", "Inflammation", "Skin rashes", "Anger"],
+      description: t("dosha_pitta_description"),
+      characteristics: [t("dosha_pitta_char_1"), t("dosha_pitta_char_2"), t("dosha_pitta_char_3"), t("dosha_pitta_char_4")],
+      imbalance: [t("dosha_pitta_imb_1"), t("dosha_pitta_imb_2"), t("dosha_pitta_imb_3"), t("dosha_pitta_imb_4")],
     },
     {
-      name: "Kapha",
-      hindi: "कफ",
+      name: t("dosha_kapha_full"),
+      hindi: t("dosha_kapha_hindi"),
       icon: Droplets,
       color: "green",
-      description: "Water & Earth elements. Governs structure, stability, and immunity.",
-      characteristics: ["Calm", "Loving", "Strong", "Steady"],
-      imbalance: ["Weight gain", "Congestion", "Lethargy", "Depression"],
+      description: t("dosha_kapha_description"),
+      characteristics: [t("dosha_kapha_char_1"), t("dosha_kapha_char_2"), t("dosha_kapha_char_3"), t("dosha_kapha_char_4")],
+      imbalance: [t("dosha_kapha_imb_1"), t("dosha_kapha_imb_2"), t("dosha_kapha_imb_3"), t("dosha_kapha_imb_4")],
     },
   ];
 
@@ -67,18 +70,15 @@ const DoshaSection = () => {
   return (
     <section className="py-16 md:py-24 bg-card">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Understanding the Three Doshas
+            {t("dosha_title_main")}
           </h2>
           <p className="text-muted-foreground">
-            In Ayurveda, health is achieved by balancing the three fundamental energies 
-            or doshas that govern our physical and mental processes.
+            {t("dosha_description_main")}
           </p>
         </div>
 
-        {/* Doshas Grid */}
         <div className="grid md:grid-cols-3 gap-6">
           {doshas.map((dosha, index) => {
             const colors = getColorClasses(dosha.color);
@@ -88,7 +88,6 @@ const DoshaSection = () => {
                 className={`rounded-2xl p-8 ${colors.bg} border ${colors.border} transition-all hover:shadow-card animate-fade-in-up`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Icon & Name */}
                 <div className="flex items-center gap-4 mb-6">
                   <div className={`w-14 h-14 rounded-xl ${colors.icon} flex items-center justify-center`}>
                     <dosha.icon className="h-7 w-7" />
@@ -101,15 +100,13 @@ const DoshaSection = () => {
                   </div>
                 </div>
 
-                {/* Description */}
                 <p className="text-sm text-muted-foreground mb-6">
                   {dosha.description}
                 </p>
 
-                {/* Characteristics */}
                 <div className="mb-4">
                   <h4 className="text-sm font-semibold text-foreground mb-2">
-                    When Balanced:
+                    {t("dosha_when_balanced")}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {dosha.characteristics.map((char) => (
@@ -123,10 +120,9 @@ const DoshaSection = () => {
                   </div>
                 </div>
 
-                {/* Imbalance */}
                 <div>
                   <h4 className="text-sm font-semibold text-foreground mb-2">
-                    Imbalance Signs:
+                    {t("dosha_imbalance_signs")}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {dosha.imbalance.map((sign) => (
