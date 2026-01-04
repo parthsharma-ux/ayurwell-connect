@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { remedies, remedyCategories } from "@/data/remedies";
 import { Search, Filter, Clock, Leaf } from "lucide-react";
@@ -48,7 +48,7 @@ const Remedies = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((remedy) => (
-            <Link
+            <LocalizedLink
               key={remedy.id}
               to={`/remedies/${remedy.id}`}
               className="bg-card rounded-2xl overflow-hidden border border-border hover:shadow-card transition-all"
@@ -68,7 +68,7 @@ const Remedies = () => {
                 <Clock className="h-4 w-4" />
                 <span>{remedy.preparation_time}</span>
               </div>
-            </Link>
+            </LocalizedLink>
           ))}
         </div>
       </div>

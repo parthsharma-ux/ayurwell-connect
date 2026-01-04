@@ -1,4 +1,5 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { diseases } from "@/data/diseases";
 import { medicines } from "@/data/medicines";
@@ -19,9 +20,9 @@ const DiseaseDetail = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
-        <Link to="/diseases" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6">
+        <LocalizedLink to="/diseases" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6">
           <ArrowLeft className="h-4 w-4" /> Back to Diseases
-        </Link>
+        </LocalizedLink>
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-8">
@@ -49,13 +50,13 @@ const DiseaseDetail = () => {
               </h2>
               <div className="grid gap-4">
                 {relatedMedicines.slice(0, 4).map((med) => (
-                  <Link key={med.id} to={`/medicines/${med.id}`} className="flex items-center justify-between p-4 bg-muted/50 rounded-xl hover:bg-muted transition-colors">
+                  <LocalizedLink key={med.id} to={`/medicines/${med.id}`} className="flex items-center justify-between p-4 bg-muted/50 rounded-xl hover:bg-muted transition-colors">
                     <div>
                       <h3 className="font-semibold">{med.name}</h3>
                       <p className="text-sm text-muted-foreground">{med.brand} • {med.form}</p>
                     </div>
                     <span className="text-primary">→</span>
-                  </Link>
+                  </LocalizedLink>
                 ))}
               </div>
             </div>
@@ -66,10 +67,10 @@ const DiseaseDetail = () => {
               </h2>
               <div className="grid gap-4">
                 {relatedRemedies.slice(0, 3).map((rem) => (
-                  <Link key={rem.id} to={`/remedies/${rem.id}`} className="p-4 bg-muted/50 rounded-xl hover:bg-muted transition-colors">
+                  <LocalizedLink key={rem.id} to={`/remedies/${rem.id}`} className="p-4 bg-muted/50 rounded-xl hover:bg-muted transition-colors">
                     <h3 className="font-semibold">{rem.title}</h3>
                     <p className="text-sm text-muted-foreground mt-1">{rem.ingredients.map((i) => i.name).join(", ")}</p>
-                  </Link>
+                  </LocalizedLink>
                 ))}
               </div>
             </div>

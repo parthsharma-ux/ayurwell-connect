@@ -1,4 +1,5 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { medicines } from "@/data/medicines";
 import { ArrowLeft, Package, Tag, AlertTriangle, Pill } from "lucide-react";
@@ -16,9 +17,9 @@ const MedicineDetail = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
-        <Link to="/medicines" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6">
+        <LocalizedLink to="/medicines" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6">
           <ArrowLeft className="h-4 w-4" /> Back to Medicines
-        </Link>
+        </LocalizedLink>
 
         <div className="grid lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
@@ -77,10 +78,10 @@ const MedicineDetail = () => {
                 <h2 className="font-display text-lg font-semibold mb-4">Alternatives</h2>
                 <div className="space-y-3">
                   {alternatives.map((alt) => (
-                    <Link key={alt.id} to={`/medicines/${alt.id}`} className="block p-3 bg-muted/50 rounded-lg hover:bg-muted transition-colors">
+                    <LocalizedLink key={alt.id} to={`/medicines/${alt.id}`} className="block p-3 bg-muted/50 rounded-lg hover:bg-muted transition-colors">
                       <h3 className="font-medium text-sm">{alt.name}</h3>
                       <p className="text-xs text-muted-foreground">{alt.brand}</p>
-                    </Link>
+                    </LocalizedLink>
                   ))}
                 </div>
               </div>

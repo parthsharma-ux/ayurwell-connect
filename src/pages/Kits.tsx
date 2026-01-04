@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import LocalizedLink from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
 import { Heart, ShoppingCart, Info, Package, MessageCircle } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
@@ -110,11 +110,11 @@ const Kits = () => {
                       >
                         <ShoppingCart className="h-4 w-4" />
                       </Button>
-                      <Link to={`/kits/${kit.slug}`}>
+                      <LocalizedLink to={`/kits/${kit.slug}`}>
                         <Button size="sm" variant="outline">
                           <Info className="h-4 w-4" />
                         </Button>
-                      </Link>
+                      </LocalizedLink>
                     </div>
                   </div>
 

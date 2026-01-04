@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { diseases } from "@/data/diseases";
 import { medicines } from "@/data/medicines";
@@ -226,7 +227,7 @@ const Search = () => {
                   </div>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {filteredDiseases.slice(0, activeFilter === "diseases" ? 12 : 6).map((d) => (
-                      <Link 
+                      <LocalizedLink 
                         key={d.id} 
                         to={`/diseases/${d.id}`} 
                         className="group p-5 bg-card/50 glass-premium rounded-xl border border-border/50 hover:border-primary/50 hover-lift transition-all"
@@ -249,7 +250,7 @@ const Search = () => {
                             </div>
                           </div>
                         </div>
-                      </Link>
+                      </LocalizedLink>
                     ))}
                   </div>
                   {activeFilter === "all" && filteredDiseases.length > 6 && (
@@ -278,7 +279,7 @@ const Search = () => {
                   </div>
                   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {filteredMedicines.slice(0, activeFilter === "medicines" ? 16 : 8).map((m) => (
-                      <Link 
+                      <LocalizedLink 
                         key={m.id} 
                         to={`/medicines/${m.id}`} 
                         className="group p-5 bg-card/50 glass-premium rounded-xl border border-border/50 hover:border-accent/50 hover-lift transition-all"
@@ -294,7 +295,7 @@ const Search = () => {
                             <p className="text-sm text-muted-foreground mt-1 truncate">{m.brand}</p>
                           </div>
                         </div>
-                      </Link>
+                      </LocalizedLink>
                     ))}
                   </div>
                   {activeFilter === "all" && filteredMedicines.length > 8 && (
@@ -323,7 +324,7 @@ const Search = () => {
                   </div>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {filteredRemedies.slice(0, activeFilter === "remedies" ? 12 : 6).map((r) => (
-                      <Link 
+                      <LocalizedLink 
                         key={r.id} 
                         to={`/remedies/${r.id}`} 
                         className="group p-5 bg-card/50 glass-premium rounded-xl border border-border/50 hover:border-secondary/50 hover-lift transition-all"
@@ -339,7 +340,7 @@ const Search = () => {
                             <p className="text-sm text-muted-foreground mt-1">{r.problem}</p>
                           </div>
                         </div>
-                      </Link>
+                      </LocalizedLink>
                     ))}
                   </div>
                   {activeFilter === "all" && filteredRemedies.length > 6 && (

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import { ArrowRight, Activity, Sparkles } from "lucide-react";
 import { diseases } from "@/data/diseases";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -38,19 +38,19 @@ const TrendingDiseases = () => {
               {t("trending_subtitle")}
             </p>
           </div>
-          <Link
+          <LocalizedLink
             to="/diseases"
             className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all group animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
             {t("trending_view_all")}
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          </LocalizedLink>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {trendingDiseases.map((disease, index) => (
-            <Link
+            <LocalizedLink
               key={disease.id}
               to={`/diseases/${disease.id}`}
               className="group glass-premium rounded-2xl p-6 border border-border/30 hover:border-primary/40 hover-lift transition-all duration-300 animate-fade-in-up"
@@ -91,7 +91,7 @@ const TrendingDiseases = () => {
                   <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </div>
-            </Link>
+            </LocalizedLink>
           ))}
         </div>
       </div>

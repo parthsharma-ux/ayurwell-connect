@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { diseases, diseaseCategories } from "@/data/diseases";
 import { Search, Filter } from "lucide-react";
@@ -55,7 +56,7 @@ const Diseases = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((disease) => (
-            <Link
+            <LocalizedLink
               key={disease.id}
               to={`/diseases/${disease.id}`}
               className="bg-card rounded-2xl p-6 border border-border hover:shadow-card transition-all"
@@ -70,7 +71,7 @@ const Diseases = () => {
                   <span key={s} className="text-xs bg-muted px-2 py-1 rounded">{s}</span>
                 ))}
               </div>
-            </Link>
+            </LocalizedLink>
           ))}
         </div>
       </div>

@@ -1,14 +1,15 @@
-import { Link, useNavigate } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import { Button } from "@/components/ui/button";
 import { Search, Menu, X, Leaf, Sparkles, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "@/components/LanguageToggle";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const { totalItems, setIsCartOpen } = useCart();
   const { t } = useLanguage();
 
@@ -25,7 +26,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <LocalizedLink to="/" className="flex items-center gap-3 group">
             <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 group-hover:from-primary/30 group-hover:to-accent/30 transition-all duration-300">
               <Leaf className="h-5 w-5 text-primary" />
               <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -38,19 +39,19 @@ const Header = () => {
                 {t("header_tagline")}
               </span>
             </div>
-          </Link>
+          </LocalizedLink>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <Link
+              <LocalizedLink
                 key={link.href}
                 to={link.href}
                 className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative group rounded-lg hover:bg-muted/50"
               >
                 {link.name}
                 <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all group-hover:w-1/2 rounded-full" />
-              </Link>
+              </LocalizedLink>
             ))}
           </nav>
 
@@ -121,14 +122,14 @@ const Header = () => {
               </div>
               
               {navLinks.map((link) => (
-                <Link
+                <LocalizedLink
                   key={link.href}
                   to={link.href}
                   className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.name}
-                </Link>
+                </LocalizedLink>
               ))}
               <Button
                 variant="gold"

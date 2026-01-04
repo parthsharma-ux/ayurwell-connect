@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import { ArrowRight, Clock, Leaf, ChefHat } from "lucide-react";
 import { remedies } from "@/data/remedies";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -38,18 +38,18 @@ const PopularRemedies = () => {
               {t("remedies_subtitle")}
             </p>
           </div>
-          <Link
+          <LocalizedLink
             to="/remedies"
             className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
           >
             {t("remedies_view_all")}
             <ArrowRight className="h-4 w-4" />
-          </Link>
+          </LocalizedLink>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {popularRemedies.map((remedy, index) => (
-            <Link
+            <LocalizedLink
               key={remedy.id}
               to={`/remedies/${remedy.id}`}
               className="group bg-card rounded-2xl overflow-hidden border border-border hover:border-secondary/30 hover:shadow-card transition-all duration-300 animate-fade-in-up"
@@ -87,7 +87,7 @@ const PopularRemedies = () => {
                   {t("remedies_see_recipe")}
                 </span>
               </div>
-            </Link>
+            </LocalizedLink>
           ))}
         </div>
       </div>

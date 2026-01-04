@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { medicines, medicineCategories } from "@/data/medicines";
 import { Search, Filter, Package, Tag } from "lucide-react";
@@ -49,7 +49,7 @@ const Medicines = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {filtered.map((medicine) => (
-            <Link
+            <LocalizedLink
               key={medicine.id}
               to={`/medicines/${medicine.id}`}
               className="bg-card rounded-2xl p-6 border border-border hover:shadow-card transition-all"
@@ -68,7 +68,7 @@ const Medicines = () => {
                   <span className="font-medium">{medicine.price_range}</span>
                 </div>
               )}
-            </Link>
+            </LocalizedLink>
           ))}
         </div>
       </div>
