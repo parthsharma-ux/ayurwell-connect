@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import { ArrowRight, Pill, Tag, Package } from "lucide-react";
 import { medicines } from "@/data/medicines";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -31,19 +31,19 @@ const FeaturedMedicines = () => {
               {t("medicines_subtitle")}
             </p>
           </div>
-          <Link
+          <LocalizedLink
             to="/medicines"
             className="inline-flex items-center gap-2 text-accent font-medium hover:gap-3 transition-all group animate-fade-in-up"
             style={{ animationDelay: "0.2s" }}
           >
             {t("medicines_view_all")}
             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          </LocalizedLink>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {featuredMedicines.map((medicine, index) => (
-            <Link
+            <LocalizedLink
               key={medicine.id}
               to={`/medicines/${medicine.id}`}
               className="group glass-premium rounded-2xl p-6 border border-border/30 hover:border-accent/40 hover-lift transition-all duration-300 animate-fade-in-up"
@@ -81,7 +81,7 @@ const FeaturedMedicines = () => {
                   <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </div>
-            </Link>
+            </LocalizedLink>
           ))}
         </div>
       </div>

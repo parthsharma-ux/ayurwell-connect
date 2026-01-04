@@ -1,4 +1,5 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { remedies } from "@/data/remedies";
 import { ArrowLeft, Clock, AlertTriangle, CheckCircle, Leaf } from "lucide-react";
@@ -14,9 +15,9 @@ const RemedyDetail = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <Link to="/remedies" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6">
+        <LocalizedLink to="/remedies" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6">
           <ArrowLeft className="h-4 w-4" /> Back to Remedies
-        </Link>
+        </LocalizedLink>
 
         <div className="space-y-6">
           <div className="bg-card rounded-2xl p-8 border border-border">

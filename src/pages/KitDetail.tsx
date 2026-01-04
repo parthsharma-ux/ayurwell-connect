@@ -1,4 +1,5 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import LocalizedLink from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Heart, ArrowLeft, Check, AlertTriangle, Clock, Package, Leaf } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
@@ -19,12 +20,12 @@ const KitDetail = () => {
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-foreground mb-4">Kit not found</h1>
-            <Link to="/kits">
+            <LocalizedLink to="/kits">
               <Button variant="outline">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Kits
               </Button>
-            </Link>
+            </LocalizedLink>
           </div>
         </div>
       </Layout>
@@ -44,9 +45,9 @@ const KitDetail = () => {
             className="mb-8"
           >
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
+              <LocalizedLink to="/" className="hover:text-foreground transition-colors">Home</LocalizedLink>
               <span>/</span>
-              <Link to="/kits" className="hover:text-foreground transition-colors">Kits</Link>
+              <LocalizedLink to="/kits" className="hover:text-foreground transition-colors">Kits</LocalizedLink>
               <span>/</span>
               <span className="text-foreground">{kit.name}</span>
             </div>
@@ -236,7 +237,7 @@ const KitDetail = () => {
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedKits.map((relatedKit) => (
-                <Link key={relatedKit.id} to={`/kits/${relatedKit.slug}`}>
+                <LocalizedLink key={relatedKit.id} to={`/kits/${relatedKit.slug}`}>
                   <motion.article
                     whileHover={{ scale: 1.02, y: -4 }}
                     className="bg-card rounded-2xl p-4 border border-border/50 hover:shadow-lg transition-shadow"
@@ -252,7 +253,7 @@ const KitDetail = () => {
                       <p className="mt-2 text-primary font-bold">₹{relatedKit.price}</p>
                     </div>
                   </motion.article>
-                </Link>
+                </LocalizedLink>
               ))}
             </div>
           </motion.div>

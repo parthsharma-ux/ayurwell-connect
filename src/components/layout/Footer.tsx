@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import LocalizedLink from "@/components/LocalizedLink";
 import { Leaf, Heart } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -32,7 +32,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4">
+            <LocalizedLink to="/" className="flex items-center gap-2 mb-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
                 <Leaf className="h-5 w-5 text-primary" />
               </div>
@@ -44,7 +44,7 @@ const Footer = () => {
                   {t("footer_brand_tagline")}
                 </span>
               </div>
-            </Link>
+            </LocalizedLink>
             <p className="text-sm text-muted-foreground leading-relaxed">
               {t("footer_brand_description")}
             </p>
@@ -57,12 +57,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.explore.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <LocalizedLink
                     to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.name}
-                  </Link>
+                  </LocalizedLink>
                 </li>
               ))}
             </ul>
@@ -75,12 +75,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.categories.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <LocalizedLink
                     to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.name}
-                  </Link>
+                  </LocalizedLink>
                 </li>
               ))}
             </ul>
@@ -93,12 +93,12 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.about.map((link) => (
                 <li key={link.href}>
-                  <Link
+                  <LocalizedLink
                     to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.name}
-                  </Link>
+                  </LocalizedLink>
                 </li>
               ))}
             </ul>

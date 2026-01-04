@@ -8,6 +8,7 @@ const LanguageToggle = () => {
   const toggleLanguage = () => {
     const newLang: Language = language === "en" ? "hi" : "en";
     setLanguage(newLang);
+    // LanguageRouter will handle URL update
   };
 
   return (

@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Brain, Shield, Clock, Sparkles } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 
 const AIDoctor = () => {
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const { t } = useLanguage();
 
   const features = [

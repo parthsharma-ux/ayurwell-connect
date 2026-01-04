@@ -1,5 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useCallback } from "react";
 import { Search, Sparkles, Leaf, Heart, Brain, Pill, Home, ArrowRight, Loader2, AlertCircle, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { diseases } from "@/data/diseases";
@@ -10,6 +9,7 @@ import { useVoiceSearch } from "@/hooks/useVoiceSearch";
 import VoiceSearchButton from "@/components/VoiceSearchButton";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useLocalizedNavigate } from "@/hooks/useLocalizedNavigate";
 
 type SuggestionItem = {
   id: string;
@@ -24,7 +24,7 @@ const HeroSection = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [didYouMean, setDidYouMean] = useState<string[]>([]);
   const [showNoResults, setShowNoResults] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useLocalizedNavigate();
   const { toast } = useToast();
   const { t, language } = useLanguage();
 
@@ -57,10 +57,7 @@ const HeroSection = () => {
       setSuggestions([]);
       setDidYouMean([]);
       setShowNoResults(false);
-      navigate({
-        pathname: "/search",
-        search: `q=${encodeURIComponent(trimmedQuery)}`
-      });
+      navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
     }
   };
 
