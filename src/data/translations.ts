@@ -206,6 +206,15 @@ export interface TranslationKeys {
   common_try_common: string;
   common_search_anyway: string;
 
+  // Detail Pages
+  backToDiseases: string;
+  backToMedicines: string;
+  backToRemedies: string;
+  backToKits: string;
+  home: string;
+  kits: string;
+  addToCart: string;
+
   // SEO Meta
   meta_home_title: string;
   meta_home_description: string;
@@ -430,6 +439,15 @@ export const translations: Record<"en" | "hi", TranslationKeys> = {
     common_try_common: "Try these common diseases:",
     common_search_anyway: "Search anyway for",
 
+    // Detail Pages
+    backToDiseases: "Back to Diseases",
+    backToMedicines: "Back to Medicines",
+    backToRemedies: "Back to Remedies",
+    backToKits: "Back to Kits",
+    home: "Home",
+    kits: "Kits",
+    addToCart: "Add to Cart",
+
     // SEO Meta
     meta_home_title: "AyurVeda - India's #1 Ayurvedic Health Platform",
     meta_home_description: "Discover ancient Ayurvedic remedies, herbal medicines, and holistic wellness solutions for modern health problems.",
@@ -651,6 +669,15 @@ export const translations: Record<"en" | "hi", TranslationKeys> = {
     common_did_you_mean: "क्या आपका मतलब था?",
     common_try_common: "इन आम बीमारियों को आज़माएं:",
     common_search_anyway: "फिर भी खोजें",
+
+    // Detail Pages
+    backToDiseases: "रोगों पर वापस जाएं",
+    backToMedicines: "औषधियों पर वापस जाएं",
+    backToRemedies: "नुस्खों पर वापस जाएं",
+    backToKits: "किट्स पर वापस जाएं",
+    home: "होम",
+    kits: "किट्स",
+    addToCart: "कार्ट में जोड़ें",
 
     // SEO Meta
     meta_home_title: "आयुर्वेद - भारत का #1 आयुर्वेदिक स्वास्थ्य प्लेटफॉर्म",
