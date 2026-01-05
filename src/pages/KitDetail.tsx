@@ -8,22 +8,29 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { useCart } from '@/contexts/CartContext';
 import { getKitBySlug, kits } from '@/data/kits';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { getLocalizedKit, useDataTranslations } from '@/lib/localizedData';
 
 const KitDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const { addToCart } = useCart();
-  const kit = getKitBySlug(slug || '');
+  const { language, t } = useLanguage();
+  const labels = useDataTranslations(language);
+  
+  const rawKit = getKitBySlug(slug || '');
 
-  if (!kit) {
+  if (!rawKit) {
     return (
       <Layout>
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-foreground mb-4">Kit not found</h1>
+            <h1 className="text-2xl font-bold text-foreground mb-4">
+              {language === "hi" ? "किट नहीं मिली" : "Kit not found"}
+            </h1>
             <LocalizedLink to="/kits">
               <Button variant="outline">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Kits
+                {t("backToKits")}
               </Button>
             </LocalizedLink>
           </div>
@@ -32,7 +39,8 @@ const KitDetail = () => {
     );
   }
 
-  const relatedKits = kits.filter(k => k.id !== kit.id).slice(0, 4);
+  const kit = getLocalizedKit(rawKit, language);
+  const relatedKits = kits.filter(k => k.id !== rawKit.id).slice(0, 4).map(k => getLocalizedKit(k, language));
 
   return (
     <Layout>
@@ -45,9 +53,9 @@ const KitDetail = () => {
             className="mb-8"
           >
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <LocalizedLink to="/" className="hover:text-foreground transition-colors">Home</LocalizedLink>
+              <LocalizedLink to="/" className="hover:text-foreground transition-colors">{t("home")}</LocalizedLink>
               <span>/</span>
-              <LocalizedLink to="/kits" className="hover:text-foreground transition-colors">Kits</LocalizedLink>
+              <LocalizedLink to="/kits" className="hover:text-foreground transition-colors">{t("kits")}</LocalizedLink>
               <span>/</span>
               <span className="text-foreground">{kit.name}</span>
             </div>
@@ -63,13 +71,13 @@ const KitDetail = () => {
             >
               <div className="relative rounded-2xl overflow-hidden bg-card border border-border/50">
                 <img
-                  src={kit.image}
+                  src={rawKit.image}
                   alt={kit.name}
                   className="w-full aspect-square object-cover"
                 />
                 <Badge className="absolute top-4 left-4 bg-gold/20 text-gold border-gold/30">
                   <Clock className="h-3 w-3 mr-1" />
-                  {kit.duration}
+                  {rawKit.duration}
                 </Badge>
                 <button className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm p-3 rounded-full shadow hover:bg-background transition-colors">
                   <Heart className="h-5 w-5 text-muted-foreground hover:text-terracotta transition-colors" />
@@ -94,9 +102,9 @@ const KitDetail = () => {
               </div>
 
               <div className="flex items-center gap-4">
-                <span className="text-3xl font-bold text-primary">₹{kit.price}</span>
+                <span className="text-3xl font-bold text-primary">₹{rawKit.price}</span>
                 <Badge variant="outline" className="text-emerald-500 border-emerald-500/30">
-                  Free Shipping
+                  {language === "hi" ? "मुफ्त शिपिंग" : "Free Shipping"}
                 </Badge>
               </div>
 
@@ -105,10 +113,10 @@ const KitDetail = () => {
                   variant="gold"
                   size="lg"
                   className="flex-1 shadow-glow-gold"
-                  onClick={() => addToCart({ id: kit.id, name: kit.name, price: kit.price, duration: kit.duration })}
+                  onClick={() => addToCart({ id: rawKit.id, name: kit.name, price: rawKit.price, duration: rawKit.duration })}
                 >
                   <ShoppingCart className="h-5 w-5 mr-2" />
-                  Add to Cart
+                  {t("addToCart")}
                 </Button>
                 <Button variant="outline" size="lg">
                   <Heart className="h-5 w-5" />
@@ -121,10 +129,10 @@ const KitDetail = () => {
               <div>
                 <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
                   <Package className="h-5 w-5 text-gold" />
-                  What's Included
+                  {labels.includes}
                 </h3>
                 <ul className="space-y-2">
-                  {kit.includes.map((item, index) => (
+                  {rawKit.includes.map((item, index) => (
                     <li key={index} className="flex items-start gap-2 text-muted-foreground">
                       <Check className="h-4 w-4 text-emerald-500 mt-1 flex-shrink-0" />
                       {item}
@@ -146,10 +154,10 @@ const KitDetail = () => {
             <div className="bg-card rounded-2xl p-6 border border-border/50">
               <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                 <Leaf className="h-5 w-5 text-emerald-500" />
-                Key Ingredients
+                {labels.ingredients}
               </h3>
               <ul className="space-y-2">
-                {kit.ingredients.map((ingredient, index) => (
+                {rawKit.ingredients.map((ingredient, index) => (
                   <li key={index} className="text-muted-foreground flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
                     {ingredient}
@@ -162,10 +170,10 @@ const KitDetail = () => {
             <div className="bg-card rounded-2xl p-6 border border-border/50">
               <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                 <Check className="h-5 w-5 text-emerald-500" />
-                Benefits
+                {labels.benefits}
               </h3>
               <ul className="space-y-2">
-                {kit.benefits.map((benefit, index) => (
+                {kit.benefits.map((benefit: string, index: number) => (
                   <li key={index} className="text-muted-foreground flex items-start gap-2">
                     <Check className="h-4 w-4 text-gold mt-1 flex-shrink-0" />
                     {benefit}
@@ -178,20 +186,20 @@ const KitDetail = () => {
             <div className="bg-card rounded-2xl p-6 border border-border/50 md:col-span-2 lg:col-span-1">
               <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                 <Clock className="h-5 w-5 text-gold" />
-                How to Use
+                {labels.usage}
               </h3>
               <div className="space-y-4">
                 <div>
-                  <p className="text-sm text-muted-foreground">Dosage</p>
-                  <p className="text-foreground font-medium">{kit.usage.dosage}</p>
+                  <p className="text-sm text-muted-foreground">{labels.dosage}</p>
+                  <p className="text-foreground font-medium">{rawKit.usage.dosage}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Timing</p>
-                  <p className="text-foreground font-medium">{kit.usage.timing}</p>
+                  <p className="text-sm text-muted-foreground">{labels.timing}</p>
+                  <p className="text-foreground font-medium">{rawKit.usage.timing}</p>
                 </div>
                 <Separator className="bg-border/50" />
                 <ul className="space-y-2">
-                  {kit.usage.instructions.map((instruction, index) => (
+                  {rawKit.usage.instructions.map((instruction, index) => (
                     <li key={index} className="text-sm text-muted-foreground flex items-start gap-2">
                       <span className="text-gold font-bold">{index + 1}.</span>
                       {instruction}
@@ -212,10 +220,10 @@ const KitDetail = () => {
             >
               <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-amber-500" />
-                Important Information
+                {labels.warnings}
               </h3>
               <ul className="space-y-2">
-                {kit.warnings.map((warning, index) => (
+                {kit.warnings.map((warning: string, index: number) => (
                   <li key={index} className="text-muted-foreground flex items-start gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500 mt-2 flex-shrink-0" />
                     {warning}
@@ -233,7 +241,7 @@ const KitDetail = () => {
             className="mt-16"
           >
             <h2 className="text-2xl font-display font-bold text-foreground mb-8">
-              You May Also Like
+              {language === "hi" ? "आपको ये भी पसंद आ सकते हैं" : "You May Also Like"}
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedKits.map((relatedKit) => (
