@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://ayurveda.app/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ayurveda.app/en"/>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/hi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ayurveda.app/en"/>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Diseases Listing -->
+  <url>
+    <loc>https://ayurveda.app/en/diseases</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/hi/diseases</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Disease Detail Pages -->
+  <url>
+    <loc>https://ayurveda.app/en/diseases/diabetes</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/diabetes"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/diabetes"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/hypertension</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/hypertension"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/hypertension"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/arthritis</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/arthritis"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/arthritis"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/acidity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/acidity"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/acidity"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/constipation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/constipation"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/constipation"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/asthma</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/asthma"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/asthma"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/migraine</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/migraine"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/migraine"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/obesity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/obesity"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/obesity"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/anxiety</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/anxiety"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/anxiety"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/skin-disorders</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/skin-disorders"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/skin-disorders"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/hair-fall</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/hair-fall"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/hair-fall"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/insomnia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/insomnia"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/insomnia"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/cold-cough</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/cold-cough"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/cold-cough"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/thyroid</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/thyroid"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/thyroid"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/piles</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/piles"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/piles"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/kidney-stones</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/kidney-stones"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/kidney-stones"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/liver-disorders</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/liver-disorders"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/liver-disorders"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/pcod-pcos</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/pcod-pcos"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/pcod-pcos"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/anemia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/anemia"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/anemia"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/fever</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/fever"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/fever"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/uti</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/uti"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/uti"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/gas-bloating</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/gas-bloating"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/gas-bloating"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/back-pain</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/back-pain"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/back-pain"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/sinus</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/sinus"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/sinus"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/diseases/jaundice</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/diseases/jaundice"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/diseases/jaundice"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Medicines Listing -->
+  <url>
+    <loc>https://ayurveda.app/en/medicines</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/medicines"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/medicines"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/hi/medicines</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/medicines"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/medicines"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Remedies Listing -->
+  <url>
+    <loc>https://ayurveda.app/en/remedies</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/remedies"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/remedies"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/hi/remedies</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/remedies"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/remedies"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Kits Listing -->
+  <url>
+    <loc>https://ayurveda.app/en/kits</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/hi/kits</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Kit Detail Pages -->
+  <url>
+    <loc>https://ayurveda.app/en/kits/immunity-booster</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/immunity-booster"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/immunity-booster"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/digestion-care</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/digestion-care"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/digestion-care"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/stress-relief</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/stress-relief"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/stress-relief"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/women-wellness</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/women-wellness"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/women-wellness"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/hair-skin-glow</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/hair-skin-glow"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/hair-skin-glow"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/detox-rejuvenate</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/detox-rejuvenate"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/detox-rejuvenate"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/joint-mobility</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/joint-mobility"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/joint-mobility"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/sleep-support</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/sleep-support"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/sleep-support"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/energy-vitality</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/energy-vitality"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/energy-vitality"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/classic-daily-wellness</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/classic-daily-wellness"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/classic-daily-wellness"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/pitta-balance</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/pitta-balance"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/pitta-balance"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/en/kits/customized-starter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/kits/customized-starter"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/kits/customized-starter"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Static Pages -->
+  <url>
+    <loc>https://ayurveda.app/en/doctor-ai</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/doctor-ai"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/doctor-ai"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/hi/doctor-ai</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/doctor-ai"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/doctor-ai"/>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://ayurveda.app/en/about-ayurveda</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/about-ayurveda"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/about-ayurveda"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/hi/about-ayurveda</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/about-ayurveda"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/about-ayurveda"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ayurveda.app/en/dosha-types</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/dosha-types"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/dosha-types"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/hi/dosha-types</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/dosha-types"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/dosha-types"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://ayurveda.app/en/privacy-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/privacy-policy"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/hi/privacy-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/privacy-policy"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://ayurveda.app/en/disclaimer</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/disclaimer"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/disclaimer"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ayurveda.app/hi/disclaimer</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ayurveda.app/en/disclaimer"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ayurveda.app/hi/disclaimer"/>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
