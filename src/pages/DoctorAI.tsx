@@ -1,348 +1,480 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Brain, Send, Sparkles, AlertCircle } from "lucide-react";
+import { Brain, Send, Sparkles, AlertCircle, Globe, User } from "lucide-react";
 
-const hinglishResponses = [
-  {
-    keywords: ["sar", "sir", "head", "dard", "pain", "headache", "migraine", "cephalalgia"],
-    response: `Aapke symptoms sun kar lagta hai ki yeh **Vata-Pitta imbalance** ho sakta hai.
+type Message = { role: "user" | "ai"; content: string };
+type ConsultationStage = "greeting" | "collecting_info" | "followup_1" | "followup_2" | "treatment";
+type UserLanguage = "hinglish" | "english";
 
-**Possible Condition:** Ardhavabhedaka (Migraine) ya Shirah Shool (Headache)
+interface UserProfile {
+  symptom: string;
+  sleepPattern?: string;
+  digestion?: string;
+  stressLevel?: string;
+  weather?: string;
+}
 
-**Gharelu Upchar (Home Remedies):**
-• Haldi wala doodh raat ko piyen
-• Pudina ya lavender ka tel sir pe lagayen
-• Adrak ki chai mein thoda shahad mila kar piyen
-• Aankhon pe kheera ya aalu ke slice rakhen
+// Dosha determination logic
+const determineDoshaFromProfile = (profile: UserProfile): string => {
+  const answers = [
+    profile.sleepPattern?.toLowerCase() || "",
+    profile.digestion?.toLowerCase() || "",
+    profile.stressLevel?.toLowerCase() || "",
+    profile.weather?.toLowerCase() || ""
+  ].join(" ");
 
-**Recommended Dawaiyan:**
-• Godanti Bhasma - migraine ke liye
-• Brahmi Vati - nervous system ke liye
-• Pathyadi Kwath - sinus headache ke liye
+  let vataScore = 0, pittaScore = 0, kaphaScore = 0;
 
-**Diet Tips:**
-• Paani zyada piyen (din mein 8-10 glass)
-• Screen time kam karein
-• Regular neend lein (7-8 hours)
-
-Agar dard 3 din se zyada rahe toh please kisi Ayurvedic doctor se zaroor milein.`
-  },
-  {
-    keywords: ["pet", "stomach", "acidity", "gas", "bloating", "digestion", "constipation", "kabz", "gastric"],
-    response: `Aapke symptoms se lagta hai yeh **Pitta ya Vata imbalance** hai.
-
-**Possible Condition:** Amlapitta (Acidity) ya Vibandha (Constipation)
-
-**Gharelu Upchar:**
-• Subah khali pet ek glass garam paani mein nimbu aur shahad milakar piyen
-• Jeera aur saunf ka paani din mein 2-3 baar piyen
-• Triphala churna raat ko sone se pehle lein
-• Papita khana shuru karein
-
-**Recommended Dawaiyan:**
-• Avipattikar Churna - acidity ke liye
-• Hingvastak Churna - gas ke liye
-• Triphala - constipation ke liye
-• Pudin Hara - instant relief ke liye
-
-**Diet Tips:**
-• Mirchi aur fried cheezein avoid karein
-• Chhoti-chhoti meal lein
-• Raat ko der se khana na khayen
-• Thanda paani aur cold drinks se parhez karein
-
-Agar problem 1 hafte se zyada rahe toh doctor se zaroor consulT karein.`
-  },
-  {
-    keywords: ["joint", "jod", "ghutna", "knee", "gathiya", "arthritis", "pain", "stiffness", "swelling"],
-    response: `Yeh **Vata dosha ki vikruti** lag rahi hai.
-
-**Possible Condition:** Sandhivata (Arthritis) ya Joint Pain
-
-**Gharelu Upchar:**
-• Til ka tel garam karke joints pe malish karein
-• Haldi wala doodh roz raat ko piyen (kali mirch zaroor dalein)
-• Adrak ka compress lagayen
-• Methi dana bheego kar subah khayen
-
-**Recommended Dawaiyan:**
-• Yograj Guggulu - joint pain ke liye best
-• Maharasnadi Kwath - inflammation ke liye
-• Ashwagandha Churna - strength ke liye
-• Mahanarayan Tel - massage ke liye
-
-**Lifestyle Tips:**
-• Subah 15-20 minute walk karein
-• Bhanda (cold) cheezein avoid karein
-• Garam paani ka sek dein
-• Yoga karein - specially Trikonasana aur Virabhadrasana
-
-Dhyan rakhein: Agar sujan bahut zyada ho ya fever ho toh turant doctor se milein.`
-  },
-  {
-    keywords: ["neend", "sleep", "insomnia", "anidra", "sleeping", "rest", "thakan", "fatigue"],
-    response: `Aapko **Vata imbalance** lagta hai jo neend ko affect kar raha hai.
-
-**Possible Condition:** Anidra (Insomnia)
-
-**Gharelu Upchar:**
-• Sone se pehle garam doodh mein jaiphal (nutmeg) ka powder lein
-• Brahmi tel se sir ki malish karein
-• Pair ke talwe mein sarson ka tel lagayen
-• Chamomile ya lavender ki khushbu kamre mein rakhein
-
-**Recommended Dawaiyan:**
-• Ashwagandha Churna - stress aur anxiety ke liye
-• Brahmi Vati - mind ko calm karne ke liye
-• Jatamansi - natural sleep inducer
-• Shankhpushpi - memory aur neend dono ke liye
-
-**Lifestyle Changes:**
-• Phone/TV sone se 1 ghanta pehle band karein
-• Fixed time pe soyen aur uthein
-• Shaam ko chai/coffee avoid karein
-• Light dinner karein, heavy khana neend kharab karta hai
-
-Agar 2 hafte se zyada insomnia rahe toh expert se zaroor milein.`
-  },
-  {
-    keywords: ["sugar", "diabetes", "madhumeha", "blood", "glucose", "meetha", "thirst", "pyaas"],
-    response: `Yeh **Kapha-Pitta imbalance** ke symptoms hain.
-
-**Possible Condition:** Madhumeha (Diabetes)
-
-**Gharelu Upchar:**
-• Karela juice subah khali pet piyen
-• Methi dana raat bhar bheego kar subah khayen
-• Jamun ke beej ka powder din mein 2 baar lein
-• Amla juice ya powder daily lein
-
-**Recommended Dawaiyan:**
-• Chandraprabha Vati - comprehensive diabetes care
-• Gudmar (Gymnema) - sugar destroyer kehte hain isse
-• Nishamalaki - turmeric aur amla ka powerful combo
-• Shilajit - energy aur metabolism ke liye
-
-**Diet Tips:**
-• White rice ki jagah brown rice ya jowar ki roti khayen
-• Meethi cheezein bilkul avoid karein
-• Karela, lauki, turai jaise sabzi khayen
-• Regular walk zaroor karein (30 mins daily)
-
-⚠️ **Important:** Diabetes serious condition hai. Regular blood sugar check karwate rahein aur doctor ki advice zaroor lein.`
-  },
-  {
-    keywords: ["bp", "blood pressure", "hypertension", "rakta", "chakkar", "dizziness", "tension"],
-    response: `Yeh **Vata-Pitta imbalance** se related symptoms hain.
-
-**Possible Condition:** Rakta Gata Vata (Hypertension)
-
-**Gharelu Upchar:**
-• Lehsun (garlic) ki 2 kali subah khali pet khayen
-• Lauki ka juice daily piyen
-• Amla ka murabba ya juice lein
-• Arjun ki chhal ka kadha piyen
-
-**Recommended Dawaiyan:**
-• Sarpagandha Vati - BP control ke liye
-• Arjunarishta - heart tonic
-• Mukta Vati - natural BP reducer
-• Brahmi - stress kam karta hai
-
-**Lifestyle Tips:**
-• Namak kam khayen
-• Stress management zaroor karein
-• Daily 30 minute walk ya pranayam karein
-• Anulom-Vilom breathing exercise try karein
-
-⚠️ **Warning:** High BP serious hai. Regular monitoring zaroor karein aur agar BP bahut high ho (180+ / 120+) toh turant doctor ke paas jayen.`
-  },
-  {
-    keywords: ["skin", "chamdi", "khujli", "itching", "rash", "pimple", "acne", "eczema", "allergy"],
-    response: `Yeh **Pitta-Kapha imbalance** ke symptoms hain.
-
-**Possible Condition:** Kushtha (Skin Disorders)
-
-**Gharelu Upchar:**
-• Neem ka paani se affected area dhoyen
-• Haldi aur chandan ka paste lagayen
-• Aloe vera gel fresh use karein
-• Nariyal tel mein camphor mila ke lagayen
-
-**Recommended Dawaiyan:**
-• Khadirarishta - blood purifier
-• Mahamanjisthadi Kwath - skin problems ke liye
-• Neem tablets/capsules - antibacterial
-• Gandhak Rasayan - chronic skin issues ke liye
-
-**Diet Tips:**
-• Khatta (sour) cheezein avoid karein
-• Fermented food kam khayen
-• Zyada paani piyen
-• Green vegetables aur fruits badhayen
-
-**Precautions:**
-• Tight kapde na pehnen
-• Chemical products se door rahein
-• Direct sunlight se bachein (agar problem ho rahi ho)
-
-Agar skin problem 2 hafte mein theek na ho toh dermatologist se milein.`
-  },
-  {
-    keywords: ["baal", "hair", "hairfall", "ganja", "dandruff", "rusi", "scalp", "baldness"],
-    response: `Hair problems mein **Pitta-Vata imbalance** hota hai mostly.
-
-**Possible Condition:** Khalitya (Hair Fall) ya Rusi (Dandruff)
-
-**Gharelu Upchar:**
-• Amla, reetha, shikakai se baal dhoyen
-• Nariyal tel mein curry leaves garam karke lagayen
-• Onion juice scalp pe lagayen (30 mins)
-• Methi seeds ka paste baalon mein lagayen
-
-**Recommended Dawaiyan:**
-• Bhringraj Tel - king of hair oils
-• Mahabhringraj Tel - advanced formula
-• Neelibhringadi Tel - South Indian formula
-• Amalaki Rasayan - andar se nutrition ke liye
-
-**Diet Tips:**
-• Protein zyada lein (dal, paneer, eggs)
-• Iron-rich foods khayen (palak, chana)
-• Biotin ke liye almonds, walnuts khayen
-• Paani zyada piyen
-
-**Lifestyle Tips:**
-• Stress kam karein (yeh major reason hai)
-• Chemical treatments se bachein
-• Sirsasana (headstand) try karein
-• Regular oil massage karein
-
-Agar bahut zyada hair fall ho toh thyroid test karwa lein.`
-  },
-  {
-    keywords: ["cough", "khansi", "cold", "sardi", "fever", "bukhar", "throat", "gala"],
-    response: `Yeh **Kapha-Vata imbalance** ke symptoms hain.
-
-**Possible Condition:** Pratishyaya (Cold & Cough)
-
-**Gharelu Upchar:**
-• Adrak, tulsi, kali mirch ki chai piyen
-• Haldi wala doodh raat ko piyen
-• Shahad mein adrak ka ras mila ke lein
-• Garam paani mein namak dal ke gargles karein
-
-**Recommended Dawaiyan:**
-• Sitopaladi Churna - khansi ke liye best
-• Talisadi Churna - chest congestion ke liye
-• Vasavaleha - chronic cough ke liye
-• Tulsi drops - immunity ke liye
-
-**Steam Inhalation:**
-• Garam paani mein ajwain ya eucalyptus tel daal ke steam lein
-• Din mein 2-3 baar karein
-
-**Diet Tips:**
-• Cold cheezein bilkul avoid karein
-• Garam soup piyen
-• Khichdi ya halka khana khayen
-• Dahi aur ice cream se parhez karein
-
-Agar fever 3 din se zyada rahe ya khansi mein khoon aaye toh doctor ke paas zaroor jayen.`
-  },
-  {
-    keywords: ["anxiety", "tension", "stress", "worry", "chinta", "depression", "sad", "nervous"],
-    response: `Yeh **Vata imbalance** ke mental symptoms hain.
-
-**Possible Condition:** Chittodvega (Anxiety) ya Manas Rog
-
-**Gharelu Upchar:**
-• Brahmi tea daily piyen
-• Raat ko garam doodh mein kesar daal ke piyen
-• Lavender ya chamomile ki khushbu use karein
-• Daily 10-15 minute meditation karein
-
-**Recommended Dawaiyan:**
-• Ashwagandha - stress buster #1
-• Brahmi Vati - brain tonic
-• Shankhpushpi - calming effect
-• Jatamansi - natural anxiety reliever
-
-**Yoga & Pranayam:**
-• Anulom Vilom - 10 minutes daily
-• Bhramari Pranayam - calming ke liye
-• Shavasana - relaxation ke liye
-• Yoga Nidra - deep rest ke liye
-
-**Lifestyle Tips:**
-• Regular routine follow karein
-• Social media aur news ka exposure kam karein
-• Nature mein time spend karein
-• Apne feelings kisi se share karein
-
-⚠️ Mental health important hai. Agar bahut zyada problem ho toh professional help zaroor lein. Koi sharam nahi hai ismein.`
+  // Vata indicators
+  if (answers.includes("irregular") || answers.includes("light") || answers.includes("anxious") || 
+      answers.includes("cold") || answers.includes("dry") || answers.includes("variable") ||
+      answers.includes("restless") || answers.includes("worried")) {
+    vataScore += 2;
   }
-];
 
-const defaultResponse = `Namaste! 🙏 Aapke symptoms samajh mein aaye.
+  // Pitta indicators
+  if (answers.includes("sharp") || answers.includes("hot") || answers.includes("irritable") || 
+      answers.includes("acid") || answers.includes("intense") || answers.includes("burning") ||
+      answers.includes("angry") || answers.includes("competitive")) {
+    pittaScore += 2;
+  }
 
-Mujhe thoda aur detail mein batayein:
-• Yeh problem kab se hai?
-• Kya koi aur symptoms bhi hain?
-• Kya pehle se koi dawai le rahe hain?
+  // Kapha indicators
+  if (answers.includes("heavy") || answers.includes("slow") || answers.includes("cold") || 
+      answers.includes("sluggish") || answers.includes("oily") || answers.includes("calm") ||
+      answers.includes("lethargic") || answers.includes("humid")) {
+    kaphaScore += 2;
+  }
 
-**General Ayurvedic Tips:**
-• Din mein 8-10 glass paani piyen
-• Regular exercise ya yoga karein
-• Time pe khana khayen aur time pe soyen
-• Stress se bachne ki koshish karein
+  if (vataScore >= pittaScore && vataScore >= kaphaScore) return "Vata";
+  if (pittaScore >= vataScore && pittaScore >= kaphaScore) return "Pitta";
+  return "Kapha";
+};
 
-Aap mujhe specific symptoms batayein jaise:
-- Sar dard (headache)
-- Pet ki problem (stomach issues)
-- Joint pain (jodo ka dard)
-- Skin problems (chamdi ki samasya)
-- Neend na aana (insomnia)
-- Khansi/Sardi (cold/cough)
-
-Main aapko proper Ayurvedic guidance de sakta hoon! 😊
-
-**Disclaimer:** Yeh sirf informational guidance hai. Serious problems ke liye qualified Ayurvedic doctor se zaroor milein.`;
-
-const DoctorAI = () => {
-  const [messages, setMessages] = useState<{ role: "user" | "ai"; content: string }[]>([
-    { role: "ai", content: "Namaste! 🙏 Main aapka AI Vaidya hoon. Mujhe apni taklif batayein - jaise sar dard, pet ki problem, joint pain, skin issues ya kuch bhi. Main Ayurvedic nazar se dekhkar aapko sahi remedy suggest karunga.\n\n**Note:** Yeh sirf guidance ke liye hai, professional medical advice ki jagah nahi le sakta." }
-  ]);
-  const [input, setInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
-
-  const getAIResponse = (userMessage: string): string => {
-    const lowerMessage = userMessage.toLowerCase();
-    
-    for (const response of hinglishResponses) {
-      if (response.keywords.some(keyword => lowerMessage.includes(keyword))) {
-        return response.response;
+// Treatment plans based on symptoms and dosha
+const getTreatmentPlan = (symptom: string, dosha: string, lang: UserLanguage): string => {
+  const lowerSymptom = symptom.toLowerCase();
+  
+  const treatments: Record<string, Record<string, { home: string; diet: string; medicine: string }>> = {
+    // Digestive issues
+    digestion: {
+      Vata: {
+        home: lang === "hinglish" 
+          ? "1. Garam adrak chai subah khali pet lein\n2. Jeera paani (1 tsp jeera boil karke) din mein 2 baar" 
+          : "1. Warm ginger tea on empty stomach in morning\n2. Cumin water (boil 1 tsp cumin) twice daily",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Garam, oily khana, khichdi, soups, ghee\n❌ Avoid: Kachchi sabzi, cold drinks, dry snacks"
+          : "✅ Eat: Warm, oily foods, khichdi, soups, ghee\n❌ Avoid: Raw vegetables, cold drinks, dry snacks",
+        medicine: lang === "hinglish"
+          ? "• Hingvastak Churna - 1/2 tsp khane se pehle\n• Triphala - raat ko garam paani ke saath"
+          : "• Hingvastak Churna - 1/2 tsp before meals\n• Triphala - at night with warm water"
+      },
+      Pitta: {
+        home: lang === "hinglish"
+          ? "1. Saunf paani (1 tsp saunf soak karke) din mein 3 baar\n2. Dhaniya ke patte ka juice subah"
+          : "1. Fennel water (soak 1 tsp fennel) 3 times daily\n2. Fresh coriander leaf juice in morning",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Thanda khana, coconut, cucumber, mishti\n❌ Avoid: Spicy, fried, sour foods"
+          : "✅ Eat: Cooling foods, coconut, cucumber, sweet fruits\n❌ Avoid: Spicy, fried, sour foods",
+        medicine: lang === "hinglish"
+          ? "• Avipattikar Churna - 1/2 tsp khane ke baad\n• Amalaki - din mein 2 baar"
+          : "• Avipattikar Churna - 1/2 tsp after meals\n• Amalaki - twice daily"
+      },
+      Kapha: {
+        home: lang === "hinglish"
+          ? "1. Garam paani mein nimbu aur shahad subah\n2. Adrak + kali mirch ki chai"
+          : "1. Warm water with lemon and honey in morning\n2. Ginger + black pepper tea",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Halka khana, sabziyaan, spicy food\n❌ Avoid: Heavy, oily, dairy products"
+          : "✅ Eat: Light foods, vegetables, spicy food\n❌ Avoid: Heavy, oily, dairy products",
+        medicine: lang === "hinglish"
+          ? "• Trikatu Churna - 1/4 tsp honey ke saath\n• Chitrakadi Vati - khane se pehle"
+          : "• Trikatu Churna - 1/4 tsp with honey\n• Chitrakadi Vati - before meals"
+      }
+    },
+    // Stress/Anxiety
+    stress: {
+      Vata: {
+        home: lang === "hinglish"
+          ? "1. Garam doodh mein haldi aur jaiphal raat ko\n2. Chamomile ya lavender ki chai"
+          : "1. Warm milk with turmeric and nutmeg at night\n2. Chamomile or lavender tea",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Warm comfort foods, ghee, nuts, dates\n❌ Avoid: Caffeine, cold foods, irregular meals"
+          : "✅ Eat: Warm comfort foods, ghee, nuts, dates\n❌ Avoid: Caffeine, cold foods, irregular meals",
+        medicine: lang === "hinglish"
+          ? "• Ashwagandha - 500mg raat ko\n• Brahmi - din mein 2 baar focus ke liye"
+          : "• Ashwagandha - 500mg at night\n• Brahmi - twice daily for focus"
+      },
+      Pitta: {
+        home: lang === "hinglish"
+          ? "1. Rose water thanda paani mein\n2. Coconut oil ki malish sar pe"
+          : "1. Rose water in cool water\n2. Coconut oil head massage",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Sweet fruits, coconut, milk\n❌ Avoid: Alcohol, coffee, spicy food"
+          : "✅ Eat: Sweet fruits, coconut, milk\n❌ Avoid: Alcohol, coffee, spicy food",
+        medicine: lang === "hinglish"
+          ? "• Brahmi - 500mg din mein 2 baar\n• Shankhpushpi - stress relief ke liye"
+          : "• Brahmi - 500mg twice daily\n• Shankhpushpi - for stress relief"
+      },
+      Kapha: {
+        home: lang === "hinglish"
+          ? "1. Tulsi chai energizing hoti hai\n2. Dry brush massage circulation ke liye"
+          : "1. Tulsi tea for energy\n2. Dry brush massage for circulation",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Light, spicy foods, green vegetables\n❌ Avoid: Heavy foods, excessive sleep"
+          : "✅ Eat: Light, spicy foods, green vegetables\n❌ Avoid: Heavy foods, excessive sleep",
+        medicine: lang === "hinglish"
+          ? "• Guggulu - metabolism boost ke liye\n• Brahmi - mental clarity ke liye"
+          : "• Guggulu - for metabolism boost\n• Brahmi - for mental clarity"
+      }
+    },
+    // Headache
+    headache: {
+      Vata: {
+        home: lang === "hinglish"
+          ? "1. Til ka tel garam karke sar pe lagayein\n2. Garam paani mein pair daalein 15 min"
+          : "1. Apply warm sesame oil on head\n2. Soak feet in warm water for 15 min",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Warm soups, ghee, hydrating foods\n❌ Avoid: Dry foods, skipping meals, cold"
+          : "✅ Eat: Warm soups, ghee, hydrating foods\n❌ Avoid: Dry foods, skipping meals, cold",
+        medicine: lang === "hinglish"
+          ? "• Pathyadi Kwath - sar dard ke liye\n• Brahmi Ghrit - nasya ke liye"
+          : "• Pathyadi Kwath - for headache\n• Brahmi Ghrit - for nasal application"
+      },
+      Pitta: {
+        home: lang === "hinglish"
+          ? "1. Chandan ka lep mathe pe\n2. Thandi towel aankhon pe rakhein"
+          : "1. Sandalwood paste on forehead\n2. Cold towel on eyes",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Cooling foods, coconut water, cucumber\n❌ Avoid: Sun exposure, spicy food"
+          : "✅ Eat: Cooling foods, coconut water, cucumber\n❌ Avoid: Sun exposure, spicy food",
+        medicine: lang === "hinglish"
+          ? "• Shirashuladi Vajra Ras\n• Godanti Bhasma"
+          : "• Shirashuladi Vajra Ras\n• Godanti Bhasma"
+      },
+      Kapha: {
+        home: lang === "hinglish"
+          ? "1. Eucalyptus oil ki steam lein\n2. Garam adrak chai"
+          : "1. Steam with eucalyptus oil\n2. Hot ginger tea",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Light, warm foods, honey\n❌ Avoid: Dairy, cold, heavy foods"
+          : "✅ Eat: Light, warm foods, honey\n❌ Avoid: Dairy, cold, heavy foods",
+        medicine: lang === "hinglish"
+          ? "• Trikatu Churna\n• Lakshmivilas Ras"
+          : "• Trikatu Churna\n• Lakshmivilas Ras"
+      }
+    },
+    // Sleep issues
+    sleep: {
+      Vata: {
+        home: lang === "hinglish"
+          ? "1. Garam doodh mein ashwagandha aur jaiphal\n2. Pair mein ghee ki malish raat ko"
+          : "1. Warm milk with ashwagandha and nutmeg\n2. Ghee foot massage at night",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Warm, grounding foods, dinner early\n❌ Avoid: Screens, caffeine, late eating"
+          : "✅ Eat: Warm, grounding foods, early dinner\n❌ Avoid: Screens, caffeine, late eating",
+        medicine: lang === "hinglish"
+          ? "• Ashwagandha - 500mg raat ko\n• Jatamansi - neend ke liye"
+          : "• Ashwagandha - 500mg at night\n• Jatamansi - for sleep"
+      },
+      Pitta: {
+        home: lang === "hinglish"
+          ? "1. Chandan ka tel mathe pe\n2. Thanda doodh raat ko"
+          : "1. Sandalwood oil on forehead\n2. Cool milk at night",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Cooling foods before bed\n❌ Avoid: Spicy dinner, alcohol"
+          : "✅ Eat: Cooling foods before bed\n❌ Avoid: Spicy dinner, alcohol",
+        medicine: lang === "hinglish"
+          ? "• Brahmi - shanti ke liye\n• Shankhpushpi - relaxation"
+          : "• Brahmi - for calmness\n• Shankhpushpi - for relaxation"
+      },
+      Kapha: {
+        home: lang === "hinglish"
+          ? "1. Light dinner, no snacking\n2. Eucalyptus oil inhale karein"
+          : "1. Light dinner, no snacking\n2. Inhale eucalyptus oil",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Light, early dinner\n❌ Avoid: Heavy foods, daytime sleep"
+          : "✅ Eat: Light, early dinner\n❌ Avoid: Heavy foods, daytime sleep",
+        medicine: lang === "hinglish"
+          ? "• Vacha - alertness ke liye din mein\n• Light Triphala - raat ko"
+          : "• Vacha - for daytime alertness\n• Light Triphala - at night"
+      }
+    },
+    // Joint pain
+    joints: {
+      Vata: {
+        home: lang === "hinglish"
+          ? "1. Til tel ki garam malish daily\n2. Ajwain ka poultice affected area pe"
+          : "1. Warm sesame oil massage daily\n2. Ajwain poultice on affected area",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Warm, oily foods, soups, ghee\n❌ Avoid: Cold, dry, raw foods"
+          : "✅ Eat: Warm, oily foods, soups, ghee\n❌ Avoid: Cold, dry, raw foods",
+        medicine: lang === "hinglish"
+          ? "• Yograj Guggulu - joint health\n• Mahanarayan Tel - external use"
+          : "• Yograj Guggulu - joint health\n• Mahanarayan Tel - external use"
+      },
+      Pitta: {
+        home: lang === "hinglish"
+          ? "1. Coconut oil ki malish\n2. Castor leaves ki poultice"
+          : "1. Coconut oil massage\n2. Castor leaves poultice",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Cooling, anti-inflammatory foods\n❌ Avoid: Spicy, sour, fried"
+          : "✅ Eat: Cooling, anti-inflammatory foods\n❌ Avoid: Spicy, sour, fried",
+        medicine: lang === "hinglish"
+          ? "• Kaishor Guggulu\n• Chandanadi Vati"
+          : "• Kaishor Guggulu\n• Chandanadi Vati"
+      },
+      Kapha: {
+        home: lang === "hinglish"
+          ? "1. Mustard oil + camphor ki malish\n2. Hot water bottle compress"
+          : "1. Mustard oil + camphor massage\n2. Hot water bottle compress",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Light, warm, spicy foods\n❌ Avoid: Dairy, cold, heavy foods"
+          : "✅ Eat: Light, warm, spicy foods\n❌ Avoid: Dairy, cold, heavy foods",
+        medicine: lang === "hinglish"
+          ? "• Punarnavadi Guggulu\n• Simhanada Guggulu"
+          : "• Punarnavadi Guggulu\n• Simhanada Guggulu"
+      }
+    },
+    // Skin issues
+    skin: {
+      Vata: {
+        home: lang === "hinglish"
+          ? "1. Til tel + haldi paste dry skin pe\n2. Doodh mein shahad bath"
+          : "1. Sesame oil + turmeric paste on dry skin\n2. Milk and honey bath",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Healthy fats, ghee, hydrating foods\n❌ Avoid: Dry, cold, astringent foods"
+          : "✅ Eat: Healthy fats, ghee, hydrating foods\n❌ Avoid: Dry, cold, astringent foods",
+        medicine: lang === "hinglish"
+          ? "• Kumkumadi Tailam - face ke liye\n• Gandhak Rasayan"
+          : "• Kumkumadi Tailam - for face\n• Gandhak Rasayan"
+      },
+      Pitta: {
+        home: lang === "hinglish"
+          ? "1. Neem + tulsi ka paste\n2. Aloe vera gel fresh lagayein"
+          : "1. Neem + tulsi paste\n2. Apply fresh aloe vera gel",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Bitter greens, cooling foods\n❌ Avoid: Spicy, fermented, fried"
+          : "✅ Eat: Bitter greens, cooling foods\n❌ Avoid: Spicy, fermented, fried",
+        medicine: lang === "hinglish"
+          ? "• Khadirarishta\n• Mahamanjisthadi Kwath"
+          : "• Khadirarishta\n• Mahamanjisthadi Kwath"
+      },
+      Kapha: {
+        home: lang === "hinglish"
+          ? "1. Dry brushing before bath\n2. Besan + haldi ubtan"
+          : "1. Dry brushing before bath\n2. Chickpea flour + turmeric ubtan",
+        diet: lang === "hinglish"
+          ? "✅ Khayein: Light, detox foods\n❌ Avoid: Oily, sweet, dairy"
+          : "✅ Eat: Light, detox foods\n❌ Avoid: Oily, sweet, dairy",
+        medicine: lang === "hinglish"
+          ? "• Arogyavardhini Vati\n• Nimbadi Churna"
+          : "• Arogyavardhini Vati\n• Nimbadi Churna"
       }
     }
+  };
+
+  // Match symptom to category
+  let category = "digestion"; // default
+  if (lowerSymptom.includes("stress") || lowerSymptom.includes("anxiety") || lowerSymptom.includes("tension") || lowerSymptom.includes("neend") || lowerSymptom.includes("worry")) {
+    category = "stress";
+  } else if (lowerSymptom.includes("head") || lowerSymptom.includes("sar") || lowerSymptom.includes("migraine")) {
+    category = "headache";
+  } else if (lowerSymptom.includes("sleep") || lowerSymptom.includes("insomnia") || lowerSymptom.includes("neend")) {
+    category = "sleep";
+  } else if (lowerSymptom.includes("joint") || lowerSymptom.includes("pain") || lowerSymptom.includes("dard") || lowerSymptom.includes("ghutna") || lowerSymptom.includes("arthritis")) {
+    category = "joints";
+  } else if (lowerSymptom.includes("skin") || lowerSymptom.includes("acne") || lowerSymptom.includes("pimple") || lowerSymptom.includes("eczema") || lowerSymptom.includes("chamdi")) {
+    category = "skin";
+  }
+
+  const plan = treatments[category]?.[dosha] || treatments.digestion.Vata;
+  return `${plan.home}\n\n${plan.diet}\n\n${plan.medicine}`;
+};
+
+const DoctorAI = () => {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const [stage, setStage] = useState<ConsultationStage>("greeting");
+  const [userProfile, setUserProfile] = useState<UserProfile>({ symptom: "" });
+  const [language, setLanguage] = useState<UserLanguage>("hinglish");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Initial greeting
+  useEffect(() => {
+    const greeting = language === "hinglish"
+      ? "Namaste! 🙏 Main aapka Ayurveda AI Vaidya hoon. Aapki sehat ki chinta mujhe bhi hai.\n\nMujhe batayein, aaj aap kis taklif se guzar rahe hain? (Jaise: pet mein problem, sar dard, stress, joint pain, skin issues...)"
+      : "Namaste! 🙏 I am your Ayurveda AI Vaidya. Your health is my priority.\n\nPlease tell me, what health concern brings you here today? (For example: digestive issues, headache, stress, joint pain, skin problems...)";
     
-    return defaultResponse;
+    setMessages([{ role: "ai", content: greeting }]);
+  }, [language]);
+
+  const generateFollowupQuestion = (questionNum: number): string => {
+    if (language === "hinglish") {
+      switch (questionNum) {
+        case 1:
+          return "Dhanyavaad apni problem batane ke liye. 🙏\n\nAapka Dosha samajhne ke liye kuch sawaal:\n\n**1. Aapki neend kaisi hai?**\n(Jaise: achhi neend aati hai, beech mein uthta hoon, late tak jaagta hoon, bahut zyada sota hoon)";
+        case 2:
+          return "Samajh gaya. Ab batayein:\n\n**2. Aapka digestion kaisa hai?**\n(Jaise: normal hai, gas/acidity hoti hai, slow digestion, kabz rehti hai)";
+        case 3:
+          return "Theek hai. Last question:\n\n**3. Aapka stress level kaisa hai aur aapke city mein weather kaisa hai?**\n(Jaise: bahut stressed, thoda tension, relaxed. Weather: garam, thanda, humid, dry)";
+        default:
+          return "";
+      }
+    } else {
+      switch (questionNum) {
+        case 1:
+          return "Thank you for sharing your concern. 🙏\n\nTo understand your Dosha constitution, I need to ask a few questions:\n\n**1. How is your sleep pattern?**\n(For example: sleep well, wake up frequently, stay up late, oversleep)";
+        case 2:
+          return "I understand. Now tell me:\n\n**2. How is your digestion?**\n(For example: normal, gas/acidity issues, slow digestion, constipation)";
+        case 3:
+          return "Good. Last question:\n\n**3. What is your stress level and the current weather in your city?**\n(For example: very stressed, somewhat tense, relaxed. Weather: hot, cold, humid, dry)";
+        default:
+          return "";
+      }
+    }
+  };
+
+  const generateTreatmentResponse = (profile: UserProfile): string => {
+    const dosha = determineDoshaFromProfile(profile);
+    const treatment = getTreatmentPlan(profile.symptom, dosha, language);
+    
+    if (language === "hinglish") {
+      return `🌿 **Aapki Ayurvedic Consultation Report**
+
+Based on aapke answers, aapka dominant dosha **${dosha}** lagta hai.
+
+---
+
+**A. 🏠 GHAR KA UPAY (Home Remedy):**
+${treatment.split("\n\n")[0]}
+
+---
+
+**B. 🍽️ DIET & LIFESTYLE:**
+${treatment.split("\n\n")[1]}
+
+---
+
+**C. 💊 AYURVEDIC MEDICINE:**
+${treatment.split("\n\n")[2]}
+
+---
+
+💎 **Premium Plan Upgrade:**
+Agar aap chahte hain ek detailed **10-page Personalized Healing Blueprint** aur **30-day customized Diet Plan**, toh aap hamare Premium Plan le sakte hain sirf **₹499** mein!
+
+International users ke liye: **$15** (USDT via Binance accepted)
+
+🛒 Specific products ke liye: [AyurWell Shop](/)
+
+---
+
+⚠️ **Note:** Yeh AI consultation Ayurvedic principles pe based hai. Chronic conditions ya pregnancy mein physical Vaidya se zaroor milein.`;
+    } else {
+      return `🌿 **Your Ayurvedic Consultation Report**
+
+Based on your responses, your dominant dosha appears to be **${dosha}**.
+
+---
+
+**A. 🏠 HOME REMEDY:**
+${treatment.split("\n\n")[0]}
+
+---
+
+**B. 🍽️ DIET & LIFESTYLE:**
+${treatment.split("\n\n")[1]}
+
+---
+
+**C. 💊 AYURVEDIC MEDICINE:**
+${treatment.split("\n\n")[2]}
+
+---
+
+💎 **Premium Plan Upgrade:**
+For a detailed **10-page Personalized Healing Blueprint** and **30-day customized Diet Plan**, you can upgrade to our Premium Plan for just **$15** (or ₹499 for India).
+
+We accept USDT via Binance for international payments.
+
+🛒 For specific products: [AyurWell Shop](/)
+
+---
+
+⚠️ **Note:** This is an AI consultation based on Ayurvedic principles. Please consult a physical Vaidya for chronic conditions or if you are pregnant.`;
+    }
   };
 
   const handleSend = () => {
     if (!input.trim()) return;
     
-    setMessages((prev) => [...prev, { role: "user", content: input }]);
+    const userMessage = input.trim();
+    setMessages(prev => [...prev, { role: "user", content: userMessage }]);
+    setInput("");
     setIsTyping(true);
-    
+
     setTimeout(() => {
-      const response = getAIResponse(input);
-      setMessages((prev) => [...prev, { role: "ai", content: response }]);
+      let response = "";
+      let newStage = stage;
+
+      switch (stage) {
+        case "greeting":
+          setUserProfile(prev => ({ ...prev, symptom: userMessage }));
+          response = generateFollowupQuestion(1);
+          newStage = "followup_1";
+          break;
+        
+        case "followup_1":
+          setUserProfile(prev => ({ ...prev, sleepPattern: userMessage }));
+          response = generateFollowupQuestion(2);
+          newStage = "followup_2";
+          break;
+        
+        case "followup_2":
+          setUserProfile(prev => ({ ...prev, digestion: userMessage }));
+          response = generateFollowupQuestion(3);
+          newStage = "collecting_info";
+          break;
+        
+        case "collecting_info":
+          const updatedProfile = { ...userProfile, stressLevel: userMessage, weather: userMessage };
+          setUserProfile(updatedProfile);
+          response = generateTreatmentResponse(updatedProfile);
+          newStage = "treatment";
+          break;
+        
+        case "treatment":
+          // After treatment, allow follow-up questions
+          if (language === "hinglish") {
+            response = "Kya aapko koi aur sawal hai ya kisi aur problem ke baare mein jaanna chahte hain?\n\nNaya consultation shuru karne ke liye page refresh karein ya apni nayi taklif batayein.";
+          } else {
+            response = "Do you have any other questions or would you like to discuss another health concern?\n\nTo start a new consultation, refresh the page or tell me about your new concern.";
+          }
+          break;
+      }
+
+      setStage(newStage);
+      setMessages(prev => [...prev, { role: "ai", content: response }]);
       setIsTyping(false);
     }, 1500);
-    
-    setInput("");
   };
+
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === "hinglish" ? "english" : "hinglish");
+    setStage("greeting");
+    setUserProfile({ symptom: "" });
+  };
+
+  const suggestedPrompts = language === "hinglish" 
+    ? ["Pet mein gas aur acidity", "Bahut stress ho raha hai", "Ghutno mein dard", "Skin pe pimples", "Neend nahi aati"]
+    : ["Digestive issues", "Stress and anxiety", "Joint pain", "Skin problems", "Sleep issues"];
 
   return (
     <Layout>
@@ -350,16 +482,31 @@ const DoctorAI = () => {
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             <Sparkles className="h-4 w-4" />
-            AI-Powered Ayurvedic Consultation
+            {language === "hinglish" ? "AI-Powered Ayurvedic Consultation" : "AI-Powered Ayurvedic Consultation"}
           </div>
-          <h1 className="font-display text-3xl font-bold">AI Vaidya</h1>
-          <p className="text-muted-foreground mt-2">Apni taklif batayein, Ayurvedic guidance payein</p>
+          <h1 className="font-display text-3xl font-bold">Ayurveda AI Vaidya</h1>
+          <p className="text-muted-foreground mt-2">
+            {language === "hinglish" 
+              ? "Apni taklif batayein, personalized Ayurvedic guidance payein" 
+              : "Share your concerns, receive personalized Ayurvedic guidance"}
+          </p>
+          
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
+          >
+            <Globe className="h-4 w-4" />
+            {language === "hinglish" ? "Switch to English" : "हिंग्लिश में बदलें"}
+          </button>
         </div>
 
         <div className="bg-amber-950/30 border border-amber-700/30 rounded-xl p-4 mb-6 flex items-start gap-3">
           <AlertCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
           <p className="text-sm text-amber-200/80">
-            Yeh AI assistant sirf general Ayurvedic information deta hai. Professional medical diagnosis ya treatment ki jagah nahi le sakta. Serious problems ke liye doctor se zaroor milein.
+            {language === "hinglish" 
+              ? "Yeh AI Vaidya sirf general Ayurvedic guidance deta hai. Serious problems ke liye physical doctor se milein."
+              : "This AI Vaidya provides general Ayurvedic guidance only. Please consult a physical doctor for serious conditions."}
           </p>
         </div>
 
@@ -375,6 +522,11 @@ const DoctorAI = () => {
                 <div className={`max-w-[85%] p-4 rounded-2xl ${msg.role === "user" ? "bg-primary/20 rounded-tr-sm" : "bg-muted rounded-tl-sm"}`}>
                   <p className="text-sm whitespace-pre-line">{msg.content}</p>
                 </div>
+                {msg.role === "user" && (
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center ml-3 flex-shrink-0">
+                    <User className="h-4 w-4 text-primary" />
+                  </div>
+                )}
               </div>
             ))}
             {isTyping && (
@@ -391,7 +543,28 @@ const DoctorAI = () => {
                 </div>
               </div>
             )}
+            <div ref={messagesEndRef} />
           </div>
+
+          {/* Suggested Prompts */}
+          {stage === "greeting" && messages.length <= 1 && (
+            <div className="px-6 pb-4">
+              <p className="text-xs text-muted-foreground mb-2">
+                {language === "hinglish" ? "Ya inme se chunein:" : "Or choose from:"}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {suggestedPrompts.map((prompt, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setInput(prompt)}
+                    className="text-xs px-3 py-1.5 rounded-full border border-border bg-muted/50 hover:bg-muted transition-colors"
+                  >
+                    {prompt}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="p-4 border-t border-border">
             <div className="flex gap-3">
@@ -400,26 +573,20 @@ const DoctorAI = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                placeholder="Apni taklif yahan likhein... (e.g., sar mein dard hai, pet kharab hai)"
-                className="flex-1 h-12 px-4 rounded-xl bg-muted border-0 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                placeholder={language === "hinglish" ? "Apni taklif yahan likhein..." : "Type your concern here..."}
+                className="flex-1 bg-muted rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
               />
-              <Button variant="gold" size="lg" onClick={handleSend} disabled={isTyping}>
+              <Button 
+                variant="gold" 
+                size="icon" 
+                onClick={handleSend}
+                disabled={!input.trim() || isTyping}
+                className="rounded-xl h-11 w-11"
+              >
                 <Send className="h-5 w-5" />
               </Button>
             </div>
           </div>
-        </div>
-
-        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
-          {["Sar dard hai", "Pet mein problem", "Joint pain", "Neend nahi aati"].map((suggestion) => (
-            <button
-              key={suggestion}
-              onClick={() => setInput(suggestion)}
-              className="text-sm px-4 py-2 rounded-lg bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {suggestion}
-            </button>
-          ))}
         </div>
       </div>
     </Layout>
