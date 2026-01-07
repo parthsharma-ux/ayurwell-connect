@@ -1,1 +1,7 @@
 project_id = "kmkfiowixitukygnstls"
+
+[functions.sitemap]
+verify_jwt = false
+
+[functions.vaidya-chat]
+verify_jwt = false
