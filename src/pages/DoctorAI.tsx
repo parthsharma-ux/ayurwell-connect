@@ -1,8 +1,12 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2 } from "lucide-react";
+import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
+import { useVaidyaChat } from "@/hooks/useVaidyaChat";
+import { AuthModal } from "@/components/vaidya/AuthModal";
+import { ChatHistory } from "@/components/vaidya/ChatHistory";
 
 type Message = { role: "user" | "assistant"; content: string };
 type UserLanguage = "hinglish" | "english";
@@ -10,27 +14,44 @@ type UserLanguage = "hinglish" | "english";
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/vaidya-chat`;
 
 const DoctorAI = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [language, setLanguage] = useState<UserLanguage>("hinglish");
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+  const { user, signOut } = useAuth();
+  
+  const {
+    sessions,
+    currentSessionId,
+    messages,
+    setMessages,
+    loadingSessions,
+    loadSession,
+    createSession,
+    saveMessage,
+    deleteSession,
+    startNewChat,
+  } = useVaidyaChat(language);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Initial greeting
+  // Initial greeting when no session is loaded
   useEffect(() => {
-    const greeting = language === "hinglish"
-      ? "Namaste! 🙏 Main aapka Ayurveda AI Vaidya hoon. Aapki sehat ki chinta mujhe bhi hai.\n\nMujhe batayein, aaj aap kis taklif se guzar rahe hain? (Jaise: pet mein problem, sar dard, stress, joint pain, skin issues...)"
-      : "Namaste! 🙏 I am your Ayurveda AI Vaidya. Your health is my priority.\n\nPlease tell me, what health concern brings you here today? (For example: digestive issues, headache, stress, joint pain, skin problems...)";
-    
-    setMessages([{ role: "assistant", content: greeting }]);
-  }, [language]);
+    if (!currentSessionId && messages.length === 0) {
+      const greeting = language === "hinglish"
+        ? "Namaste! 🙏 Main aapka Ayurveda AI Vaidya hoon. Aapki sehat ki chinta mujhe bhi hai.\n\nMujhe batayein, aaj aap kis taklif se guzar rahe hain? (Jaise: pet mein problem, sar dard, stress, joint pain, skin issues...)"
+        : "Namaste! 🙏 I am your Ayurveda AI Vaidya. Your health is my priority.\n\nPlease tell me, what health concern brings you here today? (For example: digestive issues, headache, stress, joint pain, skin problems...)";
+      
+      setMessages([{ role: "assistant", content: greeting }]);
+    }
+  }, [language, currentSessionId, messages.length, setMessages]);
 
-  const streamChat = useCallback(async (userMessages: Message[]) => {
+  const streamChat = useCallback(async (userMessages: Message[], sessionId: string | null) => {
     const resp = await fetch(CHAT_URL, {
       method: "POST",
       headers: {
@@ -95,7 +116,6 @@ const DoctorAI = () => {
             });
           }
         } catch {
-          // Incomplete JSON, put it back
           textBuffer = line + "\n" + textBuffer;
           break;
         }
@@ -129,7 +149,12 @@ const DoctorAI = () => {
         } catch { /* ignore */ }
       }
     }
-  }, [language]);
+
+    // Save AI response to database
+    if (sessionId && assistantContent) {
+      await saveMessage(sessionId, "assistant", assistantContent);
+    }
+  }, [language, setMessages, saveMessage]);
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
@@ -145,8 +170,20 @@ const DoctorAI = () => {
     setInput("");
     setIsLoading(true);
 
+    let sessionId = currentSessionId;
+
     try {
-      await streamChat(allMessages);
+      // Create session on first user message (if logged in)
+      if (user && !sessionId) {
+        sessionId = await createSession(userMessage);
+      }
+
+      // Save user message to database
+      if (sessionId) {
+        await saveMessage(sessionId, "user", userMessage);
+      }
+
+      await streamChat(allMessages, sessionId);
     } catch (error) {
       console.error("Chat error:", error);
       toast({
@@ -161,6 +198,12 @@ const DoctorAI = () => {
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === "hinglish" ? "english" : "hinglish");
+    startNewChat();
+  };
+
+  const handleNewChat = () => {
+    startNewChat();
+    setMessages([]);
   };
 
   const suggestedPrompts = language === "hinglish" 
@@ -182,14 +225,58 @@ const DoctorAI = () => {
               : "Share your concerns, receive personalized Ayurvedic guidance"}
           </p>
           
-          <button
-            onClick={toggleLanguage}
-            className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
-          >
-            <Globe className="h-4 w-4" />
-            {language === "hinglish" ? "Switch to English" : "हिंग्लिश में बदलें"}
-          </button>
+          <div className="mt-4 flex items-center justify-center gap-3 flex-wrap">
+            <button
+              onClick={toggleLanguage}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
+            >
+              <Globe className="h-4 w-4" />
+              {language === "hinglish" ? "Switch to English" : "हिंग्लिश में बदलें"}
+            </button>
+            
+            {user ? (
+              <>
+                <button
+                  onClick={() => setShowHistory(!showHistory)}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
+                >
+                  <History className="h-4 w-4" />
+                  {showHistory ? "Hide History" : "Past Consultations"}
+                </button>
+                <button
+                  onClick={() => signOut()}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => setShowAuthModal(true)}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary bg-primary/10 hover:bg-primary/20 transition-colors text-sm text-primary"
+              >
+                <LogIn className="h-4 w-4" />
+                Sign In to Save Chats
+              </button>
+            )}
+          </div>
         </div>
+
+        {/* Chat History Panel */}
+        {user && showHistory && (
+          <div className="bg-card rounded-xl border border-border p-4 mb-6">
+            <h3 className="font-medium text-sm mb-3">Your Consultations</h3>
+            <ChatHistory
+              sessions={sessions}
+              currentSessionId={currentSessionId}
+              loading={loadingSessions}
+              onSelectSession={loadSession}
+              onDeleteSession={deleteSession}
+              onNewChat={handleNewChat}
+            />
+          </div>
+        )}
 
         <div className="bg-amber-950/30 border border-amber-700/30 rounded-xl p-4 mb-6 flex items-start gap-3">
           <AlertCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
@@ -283,6 +370,8 @@ const DoctorAI = () => {
           </div>
         </div>
       </div>
+
+      <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
     </Layout>
   );
 };
