@@ -1,7 +1,12 @@
+import { useState } from "react";
 import Layout from "@/components/layout/Layout";
 import { Wind, Flame, Droplets } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import DoshaQuizModal from "@/components/dosha/DoshaQuizModal";
 
 const DoshaTypes = () => {
+  const [quizOpen, setQuizOpen] = useState(false);
+
   const doshas = [
     {
       name: "Vata Dosha",
@@ -184,12 +189,17 @@ const DoshaTypes = () => {
           <div className="mt-10 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-8 border border-primary/20 text-center">
             <h2 className="font-display text-2xl font-semibold mb-3">Apna Dosha Jaanein</h2>
             <p className="text-muted-foreground mb-4">
-              Hamare AI Doctor se baat karein aur apne dominant dosha ke baare mein jaanein. 
+              Hamare Dosha Quiz lein aur apne dominant dosha ke baare mein jaanein. 
               Personalized diet aur lifestyle tips paayein!
             </p>
+            <Button onClick={() => setQuizOpen(true)} size="lg" className="gap-2">
+              Take Dosha Quiz
+            </Button>
           </div>
         </div>
       </div>
+
+      <DoshaQuizModal open={quizOpen} onOpenChange={setQuizOpen} />
     </Layout>
   );
 };
