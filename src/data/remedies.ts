@@ -2835,6 +2835,887 @@ export const remedies: Remedy[] = [
     related_diseases: ["bad-breath"],
     difficulty: "Easy",
     preparation_time: "1 minute"
+  },
+  // Muscle Cramps remedies
+  {
+    id: "remedy-111",
+    problem: "Muscle Cramps",
+    title: "Mustard Oil Massage",
+    ingredients: [
+      { name: "Mustard oil", quantity: "2 tablespoons" },
+      { name: "Garlic cloves", quantity: "3-4" }
+    ],
+    method: [
+      "Heat mustard oil gently",
+      "Add crushed garlic cloves",
+      "Let garlic infuse for 5 minutes",
+      "Apply warm oil to cramped muscles",
+      "Massage in circular motions for 10-15 minutes"
+    ],
+    how_often: "2-3 times daily or as needed",
+    precautions: [
+      "Test temperature before applying",
+      "Avoid on broken skin",
+      "Patch test for allergies"
+    ],
+    benefits: [
+      "Improves blood circulation",
+      "Relaxes muscle tension",
+      "Provides warming relief"
+    ],
+    related_diseases: ["muscle-cramps", "joint-pain"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-112",
+    problem: "Muscle Cramps",
+    title: "Banana Smoothie",
+    ingredients: [
+      { name: "Ripe banana", quantity: "1" },
+      { name: "Milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Almonds", quantity: "5-6" }
+    ],
+    method: [
+      "Blend banana with milk",
+      "Add soaked almonds",
+      "Add honey for taste",
+      "Blend until smooth",
+      "Drink immediately"
+    ],
+    how_often: "Once daily",
+    precautions: [
+      "Diabetics should limit honey",
+      "Avoid if lactose intolerant"
+    ],
+    benefits: [
+      "Rich in potassium",
+      "Prevents muscle cramps",
+      "Provides quick energy"
+    ],
+    related_diseases: ["muscle-cramps", "fatigue"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  // Ear Infection remedies
+  {
+    id: "remedy-113",
+    problem: "Ear Infection",
+    title: "Garlic Oil Drops",
+    ingredients: [
+      { name: "Garlic cloves", quantity: "2" },
+      { name: "Sesame oil", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Crush garlic cloves",
+      "Heat sesame oil with garlic on low flame",
+      "Cook until garlic turns brown",
+      "Strain and let cool to lukewarm",
+      "Put 2-3 drops in affected ear"
+    ],
+    how_often: "Twice daily for 3-4 days",
+    precautions: [
+      "Never use if eardrum is perforated",
+      "Test temperature carefully",
+      "Consult doctor if no improvement"
+    ],
+    benefits: [
+      "Natural antibiotic properties",
+      "Reduces ear pain",
+      "Fights infection"
+    ],
+    related_diseases: ["ear-infection"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-114",
+    problem: "Ear Infection",
+    title: "Holy Basil Juice",
+    ingredients: [
+      { name: "Fresh tulsi leaves", quantity: "10-15" }
+    ],
+    method: [
+      "Wash tulsi leaves thoroughly",
+      "Crush to extract juice",
+      "Strain through clean cloth",
+      "Warm slightly (lukewarm)",
+      "Put 2-3 drops in ear"
+    ],
+    how_often: "Twice daily",
+    precautions: [
+      "Use fresh juice only",
+      "Don't insert anything into ear",
+      "Seek medical help if severe"
+    ],
+    benefits: [
+      "Antibacterial properties",
+      "Reduces inflammation",
+      "Relieves ear pain"
+    ],
+    related_diseases: ["ear-infection"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  // Hiccups remedies
+  {
+    id: "remedy-115",
+    problem: "Hiccups",
+    title: "Sugar and Ghee",
+    ingredients: [
+      { name: "Sugar", quantity: "1 teaspoon" },
+      { name: "Ghee", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Mix sugar with ghee",
+      "Place mixture under tongue",
+      "Let it dissolve slowly",
+      "Swallow gradually"
+    ],
+    how_often: "Once, repeat if needed after 15 minutes",
+    precautions: [
+      "Diabetics should avoid",
+      "Not for frequent use"
+    ],
+    benefits: [
+      "Stimulates vagus nerve",
+      "Stops diaphragm spasms",
+      "Quick relief"
+    ],
+    related_diseases: ["hiccups"],
+    difficulty: "Easy",
+    preparation_time: "1 minute"
+  },
+  {
+    id: "remedy-116",
+    problem: "Hiccups",
+    title: "Cardamom Water",
+    ingredients: [
+      { name: "Cardamom powder", quantity: "1/2 teaspoon" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Boil water",
+      "Add cardamom powder",
+      "Simmer for 5 minutes",
+      "Strain and cool slightly",
+      "Sip slowly"
+    ],
+    how_often: "Once when hiccups occur",
+    precautions: [
+      "Let it cool sufficiently",
+      "Sip slowly, don't gulp"
+    ],
+    benefits: [
+      "Relaxes diaphragm",
+      "Soothes digestive tract",
+      "Pleasant taste"
+    ],
+    related_diseases: ["hiccups", "indigestion"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  // Mouth Ulcers remedies
+  {
+    id: "remedy-117",
+    problem: "Mouth Ulcers",
+    title: "Honey and Turmeric Paste",
+    ingredients: [
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Mix honey and turmeric well",
+      "Apply directly on ulcer",
+      "Leave for 5-10 minutes",
+      "Don't eat or drink during this time",
+      "Rinse with warm water"
+    ],
+    how_often: "3-4 times daily",
+    precautions: [
+      "May cause slight burning initially",
+      "Turmeric may stain temporarily"
+    ],
+    benefits: [
+      "Antibacterial action",
+      "Promotes healing",
+      "Reduces pain"
+    ],
+    related_diseases: ["mouth-ulcers"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-118",
+    problem: "Mouth Ulcers",
+    title: "Coconut Oil Swishing",
+    ingredients: [
+      { name: "Virgin coconut oil", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Take coconut oil in mouth",
+      "Swish around for 5-10 minutes",
+      "Don't swallow",
+      "Spit out and rinse with warm water",
+      "Do before brushing teeth"
+    ],
+    how_often: "Once daily in morning",
+    precautions: [
+      "Start with 5 minutes if new",
+      "Spit in trash, not sink",
+      "Don't swallow oil"
+    ],
+    benefits: [
+      "Antimicrobial properties",
+      "Reduces inflammation",
+      "Promotes oral health"
+    ],
+    related_diseases: ["mouth-ulcers", "bad-breath"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-119",
+    problem: "Mouth Ulcers",
+    title: "Licorice Root Gargle",
+    ingredients: [
+      { name: "Mulethi (licorice) powder", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" }
+    ],
+    method: [
+      "Add mulethi powder to warm water",
+      "Stir well and let steep for 10 minutes",
+      "Strain the water",
+      "Gargle for 30 seconds",
+      "Spit out"
+    ],
+    how_often: "3-4 times daily",
+    precautions: [
+      "Don't swallow large amounts",
+      "Avoid if you have high BP"
+    ],
+    benefits: [
+      "Soothes ulcer pain",
+      "Promotes healing",
+      "Anti-inflammatory"
+    ],
+    related_diseases: ["mouth-ulcers", "sore-throat"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  // Sunburn remedies
+  {
+    id: "remedy-120",
+    problem: "Sunburn",
+    title: "Aloe Vera Gel",
+    ingredients: [
+      { name: "Fresh aloe vera leaf", quantity: "1" }
+    ],
+    method: [
+      "Cut aloe vera leaf",
+      "Scoop out fresh gel",
+      "Apply directly to sunburned skin",
+      "Let it dry naturally",
+      "Repeat as needed"
+    ],
+    how_often: "4-5 times daily",
+    precautions: [
+      "Use fresh gel only",
+      "Do patch test first",
+      "Store remainder in fridge"
+    ],
+    benefits: [
+      "Instantly cooling",
+      "Promotes skin healing",
+      "Reduces redness and pain"
+    ],
+    related_diseases: ["sunburn", "skin-disorders"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-121",
+    problem: "Sunburn",
+    title: "Cucumber Yogurt Mask",
+    ingredients: [
+      { name: "Cucumber", quantity: "Half" },
+      { name: "Yogurt", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Grate or blend cucumber",
+      "Mix with cold yogurt",
+      "Apply to sunburned areas",
+      "Leave for 20 minutes",
+      "Rinse with cool water"
+    ],
+    how_often: "2-3 times daily",
+    precautions: [
+      "Use plain unsweetened yogurt",
+      "Keep refrigerated"
+    ],
+    benefits: [
+      "Cooling effect",
+      "Hydrates skin",
+      "Reduces inflammation"
+    ],
+    related_diseases: ["sunburn", "skin-disorders"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  // Dandruff remedies
+  {
+    id: "remedy-122",
+    problem: "Dandruff",
+    title: "Neem Oil Treatment",
+    ingredients: [
+      { name: "Neem oil", quantity: "2 tablespoons" },
+      { name: "Coconut oil", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Mix both oils",
+      "Warm slightly",
+      "Apply to scalp with fingertips",
+      "Massage for 10-15 minutes",
+      "Leave for 1 hour, then shampoo"
+    ],
+    how_often: "Twice a week",
+    precautions: [
+      "Neem has strong smell",
+      "Avoid contact with eyes",
+      "Patch test first"
+    ],
+    benefits: [
+      "Antifungal properties",
+      "Reduces itching",
+      "Cleanses scalp"
+    ],
+    related_diseases: ["dandruff", "hair-fall"],
+    difficulty: "Easy",
+    preparation_time: "1 hour 15 minutes"
+  },
+  {
+    id: "remedy-123",
+    problem: "Dandruff",
+    title: "Apple Cider Vinegar Rinse",
+    ingredients: [
+      { name: "Apple cider vinegar", quantity: "2 tablespoons" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Mix ACV with water",
+      "After shampooing, pour over scalp",
+      "Massage gently for 2-3 minutes",
+      "Rinse with plain water",
+      "Condition as usual"
+    ],
+    how_often: "Twice a week",
+    precautions: [
+      "May cause stinging if scalp is irritated",
+      "Dilute properly",
+      "Avoid contact with eyes"
+    ],
+    benefits: [
+      "Balances scalp pH",
+      "Removes product buildup",
+      "Reduces dandruff flakes"
+    ],
+    related_diseases: ["dandruff"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-124",
+    problem: "Dandruff",
+    title: "Fenugreek Hair Pack",
+    ingredients: [
+      { name: "Fenugreek seeds", quantity: "3 tablespoons" },
+      { name: "Water", quantity: "For soaking" },
+      { name: "Lemon juice", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Soak fenugreek seeds overnight",
+      "Grind into smooth paste",
+      "Add lemon juice and mix",
+      "Apply to scalp and hair",
+      "Leave for 30-45 minutes, then shampoo"
+    ],
+    how_often: "Once a week",
+    precautions: [
+      "May cause slipperiness",
+      "Rinse thoroughly"
+    ],
+    benefits: [
+      "Deep conditions scalp",
+      "Reduces dandruff",
+      "Strengthens hair"
+    ],
+    related_diseases: ["dandruff", "hair-fall"],
+    difficulty: "Medium",
+    preparation_time: "Overnight + 45 minutes"
+  },
+  // Heartburn remedies
+  {
+    id: "remedy-125",
+    problem: "Heartburn",
+    title: "Baking Soda Water",
+    ingredients: [
+      { name: "Baking soda", quantity: "1/2 teaspoon" },
+      { name: "Water", quantity: "1 glass" }
+    ],
+    method: [
+      "Add baking soda to water",
+      "Stir until dissolved",
+      "Drink slowly"
+    ],
+    how_often: "Once when heartburn occurs, not daily",
+    precautions: [
+      "Not for regular use",
+      "High in sodium",
+      "Avoid if on sodium-restricted diet"
+    ],
+    benefits: [
+      "Neutralizes stomach acid quickly",
+      "Provides fast relief",
+      "Inexpensive remedy"
+    ],
+    related_diseases: ["heartburn", "acidity"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-126",
+    problem: "Heartburn",
+    title: "Licorice Tea",
+    ingredients: [
+      { name: "Mulethi sticks", quantity: "2-3 small pieces" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Boil water with mulethi sticks",
+      "Simmer for 10 minutes",
+      "Strain and let cool slightly",
+      "Drink before or after meals"
+    ],
+    how_often: "1-2 times daily",
+    precautions: [
+      "Avoid if you have high blood pressure",
+      "Not for long-term use",
+      "Limit to 2 weeks"
+    ],
+    benefits: [
+      "Soothes stomach lining",
+      "Reduces acid production",
+      "Heals esophagus"
+    ],
+    related_diseases: ["heartburn", "acidity"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  // Chapped Lips remedies
+  {
+    id: "remedy-127",
+    problem: "Chapped Lips",
+    title: "Ghee Lip Balm",
+    ingredients: [
+      { name: "Pure desi ghee", quantity: "Small amount" }
+    ],
+    method: [
+      "Take small amount of ghee on fingertip",
+      "Apply to lips before sleeping",
+      "Can apply during day too",
+      "Leave overnight"
+    ],
+    how_often: "2-3 times daily, especially at night",
+    precautions: [
+      "Use pure ghee only",
+      "Keep container clean"
+    ],
+    benefits: [
+      "Deep moisturization",
+      "Heals cracks",
+      "Natural and safe"
+    ],
+    related_diseases: ["chapped-lips"],
+    difficulty: "Easy",
+    preparation_time: "1 minute"
+  },
+  {
+    id: "remedy-128",
+    problem: "Chapped Lips",
+    title: "Honey Rose Water",
+    ingredients: [
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Rose water", quantity: "Few drops" }
+    ],
+    method: [
+      "Mix honey with rose water",
+      "Apply to lips",
+      "Leave for 15-20 minutes",
+      "Wipe off gently with wet cloth"
+    ],
+    how_often: "Twice daily",
+    precautions: [
+      "Don't lick lips after applying",
+      "Use pure honey"
+    ],
+    benefits: [
+      "Moisturizes deeply",
+      "Heals cracks",
+      "Adds natural color"
+    ],
+    related_diseases: ["chapped-lips"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  // Leg Cramps remedies
+  {
+    id: "remedy-129",
+    problem: "Leg Cramps",
+    title: "Warm Epsom Salt Bath",
+    ingredients: [
+      { name: "Epsom salt", quantity: "1 cup" },
+      { name: "Warm water", quantity: "Bucket or tub" }
+    ],
+    method: [
+      "Fill tub with warm water",
+      "Add Epsom salt",
+      "Stir until dissolved",
+      "Soak legs for 15-20 minutes",
+      "Pat dry and rest"
+    ],
+    how_often: "2-3 times a week",
+    precautions: [
+      "Don't use very hot water",
+      "Avoid if you have open wounds",
+      "Stay hydrated"
+    ],
+    benefits: [
+      "Magnesium absorption through skin",
+      "Relaxes muscles",
+      "Reduces cramps"
+    ],
+    related_diseases: ["leg-cramps", "muscle-cramps"],
+    difficulty: "Easy",
+    preparation_time: "25 minutes"
+  },
+  {
+    id: "remedy-130",
+    problem: "Leg Cramps",
+    title: "Pickle Juice",
+    ingredients: [
+      { name: "Pickle juice (from Indian pickles)", quantity: "2-3 tablespoons" }
+    ],
+    method: [
+      "Take pickle juice from jar",
+      "Drink 2-3 tablespoons",
+      "Best during or immediately after cramp"
+    ],
+    how_often: "When cramp occurs",
+    precautions: [
+      "High in sodium",
+      "Not for those with hypertension",
+      "Use sparingly"
+    ],
+    benefits: [
+      "Quick relief from cramps",
+      "Electrolyte balance",
+      "Triggers nerve response"
+    ],
+    related_diseases: ["leg-cramps", "muscle-cramps"],
+    difficulty: "Easy",
+    preparation_time: "1 minute"
+  },
+  // Motion Sickness remedies
+  {
+    id: "remedy-131",
+    problem: "Motion Sickness",
+    title: "Ginger Candy",
+    ingredients: [
+      { name: "Dry ginger candy or fresh ginger", quantity: "Small piece" }
+    ],
+    method: [
+      "Keep ginger candy handy",
+      "Start chewing 30 minutes before travel",
+      "Continue during journey as needed"
+    ],
+    how_often: "Before and during travel",
+    precautions: [
+      "May cause heartburn in some",
+      "Avoid very spicy ginger"
+    ],
+    benefits: [
+      "Prevents nausea",
+      "Settles stomach",
+      "Natural and portable"
+    ],
+    related_diseases: ["motion-sickness", "nausea"],
+    difficulty: "Easy",
+    preparation_time: "1 minute"
+  },
+  {
+    id: "remedy-132",
+    problem: "Motion Sickness",
+    title: "Lemon and Salt",
+    ingredients: [
+      { name: "Lemon", quantity: "1" },
+      { name: "Black salt", quantity: "Pinch" }
+    ],
+    method: [
+      "Cut lemon into wedges",
+      "Sprinkle black salt",
+      "Suck on lemon during travel",
+      "Or smell lemon peel"
+    ],
+    how_often: "During travel as needed",
+    precautions: [
+      "May affect tooth enamel",
+      "Rinse mouth after"
+    ],
+    benefits: [
+      "Reduces nausea sensation",
+      "Fresh citrus scent helps",
+      "Easy to carry"
+    ],
+    related_diseases: ["motion-sickness", "nausea"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  // Food Poisoning remedies
+  {
+    id: "remedy-133",
+    problem: "Food Poisoning",
+    title: "Ginger Lemon Water",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Grate ginger and extract juice",
+      "Add to warm water",
+      "Add lemon juice and honey",
+      "Sip slowly throughout the day"
+    ],
+    how_often: "Every 2-3 hours",
+    precautions: [
+      "Seek medical help if severe",
+      "Stay hydrated",
+      "Rest completely"
+    ],
+    benefits: [
+      "Antibacterial properties",
+      "Settles stomach",
+      "Prevents dehydration"
+    ],
+    related_diseases: ["food-poisoning", "nausea"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-134",
+    problem: "Food Poisoning",
+    title: "Cumin Water",
+    ingredients: [
+      { name: "Cumin seeds", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 glass" }
+    ],
+    method: [
+      "Boil water with cumin seeds",
+      "Simmer for 5 minutes",
+      "Strain and let cool",
+      "Drink slowly"
+    ],
+    how_often: "2-3 times a day",
+    precautions: [
+      "Consult doctor if symptoms persist",
+      "Avoid solid foods initially"
+    ],
+    benefits: [
+      "Aids digestion",
+      "Reduces bloating",
+      "Antibacterial action"
+    ],
+    related_diseases: ["food-poisoning", "indigestion"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  // Vertigo remedies
+  {
+    id: "remedy-135",
+    problem: "Vertigo",
+    title: "Ginger and Honey",
+    ingredients: [
+      { name: "Fresh ginger juice", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Extract fresh ginger juice",
+      "Mix with honey",
+      "Consume slowly",
+      "Rest in dark room after"
+    ],
+    how_often: "2-3 times daily during episodes",
+    precautions: [
+      "Seek medical evaluation for persistent vertigo",
+      "Don't drive during episodes"
+    ],
+    benefits: [
+      "Improves blood circulation",
+      "Reduces dizziness",
+      "Anti-inflammatory"
+    ],
+    related_diseases: ["vertigo"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-136",
+    problem: "Vertigo",
+    title: "Amla Coriander Water",
+    ingredients: [
+      { name: "Amla powder", quantity: "1 teaspoon" },
+      { name: "Coriander seeds", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 glass" }
+    ],
+    method: [
+      "Soak amla powder and coriander seeds overnight",
+      "Strain in morning",
+      "Add jaggery if needed for taste",
+      "Drink on empty stomach"
+    ],
+    how_often: "Daily for 2 weeks",
+    precautions: [
+      "Don't expect immediate results",
+      "Consult doctor for severe cases"
+    ],
+    benefits: [
+      "Rich in Vitamin C",
+      "Improves inner ear function",
+      "Reduces inflammation"
+    ],
+    related_diseases: ["vertigo"],
+    difficulty: "Medium",
+    preparation_time: "Overnight soaking"
+  },
+  // Weak Eyesight remedies
+  {
+    id: "remedy-137",
+    problem: "Weak Eyesight",
+    title: "Carrot and Amla Juice",
+    ingredients: [
+      { name: "Carrots", quantity: "2 medium" },
+      { name: "Amla", quantity: "1" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Wash and peel carrots",
+      "Extract juice from carrots and amla",
+      "Mix and add honey",
+      "Drink fresh immediately"
+    ],
+    how_often: "Once daily in morning",
+    precautions: [
+      "Use fresh ingredients",
+      "Diabetics should avoid honey"
+    ],
+    benefits: [
+      "Rich in Vitamin A",
+      "Improves vision",
+      "Antioxidant properties"
+    ],
+    related_diseases: ["weak-eyesight", "eye-strain"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-138",
+    problem: "Weak Eyesight",
+    title: "Triphala Eye Wash",
+    ingredients: [
+      { name: "Triphala powder", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Soak triphala in water overnight",
+      "Strain through fine cloth twice",
+      "Use clear water to wash eyes",
+      "Splash gently 3-4 times each eye"
+    ],
+    how_often: "Once daily in morning",
+    precautions: [
+      "Strain very well to remove particles",
+      "Use room temperature water",
+      "Don't use if eyes are irritated"
+    ],
+    benefits: [
+      "Cleanses eyes naturally",
+      "Reduces strain",
+      "Improves clarity"
+    ],
+    related_diseases: ["weak-eyesight", "eye-strain"],
+    difficulty: "Medium",
+    preparation_time: "Overnight soaking"
+  },
+  // Cracked Heels remedies
+  {
+    id: "remedy-139",
+    problem: "Cracked Heels",
+    title: "Coconut Oil and Lemon",
+    ingredients: [
+      { name: "Coconut oil", quantity: "2 tablespoons" },
+      { name: "Lemon juice", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Soak feet in warm water for 15 minutes",
+      "Scrub heels gently with pumice stone",
+      "Mix coconut oil and lemon juice",
+      "Apply to heels and massage",
+      "Wear socks overnight"
+    ],
+    how_often: "Daily before bed",
+    precautions: [
+      "Avoid if skin is severely cracked or bleeding",
+      "Lemon may sting on cuts"
+    ],
+    benefits: [
+      "Deep moisturization",
+      "Removes dead skin",
+      "Softens heels"
+    ],
+    related_diseases: ["cracked-heels"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes"
+  },
+  {
+    id: "remedy-140",
+    problem: "Cracked Heels",
+    title: "Banana Honey Mask",
+    ingredients: [
+      { name: "Ripe banana", quantity: "1" },
+      { name: "Honey", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Mash banana into smooth paste",
+      "Add honey and mix well",
+      "Apply thick layer on heels",
+      "Leave for 20 minutes",
+      "Rinse and moisturize"
+    ],
+    how_often: "3 times a week",
+    precautions: [
+      "Use overripe banana for best results",
+      "Can be messy"
+    ],
+    benefits: [
+      "Natural moisturizer",
+      "Heals cracks",
+      "Softens rough skin"
+    ],
+    related_diseases: ["cracked-heels"],
+    difficulty: "Easy",
+    preparation_time: "25 minutes"
   }
 ];
 
@@ -2878,5 +3759,19 @@ export const remedyCategories = [
   "Dark Circles",
   "Dry Skin",
   "Cough",
-  "Bad Breath"
+  "Bad Breath",
+  "Muscle Cramps",
+  "Ear Infection",
+  "Hiccups",
+  "Mouth Ulcers",
+  "Sunburn",
+  "Dandruff",
+  "Heartburn",
+  "Chapped Lips",
+  "Leg Cramps",
+  "Motion Sickness",
+  "Food Poisoning",
+  "Vertigo",
+  "Weak Eyesight",
+  "Cracked Heels"
 ];
