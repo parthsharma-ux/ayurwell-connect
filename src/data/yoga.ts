@@ -1,3 +1,16 @@
+import suryaNamaskarImg from "@/assets/yoga/surya-namaskar.jpg";
+import bhujangasanaImg from "@/assets/yoga/bhujangasana.jpg";
+import padmasanaImg from "@/assets/yoga/padmasana.jpg";
+import vrikshasanaImg from "@/assets/yoga/vrikshasana.jpg";
+import dhanurasanaImg from "@/assets/yoga/dhanurasana.jpg";
+import sarvangasanaImg from "@/assets/yoga/sarvangasana.jpg";
+import shavasanaImg from "@/assets/yoga/shavasana.jpg";
+import kapalbhatiImg from "@/assets/yoga/kapalbhati.jpg";
+import anulomVilomImg from "@/assets/yoga/anulom-vilom.jpg";
+import vajrasanaImg from "@/assets/yoga/vajrasana.jpg";
+import trikonasanaImg from "@/assets/yoga/trikonasana.jpg";
+import halasanaImg from "@/assets/yoga/halasana.jpg";
+
 export interface YogaStep {
   step: number;
   instruction: string;
@@ -91,7 +104,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["obesity", "diabetes", "digestive-disorders", "stress", "anxiety", "depression", "back-pain"],
     dosha_balance: ["Vata", "Pitta", "Kapha"],
-    image: ""
+    image: suryaNamaskarImg
   },
   {
     id: "bhujangasana",
@@ -148,7 +161,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["asthma", "back-pain", "sciatica", "digestive-disorders", "fatigue"],
     dosha_balance: ["Kapha", "Vata"],
-    image: ""
+    image: bhujangasanaImg
   },
   {
     id: "padmasana",
@@ -205,7 +218,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["stress", "anxiety", "insomnia", "hypertension", "menstrual-disorders"],
     dosha_balance: ["Vata", "Pitta"],
-    image: ""
+    image: padmasanaImg
   },
   {
     id: "vrikshasana",
@@ -262,7 +275,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["flat-feet", "sciatica", "leg-weakness", "concentration-issues"],
     dosha_balance: ["Vata", "Kapha"],
-    image: ""
+    image: vrikshasanaImg
   },
   {
     id: "dhanurasana",
@@ -319,7 +332,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["diabetes", "constipation", "back-pain", "obesity", "menstrual-disorders"],
     dosha_balance: ["Kapha", "Vata"],
-    image: ""
+    image: dhanurasanaImg
   },
   {
     id: "sarvangasana",
@@ -376,7 +389,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["thyroid", "varicose-veins", "insomnia", "stress", "digestive-disorders"],
     dosha_balance: ["Pitta", "Kapha"],
-    image: ""
+    image: sarvangasanaImg
   },
   {
     id: "shavasana",
@@ -433,7 +446,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["stress", "anxiety", "insomnia", "hypertension", "fatigue", "depression"],
     dosha_balance: ["Vata", "Pitta", "Kapha"],
-    image: ""
+    image: shavasanaImg
   },
   {
     id: "kapalbhati",
@@ -490,7 +503,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["obesity", "diabetes", "constipation", "respiratory-disorders", "sinus"],
     dosha_balance: ["Kapha"],
-    image: ""
+    image: kapalbhatiImg
   },
   {
     id: "anulom-vilom",
@@ -547,7 +560,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["stress", "anxiety", "hypertension", "respiratory-disorders", "insomnia", "migraine"],
     dosha_balance: ["Vata", "Pitta", "Kapha"],
-    image: ""
+    image: anulomVilomImg
   },
   {
     id: "vajrasana",
@@ -604,7 +617,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["digestive-disorders", "acidity", "constipation", "lower-back-pain", "urinary-disorders"],
     dosha_balance: ["Pitta", "Kapha"],
-    image: ""
+    image: vajrasanaImg
   },
   {
     id: "trikonasana",
@@ -661,7 +674,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["digestive-disorders", "anxiety", "flat-feet", "back-pain", "neck-pain"],
     dosha_balance: ["Vata", "Kapha"],
-    image: ""
+    image: trikonasanaImg
   },
   {
     id: "halasana",
@@ -718,7 +731,7 @@ export const yogaAsanas: YogaAsana[] = [
     ],
     diseases_helped: ["thyroid", "diabetes", "insomnia", "sinusitis", "digestive-disorders"],
     dosha_balance: ["Pitta", "Kapha"],
-    image: ""
+    image: halasanaImg
   }
 ];
 

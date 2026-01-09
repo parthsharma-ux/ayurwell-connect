@@ -72,8 +72,18 @@ const YogaDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
           {/* Main Image */}
           <div className="lg:col-span-1">
-            <div className="relative h-72 lg:h-96 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl flex items-center justify-center">
-              <div className="text-9xl opacity-50">🧘</div>
+            <div className="relative h-72 lg:h-96 rounded-2xl overflow-hidden">
+              {asana.image ? (
+                <img 
+                  src={asana.image} 
+                  alt={name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                  <div className="text-9xl opacity-50">🧘</div>
+                </div>
+              )}
               <div className="absolute top-4 right-4">
                 <Badge className={getDifficultyColor(asana.difficulty)}>
                   {difficultyName}
