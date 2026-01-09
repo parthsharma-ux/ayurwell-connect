@@ -52,12 +52,8 @@ const Yoga = () => {
   return (
     <Layout>
       <SEOHead
-        title={language === "hi" ? "योग आसन | आयुर्वेद" : "Yoga Asanas | AyurVeda"}
-        description={
-          language === "hi"
-            ? "रोग निवारण और प्रतिरक्षा बढ़ाने के लिए योग आसन। विस्तृत चरण और लाभ।"
-            : "Yoga asanas for disease prevention and immunity boosting. Detailed steps and benefits."
-        }
+        titleKey="meta_yoga_title"
+        descriptionKey="meta_yoga_description"
       />
 
       <div className="container mx-auto px-4 py-8">
