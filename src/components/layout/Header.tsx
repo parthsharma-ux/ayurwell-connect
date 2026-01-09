@@ -18,6 +18,7 @@ const Header = () => {
     { name: t("nav_medicines"), href: "/medicines" },
     { name: t("nav_remedies"), href: "/remedies" },
     { name: t("nav_kits"), href: "/kits" },
+    { name: t("nav_yoga"), href: "/yoga" },
     { name: t("nav_ai_doctor"), href: "/doctor-ai" },
   ];
 

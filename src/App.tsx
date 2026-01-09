@@ -24,6 +24,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Disclaimer from "./pages/Disclaimer";
 import Kits from "./pages/Kits";
 import KitDetail from "./pages/KitDetail";
+import Yoga from "./pages/Yoga";
+import YogaDetail from "./pages/YogaDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -59,6 +61,8 @@ const App = () => (
                 <Route path="disclaimer" element={<Disclaimer />} />
                 <Route path="kits" element={<Kits />} />
                 <Route path="kits/:slug" element={<KitDetail />} />
+                <Route path="yoga" element={<Yoga />} />
+                <Route path="yoga/:id" element={<YogaDetail />} />
               </Route>
               
               {/* Redirect old non-prefixed routes to language-prefixed ones */}
@@ -72,6 +76,7 @@ const App = () => (
               <Route path="/dosha-types" element={<Navigate to="/en/dosha-types" replace />} />
               <Route path="/privacy-policy" element={<Navigate to="/en/privacy-policy" replace />} />
               <Route path="/disclaimer" element={<Navigate to="/en/disclaimer" replace />} />
+              <Route path="/yoga" element={<Navigate to="/en/yoga" replace />} />
               
               {/* 404 for everything else */}
               <Route path="*" element={<NotFound />} />
