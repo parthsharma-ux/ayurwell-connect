@@ -228,6 +228,8 @@ export interface TranslationKeys {
   meta_kits_description: string;
   meta_about_title: string;
   meta_about_description: string;
+  meta_yoga_title: string;
+  meta_yoga_description: string;
 }
 
 export const translations: Record<"en" | "hi", TranslationKeys> = {
@@ -461,6 +463,8 @@ export const translations: Record<"en" | "hi", TranslationKeys> = {
     meta_kits_description: "Curated Ayurvedic wellness kits for specific health goals and holistic healing.",
     meta_about_title: "About Ayurveda | AyurVeda",
     meta_about_description: "Learn about the 5000-year-old ancient medical science of Ayurveda and its principles.",
+    meta_yoga_title: "Yoga Asanas | AyurVeda",
+    meta_yoga_description: "Traditional yoga postures for disease prevention, immunity boosting, and holistic wellness.",
   },
   hi: {
     // Navigation
@@ -692,5 +696,7 @@ export const translations: Record<"en" | "hi", TranslationKeys> = {
     meta_kits_description: "विशिष्ट स्वास्थ्य लक्ष्यों और समग्र उपचार के लिए क्यूरेटेड आयुर्वेदिक वेलनेस किट्स।",
     meta_about_title: "आयुर्वेद के बारे में | आयुर्वेद",
     meta_about_description: "आयुर्वेद के 5000 वर्ष पुराने प्राचीन चिकित्सा विज्ञान और इसके सिद्धांतों के बारे में जानें।",
+    meta_yoga_title: "योग आसन | आयुर्वेद",
+    meta_yoga_description: "रोग निवारण, प्रतिरक्षा बढ़ाने और समग्र स्वास्थ्य के लिए पारंपरिक योग आसन।",
   },
 };

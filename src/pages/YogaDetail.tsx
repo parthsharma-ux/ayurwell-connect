@@ -54,8 +54,8 @@ const YogaDetail = () => {
   return (
     <Layout>
       <SEOHead
-        title={`${name} (${asana.sanskrit_name}) | ${language === "hi" ? "योग" : "Yoga"} | AyurVeda`}
-        description={description}
+        titleKey="meta_yoga_title"
+        descriptionKey="meta_yoga_description"
       />
 
       <div className="container mx-auto px-4 py-8">
