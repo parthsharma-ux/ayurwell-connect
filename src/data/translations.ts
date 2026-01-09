@@ -4,6 +4,7 @@ export interface TranslationKeys {
   nav_medicines: string;
   nav_remedies: string;
   nav_kits: string;
+  nav_yoga: string;
   nav_ai_doctor: string;
   nav_about_ayurveda: string;
 
@@ -239,6 +240,7 @@ export const translations: Record<"en" | "hi", TranslationKeys> = {
     nav_medicines: "Medicines",
     nav_remedies: "Remedies",
     nav_kits: "Kits",
+    nav_yoga: "Yoga",
     nav_ai_doctor: "AI Doctor",
     nav_about_ayurveda: "About Ayurveda",
 
@@ -472,6 +474,7 @@ export const translations: Record<"en" | "hi", TranslationKeys> = {
     nav_medicines: "औषधियाँ",
     nav_remedies: "घरेलू नुस्खे",
     nav_kits: "किट्स",
+    nav_yoga: "योग",
     nav_ai_doctor: "AI डॉक्टर",
     nav_about_ayurveda: "आयुर्वेद के बारे में",
 
