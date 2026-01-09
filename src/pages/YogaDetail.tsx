@@ -7,6 +7,7 @@ import Layout from "@/components/layout/Layout";
 import LocalizedLink from "@/components/LocalizedLink";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { yogaAsanas } from "@/data/yoga";
+import { getStepImage } from "@/data/yogaStepImages";
 import SEOHead from "@/components/SEOHead";
 
 const YogaDetail = () => {
@@ -221,9 +222,19 @@ const YogaDetail = () => {
                   {step.step}
                 </div>
 
-                {/* Step Image Placeholder */}
-                <div className="h-40 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                  <div className="text-5xl opacity-40">🧘‍♀️</div>
+                {/* Step Image */}
+                <div className="h-40 overflow-hidden">
+                  {getStepImage(asana.id, step.step) ? (
+                    <img 
+                      src={getStepImage(asana.id, step.step)} 
+                      alt={`Step ${step.step}`}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="h-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+                      <div className="text-5xl opacity-40">🧘‍♀️</div>
+                    </div>
+                  )}
                 </div>
 
                 <CardContent className="pt-4">
