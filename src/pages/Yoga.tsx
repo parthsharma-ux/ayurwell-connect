@@ -142,9 +142,19 @@ const Yoga = () => {
               className="group"
             >
               <div className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl hover:border-primary/30 transition-all duration-300 h-full">
-                {/* Image Placeholder */}
-                <div className="relative h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                  <div className="text-6xl opacity-50">🧘</div>
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
+                  {asana.image ? (
+                    <img 
+                      src={asana.image} 
+                      alt={language === "hi" ? asana.name_hi : asana.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                      <div className="text-6xl opacity-50">🧘</div>
+                    </div>
+                  )}
                   <div className="absolute top-3 right-3">
                     <Badge className={getDifficultyColor(asana.difficulty)}>
                       {language === "hi" ? asana.difficulty_hi : asana.difficulty}
