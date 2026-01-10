@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import LocalizedLink from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
-import { ShoppingCart, Heart, ArrowLeft, Check, AlertTriangle, Clock, Package, Leaf } from 'lucide-react';
+import { ShoppingCart, Heart, ArrowLeft, Check, AlertTriangle, Clock, Package, Leaf, MessageCircle } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -122,6 +122,19 @@ const KitDetail = () => {
                   <Heart className="h-5 w-5" />
                 </Button>
               </div>
+
+              {/* Buy on WhatsApp */}
+              <a
+                href={`https://wa.me/919079173435?text=Hi%2C%20I%20want%20to%20buy%20${encodeURIComponent(kit.name)}%20kit%20(₹${rawKit.price})`}
+                target="_blank"
+                rel="noreferrer"
+                className="block bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl p-4 text-center transition-colors"
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <MessageCircle className="h-5 w-5" />
+                  <span className="font-medium">{language === "hi" ? "WhatsApp पर खरीदें" : "Buy on WhatsApp"}</span>
+                </div>
+              </a>
 
               <Separator className="bg-border/50" />
 

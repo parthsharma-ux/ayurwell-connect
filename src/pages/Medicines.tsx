@@ -2,7 +2,7 @@ import { useState } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { medicines, medicineCategories } from "@/data/medicines";
-import { Search, Filter, Package, Tag } from "lucide-react";
+import { Search, Filter, Package, Tag, MessageCircle } from "lucide-react";
 
 const Medicines = () => {
   const [search, setSearch] = useState("");
@@ -71,6 +71,18 @@ const Medicines = () => {
             </LocalizedLink>
           ))}
         </div>
+
+        {/* Sticky WhatsApp CTA */}
+        <a
+          href="https://wa.me/919079173435?text=Hi%2C%20I%20want%20to%20buy%20Ayurvedic%20medicine"
+          target="_blank"
+          rel="noreferrer"
+          className="fixed right-6 bottom-6 z-50"
+        >
+          <div className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg bg-emerald-600 hover:bg-emerald-700 text-white transition-colors">
+            <MessageCircle className="h-6 w-6" />
+          </div>
+        </a>
       </div>
     </Layout>
   );

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { medicines } from "@/data/medicines";
-import { ArrowLeft, Package, Tag, AlertTriangle, Pill } from "lucide-react";
+import { ArrowLeft, Package, Tag, AlertTriangle, Pill, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getLocalizedMedicine, useDataTranslations } from "@/lib/localizedData";
 
@@ -92,6 +92,19 @@ const MedicineDetail = () => {
                 </div>
               </div>
             )}
+
+            {/* Buy on WhatsApp */}
+            <a
+              href={`https://wa.me/919079173435?text=Hi%2C%20I%20want%20to%20buy%20${encodeURIComponent(rawMedicine.name)}`}
+              target="_blank"
+              rel="noreferrer"
+              className="block bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl p-4 text-center transition-colors"
+            >
+              <div className="flex items-center justify-center gap-2">
+                <MessageCircle className="h-5 w-5" />
+                <span className="font-medium">{language === "hi" ? "WhatsApp पर खरीदें" : "Buy on WhatsApp"}</span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
