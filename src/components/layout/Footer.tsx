@@ -112,9 +112,17 @@ const Footer = () => {
         </div>
 
         <div className="mt-6 pt-6 border-t border-border flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            {t("footer_copyright")}. {t("footer_all_rights")}.
-          </p>
+          <div className="text-center sm:text-left">
+            <p className="text-sm text-muted-foreground">
+              {t("footer_copyright")}. {t("footer_all_rights")}.
+            </p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Founded by <span className="font-medium text-foreground">Pradhuman Sharma</span> • 
+              <a href="mailto:pradhumansharma004@gmail.com" className="hover:text-primary transition-colors ml-1">
+                pradhumansharma004@gmail.com
+              </a>
+            </p>
+          </div>
           <p className="text-sm text-muted-foreground flex items-center gap-1">
             {t("footer_made_with")} <Heart className="h-4 w-4 text-primary fill-primary" /> {t("footer_in_india")}
           </p>
