@@ -136,7 +136,7 @@ const Kits = () => {
 
         {/* Sticky WhatsApp CTA */}
         <a
-          href="https://wa.me/919999999999?text=Hi%20AyurVeda%2C%20I%20need%20help%20choosing%20a%20kit"
+          href="https://wa.me/919079173435?text=Hi%2C%20I%20want%20to%20buy%20an%20Ayurvedic%20kit"
           target="_blank"
           rel="noreferrer"
           className="fixed right-6 bottom-6 z-50"
