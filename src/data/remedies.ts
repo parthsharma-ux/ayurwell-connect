@@ -3716,6 +3716,751 @@ export const remedies: Remedy[] = [
     related_diseases: ["cracked-heels"],
     difficulty: "Easy",
     preparation_time: "25 minutes"
+  },
+  // Stomach Ache remedies
+  {
+    id: "remedy-stomach-ache-1",
+    problem: "Stomach Ache",
+    title: "Ajwain Water",
+    ingredients: [
+      { name: "Carom seeds (Ajwain)", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 glass" },
+      { name: "Black salt", quantity: "A pinch" }
+    ],
+    method: [
+      "Boil water with ajwain seeds for 5 minutes",
+      "Strain the water",
+      "Add a pinch of black salt",
+      "Drink while warm"
+    ],
+    how_often: "2-3 times when experiencing stomach ache",
+    precautions: [
+      "Avoid excessive consumption",
+      "Pregnant women should consult doctor"
+    ],
+    benefits: [
+      "Relieves stomach cramps",
+      "Improves digestion",
+      "Reduces gas and bloating"
+    ],
+    related_diseases: ["stomach-ache", "bloating", "indigestion"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-stomach-ache-2",
+    problem: "Stomach Ache",
+    title: "Ginger and Lemon Drink",
+    ingredients: [
+      { name: "Fresh ginger juice", quantity: "1 teaspoon" },
+      { name: "Lemon juice", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Extract juice from fresh ginger",
+      "Mix with lemon juice and warm water",
+      "Add honey and stir well",
+      "Drink slowly"
+    ],
+    how_often: "2-3 times daily",
+    precautions: [
+      "May cause acidity in sensitive stomachs",
+      "Avoid if ulcer is present"
+    ],
+    benefits: [
+      "Soothes stomach lining",
+      "Anti-inflammatory properties",
+      "Aids digestion"
+    ],
+    related_diseases: ["stomach-ache", "nausea", "indigestion"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  // Diarrhea remedies
+  {
+    id: "remedy-diarrhea-1",
+    problem: "Diarrhea",
+    title: "Pomegranate Peel Tea",
+    ingredients: [
+      { name: "Dried pomegranate peel", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: [
+      "Dry pomegranate peels in sun or oven",
+      "Crush into small pieces",
+      "Boil in water until reduced to half",
+      "Strain and drink warm"
+    ],
+    how_often: "2-3 times daily",
+    precautions: [
+      "Ensure peels are properly cleaned",
+      "Consult doctor if diarrhea persists"
+    ],
+    benefits: [
+      "Natural astringent",
+      "Controls loose motions",
+      "Rich in tannins"
+    ],
+    related_diseases: ["diarrhea", "dysentery"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes"
+  },
+  {
+    id: "remedy-diarrhea-2",
+    problem: "Diarrhea",
+    title: "Banana and Curd",
+    ingredients: [
+      { name: "Ripe banana", quantity: "1" },
+      { name: "Fresh curd", quantity: "1 cup" }
+    ],
+    method: [
+      "Mash ripe banana",
+      "Mix with fresh curd",
+      "Eat as meal replacement",
+      "Can add a pinch of salt"
+    ],
+    how_often: "2-3 times daily",
+    precautions: [
+      "Use fresh homemade curd",
+      "Avoid if lactose intolerant"
+    ],
+    benefits: [
+      "Replenishes gut bacteria",
+      "Provides potassium",
+      "Easy to digest"
+    ],
+    related_diseases: ["diarrhea", "weakness"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  // Dehydration remedies
+  {
+    id: "remedy-dehydration-1",
+    problem: "Dehydration",
+    title: "Homemade ORS",
+    ingredients: [
+      { name: "Water", quantity: "1 liter" },
+      { name: "Sugar", quantity: "6 teaspoons" },
+      { name: "Salt", quantity: "Half teaspoon" },
+      { name: "Lemon juice", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Boil and cool the water",
+      "Add sugar and salt",
+      "Mix thoroughly until dissolved",
+      "Add lemon juice for taste",
+      "Sip throughout the day"
+    ],
+    how_often: "Continuous sipping throughout the day",
+    precautions: [
+      "Measure quantities accurately",
+      "Use within 24 hours",
+      "Seek medical help for severe dehydration"
+    ],
+    benefits: [
+      "Replenishes electrolytes",
+      "Prevents dehydration",
+      "Restores energy"
+    ],
+    related_diseases: ["dehydration", "diarrhea", "fever"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  // Gas and Flatulence remedies
+  {
+    id: "remedy-gas-1",
+    problem: "Gas",
+    title: "Hing Water",
+    ingredients: [
+      { name: "Asafoetida (Hing)", quantity: "A small pinch" },
+      { name: "Warm water", quantity: "1 glass" }
+    ],
+    method: [
+      "Add a pinch of hing to warm water",
+      "Stir well until dissolved",
+      "Drink immediately"
+    ],
+    how_often: "After meals or when bloated",
+    precautions: [
+      "Use very small quantity - it's strong",
+      "Not for pregnant women"
+    ],
+    benefits: [
+      "Instant relief from gas",
+      "Improves digestion",
+      "Reduces bloating"
+    ],
+    related_diseases: ["gas", "bloating", "indigestion"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-gas-2",
+    problem: "Gas",
+    title: "Cumin and Ginger Tea",
+    ingredients: [
+      { name: "Cumin seeds", quantity: "1 teaspoon" },
+      { name: "Ginger", quantity: "Half inch" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Crush cumin seeds lightly",
+      "Grate ginger",
+      "Boil in water for 5 minutes",
+      "Strain and drink warm"
+    ],
+    how_often: "After heavy meals",
+    precautions: [
+      "May cause warmth in body"
+    ],
+    benefits: [
+      "Aids digestion",
+      "Expels trapped gas",
+      "Prevents flatulence"
+    ],
+    related_diseases: ["gas", "bloating", "indigestion"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  // Worms remedies
+  {
+    id: "remedy-worms-1",
+    problem: "Intestinal Worms",
+    title: "Raw Garlic",
+    ingredients: [
+      { name: "Raw garlic cloves", quantity: "2-3" },
+      { name: "Warm water", quantity: "1 glass" }
+    ],
+    method: [
+      "Chew raw garlic on empty stomach",
+      "Follow with warm water",
+      "Continue for 5-7 days"
+    ],
+    how_often: "Daily in morning for 1 week",
+    precautions: [
+      "May cause bad breath",
+      "Not for people with stomach ulcers",
+      "May cause stomach burning"
+    ],
+    benefits: [
+      "Natural antiparasitic",
+      "Kills intestinal worms",
+      "Boosts immunity"
+    ],
+    related_diseases: ["intestinal-worms", "stomach-ache"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-worms-2",
+    problem: "Intestinal Worms",
+    title: "Papaya Seeds",
+    ingredients: [
+      { name: "Papaya seeds", quantity: "1 tablespoon" },
+      { name: "Honey", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Collect seeds from ripe papaya",
+      "Dry and grind to powder",
+      "Mix with honey",
+      "Consume on empty stomach"
+    ],
+    how_often: "Daily for 5-7 days",
+    precautions: [
+      "Not for pregnant women",
+      "May cause loose stools"
+    ],
+    benefits: [
+      "Contains carpaine which kills worms",
+      "Natural deworming agent",
+      "Improves digestion"
+    ],
+    related_diseases: ["intestinal-worms"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  // Body Odor remedies
+  {
+    id: "remedy-body-odor-1",
+    problem: "Body Odor",
+    title: "Neem Leaf Bath",
+    ingredients: [
+      { name: "Fresh neem leaves", quantity: "20-25" },
+      { name: "Water", quantity: "2 liters" }
+    ],
+    method: [
+      "Boil neem leaves in water for 15 minutes",
+      "Let it cool to lukewarm",
+      "Add to bath water",
+      "Bathe normally"
+    ],
+    how_often: "Daily bath",
+    precautions: [
+      "Avoid if skin is too dry"
+    ],
+    benefits: [
+      "Antibacterial properties",
+      "Kills odor-causing bacteria",
+      "Natural deodorant"
+    ],
+    related_diseases: ["body-odor", "skin-infection"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes"
+  },
+  {
+    id: "remedy-body-odor-2",
+    problem: "Body Odor",
+    title: "Apple Cider Vinegar Spray",
+    ingredients: [
+      { name: "Apple cider vinegar", quantity: "2 tablespoons" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Mix apple cider vinegar with water",
+      "Pour into spray bottle",
+      "Spray on underarms after shower",
+      "Let it dry naturally"
+    ],
+    how_often: "After every bath",
+    precautions: [
+      "May sting on cuts",
+      "Do patch test first"
+    ],
+    benefits: [
+      "Balances skin pH",
+      "Kills bacteria",
+      "Natural deodorizer"
+    ],
+    related_diseases: ["body-odor"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  // Common Cold remedies
+  {
+    id: "remedy-cold-1",
+    problem: "Common Cold",
+    title: "Kadha (Immunity Drink)",
+    ingredients: [
+      { name: "Tulsi leaves", quantity: "10-12" },
+      { name: "Black pepper", quantity: "4-5" },
+      { name: "Cloves", quantity: "2" },
+      { name: "Ginger", quantity: "1 inch" },
+      { name: "Cinnamon", quantity: "1 small stick" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Jaggery or honey", quantity: "To taste" }
+    ],
+    method: [
+      "Crush all spices lightly",
+      "Boil water with all ingredients except jaggery",
+      "Simmer until reduced to half",
+      "Strain and add jaggery or honey",
+      "Drink warm"
+    ],
+    how_often: "2-3 times daily when having cold",
+    precautions: [
+      "Strong taste may not suit everyone",
+      "Not for small children",
+      "May cause body heat"
+    ],
+    benefits: [
+      "Boosts immunity",
+      "Clears congestion",
+      "Fights viral infection"
+    ],
+    related_diseases: ["cold-cough", "fever", "sore-throat"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-cold-2",
+    problem: "Common Cold",
+    title: "Milk Turmeric Pepper",
+    ingredients: [
+      { name: "Milk", quantity: "1 glass" },
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Black pepper powder", quantity: "A pinch" },
+      { name: "Ghee", quantity: "Half teaspoon" }
+    ],
+    method: [
+      "Heat milk without boiling",
+      "Add turmeric and black pepper",
+      "Add ghee and mix well",
+      "Drink warm before bed"
+    ],
+    how_often: "Once daily at bedtime",
+    precautions: [
+      "May stain clothes",
+      "Avoid if lactose intolerant"
+    ],
+    benefits: [
+      "Natural antibiotic",
+      "Soothes throat",
+      "Promotes better sleep"
+    ],
+    related_diseases: ["cold-cough", "sore-throat"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  // Chest Congestion remedies
+  {
+    id: "remedy-congestion-1",
+    problem: "Chest Congestion",
+    title: "Eucalyptus Steam",
+    ingredients: [
+      { name: "Eucalyptus oil", quantity: "4-5 drops" },
+      { name: "Hot water", quantity: "1 bowl" }
+    ],
+    method: [
+      "Boil water and pour in a bowl",
+      "Add eucalyptus oil drops",
+      "Cover head with towel",
+      "Inhale steam for 10-15 minutes",
+      "Keep eyes closed"
+    ],
+    how_often: "2-3 times daily",
+    precautions: [
+      "Keep safe distance from hot water",
+      "Not for asthma patients without doctor advice",
+      "Keep eyes closed"
+    ],
+    benefits: [
+      "Opens blocked airways",
+      "Loosens mucus",
+      "Provides instant relief"
+    ],
+    related_diseases: ["chest-congestion", "cold-cough", "sinusitis"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-congestion-2",
+    problem: "Chest Congestion",
+    title: "Mustard Oil Massage",
+    ingredients: [
+      { name: "Mustard oil", quantity: "2 tablespoons" },
+      { name: "Camphor", quantity: "Small piece" },
+      { name: "Garlic cloves", quantity: "2 crushed" }
+    ],
+    method: [
+      "Warm mustard oil slightly",
+      "Dissolve camphor in warm oil",
+      "Add crushed garlic and heat briefly",
+      "Massage on chest and back",
+      "Cover with warm cloth"
+    ],
+    how_often: "Before bedtime",
+    precautions: [
+      "Test oil temperature before applying",
+      "Do patch test first",
+      "Avoid near face and eyes"
+    ],
+    benefits: [
+      "Warming effect loosens congestion",
+      "Improves blood circulation",
+      "Provides overnight relief"
+    ],
+    related_diseases: ["chest-congestion", "cold-cough"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  // Runny Nose remedies
+  {
+    id: "remedy-runny-nose-1",
+    problem: "Runny Nose",
+    title: "Saltwater Nasal Rinse",
+    ingredients: [
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Salt", quantity: "Half teaspoon" },
+      { name: "Baking soda", quantity: "A pinch" }
+    ],
+    method: [
+      "Dissolve salt and baking soda in warm water",
+      "Use a neti pot or clean dropper",
+      "Tilt head and pour in one nostril",
+      "Let it drain from other nostril",
+      "Repeat on other side"
+    ],
+    how_often: "2-3 times daily",
+    precautions: [
+      "Use sterile or boiled water only",
+      "Don't share neti pot",
+      "Clean pot after each use"
+    ],
+    benefits: [
+      "Clears nasal passage",
+      "Removes allergens",
+      "Reduces inflammation"
+    ],
+    related_diseases: ["runny-nose", "sinusitis", "allergies"],
+    difficulty: "Medium",
+    preparation_time: "5 minutes"
+  },
+  // Low Energy remedies
+  {
+    id: "remedy-energy-1",
+    problem: "Low Energy",
+    title: "Ashwagandha Milk",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "1 teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Add ashwagandha powder to warm milk",
+      "Mix well until dissolved",
+      "Add honey for taste",
+      "Drink at night before bed"
+    ],
+    how_often: "Once daily at bedtime",
+    precautions: [
+      "May cause drowsiness",
+      "Not for pregnant women",
+      "Consult doctor if on medications"
+    ],
+    benefits: [
+      "Adaptogenic properties",
+      "Reduces fatigue",
+      "Improves stamina"
+    ],
+    related_diseases: ["fatigue", "weakness", "stress"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-energy-2",
+    problem: "Low Energy",
+    title: "Dates and Almond Shake",
+    ingredients: [
+      { name: "Dates (seedless)", quantity: "4-5" },
+      { name: "Almonds (soaked)", quantity: "5-6" },
+      { name: "Milk", quantity: "1 glass" },
+      { name: "Cardamom powder", quantity: "A pinch" }
+    ],
+    method: [
+      "Soak almonds overnight and peel",
+      "Blend dates and almonds with milk",
+      "Add cardamom powder",
+      "Drink fresh"
+    ],
+    how_often: "Once daily in morning",
+    precautions: [
+      "High in calories",
+      "Diabetics should limit intake"
+    ],
+    benefits: [
+      "Natural energy booster",
+      "Rich in iron and vitamins",
+      "Strengthens body"
+    ],
+    related_diseases: ["fatigue", "weakness", "anemia"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  // Hangover remedies
+  {
+    id: "remedy-hangover-1",
+    problem: "Hangover",
+    title: "Coconut Water with Lime",
+    ingredients: [
+      { name: "Fresh coconut water", quantity: "1 glass" },
+      { name: "Lime juice", quantity: "1 tablespoon" },
+      { name: "Salt", quantity: "A pinch" }
+    ],
+    method: [
+      "Take fresh coconut water",
+      "Add lime juice and salt",
+      "Mix well and drink"
+    ],
+    how_often: "2-3 glasses throughout the day",
+    precautions: [
+      "Use fresh coconut water only"
+    ],
+    benefits: [
+      "Rehydrates body",
+      "Replenishes electrolytes",
+      "Reduces nausea"
+    ],
+    related_diseases: ["hangover", "dehydration", "nausea"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-hangover-2",
+    problem: "Hangover",
+    title: "Ginger Lime Tea",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch" },
+      { name: "Lemon juice", quantity: "2 tablespoons" },
+      { name: "Honey", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Grate ginger and boil in water",
+      "Strain and add lemon juice",
+      "Add honey when warm",
+      "Sip slowly"
+    ],
+    how_often: "2-3 times during hangover",
+    precautions: [
+      "May cause acidity"
+    ],
+    benefits: [
+      "Settles stomach",
+      "Reduces nausea",
+      "Detoxifies liver"
+    ],
+    related_diseases: ["hangover", "nausea", "headache"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  // Bruises remedies
+  {
+    id: "remedy-bruises-1",
+    problem: "Bruises",
+    title: "Turmeric Paste",
+    ingredients: [
+      { name: "Turmeric powder", quantity: "1 tablespoon" },
+      { name: "Warm water or coconut oil", quantity: "As needed" }
+    ],
+    method: [
+      "Make paste with turmeric and water/oil",
+      "Apply on bruised area",
+      "Cover with bandage",
+      "Leave for 2-3 hours",
+      "Rinse off"
+    ],
+    how_often: "2-3 times daily",
+    precautions: [
+      "Will stain skin temporarily",
+      "Avoid on open wounds"
+    ],
+    benefits: [
+      "Anti-inflammatory",
+      "Speeds healing",
+      "Reduces discoloration"
+    ],
+    related_diseases: ["bruises", "swelling"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  // Bee Sting remedies
+  {
+    id: "remedy-bee-sting-1",
+    problem: "Bee Sting",
+    title: "Baking Soda Paste",
+    ingredients: [
+      { name: "Baking soda", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "Few drops" }
+    ],
+    method: [
+      "Remove stinger first if present",
+      "Make thick paste with baking soda and water",
+      "Apply on sting area",
+      "Leave for 15-20 minutes",
+      "Rinse with cool water"
+    ],
+    how_often: "Every few hours as needed",
+    precautions: [
+      "Seek emergency help if allergic reaction occurs",
+      "Watch for swelling of throat or difficulty breathing"
+    ],
+    benefits: [
+      "Neutralizes venom",
+      "Reduces pain and swelling",
+      "Provides cooling relief"
+    ],
+    related_diseases: ["bee-sting", "insect-bite"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  // Burns (minor) remedies
+  {
+    id: "remedy-burns-1",
+    problem: "Minor Burns",
+    title: "Aloe Vera Gel",
+    ingredients: [
+      { name: "Fresh aloe vera leaf", quantity: "1" }
+    ],
+    method: [
+      "Run burn under cool water first",
+      "Cut aloe vera leaf and extract gel",
+      "Apply fresh gel on burn",
+      "Let it dry naturally",
+      "Reapply as needed"
+    ],
+    how_often: "3-4 times daily",
+    precautions: [
+      "Only for minor burns",
+      "Don't apply on open blisters",
+      "Seek medical help for serious burns"
+    ],
+    benefits: [
+      "Natural cooling effect",
+      "Promotes healing",
+      "Prevents scarring"
+    ],
+    related_diseases: ["minor-burns", "sunburn"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-burns-2",
+    problem: "Minor Burns",
+    title: "Honey Application",
+    ingredients: [
+      { name: "Raw honey", quantity: "As needed" }
+    ],
+    method: [
+      "Cool burn under running water first",
+      "Pat dry gently",
+      "Apply thin layer of raw honey",
+      "Cover with clean gauze",
+      "Change dressing daily"
+    ],
+    how_often: "Once or twice daily",
+    precautions: [
+      "Only for minor burns",
+      "Use raw, unprocessed honey",
+      "Consult doctor for deep burns"
+    ],
+    benefits: [
+      "Natural antibacterial",
+      "Promotes tissue repair",
+      "Reduces scarring"
+    ],
+    related_diseases: ["minor-burns"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  // Toothache additional remedy
+  {
+    id: "remedy-toothache-extra",
+    problem: "Tooth Pain",
+    title: "Salt Water Gargle",
+    ingredients: [
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Salt", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Dissolve salt in warm water",
+      "Take a mouthful and swish around affected area",
+      "Gargle for 30 seconds",
+      "Spit out and repeat"
+    ],
+    how_often: "Every 2-3 hours",
+    precautions: [
+      "Don't swallow the water",
+      "See dentist if pain persists"
+    ],
+    benefits: [
+      "Natural disinfectant",
+      "Reduces inflammation",
+      "Draws out infection"
+    ],
+    related_diseases: ["tooth-pain", "gum-infection"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
   }
 ];
 
@@ -3773,5 +4518,19 @@ export const remedyCategories = [
   "Food Poisoning",
   "Vertigo",
   "Weak Eyesight",
-  "Cracked Heels"
+  "Cracked Heels",
+  "Stomach Ache",
+  "Diarrhea",
+  "Dehydration",
+  "Gas",
+  "Intestinal Worms",
+  "Body Odor",
+  "Common Cold",
+  "Chest Congestion",
+  "Runny Nose",
+  "Low Energy",
+  "Hangover",
+  "Bruises",
+  "Bee Sting",
+  "Minor Burns"
 ];
