@@ -4461,6 +4461,1138 @@ export const remedies: Remedy[] = [
     related_diseases: ["tooth-pain", "gum-infection"],
     difficulty: "Easy",
     preparation_time: "2 minutes"
+  },
+  // ===== MONSOON SEASON REMEDIES =====
+  {
+    id: "remedy-monsoon-1",
+    problem: "Monsoon Infections",
+    title: "Tulsi Ginger Kadha",
+    ingredients: [
+      { name: "Tulsi leaves", quantity: "10-15" },
+      { name: "Fresh ginger", quantity: "1 inch" },
+      { name: "Black pepper", quantity: "5-6" },
+      { name: "Jaggery", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: [
+      "Crush tulsi leaves and ginger",
+      "Boil water with all ingredients",
+      "Simmer until reduced to 1 cup",
+      "Strain and add jaggery",
+      "Drink warm"
+    ],
+    how_often: "Once daily during monsoon",
+    precautions: [
+      "Pregnant women should consult doctor",
+      "May cause acidity in some"
+    ],
+    benefits: [
+      "Boosts immunity",
+      "Prevents monsoon infections",
+      "Clears respiratory tract"
+    ],
+    related_diseases: ["cold-cough", "monsoon-infections", "immunity"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-monsoon-2",
+    problem: "Monsoon Infections",
+    title: "Neem Water Bath",
+    ingredients: [
+      { name: "Fresh neem leaves", quantity: "2 handfuls" },
+      { name: "Warm water", quantity: "1 bucket" }
+    ],
+    method: [
+      "Boil neem leaves in water for 10 minutes",
+      "Add this water to your bath water",
+      "Take a normal bath",
+      "Can also use neem water for final rinse"
+    ],
+    how_often: "2-3 times per week during monsoon",
+    precautions: [
+      "May dry out skin",
+      "Use moisturizer after bath",
+      "Avoid if allergic to neem"
+    ],
+    benefits: [
+      "Prevents skin infections",
+      "Antibacterial and antifungal",
+      "Keeps skin healthy during humid weather"
+    ],
+    related_diseases: ["skin-disorders", "monsoon-infections"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes"
+  },
+  {
+    id: "remedy-monsoon-3",
+    problem: "Monsoon Infections",
+    title: "Turmeric Lemon Water",
+    ingredients: [
+      { name: "Turmeric powder", quantity: "1/2 teaspoon" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Add turmeric to warm water",
+      "Add lemon juice and honey",
+      "Stir well",
+      "Drink on empty stomach"
+    ],
+    how_often: "Daily in the morning during monsoon",
+    precautions: [
+      "May stain teeth temporarily",
+      "Avoid if you have acidity issues"
+    ],
+    benefits: [
+      "Boosts immunity naturally",
+      "Detoxifies body",
+      "Prevents water-borne infections"
+    ],
+    related_diseases: ["immunity", "monsoon-infections"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-monsoon-4",
+    problem: "Fungal Infections",
+    title: "Apple Cider Vinegar Foot Soak",
+    ingredients: [
+      { name: "Apple cider vinegar", quantity: "1/2 cup" },
+      { name: "Warm water", quantity: "1 tub" },
+      { name: "Salt", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Fill tub with warm water",
+      "Add apple cider vinegar and salt",
+      "Soak feet for 15-20 minutes",
+      "Dry thoroughly after soaking",
+      "Apply antifungal powder"
+    ],
+    how_often: "Daily until infection clears",
+    precautions: [
+      "Dry feet completely after soak",
+      "Avoid if skin is cracked or wounded",
+      "Don't share towels"
+    ],
+    benefits: [
+      "Kills fungus naturally",
+      "Prevents athlete's foot",
+      "Relieves itching"
+    ],
+    related_diseases: ["fungal-infections", "monsoon-infections"],
+    difficulty: "Easy",
+    preparation_time: "25 minutes"
+  },
+  {
+    id: "remedy-monsoon-5",
+    problem: "Waterborne Diseases",
+    title: "Cumin Coriander Water",
+    ingredients: [
+      { name: "Cumin seeds", quantity: "1 teaspoon" },
+      { name: "Coriander seeds", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: [
+      "Boil water with cumin and coriander seeds",
+      "Simmer for 5 minutes",
+      "Strain and cool",
+      "Drink throughout the day"
+    ],
+    how_often: "Daily during monsoon",
+    precautions: [
+      "Use fresh seeds for best results",
+      "Can be stored for one day"
+    ],
+    benefits: [
+      "Purifies digestive system",
+      "Prevents stomach infections",
+      "Aids digestion"
+    ],
+    related_diseases: ["waterborne-diseases", "digestive-issues"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+
+  // ===== WINTER SEASON REMEDIES =====
+  {
+    id: "remedy-winter-1",
+    problem: "Winter Cold",
+    title: "Dry Ginger Coffee (Sukku Coffee)",
+    ingredients: [
+      { name: "Dry ginger powder", quantity: "1/2 teaspoon" },
+      { name: "Black pepper", quantity: "3-4 crushed" },
+      { name: "Palm jaggery", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Boil water with dry ginger and pepper",
+      "Simmer for 5 minutes",
+      "Add jaggery and stir",
+      "Strain and drink hot"
+    ],
+    how_often: "2-3 times daily during cold",
+    precautions: [
+      "May cause acidity in some",
+      "Reduce pepper if too spicy"
+    ],
+    benefits: [
+      "Warms the body from inside",
+      "Relieves cold symptoms",
+      "Clears throat congestion"
+    ],
+    related_diseases: ["cold-cough", "winter-cold"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-winter-2",
+    problem: "Winter Cold",
+    title: "Badam Pak (Almond Tonic)",
+    ingredients: [
+      { name: "Almonds", quantity: "10-12" },
+      { name: "Milk", quantity: "1 glass" },
+      { name: "Saffron strands", quantity: "4-5" },
+      { name: "Cardamom powder", quantity: "A pinch" },
+      { name: "Sugar/Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Soak almonds overnight and peel",
+      "Grind almonds to paste with little milk",
+      "Warm milk and add almond paste",
+      "Add saffron and cardamom",
+      "Sweeten as desired"
+    ],
+    how_often: "Once daily in winter mornings",
+    precautions: [
+      "Not for those with nut allergies",
+      "Diabetics should avoid sugar"
+    ],
+    benefits: [
+      "Provides warmth and energy",
+      "Nourishes body and brain",
+      "Strengthens immunity"
+    ],
+    related_diseases: ["winter-weakness", "immunity"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes + overnight soaking"
+  },
+  {
+    id: "remedy-winter-3",
+    problem: "Dry Skin (Winter)",
+    title: "Ghee and Turmeric Body Massage",
+    ingredients: [
+      { name: "Pure ghee", quantity: "2 tablespoons" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Warm ghee slightly",
+      "Mix in turmeric powder",
+      "Massage on dry areas (elbows, knees, heels)",
+      "Leave for 30 minutes",
+      "Bath with warm water"
+    ],
+    how_often: "2-3 times per week in winter",
+    precautions: [
+      "Turmeric may stain clothes",
+      "Do patch test first",
+      "Use old clothes during application"
+    ],
+    benefits: [
+      "Deep moisturization",
+      "Heals cracked skin",
+      "Provides natural glow"
+    ],
+    related_diseases: ["dry-skin", "cracked-heels"],
+    difficulty: "Easy",
+    preparation_time: "35 minutes"
+  },
+  {
+    id: "remedy-winter-4",
+    problem: "Winter Joint Pain",
+    title: "Ajwain Garlic Oil",
+    ingredients: [
+      { name: "Mustard oil", quantity: "1/4 cup" },
+      { name: "Ajwain (Carom seeds)", quantity: "1 tablespoon" },
+      { name: "Garlic cloves", quantity: "4-5" }
+    ],
+    method: [
+      "Heat mustard oil in a pan",
+      "Add crushed garlic and ajwain",
+      "Cook until garlic turns brown",
+      "Strain and cool slightly",
+      "Massage on joints while warm"
+    ],
+    how_often: "Daily before bedtime in winter",
+    precautions: [
+      "Test temperature before applying",
+      "Avoid on broken skin",
+      "Cover with warm cloth after massage"
+    ],
+    benefits: [
+      "Relieves joint stiffness",
+      "Improves blood circulation",
+      "Reduces winter joint pain"
+    ],
+    related_diseases: ["joint-pain", "arthritis"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes"
+  },
+  {
+    id: "remedy-winter-5",
+    problem: "Winter Immunity",
+    title: "Chyawanprash Milk",
+    ingredients: [
+      { name: "Chyawanprash", quantity: "1 tablespoon" },
+      { name: "Warm milk", quantity: "1 glass" }
+    ],
+    method: [
+      "Warm milk to drinking temperature",
+      "Add chyawanprash",
+      "Stir well until dissolved",
+      "Drink while warm"
+    ],
+    how_often: "Once daily in winter (morning or bedtime)",
+    precautions: [
+      "Check for allergies to ingredients",
+      "Diabetics should check sugar content"
+    ],
+    benefits: [
+      "Powerful immunity booster",
+      "Keeps body warm",
+      "Rich in Vitamin C and antioxidants"
+    ],
+    related_diseases: ["immunity", "winter-weakness"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-winter-6",
+    problem: "Sore Throat (Winter)",
+    title: "Mulethi Ginger Tea",
+    ingredients: [
+      { name: "Mulethi (Licorice root)", quantity: "1 small piece" },
+      { name: "Fresh ginger", quantity: "1/2 inch" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Crush mulethi and ginger slightly",
+      "Boil in water for 5-7 minutes",
+      "Strain and add honey",
+      "Sip slowly while warm"
+    ],
+    how_often: "2-3 times daily for sore throat",
+    precautions: [
+      "Avoid if you have high blood pressure",
+      "Not for prolonged use",
+      "Pregnant women should avoid"
+    ],
+    benefits: [
+      "Soothes sore throat",
+      "Natural expectorant",
+      "Reduces inflammation"
+    ],
+    related_diseases: ["sore-throat", "cold-cough"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+
+  // ===== SUMMER SEASON REMEDIES =====
+  {
+    id: "remedy-summer-1",
+    problem: "Heat Stroke",
+    title: "Raw Mango Drink (Aam Panna)",
+    ingredients: [
+      { name: "Raw mango", quantity: "1 medium" },
+      { name: "Jaggery/Sugar", quantity: "4 tablespoons" },
+      { name: "Cumin powder", quantity: "1/2 teaspoon" },
+      { name: "Black salt", quantity: "1/4 teaspoon" },
+      { name: "Mint leaves", quantity: "8-10" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: [
+      "Boil raw mango until soft",
+      "Peel and extract pulp",
+      "Blend with jaggery, cumin, salt, mint",
+      "Add water to desired consistency",
+      "Serve chilled"
+    ],
+    how_often: "1-2 times daily in summer",
+    precautions: [
+      "Diabetics should use less sugar",
+      "Don't consume on empty stomach"
+    ],
+    benefits: [
+      "Prevents heat stroke",
+      "Replenishes electrolytes",
+      "Cools body naturally"
+    ],
+    related_diseases: ["heat-stroke", "dehydration"],
+    difficulty: "Medium",
+    preparation_time: "30 minutes"
+  },
+  {
+    id: "remedy-summer-2",
+    problem: "Summer Heat",
+    title: "Buttermilk (Chaas)",
+    ingredients: [
+      { name: "Fresh yogurt", quantity: "1/2 cup" },
+      { name: "Cold water", quantity: "1 glass" },
+      { name: "Roasted cumin powder", quantity: "1/4 teaspoon" },
+      { name: "Rock salt", quantity: "A pinch" },
+      { name: "Mint leaves", quantity: "5-6" }
+    ],
+    method: [
+      "Blend yogurt with cold water until smooth",
+      "Add cumin powder and salt",
+      "Garnish with mint leaves",
+      "Serve chilled"
+    ],
+    how_often: "After lunch daily in summer",
+    precautions: [
+      "Avoid if lactose intolerant",
+      "Don't consume at night"
+    ],
+    benefits: [
+      "Aids digestion",
+      "Cools body naturally",
+      "Prevents acidity"
+    ],
+    related_diseases: ["summer-heat", "acidity", "digestion"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-summer-3",
+    problem: "Prickly Heat",
+    title: "Sandalwood Rosewater Paste",
+    ingredients: [
+      { name: "Sandalwood powder", quantity: "2 tablespoons" },
+      { name: "Rosewater", quantity: "As needed" },
+      { name: "Camphor", quantity: "A tiny pinch (optional)" }
+    ],
+    method: [
+      "Mix sandalwood powder with rosewater to make paste",
+      "Add tiny bit of camphor if using",
+      "Apply on affected areas",
+      "Leave for 20 minutes",
+      "Wash with cool water"
+    ],
+    how_often: "Once daily until prickly heat subsides",
+    precautions: [
+      "Do patch test first",
+      "Use pure sandalwood only",
+      "Avoid if allergic to any ingredient"
+    ],
+    benefits: [
+      "Cools skin instantly",
+      "Reduces itching and rash",
+      "Antibacterial properties"
+    ],
+    related_diseases: ["prickly-heat", "heat-rash"],
+    difficulty: "Easy",
+    preparation_time: "25 minutes"
+  },
+  {
+    id: "remedy-summer-4",
+    problem: "Sunburn",
+    title: "Cucumber Aloe Mask",
+    ingredients: [
+      { name: "Cucumber", quantity: "1/2 medium" },
+      { name: "Aloe vera gel", quantity: "2 tablespoons" },
+      { name: "Mint leaves", quantity: "5-6" }
+    ],
+    method: [
+      "Blend cucumber and mint leaves",
+      "Mix with fresh aloe vera gel",
+      "Apply on sunburned areas",
+      "Leave for 20 minutes",
+      "Wash with cool water"
+    ],
+    how_often: "2-3 times daily for sunburn",
+    precautions: [
+      "Use fresh aloe vera",
+      "Keep refrigerated mixture for extra cooling",
+      "Avoid sun exposure while healing"
+    ],
+    benefits: [
+      "Instant cooling relief",
+      "Hydrates damaged skin",
+      "Reduces redness and peeling"
+    ],
+    related_diseases: ["sunburn", "summer-skin"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-summer-5",
+    problem: "Summer Dehydration",
+    title: "Coconut Water with Lime",
+    ingredients: [
+      { name: "Fresh coconut water", quantity: "1 glass" },
+      { name: "Lime juice", quantity: "1 teaspoon" },
+      { name: "Pink salt", quantity: "A small pinch" }
+    ],
+    method: [
+      "Take fresh coconut water",
+      "Add lime juice and pink salt",
+      "Stir well",
+      "Drink chilled or at room temperature"
+    ],
+    how_often: "2-3 times daily in summer",
+    precautions: [
+      "Use fresh coconut water only",
+      "Diabetics should monitor intake"
+    ],
+    benefits: [
+      "Natural electrolyte replacement",
+      "Prevents dehydration",
+      "Cools body from inside"
+    ],
+    related_diseases: ["dehydration", "summer-heat"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-summer-6",
+    problem: "Summer Fatigue",
+    title: "Sattu Drink",
+    ingredients: [
+      { name: "Sattu (roasted gram flour)", quantity: "2 tablespoons" },
+      { name: "Cold water", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Black salt", quantity: "1/4 teaspoon" },
+      { name: "Roasted cumin powder", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Mix sattu in cold water",
+      "Add lemon juice, salt, and cumin",
+      "Stir well until smooth",
+      "Drink immediately"
+    ],
+    how_often: "Once or twice daily in summer",
+    precautions: [
+      "Don't store, consume fresh",
+      "Avoid if you have digestive issues"
+    ],
+    benefits: [
+      "Instant energy boost",
+      "Cools body temperature",
+      "High in protein and fiber"
+    ],
+    related_diseases: ["summer-fatigue", "low-energy"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+
+  // ===== CHILDREN'S HEALTH REMEDIES =====
+  {
+    id: "remedy-children-1",
+    problem: "Teething Pain (Children)",
+    title: "Honey Gum Massage",
+    ingredients: [
+      { name: "Organic honey", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Wash your hands thoroughly",
+      "Take a small amount of honey on finger",
+      "Gently massage baby's gums",
+      "Do for 1-2 minutes"
+    ],
+    how_often: "2-3 times daily during teething",
+    precautions: [
+      "ONLY for babies above 1 year (honey is unsafe for infants under 1)",
+      "Use pure organic honey",
+      "Consult pediatrician first"
+    ],
+    benefits: [
+      "Natural pain relief",
+      "Antibacterial properties",
+      "Soothes irritated gums"
+    ],
+    related_diseases: ["teething-pain"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-children-2",
+    problem: "Colic (Infants)",
+    title: "Asafoetida Water (Hing Water)",
+    ingredients: [
+      { name: "Asafoetida (Hing)", quantity: "A tiny pinch" },
+      { name: "Warm water", quantity: "2 teaspoons" }
+    ],
+    method: [
+      "Dissolve tiny pinch of hing in warm water",
+      "Cool to lukewarm",
+      "Give 1-2 drops to baby",
+      "Can also apply hing paste around navel"
+    ],
+    how_often: "Once or twice when colic occurs",
+    precautions: [
+      "Use very small amount only",
+      "Consult pediatrician first",
+      "Not for newborns under 3 months"
+    ],
+    benefits: [
+      "Relieves gas and bloating",
+      "Soothes stomach cramps",
+      "Traditional colic remedy"
+    ],
+    related_diseases: ["colic", "gas-in-babies"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-3",
+    problem: "Bed Wetting",
+    title: "Banana and Amla",
+    ingredients: [
+      { name: "Ripe banana", quantity: "1 small" },
+      { name: "Amla (Indian gooseberry) powder", quantity: "1/4 teaspoon" },
+      { name: "Honey", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Mash ripe banana",
+      "Mix in amla powder and honey",
+      "Give to child in the evening",
+      "Avoid excess fluids before bed"
+    ],
+    how_often: "Daily in evening for 2-3 months",
+    precautions: [
+      "For children above 3 years",
+      "Rule out medical causes first",
+      "Be patient - takes time to work"
+    ],
+    benefits: [
+      "Strengthens bladder muscles",
+      "Reduces nighttime urination",
+      "Nutritious and tasty"
+    ],
+    related_diseases: ["bed-wetting", "enuresis"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-4",
+    problem: "Loss of Appetite (Children)",
+    title: "Ajwain Buttermilk",
+    ingredients: [
+      { name: "Buttermilk", quantity: "1/2 glass" },
+      { name: "Ajwain (carom seeds)", quantity: "1/4 teaspoon" },
+      { name: "Rock salt", quantity: "A pinch" }
+    ],
+    method: [
+      "Roast ajwain slightly",
+      "Add to buttermilk",
+      "Add rock salt",
+      "Give before meals"
+    ],
+    how_often: "Once daily before lunch",
+    precautions: [
+      "For children above 2 years",
+      "Use fresh buttermilk",
+      "Avoid if child has diarrhea"
+    ],
+    benefits: [
+      "Stimulates appetite",
+      "Improves digestion",
+      "Treats stomach worms naturally"
+    ],
+    related_diseases: ["loss-of-appetite", "digestive-issues"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-5",
+    problem: "Common Cold (Children)",
+    title: "Tulsi Honey Drops",
+    ingredients: [
+      { name: "Fresh tulsi leaves", quantity: "5-6" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Crush tulsi leaves to extract juice",
+      "Mix with honey",
+      "Give in small amounts",
+      "Can also add to warm water"
+    ],
+    how_often: "2-3 times daily during cold",
+    precautions: [
+      "Only for children above 1 year",
+      "Use fresh tulsi only",
+      "Watch for allergic reactions"
+    ],
+    benefits: [
+      "Boosts immunity",
+      "Relieves cold symptoms",
+      "Natural and safe"
+    ],
+    related_diseases: ["cold-cough", "immunity"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-6",
+    problem: "Stomach Worms (Children)",
+    title: "Raw Papaya Seeds",
+    ingredients: [
+      { name: "Raw papaya seeds", quantity: "1/2 teaspoon (crushed)" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Crush fresh papaya seeds",
+      "Mix with honey",
+      "Give on empty stomach in morning",
+      "Follow with a glass of warm water"
+    ],
+    how_often: "Once daily for 7 days",
+    precautions: [
+      "For children above 3 years",
+      "Start with small dose",
+      "Consult doctor if symptoms persist"
+    ],
+    benefits: [
+      "Natural deworming agent",
+      "Safe and effective",
+      "Improves appetite after treatment"
+    ],
+    related_diseases: ["intestinal-worms", "stomach-worms"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-7",
+    problem: "Diaper Rash",
+    title: "Coconut Oil and Aloe",
+    ingredients: [
+      { name: "Virgin coconut oil", quantity: "1 tablespoon" },
+      { name: "Fresh aloe vera gel", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix coconut oil and aloe vera gel",
+      "Clean and dry the affected area",
+      "Apply thin layer of mixture",
+      "Let it absorb before putting diaper"
+    ],
+    how_often: "With every diaper change",
+    precautions: [
+      "Keep area dry",
+      "Use natural diapers if possible",
+      "Consult doctor for severe rash"
+    ],
+    benefits: [
+      "Soothes irritated skin",
+      "Creates protective barrier",
+      "Natural antibacterial"
+    ],
+    related_diseases: ["diaper-rash", "skin-irritation"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-children-8",
+    problem: "Weak Immunity (Children)",
+    title: "Badam Cashew Powder",
+    ingredients: [
+      { name: "Almonds", quantity: "10" },
+      { name: "Cashews", quantity: "5" },
+      { name: "Cardamom", quantity: "2 pods" },
+      { name: "Saffron strands", quantity: "2-3" },
+      { name: "Mishri (rock sugar)", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Dry roast nuts slightly",
+      "Grind all ingredients to fine powder",
+      "Store in airtight container",
+      "Mix 1 teaspoon with warm milk"
+    ],
+    how_often: "Once daily with milk",
+    precautions: [
+      "Check for nut allergies first",
+      "For children above 2 years",
+      "Store in cool, dry place"
+    ],
+    benefits: [
+      "Strengthens immunity",
+      "Improves brain development",
+      "Provides essential nutrients"
+    ],
+    related_diseases: ["weak-immunity", "growth-support"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes"
+  },
+
+  // ===== WOMEN'S HEALTH REMEDIES =====
+  {
+    id: "remedy-women-1",
+    problem: "PCOS",
+    title: "Spearmint Tea",
+    ingredients: [
+      { name: "Fresh spearmint leaves", quantity: "10-12" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1/2 teaspoon (optional)" }
+    ],
+    method: [
+      "Boil water",
+      "Add fresh spearmint leaves",
+      "Steep for 5-7 minutes",
+      "Strain and add honey if desired",
+      "Drink warm"
+    ],
+    how_often: "2 cups daily",
+    precautions: [
+      "May affect fertility treatments",
+      "Consult doctor if on hormonal medications",
+      "Continue medical treatment"
+    ],
+    benefits: [
+      "Helps reduce androgen levels",
+      "May improve hirsutism",
+      "Supports hormonal balance"
+    ],
+    related_diseases: ["pcos", "hormonal-imbalance"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-women-2",
+    problem: "PCOS",
+    title: "Cinnamon Water",
+    ingredients: [
+      { name: "Ceylon cinnamon stick", quantity: "1 inch" },
+      { name: "Water", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Soak cinnamon stick in water overnight",
+      "In morning, remove cinnamon",
+      "Add lemon juice",
+      "Drink on empty stomach"
+    ],
+    how_often: "Daily for 2-3 months",
+    precautions: [
+      "Use Ceylon cinnamon only",
+      "May interact with diabetes medications",
+      "Stop if any adverse reaction"
+    ],
+    benefits: [
+      "Improves insulin sensitivity",
+      "Helps regulate periods",
+      "Supports weight management"
+    ],
+    related_diseases: ["pcos", "diabetes", "weight-management"],
+    difficulty: "Easy",
+    preparation_time: "Overnight soaking"
+  },
+  {
+    id: "remedy-women-3",
+    problem: "Menstrual Cramps",
+    title: "Ginger Jaggery Tea",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch" },
+      { name: "Jaggery", quantity: "1 tablespoon" },
+      { name: "Ajwain", quantity: "1/2 teaspoon" },
+      { name: "Water", quantity: "1.5 cups" }
+    ],
+    method: [
+      "Crush ginger slightly",
+      "Boil water with ginger and ajwain",
+      "Simmer for 5 minutes",
+      "Add jaggery and stir",
+      "Strain and drink warm"
+    ],
+    how_often: "2-3 times during menstruation",
+    precautions: [
+      "May increase blood flow slightly",
+      "Avoid if you have heavy periods"
+    ],
+    benefits: [
+      "Reduces menstrual pain",
+      "Relaxes uterine muscles",
+      "Improves blood circulation"
+    ],
+    related_diseases: ["menstrual-cramps", "dysmenorrhea"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-women-4",
+    problem: "Heavy Periods",
+    title: "Ashoka Bark Decoction",
+    ingredients: [
+      { name: "Ashoka bark powder", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Boil ashoka bark powder in water",
+      "Reduce to half quantity",
+      "Strain and cool slightly",
+      "Add honey and drink"
+    ],
+    how_often: "Twice daily during periods",
+    precautions: [
+      "Not for pregnant women",
+      "Consult Ayurvedic doctor for dosage",
+      "Don't use with hormonal medications"
+    ],
+    benefits: [
+      "Regulates menstrual flow",
+      "Strengthens uterus",
+      "Traditional women's tonic"
+    ],
+    related_diseases: ["heavy-periods", "menorrhagia"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-women-5",
+    problem: "Pregnancy Nausea",
+    title: "Dry Ginger Lemon Water",
+    ingredients: [
+      { name: "Dry ginger powder", quantity: "1/4 teaspoon" },
+      { name: "Lemon juice", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "1/2 teaspoon" },
+      { name: "Warm water", quantity: "1 glass" }
+    ],
+    method: [
+      "Add dry ginger to warm water",
+      "Add lemon juice and honey",
+      "Mix well",
+      "Sip slowly in morning"
+    ],
+    how_often: "Once in morning or when nauseous",
+    precautions: [
+      "Use in moderation during pregnancy",
+      "Avoid if you have heartburn",
+      "Consult your OB-GYN"
+    ],
+    benefits: [
+      "Relieves morning sickness",
+      "Settles stomach naturally",
+      "Safe in small amounts"
+    ],
+    related_diseases: ["pregnancy-nausea", "morning-sickness"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-women-6",
+    problem: "Lactation Support",
+    title: "Fenugreek Milk",
+    ingredients: [
+      { name: "Fenugreek seeds", quantity: "1 teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Jaggery", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Soak fenugreek seeds for 2 hours",
+      "Grind to paste",
+      "Mix with warm milk",
+      "Add jaggery and drink"
+    ],
+    how_often: "Once or twice daily",
+    precautions: [
+      "May cause digestive issues initially",
+      "Start with small amounts",
+      "Consult lactation consultant"
+    ],
+    benefits: [
+      "Natural galactagogue",
+      "Increases breast milk supply",
+      "Nutritious for nursing mothers"
+    ],
+    related_diseases: ["low-milk-supply", "lactation-support"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes + soaking"
+  },
+  {
+    id: "remedy-women-7",
+    problem: "Menopause Symptoms",
+    title: "Shatavari Milk",
+    ingredients: [
+      { name: "Shatavari powder", quantity: "1 teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Add shatavari powder to warm milk",
+      "Stir well until dissolved",
+      "Add honey",
+      "Drink at bedtime"
+    ],
+    how_often: "Once daily at bedtime",
+    precautions: [
+      "Not for those with estrogen-sensitive conditions",
+      "Consult doctor if on HRT",
+      "May cause weight gain in some"
+    ],
+    benefits: [
+      "Balances hormones naturally",
+      "Reduces hot flashes",
+      "Supports overall women's health"
+    ],
+    related_diseases: ["menopause", "hormonal-imbalance"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-women-8",
+    problem: "Menopause Hot Flashes",
+    title: "Sage Tea",
+    ingredients: [
+      { name: "Dried sage leaves", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Lemon slice", quantity: "1" }
+    ],
+    method: [
+      "Boil water",
+      "Add sage leaves and steep for 5 minutes",
+      "Strain and add lemon slice",
+      "Can be consumed hot or cold"
+    ],
+    how_often: "2-3 cups daily",
+    precautions: [
+      "Avoid during pregnancy",
+      "May interact with some medications",
+      "Don't use if epileptic"
+    ],
+    benefits: [
+      "Reduces hot flashes",
+      "Decreases night sweats",
+      "Calms nervous system"
+    ],
+    related_diseases: ["hot-flashes", "menopause"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-women-9",
+    problem: "Leucorrhea",
+    title: "Fenugreek Seeds Wash",
+    ingredients: [
+      { name: "Fenugreek seeds", quantity: "2 tablespoons" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: [
+      "Soak fenugreek seeds in water overnight",
+      "Boil in morning for 10 minutes",
+      "Strain and cool",
+      "Use as intimate wash"
+    ],
+    how_often: "Once daily",
+    precautions: [
+      "For external use only",
+      "Consult gynecologist for persistent issues",
+      "Maintain hygiene"
+    ],
+    benefits: [
+      "Natural antifungal",
+      "Reduces discharge",
+      "Maintains pH balance"
+    ],
+    related_diseases: ["leucorrhea", "vaginal-discharge"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes + overnight soaking"
+  },
+  {
+    id: "remedy-women-10",
+    problem: "Iron Deficiency (Women)",
+    title: "Jaggery Sesame Ladoo",
+    ingredients: [
+      { name: "Sesame seeds (til)", quantity: "1 cup" },
+      { name: "Jaggery", quantity: "1/2 cup" },
+      { name: "Ghee", quantity: "1 tablespoon" },
+      { name: "Dry ginger powder", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Roast sesame seeds until golden",
+      "Melt jaggery with ghee",
+      "Mix sesame seeds and ginger powder",
+      "Form small ladoos while warm",
+      "Store in airtight container"
+    ],
+    how_often: "1-2 ladoos daily",
+    precautions: [
+      "High in calories",
+      "Diabetics should limit intake",
+      "Check for sesame allergy"
+    ],
+    benefits: [
+      "Rich in iron and calcium",
+      "Prevents anemia",
+      "Good for bone health"
+    ],
+    related_diseases: ["anemia", "iron-deficiency"],
+    difficulty: "Medium",
+    preparation_time: "30 minutes"
+  },
+  {
+    id: "remedy-women-11",
+    problem: "Postpartum Care",
+    title: "Ajwain Panjiri",
+    ingredients: [
+      { name: "Whole wheat flour", quantity: "1 cup" },
+      { name: "Ghee", quantity: "4 tablespoons" },
+      { name: "Ajwain", quantity: "1 teaspoon" },
+      { name: "Dry ginger powder", quantity: "1/2 teaspoon" },
+      { name: "Jaggery", quantity: "1/2 cup" },
+      { name: "Mixed dry fruits", quantity: "1/4 cup chopped" }
+    ],
+    method: [
+      "Roast wheat flour in ghee until brown",
+      "Add ajwain and dry ginger",
+      "Add crushed jaggery and mix",
+      "Add dry fruits",
+      "Store and consume daily"
+    ],
+    how_often: "2 tablespoons twice daily postpartum",
+    precautions: [
+      "High in calories - adjust quantity",
+      "Ensure no nut allergies",
+      "Good for first 40 days after delivery"
+    ],
+    benefits: [
+      "Aids postpartum recovery",
+      "Improves digestion",
+      "Increases milk production"
+    ],
+    related_diseases: ["postpartum-care", "lactation-support"],
+    difficulty: "Medium",
+    preparation_time: "30 minutes"
+  },
+  {
+    id: "remedy-women-12",
+    problem: "UTI (Women)",
+    title: "Coriander Seeds Water",
+    ingredients: [
+      { name: "Coriander seeds", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Mishri (rock sugar)", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Soak coriander seeds in water overnight",
+      "Boil in morning until reduced by half",
+      "Strain and add mishri",
+      "Drink lukewarm"
+    ],
+    how_often: "2-3 times daily during UTI",
+    precautions: [
+      "Complete antibiotic course if prescribed",
+      "See doctor if fever develops",
+      "Drink plenty of water"
+    ],
+    benefits: [
+      "Natural diuretic",
+      "Cooling effect on urinary tract",
+      "Reduces burning sensation"
+    ],
+    related_diseases: ["uti", "urinary-infection"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes + overnight soaking"
   }
 ];
 
@@ -4532,5 +5664,38 @@ export const remedyCategories = [
   "Hangover",
   "Bruises",
   "Bee Sting",
-  "Minor Burns"
+  "Minor Burns",
+  // Seasonal Categories
+  "Monsoon Infections",
+  "Fungal Infections",
+  "Waterborne Diseases",
+  "Winter Cold",
+  "Winter Immunity",
+  "Winter Joint Pain",
+  "Dry Skin (Winter)",
+  "Summer Heat",
+  "Heat Stroke",
+  "Prickly Heat",
+  "Summer Dehydration",
+  "Summer Fatigue",
+  // Children's Health
+  "Teething Pain (Children)",
+  "Colic (Infants)",
+  "Bed Wetting",
+  "Loss of Appetite (Children)",
+  "Common Cold (Children)",
+  "Stomach Worms (Children)",
+  "Diaper Rash",
+  "Weak Immunity (Children)",
+  // Women's Health
+  "PCOS",
+  "Heavy Periods",
+  "Pregnancy Nausea",
+  "Lactation Support",
+  "Menopause Symptoms",
+  "Menopause Hot Flashes",
+  "Leucorrhea",
+  "Iron Deficiency (Women)",
+  "Postpartum Care",
+  "UTI (Women)"
 ];
