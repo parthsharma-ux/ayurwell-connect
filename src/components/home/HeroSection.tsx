@@ -392,7 +392,7 @@ const HeroSection = () => {
             )}
           </div>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+          <div className="mt-8 flex flex-wrap justify-center gap-3 animate-fade-in-up relative z-0" style={{ animationDelay: "0.4s" }}>
             <span className="text-sm text-muted-foreground">{t("hero_popular_searches")}</span>
             {popularSearches.map((search) => (
               <button
@@ -408,7 +408,7 @@ const HeroSection = () => {
             ))}
           </div>
 
-          <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+          <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto animate-fade-in-up relative z-0" style={{ animationDelay: "0.5s" }}>
             <div className="text-center">
               <p className="font-display text-3xl md:text-4xl font-bold text-gradient-terracotta">{t("stat_diseases")}</p>
               <p className="text-sm text-muted-foreground mt-1">{t("stat_documented_diseases")}</p>
