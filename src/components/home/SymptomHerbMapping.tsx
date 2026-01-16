@@ -391,10 +391,10 @@ const SymptomHerbMapping = () => {
         {/* Browse All Link */}
         <div className="text-center mt-8">
           <LocalizedLink
-            to="/medicines"
+            to="/herb-mapping"
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-colors"
           >
-            {language === 'hi' ? 'सभी औषधियां देखें' : 'Browse All Medicines'}
+            {language === 'hi' ? 'संपूर्ण जड़ी-बूटी गाइड देखें' : 'View Complete Herb Guide'}
             <ChevronRight className="h-5 w-5" />
           </LocalizedLink>
         </div>

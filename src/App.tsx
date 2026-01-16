@@ -26,6 +26,7 @@ import Kits from "./pages/Kits";
 import KitDetail from "./pages/KitDetail";
 import Yoga from "./pages/Yoga";
 import YogaDetail from "./pages/YogaDetail";
+import HerbMapping from "./pages/HerbMapping";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -63,6 +64,7 @@ const App = () => (
                 <Route path="kits/:slug" element={<KitDetail />} />
                 <Route path="yoga" element={<Yoga />} />
                 <Route path="yoga/:id" element={<YogaDetail />} />
+                <Route path="herb-mapping" element={<HerbMapping />} />
               </Route>
               
               {/* Redirect old non-prefixed routes to language-prefixed ones */}
