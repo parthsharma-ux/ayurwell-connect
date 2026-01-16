@@ -6,6 +6,7 @@ import FeaturedMedicines from "@/components/home/FeaturedMedicines";
 import AIDoctor from "@/components/home/AIDoctor";
 import DoshaSection from "@/components/home/DoshaSection";
 import SeasonalRemedies from "@/components/home/SeasonalRemedies";
+import SymptomHerbMapping from "@/components/home/SymptomHerbMapping";
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
       <HeroSection />
       <TrendingDiseases />
       <SeasonalRemedies />
+      <SymptomHerbMapping />
       <PopularRemedies />
       <FeaturedMedicines />
       <AIDoctor />
