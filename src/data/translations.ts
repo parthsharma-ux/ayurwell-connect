@@ -3,6 +3,7 @@ export interface TranslationKeys {
   nav_diseases: string;
   nav_medicines: string;
   nav_remedies: string;
+  nav_herb_mapping: string;
   nav_kits: string;
   nav_yoga: string;
   nav_ai_doctor: string;
@@ -239,6 +240,7 @@ export const translations: Record<"en" | "hi", TranslationKeys> = {
     nav_diseases: "Diseases",
     nav_medicines: "Medicines",
     nav_remedies: "Remedies",
+    nav_herb_mapping: "Herb Guide",
     nav_kits: "Kits",
     nav_yoga: "Yoga",
     nav_ai_doctor: "AI Doctor",
@@ -473,6 +475,7 @@ export const translations: Record<"en" | "hi", TranslationKeys> = {
     nav_diseases: "रोग",
     nav_medicines: "औषधियाँ",
     nav_remedies: "घरेलू नुस्खे",
+    nav_herb_mapping: "जड़ी-बूटी गाइड",
     nav_kits: "किट्स",
     nav_yoga: "योग",
     nav_ai_doctor: "AI डॉक्टर",
