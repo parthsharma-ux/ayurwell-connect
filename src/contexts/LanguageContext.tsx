@@ -66,9 +66,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t, isTransitioning }}>
-      <div className={`transition-opacity duration-150 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
-        {children}
-      </div>
+      {children}
     </LanguageContext.Provider>
   );
 };
