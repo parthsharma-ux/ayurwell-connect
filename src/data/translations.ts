@@ -4,10 +4,14 @@ export interface TranslationKeys {
   nav_medicines: string;
   nav_remedies: string;
   nav_herb_mapping: string;
+  nav_blog: string;
   nav_kits: string;
   nav_yoga: string;
   nav_ai_doctor: string;
   nav_about_ayurveda: string;
+  
+  // Blog
+  blog_description: string;
 
   // Header
   header_tagline: string;
@@ -241,10 +245,14 @@ export const translations: Record<"en" | "hi", TranslationKeys> = {
     nav_medicines: "Medicines",
     nav_remedies: "Remedies",
     nav_herb_mapping: "Herb Guide",
+    nav_blog: "Blog",
     nav_kits: "Kits",
     nav_yoga: "Yoga",
     nav_ai_doctor: "AI Doctor",
     nav_about_ayurveda: "About Ayurveda",
+    
+    // Blog
+    blog_description: "Explore Ayurvedic knowledge, herb benefits, home remedies, and healthy lifestyle tips from our experts.",
 
     // Header
     header_tagline: "Heal Naturally",
@@ -476,10 +484,14 @@ export const translations: Record<"en" | "hi", TranslationKeys> = {
     nav_medicines: "औषधियाँ",
     nav_remedies: "घरेलू नुस्खे",
     nav_herb_mapping: "जड़ी-बूटी गाइड",
+    nav_blog: "ब्लॉग",
     nav_kits: "किट्स",
     nav_yoga: "योग",
     nav_ai_doctor: "AI डॉक्टर",
     nav_about_ayurveda: "आयुर्वेद के बारे में",
+    
+    // Blog
+    blog_description: "आयुर्वेदिक ज्ञान, जड़ी-बूटी लाभ, घरेलू उपचार और स्वस्थ जीवनशैली सुझाव।",
 
     // Header
     header_tagline: "प्राकृतिक चिकित्सा",
