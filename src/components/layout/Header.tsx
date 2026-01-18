@@ -20,6 +20,7 @@ const Header = () => {
     { name: t("nav_herb_mapping"), href: "/herb-mapping" },
     { name: t("nav_kits"), href: "/kits" },
     { name: t("nav_yoga"), href: "/yoga" },
+    { name: t("nav_blog"), href: "/blog" },
     { name: t("nav_ai_doctor"), href: "/doctor-ai" },
   ];
 
