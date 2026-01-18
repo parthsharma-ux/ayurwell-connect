@@ -5224,6 +5224,485 @@ export const remedies: Remedy[] = [
     difficulty: "Medium",
     preparation_time: "20 minutes"
   },
+  {
+    id: "remedy-children-9",
+    problem: "Fever (Children)",
+    title: "Tulsi Ginger Water",
+    ingredients: [
+      { name: "Fresh tulsi leaves", quantity: "8-10" },
+      { name: "Fresh ginger", quantity: "1/2 inch" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Boil water with tulsi leaves and grated ginger",
+      "Simmer for 5 minutes",
+      "Strain and cool to lukewarm",
+      "Add honey and give in small sips"
+    ],
+    how_often: "3-4 times daily during fever",
+    precautions: [
+      "Only for children above 1 year",
+      "Seek medical help if fever exceeds 103°F",
+      "Keep child hydrated"
+    ],
+    benefits: [
+      "Natural fever reducer",
+      "Boosts immunity",
+      "Soothes throat and body ache"
+    ],
+    related_diseases: ["fever", "cold-cough"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-children-10",
+    problem: "Ear Infection (Children)",
+    title: "Garlic Mullein Oil Drops",
+    ingredients: [
+      { name: "Garlic cloves", quantity: "2" },
+      { name: "Sesame oil", quantity: "2 tablespoons" },
+      { name: "Mullein flowers (optional)", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Crush garlic and heat in sesame oil on low flame",
+      "Let it cool to lukewarm",
+      "Strain through fine cloth",
+      "Put 2-3 drops in affected ear",
+      "Cover with cotton"
+    ],
+    how_often: "Twice daily for 3-5 days",
+    precautions: [
+      "Test temperature before use",
+      "Don't use if eardrum is perforated",
+      "Consult doctor for severe infections"
+    ],
+    benefits: [
+      "Natural antibacterial",
+      "Reduces ear pain",
+      "Fights mild infections"
+    ],
+    related_diseases: ["ear-infection", "ear-pain"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-children-11",
+    problem: "Brain Development (Children)",
+    title: "Brahmi Ghee",
+    ingredients: [
+      { name: "Brahmi powder", quantity: "1/4 teaspoon" },
+      { name: "Pure cow ghee", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Mix brahmi powder with warm ghee",
+      "Add honey after cooling slightly",
+      "Give to child after breakfast"
+    ],
+    how_often: "Once daily for 3 months",
+    precautions: [
+      "For children above 3 years",
+      "Start with small dose",
+      "Consult Ayurvedic doctor for dosage"
+    ],
+    benefits: [
+      "Enhances memory and learning",
+      "Improves concentration",
+      "Supports brain development"
+    ],
+    related_diseases: ["memory", "concentration", "brain-development"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-12",
+    problem: "Growth Support (Children)",
+    title: "Ashwagandha Milk",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "1/4 teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Mishri (rock sugar)", quantity: "1/2 teaspoon" },
+      { name: "Saffron strands", quantity: "2-3" }
+    ],
+    method: [
+      "Warm the milk (don't boil)",
+      "Add ashwagandha powder and mishri",
+      "Add saffron strands",
+      "Stir well and give at bedtime"
+    ],
+    how_often: "Once daily at bedtime",
+    precautions: [
+      "For children above 5 years",
+      "Use small dose for children",
+      "Avoid if child has hyperactivity"
+    ],
+    benefits: [
+      "Promotes healthy growth",
+      "Builds strength and stamina",
+      "Improves sleep quality"
+    ],
+    related_diseases: ["growth-support", "weakness", "underweight"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-13",
+    problem: "Cough (Children)",
+    title: "Honey Pepper Mixture",
+    ingredients: [
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Black pepper powder", quantity: "A tiny pinch" },
+      { name: "Turmeric powder", quantity: "A tiny pinch" }
+    ],
+    method: [
+      "Mix all ingredients well",
+      "Give small licks throughout the day",
+      "Can be mixed in warm water"
+    ],
+    how_often: "3-4 times daily during cough",
+    precautions: [
+      "Only for children above 1 year",
+      "Use very small amount of pepper",
+      "Stop if causes stomach upset"
+    ],
+    benefits: [
+      "Soothes throat",
+      "Expectorant action",
+      "Natural antibacterial"
+    ],
+    related_diseases: ["cough", "cold", "sore-throat"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-children-14",
+    problem: "Constipation (Children)",
+    title: "Fig and Raisin Water",
+    ingredients: [
+      { name: "Dried figs (Anjeer)", quantity: "2" },
+      { name: "Raisins", quantity: "5-6" },
+      { name: "Warm water", quantity: "1/2 glass" }
+    ],
+    method: [
+      "Soak figs and raisins in warm water overnight",
+      "In morning, mash them slightly",
+      "Give the soaked fruits and water",
+      "Can also blend for younger children"
+    ],
+    how_often: "Once daily in morning",
+    precautions: [
+      "For children above 2 years",
+      "Introduce gradually",
+      "Ensure child drinks enough water"
+    ],
+    benefits: [
+      "Natural laxative",
+      "Rich in fiber",
+      "Safe for regular use"
+    ],
+    related_diseases: ["constipation", "digestive-issues"],
+    difficulty: "Easy",
+    preparation_time: "Overnight soaking"
+  },
+  {
+    id: "remedy-children-15",
+    problem: "Hyperactivity (Children)",
+    title: "Shankhpushpi Syrup",
+    ingredients: [
+      { name: "Shankhpushpi syrup", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Mix shankhpushpi syrup in warm water",
+      "Give after meals",
+      "Can be given twice daily"
+    ],
+    how_often: "Twice daily after meals",
+    precautions: [
+      "For children above 3 years",
+      "Buy from reputed brand",
+      "Consult doctor for ADHD cases"
+    ],
+    benefits: [
+      "Calms the mind",
+      "Improves focus",
+      "Reduces restlessness"
+    ],
+    related_diseases: ["hyperactivity", "adhd", "restlessness"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-children-16",
+    problem: "Skin Rashes (Children)",
+    title: "Neem Turmeric Paste",
+    ingredients: [
+      { name: "Neem leaves", quantity: "10-12 fresh" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" },
+      { name: "Coconut oil", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Grind neem leaves to paste",
+      "Mix with turmeric and coconut oil",
+      "Apply thin layer on affected area",
+      "Leave for 15 minutes and wash"
+    ],
+    how_often: "Once or twice daily",
+    precautions: [
+      "Do patch test first",
+      "Avoid near eyes",
+      "Consult doctor for severe rashes"
+    ],
+    benefits: [
+      "Natural antibacterial",
+      "Reduces itching",
+      "Heals skin quickly"
+    ],
+    related_diseases: ["skin-rash", "eczema", "allergies"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-children-17",
+    problem: "Night Terrors (Children)",
+    title: "Warm Milk with Nutmeg",
+    ingredients: [
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Nutmeg powder", quantity: "A tiny pinch" },
+      { name: "Honey", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Warm the milk (not too hot)",
+      "Add a tiny pinch of nutmeg powder",
+      "Add honey and stir well",
+      "Give 30 minutes before bedtime"
+    ],
+    how_often: "Daily at bedtime",
+    precautions: [
+      "Use very small amount of nutmeg",
+      "For children above 2 years",
+      "Excess nutmeg can be harmful"
+    ],
+    benefits: [
+      "Promotes peaceful sleep",
+      "Calms nervous system",
+      "Reduces anxiety"
+    ],
+    related_diseases: ["night-terrors", "insomnia", "anxiety"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-18",
+    problem: "Vomiting (Children)",
+    title: "Cardamom Honey Water",
+    ingredients: [
+      { name: "Cardamom powder", quantity: "A pinch" },
+      { name: "Honey", quantity: "1/2 teaspoon" },
+      { name: "Lukewarm water", quantity: "1/4 cup" }
+    ],
+    method: [
+      "Mix cardamom powder in lukewarm water",
+      "Add honey and stir",
+      "Give in small sips",
+      "Wait 15 minutes between sips"
+    ],
+    how_often: "Small sips every 15-20 minutes",
+    precautions: [
+      "Only for children above 1 year",
+      "Seek doctor if vomiting persists",
+      "Keep child hydrated"
+    ],
+    benefits: [
+      "Settles stomach",
+      "Prevents dehydration",
+      "Natural antiemetic"
+    ],
+    related_diseases: ["vomiting", "nausea", "upset-stomach"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "remedy-children-19",
+    problem: "Eye Infection (Children)",
+    title: "Rose Water Eye Wash",
+    ingredients: [
+      { name: "Pure rose water", quantity: "2 tablespoons" },
+      { name: "Distilled water", quantity: "2 tablespoons" },
+      { name: "Clean cotton pads", quantity: "2" }
+    ],
+    method: [
+      "Mix rose water with distilled water",
+      "Soak cotton pad in mixture",
+      "Gently clean eyes from inner to outer corner",
+      "Use separate pad for each eye"
+    ],
+    how_often: "2-3 times daily",
+    precautions: [
+      "Use pure rose water only",
+      "Don't reuse cotton pads",
+      "Consult doctor for severe infections"
+    ],
+    benefits: [
+      "Soothes irritated eyes",
+      "Natural antiseptic",
+      "Reduces redness"
+    ],
+    related_diseases: ["eye-infection", "conjunctivitis", "eye-irritation"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-20",
+    problem: "Diarrhea (Children)",
+    title: "Pomegranate Peel Water",
+    ingredients: [
+      { name: "Dried pomegranate peel", quantity: "1 teaspoon powder" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Rock salt", quantity: "A tiny pinch" }
+    ],
+    method: [
+      "Boil pomegranate peel powder in water",
+      "Reduce to half",
+      "Strain and cool",
+      "Add rock salt and give in small amounts"
+    ],
+    how_often: "2-3 times daily during diarrhea",
+    precautions: [
+      "For children above 2 years",
+      "Give ORS for hydration",
+      "Seek doctor if blood in stool"
+    ],
+    benefits: [
+      "Natural astringent",
+      "Stops loose motions",
+      "Replenishes electrolytes"
+    ],
+    related_diseases: ["diarrhea", "loose-motions", "dysentery"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-children-21",
+    problem: "Memory Enhancement (Children)",
+    title: "Badam (Almond) Paste",
+    ingredients: [
+      { name: "Almonds", quantity: "5-6 soaked" },
+      { name: "Milk", quantity: "1/2 glass" },
+      { name: "Saffron", quantity: "2 strands" },
+      { name: "Cardamom", quantity: "1 pod" },
+      { name: "Mishri", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Soak almonds overnight and peel",
+      "Grind with milk, saffron, and cardamom",
+      "Add mishri and blend smooth",
+      "Give in morning on empty stomach"
+    ],
+    how_often: "Daily in morning",
+    precautions: [
+      "Check for nut allergies",
+      "For children above 3 years",
+      "Can cause weight gain if excess"
+    ],
+    benefits: [
+      "Sharpens memory",
+      "Improves brain function",
+      "Provides essential nutrients"
+    ],
+    related_diseases: ["memory", "concentration", "learning"],
+    difficulty: "Medium",
+    preparation_time: "Overnight soaking + 10 minutes"
+  },
+  {
+    id: "remedy-children-22",
+    problem: "Tonsillitis (Children)",
+    title: "Turmeric Salt Gargle",
+    ingredients: [
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" },
+      { name: "Rock salt", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Mix turmeric and salt in warm water",
+      "Have child gargle (if old enough)",
+      "Don't swallow the water",
+      "Spit out after gargling"
+    ],
+    how_often: "3-4 times daily",
+    precautions: [
+      "For children above 5 years who can gargle",
+      "Supervise younger children",
+      "Consult doctor for recurring tonsillitis"
+    ],
+    benefits: [
+      "Reduces throat inflammation",
+      "Natural antibacterial",
+      "Soothes pain"
+    ],
+    related_diseases: ["tonsillitis", "sore-throat", "throat-infection"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-23",
+    problem: "Height Growth (Children)",
+    title: "Shatavari Milk",
+    ingredients: [
+      { name: "Shatavari powder", quantity: "1/4 teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Jaggery", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Add shatavari powder to warm milk",
+      "Mix well until dissolved",
+      "Add jaggery for taste",
+      "Give at bedtime"
+    ],
+    how_often: "Daily at bedtime for 3-6 months",
+    precautions: [
+      "For children above 5 years",
+      "Consult Ayurvedic doctor for dosage",
+      "Combine with proper nutrition"
+    ],
+    benefits: [
+      "Supports natural growth",
+      "Strengthens bones",
+      "Improves overall health"
+    ],
+    related_diseases: ["growth-support", "height-growth", "bone-health"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-children-24",
+    problem: "Hiccups (Children)",
+    title: "Sugar and Butter",
+    ingredients: [
+      { name: "Organic butter", quantity: "1/2 teaspoon" },
+      { name: "Sugar", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Mix butter with sugar",
+      "Give child to eat slowly",
+      "Let it melt in mouth"
+    ],
+    how_often: "When hiccups occur",
+    precautions: [
+      "For children above 1 year",
+      "Don't give too much",
+      "Seek help if hiccups persist hours"
+    ],
+    benefits: [
+      "Stops hiccups quickly",
+      "Safe for children",
+      "Pleasant taste"
+    ],
+    related_diseases: ["hiccups"],
+    difficulty: "Easy",
+    preparation_time: "1 minute"
+  },
 
   // ===== WOMEN'S HEALTH REMEDIES =====
   {
@@ -5687,6 +6166,22 @@ export const remedyCategories = [
   "Stomach Worms (Children)",
   "Diaper Rash",
   "Weak Immunity (Children)",
+  "Fever (Children)",
+  "Ear Infection (Children)",
+  "Brain Development (Children)",
+  "Growth Support (Children)",
+  "Cough (Children)",
+  "Constipation (Children)",
+  "Hyperactivity (Children)",
+  "Skin Rashes (Children)",
+  "Night Terrors (Children)",
+  "Vomiting (Children)",
+  "Eye Infection (Children)",
+  "Diarrhea (Children)",
+  "Memory Enhancement (Children)",
+  "Tonsillitis (Children)",
+  "Height Growth (Children)",
+  "Hiccups (Children)",
   // Women's Health
   "PCOS",
   "Heavy Periods",
