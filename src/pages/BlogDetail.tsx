@@ -182,8 +182,26 @@ const BlogDetail = () => {
           throw error;
         }
       } else {
+        // Send welcome email using edge function
+        try {
+          const response = await supabase.functions.invoke('send-welcome-email', {
+            body: { email: email.trim(), language }
+          });
+          
+          if (response.error) {
+            console.error("Welcome email error:", response.error);
+          }
+        } catch (emailError) {
+          console.error("Failed to send welcome email:", emailError);
+          // Don't fail the subscription if email fails
+        }
+        
         setIsSubscribed(true);
-        toast.success(language === "hi" ? "सफलतापूर्वक सब्सक्राइब किया!" : "Successfully subscribed!");
+        toast.success(
+          language === "hi" 
+            ? "सफलतापूर्वक सब्सक्राइब किया! स्वागत ईमेल भेजा गया।" 
+            : "Successfully subscribed! Welcome email sent."
+        );
       }
       setEmail("");
     } catch (error) {
