@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { remedies, remedyCategories } from "@/data/remedies";
@@ -14,6 +14,81 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+// SEO JSON-LD structured data hook
+const useRemediesSEO = (language: string) => {
+  useEffect(() => {
+    document.title = language === "hi" 
+      ? "घरेलू उपचार - आयुर्वेदिक प्राकृतिक उपचार | AyurVeda"
+      : "Home Remedies - Ayurvedic Natural Remedies | AyurVeda";
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', language === "hi"
+      ? "200+ आयुर्वेदिक घरेलू उपचार खोजें। मधुमेह, उच्च रक्तचाप, गठिया और अधिक के लिए प्राकृतिक समाधान।"
+      : "Discover 200+ Ayurvedic home remedies. Natural solutions for diabetes, hypertension, arthritis, and more using kitchen ingredients."
+    );
+
+    const existingScript = document.querySelector('script[type="application/ld+json"][data-page="remedies"]');
+    if (existingScript) existingScript.remove();
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": language === "hi" ? "आयुर्वेदिक घरेलू उपचार" : "Ayurvedic Home Remedies",
+      "description": language === "hi" 
+        ? "रसोई की सामग्री से प्राकृतिक स्वास्थ्य समाधान"
+        : "Natural health solutions using kitchen ingredients",
+      "url": window.location.href,
+      "numberOfItems": remedies.length,
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": remedies.slice(0, 20).map((remedy, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "HowTo",
+            "name": remedy.title,
+            "description": `${remedy.problem} remedy using ${remedy.ingredients.map(i => i.name).join(", ")}`,
+            "totalTime": remedy.preparation_time,
+            "supply": remedy.ingredients.map(i => ({
+              "@type": "HowToSupply",
+              "name": i.name,
+              "requiredQuantity": i.quantity
+            })),
+            "step": remedy.method.map((step, i) => ({
+              "@type": "HowToStep",
+              "position": i + 1,
+              "text": step
+            }))
+          }
+        }))
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+          { "@type": "ListItem", "position": 2, "name": language === "hi" ? "उपचार" : "Remedies", "item": "/remedies" }
+        ]
+      }
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-page', 'remedies');
+    script.textContent = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      const scriptEl = document.querySelector('script[type="application/ld+json"][data-page="remedies"]');
+      if (scriptEl) scriptEl.remove();
+    };
+  }, [language]);
+};
 
 // Get all unique ingredients from remedies
 const allIngredients = [...new Set(
@@ -79,6 +154,9 @@ const Remedies = () => {
   const [category, setCategory] = useState("all");
   const [selectedIngredient, setSelectedIngredient] = useState("all");
   const [activeGroup, setActiveGroup] = useState<keyof typeof categoryGroups>("all");
+
+  // Apply SEO structured data
+  useRemediesSEO(language);
 
   // Get categories for the active group
   const activeCategories = useMemo(() => {

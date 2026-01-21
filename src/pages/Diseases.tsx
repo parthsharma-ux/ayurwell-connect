@@ -4,11 +4,90 @@ import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { diseases, diseaseCategories } from "@/data/diseases";
 import { Search, Filter } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+
+// SEO JSON-LD structured data hook
+const useDiseasesSEO = (language: string) => {
+  useEffect(() => {
+    document.title = language === "hi" 
+      ? "रोग और स्थितियां - आयुर्वेदिक उपचार | AyurVeda"
+      : "Diseases & Conditions - Ayurvedic Treatment | AyurVeda";
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', language === "hi"
+      ? "विभिन्न स्वास्थ्य स्थितियों के लिए आयुर्वेदिक उपचार खोजें। लक्षण, आहार युक्तियां और प्राकृतिक उपचार।"
+      : "Find Ayurvedic treatments for various health conditions. Symptoms, diet tips, yoga, and natural remedies for holistic healing."
+    );
+
+    const existingScript = document.querySelector('script[type="application/ld+json"][data-page="diseases"]');
+    if (existingScript) existingScript.remove();
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "MedicalWebPage",
+      "name": language === "hi" ? "रोग और स्थितियां" : "Diseases & Conditions",
+      "description": language === "hi" 
+        ? "स्वास्थ्य स्थितियों के लिए आयुर्वेदिक समाधान खोजें"
+        : "Find Ayurvedic solutions for health conditions",
+      "url": window.location.href,
+      "specialty": "Ayurveda",
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": diseases.length,
+        "itemListElement": diseases.slice(0, 20).map((disease, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "item": {
+            "@type": "MedicalCondition",
+            "name": disease.name,
+            "description": disease.description,
+            "signOrSymptom": disease.symptoms.map(s => ({
+              "@type": "MedicalSignOrSymptom",
+              "name": s
+            })),
+            "possibleTreatment": {
+              "@type": "MedicalTherapy",
+              "name": "Ayurvedic Treatment",
+              "medicineSystem": "Ayurveda"
+            }
+          }
+        }))
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+          { "@type": "ListItem", "position": 2, "name": language === "hi" ? "रोग" : "Diseases", "item": "/diseases" }
+        ]
+      }
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-page', 'diseases');
+    script.textContent = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      const scriptEl = document.querySelector('script[type="application/ld+json"][data-page="diseases"]');
+      if (scriptEl) scriptEl.remove();
+    };
+  }, [language]);
+};
 
 const Diseases = () => {
+  const { language } = useLanguage();
   const [searchParams] = useSearchParams();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState(searchParams.get("category") || "");
+
+  // Apply SEO structured data
+  useDiseasesSEO(language);
 
   useEffect(() => {
     const urlCategory = searchParams.get("category");
@@ -25,8 +104,12 @@ const Diseases = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
-        <h1 className="font-display text-4xl font-bold text-foreground mb-2">Diseases & Conditions</h1>
-        <p className="text-muted-foreground mb-8">Find Ayurvedic solutions for health conditions</p>
+        <h1 className="font-display text-4xl font-bold text-foreground mb-2">
+          {language === "hi" ? "रोग और स्थितियां" : "Diseases & Conditions"}
+        </h1>
+        <p className="text-muted-foreground mb-8">
+          {language === "hi" ? "स्वास्थ्य स्थितियों के लिए आयुर्वेदिक समाधान खोजें" : "Find Ayurvedic solutions for health conditions"}
+        </p>
         
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="relative flex-1">

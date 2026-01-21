@@ -15,7 +15,13 @@ import {
   ChevronRight,
   Bookmark,
   MessageCircle,
-  ThumbsUp
+  ThumbsUp,
+  Leaf,
+  Heart,
+  Brain,
+  Sun,
+  Baby,
+  Sparkles
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -25,6 +31,64 @@ import Layout from "@/components/layout/Layout";
 import LocalizedLink from "@/components/LocalizedLink";
 import { blogPosts, categories } from "@/data/blogPosts";
 import { toast } from "sonner";
+
+// Category-based visuals for professional blog images
+const categoryVisuals: Record<string, { gradient: string; icon: React.ReactNode; bgPattern: string }> = {
+  fundamentals: { 
+    gradient: "from-emerald-600 via-green-500 to-teal-600", 
+    icon: <Leaf className="w-24 h-24 text-white/90" />,
+    bgPattern: "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+  },
+  doshas: { 
+    gradient: "from-purple-600 via-violet-500 to-indigo-600", 
+    icon: <Sparkles className="w-24 h-24 text-white/90" />,
+    bgPattern: "radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+  },
+  herbs: { 
+    gradient: "from-green-600 via-lime-500 to-emerald-600", 
+    icon: <Leaf className="w-24 h-24 text-white/90" />,
+    bgPattern: "radial-gradient(circle at 25% 75%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+  },
+  lifestyle: { 
+    gradient: "from-sky-600 via-blue-500 to-cyan-600", 
+    icon: <Sun className="w-24 h-24 text-white/90" />,
+    bgPattern: "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+  },
+  diet: { 
+    gradient: "from-orange-600 via-amber-500 to-yellow-600", 
+    icon: <Heart className="w-24 h-24 text-white/90" />,
+    bgPattern: "radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+  },
+  yoga: { 
+    gradient: "from-rose-600 via-pink-500 to-fuchsia-600", 
+    icon: <Sparkles className="w-24 h-24 text-white/90" />,
+    bgPattern: "radial-gradient(circle at 25% 75%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+  },
+  children: { 
+    gradient: "from-cyan-600 via-teal-500 to-emerald-600", 
+    icon: <Baby className="w-24 h-24 text-white/90" />,
+    bgPattern: "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+  },
+  women: { 
+    gradient: "from-pink-600 via-rose-500 to-red-600", 
+    icon: <Heart className="w-24 h-24 text-white/90" />,
+    bgPattern: "radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+  },
+  seasonal: { 
+    gradient: "from-amber-600 via-yellow-500 to-orange-600", 
+    icon: <Sun className="w-24 h-24 text-white/90" />,
+    bgPattern: "radial-gradient(circle at 25% 75%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+  },
+  diseases: { 
+    gradient: "from-blue-600 via-indigo-500 to-violet-600", 
+    icon: <Brain className="w-24 h-24 text-white/90" />,
+    bgPattern: "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)"
+  }
+};
+
+const getCategoryVisual = (categoryId: string) => {
+  return categoryVisuals[categoryId] || categoryVisuals.fundamentals;
+};
 
 const BlogDetail = () => {
   const { id } = useParams();
@@ -315,16 +379,29 @@ const BlogDetail = () => {
               </div>
             </header>
 
-            {/* Featured Image Placeholder for AdSense */}
-            <div className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-              <div className="text-center p-8">
-                <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                  <Tag className="w-10 h-10 text-primary" />
+            {/* Featured Image - Professional Category-based Design */}
+            <div 
+              className={`relative aspect-video rounded-xl overflow-hidden mb-8 bg-gradient-to-br ${getCategoryVisual(post.category).gradient} flex items-center justify-center shadow-lg`}
+              style={{ backgroundImage: getCategoryVisual(post.category).bgPattern }}
+            >
+              <div className="absolute inset-0 bg-black/10" />
+              <div className="absolute inset-0 backdrop-blur-[0.5px]" />
+              <div className="relative z-10 text-center">
+                <div className="mb-4 transform hover:scale-110 transition-transform duration-500">
+                  {getCategoryVisual(post.category).icon}
                 </div>
-                <p className="text-muted-foreground">
+                <p className="text-white/90 text-xl font-semibold">
+                  {category ? (language === "hi" ? category.labelHi : category.label) : "Ayurveda"}
+                </p>
+                <p className="text-white/70 text-sm mt-1">
                   {language === "hi" ? "आयुर्वेदिक ज्ञान" : "Ayurvedic Wisdom"}
                 </p>
               </div>
+              {/* Decorative elements */}
+              <div className="absolute top-4 left-4 w-20 h-20 border-2 border-white/20 rounded-full" />
+              <div className="absolute bottom-4 right-4 w-32 h-32 border-2 border-white/10 rounded-full" />
+              <div className="absolute top-1/2 left-8 w-2 h-16 bg-white/10 rounded-full transform -translate-y-1/2" />
+              <div className="absolute top-1/2 right-8 w-2 h-16 bg-white/10 rounded-full transform -translate-y-1/2" />
             </div>
 
             {/* Ad Placeholder - Top */}

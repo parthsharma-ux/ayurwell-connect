@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { remedies } from "@/data/remedies";
@@ -12,6 +13,71 @@ const RemedyDetail = () => {
   const labels = useDataTranslations(language);
   
   const rawRemedy = remedies.find((r) => r.id === id);
+
+  // SEO JSON-LD for individual remedy
+  useEffect(() => {
+    if (!rawRemedy) return;
+
+    document.title = `${rawRemedy.title} - ${language === "hi" ? "आयुर्वेदिक उपचार" : "Ayurvedic Remedy"} | AyurVeda`;
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', 
+      `${rawRemedy.problem} के लिए ${rawRemedy.title}। सामग्री: ${rawRemedy.ingredients.map(i => i.name).join(", ")}। ${rawRemedy.preparation_time} में तैयार।`
+    );
+
+    const existingScript = document.querySelector('script[type="application/ld+json"][data-page="remedy-detail"]');
+    if (existingScript) existingScript.remove();
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": rawRemedy.title,
+      "description": `Natural remedy for ${rawRemedy.problem}`,
+      "totalTime": rawRemedy.preparation_time,
+      "supply": rawRemedy.ingredients.map(ing => ({
+        "@type": "HowToSupply",
+        "name": ing.name,
+        "requiredQuantity": ing.quantity
+      })),
+      "step": rawRemedy.method.map((step, index) => ({
+        "@type": "HowToStep",
+        "position": index + 1,
+        "text": step,
+        "name": `Step ${index + 1}`
+      })),
+      "tool": [],
+      "image": [],
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "INR",
+        "value": "50"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+          { "@type": "ListItem", "position": 2, "name": "Remedies", "item": "/remedies" },
+          { "@type": "ListItem", "position": 3, "name": rawRemedy.title, "item": `/remedies/${rawRemedy.id}` }
+        ]
+      }
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-page', 'remedy-detail');
+    script.textContent = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      const scriptEl = document.querySelector('script[type="application/ld+json"][data-page="remedy-detail"]');
+      if (scriptEl) scriptEl.remove();
+    };
+  }, [rawRemedy, language]);
 
   if (!rawRemedy) {
     return <Layout><div className="container py-20 text-center">{language === "hi" ? "उपचार नहीं मिला" : "Remedy not found"}</div></Layout>;
