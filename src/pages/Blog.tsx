@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Calendar, Clock, User, ArrowRight, Search, Tag, TrendingUp, Bookmark, Leaf, Heart, Brain, Sun, Baby, Sparkles } from "lucide-react";
+import { Calendar, Clock, User, ArrowRight, Search, Tag, TrendingUp, Bookmark } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -10,62 +10,34 @@ import Layout from "@/components/layout/Layout";
 import LocalizedLink from "@/components/LocalizedLink";
 import { blogPosts, categories } from "@/data/blogPosts";
 
-// Category-based image backgrounds and icons for visual appeal
-const categoryImages: Record<string, { gradient: string; icon: React.ReactNode; pattern: string }> = {
-  fundamentals: { 
-    gradient: "from-emerald-500/30 via-green-400/20 to-teal-500/30", 
-    icon: <Leaf className="w-16 h-16 text-emerald-600" />,
-    pattern: "radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(20, 184, 166, 0.15) 0%, transparent 50%)"
-  },
-  doshas: { 
-    gradient: "from-purple-500/30 via-violet-400/20 to-indigo-500/30", 
-    icon: <Sparkles className="w-16 h-16 text-purple-600" />,
-    pattern: "radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%)"
-  },
-  herbs: { 
-    gradient: "from-green-500/30 via-lime-400/20 to-emerald-500/30", 
-    icon: <Leaf className="w-16 h-16 text-green-600" />,
-    pattern: "radial-gradient(circle at 25% 75%, rgba(34, 197, 94, 0.15) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(16, 185, 129, 0.15) 0%, transparent 50%)"
-  },
-  lifestyle: { 
-    gradient: "from-sky-500/30 via-blue-400/20 to-cyan-500/30", 
-    icon: <Sun className="w-16 h-16 text-sky-600" />,
-    pattern: "radial-gradient(circle at 20% 80%, rgba(14, 165, 233, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)"
-  },
-  diet: { 
-    gradient: "from-orange-500/30 via-amber-400/20 to-yellow-500/30", 
-    icon: <Heart className="w-16 h-16 text-orange-600" />,
-    pattern: "radial-gradient(circle at 30% 70%, rgba(249, 115, 22, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(234, 179, 8, 0.15) 0%, transparent 50%)"
-  },
-  yoga: { 
-    gradient: "from-rose-500/30 via-pink-400/20 to-fuchsia-500/30", 
-    icon: <Sparkles className="w-16 h-16 text-rose-600" />,
-    pattern: "radial-gradient(circle at 25% 75%, rgba(244, 63, 94, 0.15) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(217, 70, 239, 0.15) 0%, transparent 50%)"
-  },
-  children: { 
-    gradient: "from-cyan-500/30 via-teal-400/20 to-emerald-500/30", 
-    icon: <Baby className="w-16 h-16 text-cyan-600" />,
-    pattern: "radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%)"
-  },
-  women: { 
-    gradient: "from-pink-500/30 via-rose-400/20 to-red-500/30", 
-    icon: <Heart className="w-16 h-16 text-pink-600" />,
-    pattern: "radial-gradient(circle at 30% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(239, 68, 68, 0.15) 0%, transparent 50%)"
-  },
-  seasonal: { 
-    gradient: "from-amber-500/30 via-yellow-400/20 to-orange-500/30", 
-    icon: <Sun className="w-16 h-16 text-amber-600" />,
-    pattern: "radial-gradient(circle at 25% 75%, rgba(245, 158, 11, 0.15) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(249, 115, 22, 0.15) 0%, transparent 50%)"
-  },
-  diseases: { 
-    gradient: "from-blue-500/30 via-indigo-400/20 to-violet-500/30", 
-    icon: <Brain className="w-16 h-16 text-blue-600" />,
-    pattern: "radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)"
-  }
+// Import hero images for each category
+import fundamentalsHero from "@/assets/blog/fundamentals-hero.jpg";
+import doshasHero from "@/assets/blog/doshas-hero.jpg";
+import herbsHero from "@/assets/blog/herbs-hero.jpg";
+import lifestyleHero from "@/assets/blog/lifestyle-hero.jpg";
+import dietHero from "@/assets/blog/diet-hero.jpg";
+import yogaHero from "@/assets/blog/yoga-hero.jpg";
+import childrenHero from "@/assets/blog/children-hero.jpg";
+import womenHero from "@/assets/blog/women-hero.jpg";
+import seasonalHero from "@/assets/blog/seasonal-hero.jpg";
+import diseasesHero from "@/assets/blog/diseases-hero.jpg";
+
+// Category-based hero images mapping
+const categoryHeroImages: Record<string, string> = {
+  fundamentals: fundamentalsHero,
+  doshas: doshasHero,
+  herbs: herbsHero,
+  lifestyle: lifestyleHero,
+  diet: dietHero,
+  yoga: yogaHero,
+  children: childrenHero,
+  women: womenHero,
+  seasonal: seasonalHero,
+  diseases: diseasesHero
 };
 
-const getCategoryVisual = (categoryId: string) => {
-  return categoryImages[categoryId] || categoryImages.fundamentals;
+const getCategoryImage = (categoryId: string) => {
+  return categoryHeroImages[categoryId] || fundamentalsHero;
 };
 
 const Blog = () => {
@@ -197,13 +169,19 @@ const Blog = () => {
                 const category = categories.find(c => c.id === post.category);
                 return (
                   <LocalizedLink key={post.id} to={`/blog/${post.id}`}>
-                    <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-primary/20">
-                      <CardHeader className="pb-3">
-                        <Badge variant="secondary" className="w-fit text-xs">
+                    <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-primary/20 overflow-hidden">
+                      <div className="relative h-40 overflow-hidden">
+                        <img 
+                          src={getCategoryImage(post.category)} 
+                          alt={language === "hi" ? post.titleHi : post.title}
+                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        <Badge className="absolute bottom-3 left-3 bg-white/90 text-foreground text-xs">
                           {category ? (language === "hi" ? category.labelHi : category.label) : "Ayurveda"}
                         </Badge>
-                      </CardHeader>
-                      <CardContent className="pb-3">
+                      </div>
+                      <CardContent className="pt-4 pb-3">
                         <h3 className="font-bold text-foreground mb-2 line-clamp-2 hover:text-primary transition-colors">
                           {language === "hi" ? post.titleHi : post.title}
                         </h3>
@@ -276,19 +254,18 @@ const Blog = () => {
                       <LocalizedLink key={post.id} to={`/blog/${post.id}`}>
                         <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/40 overflow-hidden">
                           <div className="flex flex-col md:flex-row">
-                            <div className="md:w-1/3 p-4">
-                              <div 
-                                className={`aspect-video md:aspect-square rounded-lg bg-gradient-to-br ${getCategoryVisual(post.category).gradient} flex items-center justify-center relative overflow-hidden`}
-                                style={{ backgroundImage: getCategoryVisual(post.category).pattern }}
-                              >
-                                <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px]" />
-                                <div className="relative z-10 transform hover:scale-110 transition-transform duration-300">
-                                  {getCategoryVisual(post.category).icon}
-                                </div>
+                            <div className="md:w-1/3">
+                              <div className="aspect-video md:aspect-square h-full relative overflow-hidden">
+                                <img 
+                                  src={getCategoryImage(post.category)} 
+                                  alt={language === "hi" ? post.titleHi : post.title}
+                                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/10" />
                               </div>
                             </div>
-                            <div className="md:w-2/3 p-4 md:pl-0">
-                              <div className="flex items-center gap-2 mb-2">
+                            <div className="md:w-2/3 p-4 md:p-6">
+                              <div className="flex items-center gap-2 mb-3">
                                 <Badge variant="secondary" className="text-xs">
                                   {category ? (language === "hi" ? category.labelHi : category.label) : "Ayurveda"}
                                 </Badge>
@@ -333,13 +310,6 @@ const Blog = () => {
 
             {/* Sidebar */}
             <div className="space-y-8">
-              {/* Ad Placeholder */}
-              <div className="p-6 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center">
-                <p className="text-sm text-muted-foreground">
-                  {language === "hi" ? "विज्ञापन स्थान" : "Advertisement Space"}
-                </p>
-              </div>
-
               {/* Categories */}
               <Card>
                 <CardHeader>
@@ -381,8 +351,12 @@ const Blog = () => {
                   {recentPosts.map((post) => (
                     <LocalizedLink key={post.id} to={`/blog/${post.id}`}>
                       <div className="flex gap-3 hover:bg-muted p-2 rounded-lg transition-colors">
-                        <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center flex-shrink-0">
-                          <Bookmark className="w-6 h-6 text-primary/60" />
+                        <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                          <img 
+                            src={getCategoryImage(post.category)} 
+                            alt={language === "hi" ? post.titleHi : post.title}
+                            className="w-full h-full object-cover"
+                          />
                         </div>
                         <div>
                           <h4 className="font-medium text-foreground text-sm line-clamp-2 hover:text-primary transition-colors">
@@ -423,13 +397,6 @@ const Blog = () => {
                   </div>
                 </CardContent>
               </Card>
-
-              {/* Ad Placeholder */}
-              <div className="p-6 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center">
-                <p className="text-sm text-muted-foreground">
-                  {language === "hi" ? "विज्ञापन स्थान" : "Advertisement Space"}
-                </p>
-              </div>
             </div>
           </div>
         </div>
