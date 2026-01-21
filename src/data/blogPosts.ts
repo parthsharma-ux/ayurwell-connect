@@ -772,7 +772,7 @@ export const blogPosts: BlogPost[] = [
     titleHi: "सर्दी-खांसी के 15 शक्तिशाली घरेलू उपचार जो वास्तव में काम करते हैं",
     excerpt: "Discover effective kitchen-based remedies for cold and cough. These natural solutions provide quick relief without side effects.",
     excerptHi: "सर्दी और खांसी के लिए प्रभावी किचन-आधारित उपचार खोजें। ये प्राकृतिक समाधान बिना साइड इफेक्ट के तेज राहत प्रदान करते हैं।",
-    content: \`
+    content: `
       <h2>Why Choose Home Remedies for Cold and Cough?</h2>
       <p>While modern medicines suppress symptoms, Ayurvedic home remedies work with your body to naturally expel toxins and strengthen immunity. These time-tested remedies are safe, effective, and readily available in your kitchen.</p>
       
@@ -853,8 +853,8 @@ export const blogPosts: BlogPost[] = [
       
       <h2>When to See a Doctor</h2>
       <p>Consult a healthcare provider if symptoms persist beyond 7 days, you have high fever, difficulty breathing, or blood in mucus.</p>
-    \`,
-    contentHi: \`
+    `,
+    contentHi: `
       <h2>सर्दी-खांसी के लिए घरेलू उपचार क्यों चुनें?</h2>
       <p>जबकि आधुनिक दवाएं लक्षणों को दबाती हैं, आयुर्वेदिक घरेलू उपचार आपके शरीर के साथ मिलकर विषाक्त पदार्थों को प्राकृतिक रूप से बाहर निकालते हैं और प्रतिरक्षा को मजबूत करते हैं।</p>
       
@@ -895,7 +895,7 @@ export const blogPosts: BlogPost[] = [
         <li>खिचड़ी जैसे हल्के, आसानी से पचने वाले भोजन खाएं</li>
         <li>सभी भोजन में गर्म मसाले शामिल करें</li>
       </ul>
-    \`,
+    `,
     author: "Dr. Ananya Sharma",
     authorHi: "डॉ. अनन्या शर्मा",
     date: "2024-02-05",
@@ -912,7 +912,7 @@ export const blogPosts: BlogPost[] = [
     titleHi: "पाचन समस्याओं के लिए आयुर्वेदिक घरेलू उपचार: गैस, एसिडिटी और कब्ज",
     excerpt: "Simple kitchen ingredients that solve common digestive issues. Learn natural remedies for gas, bloating, acidity, and constipation.",
     excerptHi: "सामान्य पाचन समस्याओं को हल करने वाली सरल रसोई सामग्री। गैस, सूजन, एसिडिटी और कब्ज के प्राकृतिक उपचार जानें।",
-    content: \`
+    content: `
       <h2>Understanding Digestion in Ayurveda</h2>
       <p>In Ayurveda, strong digestive fire (Agni) is the foundation of good health. When Agni is weak or imbalanced, it leads to ama (toxins) accumulation, causing various digestive issues.</p>
       
@@ -990,8 +990,8 @@ export const blogPosts: BlogPost[] = [
         <li>Avoid drinking water immediately after meals</li>
         <li>Include fiber-rich foods in diet</li>
       </ul>
-    \`,
-    contentHi: \`
+    `,
+    contentHi: `
       <h2>आयुर्वेद में पाचन को समझना</h2>
       <p>आयुर्वेद में, मजबूत पाचन अग्नि (अग्नि) अच्छे स्वास्थ्य की नींव है। जब अग्नि कमजोर या असंतुलित होती है, तो यह आम (विषाक्त पदार्थों) के संचय की ओर ले जाती है।</p>
       
@@ -1035,7 +1035,7 @@ export const blogPosts: BlogPost[] = [
         <li>भोजन को ठीक से चबाएं - कम से कम 32 बार</li>
         <li>भोजन के बाद 10-15 मिनट टहलें</li>
       </ul>
-    \`,
+    `,
     author: "Dr. Priya Mehta",
     authorHi: "डॉ. प्रिया मेहता",
     date: "2024-02-10",
@@ -1052,7 +1052,7 @@ export const blogPosts: BlogPost[] = [
     titleHi: "चमकती त्वचा के लिए प्राकृतिक आयुर्वेदिक घरेलू उपचार: फेस पैक और उपचार",
     excerpt: "Achieve radiant skin naturally with kitchen ingredients. DIY face packs, treatments for acne, dark spots, and anti-aging remedies.",
     excerptHi: "रसोई की सामग्री से प्राकृतिक रूप से चमकदार त्वचा पाएं। DIY फेस पैक, मुंहासे, दाग-धब्बे और एंटी-एजिंग उपचार।",
-    content: \`
+    content: `
       <h2>Ayurvedic Approach to Skin Care</h2>
       <p>In Ayurveda, beautiful skin is a reflection of internal health. Healthy digestion, proper sleep, and balanced doshas create natural radiance from within.</p>
       
@@ -1123,8 +1123,8 @@ export const blogPosts: BlogPost[] = [
         <li>Apply ghee on navel before sleep</li>
         <li>Get 7-8 hours of quality sleep</li>
       </ul>
-    \`,
-    contentHi: \`
+    `,
+    contentHi: `
       <h2>त्वचा देखभाल का आयुर्वेदिक दृष्टिकोण</h2>
       <p>आयुर्वेद में, सुंदर त्वचा आंतरिक स्वास्थ्य का प्रतिबिंब है। स्वस्थ पाचन, उचित नींद और संतुलित दोष भीतर से प्राकृतिक चमक पैदा करते हैं।</p>
       
@@ -1164,7 +1164,7 @@ export const blogPosts: BlogPost[] = [
         <li>डिटॉक्स के लिए सोने से पहले 1 चम्मच त्रिफला लें</li>
         <li>सोने से पहले नाभि पर घी लगाएं</li>
       </ul>
-    \`,
+    `,
     author: "Dr. Lakshmi Devi",
     authorHi: "डॉ. लक्ष्मी देवी",
     date: "2024-02-15",
@@ -1181,7 +1181,7 @@ export const blogPosts: BlogPost[] = [
     titleHi: "बालों का झड़ना प्राकृतिक रूप से रोकें: बालों के विकास के लिए 20+ आयुर्वेदिक घरेलू उपचार",
     excerpt: "Combat hair fall with powerful home remedies. Learn about hair oils, masks, and dietary changes for thick, healthy hair naturally.",
     excerptHi: "शक्तिशाली घरेलू उपचारों से बालों का झड़ना रोकें। घने, स्वस्थ बालों के लिए तेल, मास्क और आहार परिवर्तन के बारे में जानें।",
-    content: \`
+    content: `
       <h2>Understanding Hair Fall in Ayurveda</h2>
       <p>In Ayurveda, hair health is connected to bone tissue (Asthi Dhatu) and is influenced by Pitta dosha. Excess heat in the body, poor nutrition, and stress are primary causes of hair fall.</p>
       
@@ -1254,8 +1254,8 @@ export const blogPosts: BlogPost[] = [
         <li>Get adequate sleep (7-8 hours)</li>
         <li>Avoid chemical treatments and excessive heat styling</li>
       </ul>
-    \`,
-    contentHi: \`
+    `,
+    contentHi: `
       <h2>आयुर्वेद में बालों का झड़ना समझना</h2>
       <p>आयुर्वेद में, बालों का स्वास्थ्य अस्थि धातु से जुड़ा है और पित्त दोष से प्रभावित होता है। शरीर में अधिक गर्मी, खराब पोषण और तनाव बालों के झड़ने के प्राथमिक कारण हैं।</p>
       
@@ -1292,7 +1292,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>बायोटिन:</strong> शकरकंद, बादाम, अंडे</li>
         <li><strong>ओमेगा-3:</strong> अलसी, अखरोट</li>
       </ul>
-    \`,
+    `,
     author: "Dr. Meera Joshi",
     authorHi: "डॉ. मीरा जोशी",
     date: "2024-02-20",
@@ -1309,7 +1309,7 @@ export const blogPosts: BlogPost[] = [
     titleHi: "जोड़ों के दर्द और गठिया के लिए आयुर्वेदिक घरेलू उपचार: प्राकृतिक राहत",
     excerpt: "Find natural relief from joint pain and arthritis with kitchen remedies. Oils, pastes, and dietary changes that reduce inflammation.",
     excerptHi: "किचन उपचारों से जोड़ों के दर्द और गठिया से प्राकृतिक राहत पाएं। सूजन कम करने वाले तेल, पेस्ट और आहार परिवर्तन।",
-    content: \`
+    content: `
       <h2>Understanding Joint Pain in Ayurveda</h2>
       <p>In Ayurveda, joint pain (Sandhivata) is primarily a Vata disorder. Imbalanced Vata causes dryness in joints, reduced synovial fluid, and eventual degeneration. Treatment focuses on pacifying Vata and reducing ama (toxins).</p>
       
@@ -1384,8 +1384,8 @@ export const blogPosts: BlogPost[] = [
         <li>Practice gentle yoga - avoid high-impact exercises</li>
         <li>Maintain healthy weight to reduce joint stress</li>
       </ul>
-    \`,
-    contentHi: \`
+    `,
+    contentHi: `
       <h2>आयुर्वेद में जोड़ों के दर्द को समझना</h2>
       <p>आयुर्वेद में, जोड़ों का दर्द (संधिवात) मुख्य रूप से वात विकार है। असंतुलित वात जोड़ों में सूखापन, कम साइनोवियल तरल पदार्थ और अंततः क्षरण का कारण बनता है।</p>
       
@@ -1422,7 +1422,7 @@ export const blogPosts: BlogPost[] = [
         <li><strong>बचें:</strong> ठंडे खाद्य पदार्थ, कच्ची सब्जियां, अतिरिक्त चीनी</li>
         <li><strong>लाभदायक:</strong> मछली का तेल, अखरोट, अलसी ओमेगा-3 के लिए</li>
       </ul>
-    \`,
+    `,
     author: "Dr. Suresh Acharya",
     authorHi: "डॉ. सुरेश आचार्य",
     date: "2024-02-25",
@@ -1439,7 +1439,7 @@ export const blogPosts: BlogPost[] = [
     titleHi: "प्राकृतिक रूप से मजबूत प्रतिरक्षा बनाएं: 25 आयुर्वेदिक घरेलू उपचार",
     excerpt: "Strengthen your immune system with proven Ayurvedic remedies. From immunity kadha to lifestyle practices that protect against infections.",
     excerptHi: "सिद्ध आयुर्वेदिक उपचारों से अपनी प्रतिरक्षा प्रणाली को मजबूत करें। इम्युनिटी काढ़ा से लेकर संक्रमण से बचाने वाली जीवनशैली प्रथाओं तक।",
-    content: \`
+    content: `
       <h2>Immunity in Ayurveda (Vyadhikshamatva)</h2>
       <p>Ayurveda describes immunity as Vyadhikshamatva - the body's ability to resist and recover from disease. Strong Agni (digestive fire), balanced Ojas (vital essence), and healthy tissues create natural immunity.</p>
       
@@ -1529,8 +1529,8 @@ export const blogPosts: BlogPost[] = [
         <li>Manage stress through meditation</li>
         <li>Maintain positive relationships and mental peace</li>
       </ul>
-    \`,
-    contentHi: \`
+    `,
+    contentHi: `
       <h2>आयुर्वेद में प्रतिरक्षा (व्याधिक्षमत्व)</h2>
       <p>आयुर्वेद प्रतिरक्षा को व्याधिक्षमत्व के रूप में वर्णित करता है - रोग का प्रतिरोध करने और ठीक होने की शरीर की क्षमता। मजबूत अग्नि, संतुलित ओजस और स्वस्थ धातु प्राकृतिक प्रतिरक्षा बनाते हैं।</p>
       
@@ -1582,7 +1582,7 @@ export const blogPosts: BlogPost[] = [
         <li>प्रतिरक्षा-बढ़ाने वाले मसाले जोड़ें: हल्दी, अदरक, काली मिर्च, जीरा</li>
         <li>प्रोसेस्ड और ठंडे खाद्य पदार्थों से बचें</li>
       </ul>
-    \`,
+    `,
     author: "Dr. Ravi Kumar",
     authorHi: "डॉ. रवि कुमार",
     date: "2024-03-01",
@@ -1599,7 +1599,7 @@ export const blogPosts: BlogPost[] = [
     titleHi: "आयुर्वेदिक वजन घटाना: प्राकृतिक रूप से वसा जलाने के घरेलू उपचार",
     excerpt: "Lose weight the Ayurvedic way without crash diets. Natural drinks, herbs, and lifestyle changes for sustainable fat loss.",
     excerptHi: "क्रैश डाइट के बिना आयुर्वेदिक तरीके से वजन कम करें। स्थायी वसा हानि के लिए प्राकृतिक पेय, जड़ी-बूटियां और जीवनशैली परिवर्तन।",
-    content: \`
+    content: `
       <h2>Ayurvedic Perspective on Weight Gain</h2>
       <p>In Ayurveda, excess weight (Sthaulya) is primarily a Kapha disorder caused by weak digestive fire (Agni), sedentary lifestyle, and improper eating habits. The goal is to kindle Agni and remove Ama (toxins).</p>
       
@@ -1685,8 +1685,8 @@ export const blogPosts: BlogPost[] = [
         <li>Dry massage (Garshana) with silk gloves</li>
         <li>Adequate sleep (7-8 hours)</li>
       </ul>
-    \`,
-    contentHi: \`
+    `,
+    contentHi: `
       <h2>वजन बढ़ने पर आयुर्वेदिक दृष्टिकोण</h2>
       <p>आयुर्वेद में, अतिरिक्त वजन (स्थौल्य) मुख्य रूप से कफ विकार है जो कमजोर पाचन अग्नि, गतिहीन जीवनशैली और अनुचित खान-पान की आदतों के कारण होता है।</p>
       
@@ -1732,7 +1732,7 @@ export const blogPosts: BlogPost[] = [
         <li>रिफाइंड कार्ब्स और चीनी</li>
         <li>रात को देर से खाना</li>
       </ul>
-    \`,
+    `,
     author: "Dr. Vikram Patel",
     authorHi: "डॉ. विक्रम पटेल",
     date: "2024-03-05",
