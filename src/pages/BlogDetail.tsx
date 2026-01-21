@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { 
   Calendar, 
   Clock, 
@@ -15,16 +15,21 @@ import {
   ChevronRight,
   Bookmark,
   MessageCircle,
-  ThumbsUp
+  ThumbsUp,
+  Mail,
+  Loader2,
+  Check
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import Layout from "@/components/layout/Layout";
 import LocalizedLink from "@/components/LocalizedLink";
 import { blogPosts, categories } from "@/data/blogPosts";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 // Import professional hero images
 import fundamentalsHero from "@/assets/blog/fundamentals-hero.jpg";
@@ -56,13 +61,57 @@ const getCategoryImage = (categoryId: string) => {
   return categoryHeroImages[categoryId] || fundamentalsHero;
 };
 
+interface TableOfContentsItem {
+  id: string;
+  text: string;
+  level: number;
+}
+
 const BlogDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { language, t } = useLanguage();
+  const [activeHeading, setActiveHeading] = useState<string>("");
+  const [email, setEmail] = useState("");
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   const post = blogPosts.find(p => p.id === id);
   const category = categories.find(c => c.id === post?.category);
+
+  // Parse headings from content for dynamic TOC
+  const tableOfContents = useMemo(() => {
+    if (!post) return [];
+    
+    const content = language === "hi" ? post.contentHi : post.content;
+    const headingRegex = /<h([2-3])[^>]*>([^<]+)<\/h[2-3]>/gi;
+    const headings: TableOfContentsItem[] = [];
+    let match;
+    
+    while ((match = headingRegex.exec(content)) !== null) {
+      const level = parseInt(match[1]);
+      const text = match[2].trim();
+      const id = text.toLowerCase().replace(/[^a-z0-9\u0900-\u097F]+/gi, '-').replace(/(^-|-$)/g, '');
+      headings.push({ id, text, level });
+    }
+    
+    return headings;
+  }, [post, language]);
+
+  // Process content to add IDs to headings
+  const processedContent = useMemo(() => {
+    if (!post) return "";
+    
+    let content = language === "hi" ? post.contentHi : post.content;
+    
+    // Add IDs to h2 and h3 tags
+    content = content.replace(/<h([2-3])([^>]*)>([^<]+)<\/h[2-3]>/gi, (match, level, attrs, text) => {
+      const id = text.trim().toLowerCase().replace(/[^a-z0-9\u0900-\u097F]+/gi, '-').replace(/(^-|-$)/g, '');
+      return `<h${level}${attrs} id="${id}">${text}</h${level}>`;
+    });
+    
+    return content;
+  }, [post, language]);
 
   // Get related posts (same category, excluding current)
   const relatedPosts = blogPosts
@@ -73,6 +122,77 @@ const BlogDetail = () => {
   const recentPosts = blogPosts
     .filter(p => p.id !== id)
     .slice(0, 4);
+
+  // Smooth scroll to heading
+  const scrollToHeading = (headingId: string) => {
+    const element = document.getElementById(headingId);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // Track active heading on scroll
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveHeading(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: '-100px 0px -70% 0px' }
+    );
+
+    tableOfContents.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [tableOfContents]);
+
+  // Newsletter subscription handler
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes('@')) {
+      toast.error(language === "hi" ? "कृपया वैध ईमेल दर्ज करें" : "Please enter a valid email");
+      return;
+    }
+
+    setIsSubscribing(true);
+    
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert({ email: email.trim(), source: 'blog' });
+      
+      if (error) {
+        if (error.code === '23505') {
+          toast.info(language === "hi" ? "आप पहले से सब्सक्राइब हैं!" : "You're already subscribed!");
+        } else {
+          throw error;
+        }
+      } else {
+        setIsSubscribed(true);
+        toast.success(language === "hi" ? "सफलतापूर्वक सब्सक्राइब किया!" : "Successfully subscribed!");
+      }
+      setEmail("");
+    } catch (error) {
+      console.error("Subscription error:", error);
+      toast.error(language === "hi" ? "सब्सक्रिप्शन विफल। कृपया पुनः प्रयास करें।" : "Subscription failed. Please try again.");
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
 
   useEffect(() => {
     if (post) {
@@ -344,7 +464,7 @@ const BlogDetail = () => {
             {/* Article Content */}
             <div 
               className="prose prose-lg max-w-none 
-                prose-headings:text-foreground prose-headings:font-bold
+                prose-headings:text-foreground prose-headings:font-bold prose-headings:scroll-mt-24
                 prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h2:border-b prose-h2:pb-2 prose-h2:border-primary/20
                 prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3
                 prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:mb-4
@@ -356,9 +476,7 @@ const BlogDetail = () => {
                 prose-table:w-full prose-table:border-collapse
                 prose-th:border prose-th:border-border prose-th:bg-muted prose-th:p-2 prose-th:text-left
                 prose-td:border prose-td:border-border prose-td:p-2"
-              dangerouslySetInnerHTML={{ 
-                __html: language === "hi" ? post.contentHi : post.content 
-              }}
+              dangerouslySetInnerHTML={{ __html: processedContent }}
             />
 
             {/* Tags */}
@@ -459,37 +577,36 @@ const BlogDetail = () => {
           {/* Sidebar */}
           <aside className="lg:col-span-1">
             <div className="sticky top-24 space-y-6">
-              {/* Table of Contents */}
-              <Card>
-                <CardContent className="p-4">
-                  <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
-                    <span className="w-1 h-5 bg-primary rounded-full" />
-                    {language === "hi" ? "इस लेख में" : "In This Article"}
-                  </h3>
-                  <ul className="space-y-2 text-sm">
-                    <li>
-                      <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                        • {language === "hi" ? "परिचय" : "Introduction"}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                        • {language === "hi" ? "मुख्य लाभ" : "Key Benefits"}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                        • {language === "hi" ? "उपयोग कैसे करें" : "How to Use"}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                        • {language === "hi" ? "निष्कर्ष" : "Conclusion"}
-                      </a>
-                    </li>
-                  </ul>
-                </CardContent>
-              </Card>
+              {/* Dynamic Table of Contents */}
+              {tableOfContents.length > 0 && (
+                <Card>
+                  <CardContent className="p-4">
+                    <h3 className="font-bold text-foreground mb-4 flex items-center gap-2">
+                      <span className="w-1 h-5 bg-primary rounded-full" />
+                      {language === "hi" ? "इस लेख में" : "In This Article"}
+                    </h3>
+                    <nav className="space-y-1">
+                      {tableOfContents.map((item) => (
+                        <button
+                          key={item.id}
+                          onClick={() => scrollToHeading(item.id)}
+                          className={`block w-full text-left text-sm py-1.5 px-2 rounded transition-all ${
+                            item.level === 3 ? 'pl-5' : ''
+                          } ${
+                            activeHeading === item.id
+                              ? 'bg-primary/10 text-primary font-medium'
+                              : 'text-muted-foreground hover:text-primary hover:bg-muted/50'
+                          }`}
+                        >
+                          <span className="line-clamp-2">
+                            {item.level === 3 ? '◦ ' : '• '}{item.text}
+                          </span>
+                        </button>
+                      ))}
+                    </nav>
+                  </CardContent>
+                </Card>
+              )}
 
               {/* Recent Posts */}
               <Card>
@@ -548,21 +665,72 @@ const BlogDetail = () => {
                 </CardContent>
               </Card>
 
-              {/* Newsletter CTA */}
+              {/* Newsletter Signup */}
               <Card className="bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20">
-                <CardContent className="p-6 text-center">
-                  <h3 className="font-bold text-foreground mb-2">
-                    {language === "hi" ? "अपडेट रहें" : "Stay Updated"}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {language === "hi" 
-                      ? "आयुर्वेदिक स्वास्थ्य युक्तियां अपने इनबॉक्स में पाएं"
-                      : "Get Ayurvedic health tips in your inbox"
-                    }
-                  </p>
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                    {language === "hi" ? "सब्सक्राइब करें" : "Subscribe"}
-                  </Button>
+                <CardContent className="p-6">
+                  {isSubscribed ? (
+                    <div className="text-center py-4">
+                      <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center mx-auto mb-3">
+                        <Check className="w-6 h-6 text-green-600" />
+                      </div>
+                      <h3 className="font-bold text-foreground mb-2">
+                        {language === "hi" ? "सब्सक्राइब्ड!" : "Subscribed!"}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {language === "hi" 
+                          ? "आयुर्वेदिक स्वास्थ्य युक्तियां जल्द ही आपके इनबॉक्स में"
+                          : "Ayurvedic health tips coming to your inbox soon"
+                        }
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="text-center mb-4">
+                        <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-3">
+                          <Mail className="w-6 h-6 text-primary" />
+                        </div>
+                        <h3 className="font-bold text-foreground mb-2">
+                          {language === "hi" ? "अपडेट रहें" : "Stay Updated"}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {language === "hi" 
+                            ? "आयुर्वेदिक स्वास्थ्य युक्तियां अपने इनबॉक्स में पाएं"
+                            : "Get Ayurvedic health tips in your inbox"
+                          }
+                        </p>
+                      </div>
+                      <form onSubmit={handleSubscribe} className="space-y-3">
+                        <Input
+                          type="email"
+                          placeholder={language === "hi" ? "आपका ईमेल" : "Your email"}
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          className="bg-background"
+                          required
+                        />
+                        <Button 
+                          type="submit" 
+                          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                          disabled={isSubscribing}
+                        >
+                          {isSubscribing ? (
+                            <>
+                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              {language === "hi" ? "सब्सक्राइब हो रहा है..." : "Subscribing..."}
+                            </>
+                          ) : (
+                            language === "hi" ? "सब्सक्राइब करें" : "Subscribe"
+                          )}
+                        </Button>
+                      </form>
+                      <p className="text-xs text-muted-foreground text-center mt-3">
+                        {language === "hi" 
+                          ? "हम आपकी गोपनीयता का सम्मान करते हैं"
+                          : "We respect your privacy"
+                        }
+                      </p>
+                    </>
+                  )}
                 </CardContent>
               </Card>
             </div>
