@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Calendar, Clock, User, ArrowRight, Search, Tag, TrendingUp, Bookmark } from "lucide-react";
+import { Calendar, Clock, User, ArrowRight, Search, Tag, TrendingUp, Bookmark, Leaf, Heart, Brain, Sun, Baby, Sparkles } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -9,6 +9,64 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Layout from "@/components/layout/Layout";
 import LocalizedLink from "@/components/LocalizedLink";
 import { blogPosts, categories } from "@/data/blogPosts";
+
+// Category-based image backgrounds and icons for visual appeal
+const categoryImages: Record<string, { gradient: string; icon: React.ReactNode; pattern: string }> = {
+  fundamentals: { 
+    gradient: "from-emerald-500/30 via-green-400/20 to-teal-500/30", 
+    icon: <Leaf className="w-16 h-16 text-emerald-600" />,
+    pattern: "radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(20, 184, 166, 0.15) 0%, transparent 50%)"
+  },
+  doshas: { 
+    gradient: "from-purple-500/30 via-violet-400/20 to-indigo-500/30", 
+    icon: <Sparkles className="w-16 h-16 text-purple-600" />,
+    pattern: "radial-gradient(circle at 30% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%)"
+  },
+  herbs: { 
+    gradient: "from-green-500/30 via-lime-400/20 to-emerald-500/30", 
+    icon: <Leaf className="w-16 h-16 text-green-600" />,
+    pattern: "radial-gradient(circle at 25% 75%, rgba(34, 197, 94, 0.15) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(16, 185, 129, 0.15) 0%, transparent 50%)"
+  },
+  lifestyle: { 
+    gradient: "from-sky-500/30 via-blue-400/20 to-cyan-500/30", 
+    icon: <Sun className="w-16 h-16 text-sky-600" />,
+    pattern: "radial-gradient(circle at 20% 80%, rgba(14, 165, 233, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%)"
+  },
+  diet: { 
+    gradient: "from-orange-500/30 via-amber-400/20 to-yellow-500/30", 
+    icon: <Heart className="w-16 h-16 text-orange-600" />,
+    pattern: "radial-gradient(circle at 30% 70%, rgba(249, 115, 22, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(234, 179, 8, 0.15) 0%, transparent 50%)"
+  },
+  yoga: { 
+    gradient: "from-rose-500/30 via-pink-400/20 to-fuchsia-500/30", 
+    icon: <Sparkles className="w-16 h-16 text-rose-600" />,
+    pattern: "radial-gradient(circle at 25% 75%, rgba(244, 63, 94, 0.15) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(217, 70, 239, 0.15) 0%, transparent 50%)"
+  },
+  children: { 
+    gradient: "from-cyan-500/30 via-teal-400/20 to-emerald-500/30", 
+    icon: <Baby className="w-16 h-16 text-cyan-600" />,
+    pattern: "radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%)"
+  },
+  women: { 
+    gradient: "from-pink-500/30 via-rose-400/20 to-red-500/30", 
+    icon: <Heart className="w-16 h-16 text-pink-600" />,
+    pattern: "radial-gradient(circle at 30% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(239, 68, 68, 0.15) 0%, transparent 50%)"
+  },
+  seasonal: { 
+    gradient: "from-amber-500/30 via-yellow-400/20 to-orange-500/30", 
+    icon: <Sun className="w-16 h-16 text-amber-600" />,
+    pattern: "radial-gradient(circle at 25% 75%, rgba(245, 158, 11, 0.15) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(249, 115, 22, 0.15) 0%, transparent 50%)"
+  },
+  diseases: { 
+    gradient: "from-blue-500/30 via-indigo-400/20 to-violet-500/30", 
+    icon: <Brain className="w-16 h-16 text-blue-600" />,
+    pattern: "radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)"
+  }
+};
+
+const getCategoryVisual = (categoryId: string) => {
+  return categoryImages[categoryId] || categoryImages.fundamentals;
+};
 
 const Blog = () => {
   const { language } = useLanguage();
@@ -216,11 +274,17 @@ const Blog = () => {
                     const category = categories.find(c => c.id === post.category);
                     return (
                       <LocalizedLink key={post.id} to={`/blog/${post.id}`}>
-                        <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/40">
+                        <Card className="hover:shadow-lg transition-all duration-300 hover:border-primary/40 overflow-hidden">
                           <div className="flex flex-col md:flex-row">
                             <div className="md:w-1/3 p-4">
-                              <div className="aspect-video md:aspect-square rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                                <Tag className="w-12 h-12 text-primary/60" />
+                              <div 
+                                className={`aspect-video md:aspect-square rounded-lg bg-gradient-to-br ${getCategoryVisual(post.category).gradient} flex items-center justify-center relative overflow-hidden`}
+                                style={{ backgroundImage: getCategoryVisual(post.category).pattern }}
+                              >
+                                <div className="absolute inset-0 bg-white/5 backdrop-blur-[1px]" />
+                                <div className="relative z-10 transform hover:scale-110 transition-transform duration-300">
+                                  {getCategoryVisual(post.category).icon}
+                                </div>
                               </div>
                             </div>
                             <div className="md:w-2/3 p-4 md:pl-0">

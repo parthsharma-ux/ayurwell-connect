@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { diseases } from "@/data/diseases";
@@ -14,6 +15,72 @@ const DiseaseDetail = () => {
   const labels = useDataTranslations(language);
   
   const rawDisease = diseases.find((d) => d.id === id);
+
+  // SEO JSON-LD for individual disease
+  useEffect(() => {
+    if (!rawDisease) return;
+
+    document.title = `${rawDisease.name} - ${language === "hi" ? "आयुर्वेदिक उपचार" : "Ayurvedic Treatment"} | AyurVeda`;
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', 
+      `${rawDisease.name} के लक्षण और आयुर्वेदिक उपचार। ${rawDisease.dosha_involved} दोष। लक्षण: ${rawDisease.symptoms.slice(0, 3).join(", ")}।`
+    );
+
+    const existingScript = document.querySelector('script[type="application/ld+json"][data-page="disease-detail"]');
+    if (existingScript) existingScript.remove();
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "MedicalCondition",
+      "name": rawDisease.name,
+      "alternateName": rawDisease.hindi_name,
+      "description": rawDisease.description,
+      "signOrSymptom": rawDisease.symptoms.map(symptom => ({
+        "@type": "MedicalSignOrSymptom",
+        "name": symptom
+      })),
+      "possibleTreatment": {
+        "@type": "MedicalTherapy",
+        "name": "Ayurvedic Treatment",
+        "description": `${rawDisease.dosha_involved} dosha balancing treatment`,
+        "medicineSystem": "Ayurveda"
+      },
+      "associatedAnatomy": {
+        "@type": "AnatomicalStructure",
+        "name": rawDisease.category
+      },
+      "riskFactor": rawDisease.dosha_involved,
+      "preventionInfo": {
+        "@type": "WebContent",
+        "text": `Foods to eat: ${rawDisease.diet_tips.foods_to_eat.join(", ")}. Foods to avoid: ${rawDisease.diet_tips.foods_to_avoid.join(", ")}.`
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "/" },
+          { "@type": "ListItem", "position": 2, "name": "Diseases", "item": "/diseases" },
+          { "@type": "ListItem", "position": 3, "name": rawDisease.name, "item": `/diseases/${rawDisease.id}` }
+        ]
+      }
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-page', 'disease-detail');
+    script.textContent = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      const scriptEl = document.querySelector('script[type="application/ld+json"][data-page="disease-detail"]');
+      if (scriptEl) scriptEl.remove();
+    };
+  }, [rawDisease, language]);
 
   if (!rawDisease) {
     return <Layout><div className="container py-20 text-center">{language === "hi" ? "रोग नहीं मिला" : "Disease not found"}</div></Layout>;
