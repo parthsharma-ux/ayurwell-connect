@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Calendar, Clock, User, ArrowRight, Search, Tag, TrendingUp, Bookmark } from "lucide-react";
+import { Calendar, Clock, User, ArrowRight, Search, Tag, TrendingUp, Mail, Loader2, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
@@ -9,6 +9,8 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Layout from "@/components/layout/Layout";
 import LocalizedLink from "@/components/LocalizedLink";
 import { blogPosts, categories } from "@/data/blogPosts";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 // Import hero images for each category
 import fundamentalsHero from "@/assets/blog/fundamentals-hero.jpg";
@@ -44,6 +46,9 @@ const Blog = () => {
   const { language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const [email, setEmail] = useState("");
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   useEffect(() => {
     document.title = language === "hi" 
@@ -118,6 +123,54 @@ const Blog = () => {
       month: 'long',
       day: 'numeric'
     });
+  };
+
+  // Newsletter subscription handler
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes('@')) {
+      toast.error(language === "hi" ? "कृपया वैध ईमेल दर्ज करें" : "Please enter a valid email");
+      return;
+    }
+
+    setIsSubscribing(true);
+    
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert({ email: email.trim(), source: 'blog' });
+      
+      if (error) {
+        if (error.code === '23505') {
+          toast.info(language === "hi" ? "आप पहले से सब्सक्राइब हैं!" : "You're already subscribed!");
+        } else {
+          throw error;
+        }
+      } else {
+        // Send welcome email
+        try {
+          await supabase.functions.invoke('send-welcome-email', {
+            body: { email: email.trim(), language }
+          });
+        } catch (emailError) {
+          console.error("Failed to send welcome email:", emailError);
+        }
+        
+        setIsSubscribed(true);
+        toast.success(
+          language === "hi" 
+            ? "सफलतापूर्वक सब्सक्राइब किया! स्वागत ईमेल भेजा गया।" 
+            : "Successfully subscribed! Welcome email sent."
+        );
+      }
+      setEmail("");
+    } catch (error) {
+      console.error("Subscription error:", error);
+      toast.error(language === "hi" ? "सब्सक्रिप्शन विफल। कृपया पुनः प्रयास करें।" : "Subscription failed. Please try again.");
+    } finally {
+      setIsSubscribing(false);
+    }
   };
 
   return (
@@ -405,6 +458,11 @@ const Blog = () => {
       {/* Newsletter Section */}
       <section className="py-16 bg-gradient-to-r from-primary/10 to-accent/10">
         <div className="container mx-auto px-4 text-center">
+          <div className="flex justify-center mb-4">
+            <div className="p-3 bg-primary/20 rounded-full">
+              <Mail className="w-8 h-8 text-primary" />
+            </div>
+          </div>
           <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
             {language === "hi" 
               ? "आयुर्वेदिक स्वास्थ्य टिप्स प्राप्त करें" 
@@ -412,19 +470,39 @@ const Blog = () => {
           </h2>
           <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
             {language === "hi"
-              ? "हमारे न्यूज़लेटर की सदस्यता लें और साप्ताहिक स्वास्थ्य युक्तियाँ प्राप्त करें।"
-              : "Subscribe to our newsletter and receive weekly wellness tips."}
+              ? "हमारे न्यूज़लेटर की सदस्यता लें और साप्ताहिक घरेलू उपचार और स्वास्थ्य युक्तियाँ प्राप्त करें।"
+              : "Subscribe to our newsletter and receive weekly home remedies and wellness tips."}
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-            <Input 
-              type="email" 
-              placeholder={language === "hi" ? "आपका ईमेल" : "Your email"}
-              className="flex-1"
-            />
-            <Button className="bg-primary hover:bg-primary/90">
-              {language === "hi" ? "सदस्यता लें" : "Subscribe"}
-            </Button>
-          </div>
+          
+          {isSubscribed ? (
+            <div className="flex items-center justify-center gap-2 text-primary">
+              <Check className="w-5 h-5" />
+              <span className="font-medium">
+                {language === "hi" ? "सफलतापूर्वक सब्सक्राइब किया!" : "Successfully subscribed!"}
+              </span>
+            </div>
+          ) : (
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+              <Input 
+                type="email" 
+                placeholder={language === "hi" ? "आपका ईमेल" : "Your email"}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1"
+                required
+              />
+              <Button type="submit" className="bg-primary hover:bg-primary/90" disabled={isSubscribing}>
+                {isSubscribing ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    {language === "hi" ? "प्रोसेसिंग..." : "Processing..."}
+                  </>
+                ) : (
+                  language === "hi" ? "सदस्यता लें" : "Subscribe"
+                )}
+              </Button>
+            </form>
+          )}
         </div>
       </section>
     </Layout>
