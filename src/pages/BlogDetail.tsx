@@ -15,13 +15,7 @@ import {
   ChevronRight,
   Bookmark,
   MessageCircle,
-  ThumbsUp,
-  Leaf,
-  Heart,
-  Brain,
-  Sun,
-  Baby,
-  Sparkles
+  ThumbsUp
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -32,62 +26,34 @@ import LocalizedLink from "@/components/LocalizedLink";
 import { blogPosts, categories } from "@/data/blogPosts";
 import { toast } from "sonner";
 
-// Category-based visuals for professional blog images
-const categoryVisuals: Record<string, { gradient: string; icon: React.ReactNode; bgPattern: string }> = {
-  fundamentals: { 
-    gradient: "from-emerald-600 via-green-500 to-teal-600", 
-    icon: <Leaf className="w-24 h-24 text-white/90" />,
-    bgPattern: "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-  },
-  doshas: { 
-    gradient: "from-purple-600 via-violet-500 to-indigo-600", 
-    icon: <Sparkles className="w-24 h-24 text-white/90" />,
-    bgPattern: "radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-  },
-  herbs: { 
-    gradient: "from-green-600 via-lime-500 to-emerald-600", 
-    icon: <Leaf className="w-24 h-24 text-white/90" />,
-    bgPattern: "radial-gradient(circle at 25% 75%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-  },
-  lifestyle: { 
-    gradient: "from-sky-600 via-blue-500 to-cyan-600", 
-    icon: <Sun className="w-24 h-24 text-white/90" />,
-    bgPattern: "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-  },
-  diet: { 
-    gradient: "from-orange-600 via-amber-500 to-yellow-600", 
-    icon: <Heart className="w-24 h-24 text-white/90" />,
-    bgPattern: "radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-  },
-  yoga: { 
-    gradient: "from-rose-600 via-pink-500 to-fuchsia-600", 
-    icon: <Sparkles className="w-24 h-24 text-white/90" />,
-    bgPattern: "radial-gradient(circle at 25% 75%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-  },
-  children: { 
-    gradient: "from-cyan-600 via-teal-500 to-emerald-600", 
-    icon: <Baby className="w-24 h-24 text-white/90" />,
-    bgPattern: "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-  },
-  women: { 
-    gradient: "from-pink-600 via-rose-500 to-red-600", 
-    icon: <Heart className="w-24 h-24 text-white/90" />,
-    bgPattern: "radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-  },
-  seasonal: { 
-    gradient: "from-amber-600 via-yellow-500 to-orange-600", 
-    icon: <Sun className="w-24 h-24 text-white/90" />,
-    bgPattern: "radial-gradient(circle at 25% 75%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 25%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-  },
-  diseases: { 
-    gradient: "from-blue-600 via-indigo-500 to-violet-600", 
-    icon: <Brain className="w-24 h-24 text-white/90" />,
-    bgPattern: "radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%)"
-  }
+// Import professional hero images
+import fundamentalsHero from "@/assets/blog/fundamentals-hero.jpg";
+import doshasHero from "@/assets/blog/doshas-hero.jpg";
+import herbsHero from "@/assets/blog/herbs-hero.jpg";
+import lifestyleHero from "@/assets/blog/lifestyle-hero.jpg";
+import dietHero from "@/assets/blog/diet-hero.jpg";
+import yogaHero from "@/assets/blog/yoga-hero.jpg";
+import childrenHero from "@/assets/blog/children-hero.jpg";
+import womenHero from "@/assets/blog/women-hero.jpg";
+import seasonalHero from "@/assets/blog/seasonal-hero.jpg";
+import diseasesHero from "@/assets/blog/diseases-hero.jpg";
+
+// Category to hero image mapping
+const categoryHeroImages: Record<string, string> = {
+  fundamentals: fundamentalsHero,
+  doshas: doshasHero,
+  herbs: herbsHero,
+  lifestyle: lifestyleHero,
+  diet: dietHero,
+  yoga: yogaHero,
+  children: childrenHero,
+  women: womenHero,
+  seasonal: seasonalHero,
+  diseases: diseasesHero
 };
 
-const getCategoryVisual = (categoryId: string) => {
-  return categoryVisuals[categoryId] || categoryVisuals.fundamentals;
+const getCategoryImage = (categoryId: string) => {
+  return categoryHeroImages[categoryId] || fundamentalsHero;
 };
 
 const BlogDetail = () => {
@@ -110,13 +76,11 @@ const BlogDetail = () => {
 
   useEffect(() => {
     if (post) {
-      // SEO: Update document title and meta
       const title = language === "hi" ? post.titleHi : post.title;
       const description = language === "hi" ? post.excerptHi : post.excerpt;
       
       document.title = `${title} | AyurVeda Blog`;
       
-      // Update meta description
       let metaDesc = document.querySelector('meta[name="description"]');
       if (!metaDesc) {
         metaDesc = document.createElement('meta');
@@ -125,7 +89,6 @@ const BlogDetail = () => {
       }
       metaDesc.setAttribute('content', description);
 
-      // Update OG tags
       const setOG = (property: string, content: string) => {
         let el = document.querySelector(`meta[property="${property}"]`);
         if (!el) {
@@ -140,10 +103,10 @@ const BlogDetail = () => {
       setOG('og:description', description);
       setOG('og:type', 'article');
       setOG('og:url', window.location.href);
+      setOG('og:image', getCategoryImage(post.category));
       setOG('article:published_time', post.date);
       setOG('article:author', language === "hi" ? post.authorHi : post.author);
       
-      // Twitter cards
       const setTwitter = (name: string, content: string) => {
         let el = document.querySelector(`meta[name="${name}"]`);
         if (!el) {
@@ -157,8 +120,8 @@ const BlogDetail = () => {
       setTwitter('twitter:card', 'summary_large_image');
       setTwitter('twitter:title', title);
       setTwitter('twitter:description', description);
+      setTwitter('twitter:image', getCategoryImage(post.category));
 
-      // Add JSON-LD structured data for articles (good for AdSense)
       const existingScript = document.querySelector('script[type="application/ld+json"]');
       if (existingScript) existingScript.remove();
 
@@ -167,6 +130,7 @@ const BlogDetail = () => {
         "@type": "Article",
         "headline": title,
         "description": description,
+        "image": getCategoryImage(post.category),
         "author": {
           "@type": "Person",
           "name": language === "hi" ? post.authorHi : post.author
@@ -258,6 +222,40 @@ const BlogDetail = () => {
 
   return (
     <Layout>
+      {/* Hero Image Section */}
+      <div className="relative h-[300px] md:h-[400px] w-full overflow-hidden">
+        <img 
+          src={getCategoryImage(post.category)} 
+          alt={language === "hi" ? post.titleHi : post.title}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+          <div className="container mx-auto">
+            <Badge className="mb-3 bg-primary text-primary-foreground">
+              {category ? (language === "hi" ? category.labelHi : category.label) : "Ayurveda"}
+            </Badge>
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-3 max-w-4xl leading-tight">
+              {language === "hi" ? post.titleHi : post.title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 text-white/80 text-sm">
+              <div className="flex items-center gap-2">
+                <User className="w-4 h-4" />
+                <span>{language === "hi" ? post.authorHi : post.author}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Calendar className="w-4 h-4" />
+                <span>{formatDate(post.date)}</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Clock className="w-4 h-4" />
+                <span>{language === "hi" ? post.readTimeHi : post.readTime}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Breadcrumb */}
       <nav className="bg-muted/50 py-3 border-b">
         <div className="container mx-auto px-4">
@@ -278,7 +276,7 @@ const BlogDetail = () => {
             <ChevronRight className="w-4 h-4" />
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
               <span className="text-foreground font-medium" itemProp="name">
-                {language === "hi" ? post.titleHi.slice(0, 40) + "..." : post.title.slice(0, 40) + "..."}
+                {language === "hi" ? post.titleHi.slice(0, 30) + "..." : post.title.slice(0, 30) + "..."}
               </span>
               <meta itemProp="position" content="3" />
             </li>
@@ -290,125 +288,57 @@ const BlogDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            {/* Article Header */}
-            <header className="mb-8">
-              <Badge className="mb-4 bg-primary/10 text-primary hover:bg-primary/20">
-                {category ? (language === "hi" ? category.labelHi : category.label) : "Ayurveda"}
-              </Badge>
-              
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-                {language === "hi" ? post.titleHi : post.title}
-              </h1>
+            {/* Excerpt */}
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed border-l-4 border-primary pl-4 italic">
+              {language === "hi" ? post.excerptHi : post.excerpt}
+            </p>
 
-              <p className="text-lg text-muted-foreground mb-6">
-                {language === "hi" ? post.excerptHi : post.excerpt}
-              </p>
-
-              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
-                <div className="flex items-center gap-2">
-                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                    <User className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-foreground">
-                      {language === "hi" ? post.authorHi : post.author}
-                    </p>
-                    <p className="text-xs">
-                      {language === "hi" ? "आयुर्वेद विशेषज्ञ" : "Ayurveda Expert"}
-                    </p>
-                  </div>
-                </div>
-                <Separator orientation="vertical" className="h-6" />
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
-                  <span>{formatDate(post.date)}</span>
-                </div>
-                <Separator orientation="vertical" className="h-6" />
-                <div className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" />
-                  <span>{language === "hi" ? post.readTimeHi : post.readTime} {language === "hi" ? "पढ़ने का समय" : "read"}</span>
-                </div>
-              </div>
-
-              {/* Social Share Buttons */}
-              <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg">
-                <span className="text-sm font-medium text-foreground flex items-center gap-2">
-                  <Share2 className="w-4 h-4" />
-                  {language === "hi" ? "शेयर करें:" : "Share:"}
-                </span>
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="rounded-full hover:bg-blue-600 hover:text-white hover:border-blue-600"
-                  onClick={() => handleShare('facebook')}
-                >
-                  <Facebook className="w-4 h-4" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="rounded-full hover:bg-sky-500 hover:text-white hover:border-sky-500"
-                  onClick={() => handleShare('twitter')}
-                >
-                  <Twitter className="w-4 h-4" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="rounded-full hover:bg-blue-700 hover:text-white hover:border-blue-700"
-                  onClick={() => handleShare('linkedin')}
-                >
-                  <Linkedin className="w-4 h-4" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="rounded-full hover:bg-green-600 hover:text-white hover:border-green-600"
-                  onClick={() => handleShare('whatsapp')}
-                >
-                  <MessageCircle className="w-4 h-4" />
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="rounded-full hover:bg-gray-700 hover:text-white hover:border-gray-700"
-                  onClick={() => handleShare('copy')}
-                >
-                  <Link2 className="w-4 h-4" />
-                </Button>
-              </div>
-            </header>
-
-            {/* Featured Image - Professional Category-based Design */}
-            <div 
-              className={`relative aspect-video rounded-xl overflow-hidden mb-8 bg-gradient-to-br ${getCategoryVisual(post.category).gradient} flex items-center justify-center shadow-lg`}
-              style={{ backgroundImage: getCategoryVisual(post.category).bgPattern }}
-            >
-              <div className="absolute inset-0 bg-black/10" />
-              <div className="absolute inset-0 backdrop-blur-[0.5px]" />
-              <div className="relative z-10 text-center">
-                <div className="mb-4 transform hover:scale-110 transition-transform duration-500">
-                  {getCategoryVisual(post.category).icon}
-                </div>
-                <p className="text-white/90 text-xl font-semibold">
-                  {category ? (language === "hi" ? category.labelHi : category.label) : "Ayurveda"}
-                </p>
-                <p className="text-white/70 text-sm mt-1">
-                  {language === "hi" ? "आयुर्वेदिक ज्ञान" : "Ayurvedic Wisdom"}
-                </p>
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute top-4 left-4 w-20 h-20 border-2 border-white/20 rounded-full" />
-              <div className="absolute bottom-4 right-4 w-32 h-32 border-2 border-white/10 rounded-full" />
-              <div className="absolute top-1/2 left-8 w-2 h-16 bg-white/10 rounded-full transform -translate-y-1/2" />
-              <div className="absolute top-1/2 right-8 w-2 h-16 bg-white/10 rounded-full transform -translate-y-1/2" />
-            </div>
-
-            {/* Ad Placeholder - Top */}
-            <div className="mb-8 p-4 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center">
-              <p className="text-xs text-muted-foreground">
-                {language === "hi" ? "विज्ञापन स्थान" : "Advertisement Space"}
-              </p>
+            {/* Social Share Buttons */}
+            <div className="flex items-center gap-3 p-4 bg-muted/50 rounded-lg mb-8">
+              <span className="text-sm font-medium text-foreground flex items-center gap-2">
+                <Share2 className="w-4 h-4" />
+                {language === "hi" ? "शेयर करें:" : "Share:"}
+              </span>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full hover:bg-blue-600 hover:text-white hover:border-blue-600"
+                onClick={() => handleShare('facebook')}
+              >
+                <Facebook className="w-4 h-4" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full hover:bg-sky-500 hover:text-white hover:border-sky-500"
+                onClick={() => handleShare('twitter')}
+              >
+                <Twitter className="w-4 h-4" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full hover:bg-blue-700 hover:text-white hover:border-blue-700"
+                onClick={() => handleShare('linkedin')}
+              >
+                <Linkedin className="w-4 h-4" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full hover:bg-green-600 hover:text-white hover:border-green-600"
+                onClick={() => handleShare('whatsapp')}
+              >
+                <MessageCircle className="w-4 h-4" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full hover:bg-gray-700 hover:text-white hover:border-gray-700"
+                onClick={() => handleShare('copy')}
+              >
+                <Link2 className="w-4 h-4" />
+              </Button>
             </div>
 
             {/* Article Content */}
@@ -430,13 +360,6 @@ const BlogDetail = () => {
                 __html: language === "hi" ? post.contentHi : post.content 
               }}
             />
-
-            {/* Ad Placeholder - Mid Content */}
-            <div className="my-8 p-4 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center">
-              <p className="text-xs text-muted-foreground">
-                {language === "hi" ? "विज्ञापन स्थान" : "Advertisement Space"}
-              </p>
-            </div>
 
             {/* Tags */}
             <div className="mt-8 pt-6 border-t">
@@ -506,9 +429,13 @@ const BlogDetail = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {relatedPosts.map((relPost) => (
                     <LocalizedLink key={relPost.id} to={`/blog/${relPost.id}`}>
-                      <Card className="h-full hover:shadow-lg transition-shadow group">
-                        <div className="aspect-video bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                          <Tag className="w-8 h-8 text-primary/50 group-hover:text-primary transition-colors" />
+                      <Card className="h-full hover:shadow-lg transition-all group overflow-hidden">
+                        <div className="aspect-video overflow-hidden">
+                          <img 
+                            src={getCategoryImage(relPost.category)} 
+                            alt={language === "hi" ? relPost.titleHi : relPost.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
                         </div>
                         <CardContent className="p-4">
                           <Badge variant="secondary" className="mb-2 text-xs">
@@ -532,13 +459,6 @@ const BlogDetail = () => {
           {/* Sidebar */}
           <aside className="lg:col-span-1">
             <div className="sticky top-24 space-y-6">
-              {/* Ad Placeholder - Sidebar */}
-              <div className="p-4 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center min-h-[250px] flex items-center justify-center">
-                <p className="text-xs text-muted-foreground">
-                  {language === "hi" ? "विज्ञापन स्थान" : "Advertisement Space"}
-                </p>
-              </div>
-
               {/* Table of Contents */}
               <Card>
                 <CardContent className="p-4">
@@ -585,8 +505,12 @@ const BlogDetail = () => {
                         to={`/blog/${recentPost.id}`}
                         className="flex gap-3 group"
                       >
-                        <div className="w-16 h-16 rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 flex-shrink-0 flex items-center justify-center">
-                          <Tag className="w-6 h-6 text-primary/50" />
+                        <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                          <img 
+                            src={getCategoryImage(recentPost.category)} 
+                            alt={language === "hi" ? recentPost.titleHi : recentPost.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
                         </div>
                         <div className="flex-1 min-w-0">
                           <h4 className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors">
@@ -641,26 +565,10 @@ const BlogDetail = () => {
                   </Button>
                 </CardContent>
               </Card>
-
-              {/* Ad Placeholder - Sidebar Bottom */}
-              <div className="p-4 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center min-h-[250px] flex items-center justify-center">
-                <p className="text-xs text-muted-foreground">
-                  {language === "hi" ? "विज्ञापन स्थान" : "Advertisement Space"}
-                </p>
-              </div>
             </div>
           </aside>
         </div>
       </article>
-
-      {/* Bottom Ad Placeholder */}
-      <div className="container mx-auto px-4 pb-8">
-        <div className="p-4 bg-muted/30 rounded-lg border-2 border-dashed border-muted-foreground/20 text-center">
-          <p className="text-xs text-muted-foreground">
-            {language === "hi" ? "विज्ञापन स्थान" : "Advertisement Space"}
-          </p>
-        </div>
-      </div>
     </Layout>
   );
 };
