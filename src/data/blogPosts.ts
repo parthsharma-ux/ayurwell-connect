@@ -62,6 +62,29 @@ export const blogPosts: BlogPost[] = [
       <h2>Your Prakruti (Constitution)</h2>
       <p>Everyone has a unique constitution determined at conception. Understanding your prakruti helps you make lifestyle choices that maintain balance and prevent disease.</p>
       
+      <h2>Simple Kitchen Remedies to Start Your Ayurvedic Journey</h2>
+      <p>You don't need expensive supplements. These kitchen staples are powerful healers:</p>
+      
+      <h3>Morning Golden Milk (Haldi Doodh)</h3>
+      <p><strong>Ingredients:</strong> 1 cup warm milk, 1/2 tsp turmeric, pinch of black pepper, 1/2 tsp honey</p>
+      <p><strong>Benefits:</strong> Boosts immunity, reduces inflammation, promotes better sleep.</p>
+      
+      <h3>Digestive Cumin Water (Jeera Pani)</h3>
+      <p><strong>Ingredients:</strong> 1 tsp cumin seeds boiled in 2 cups water for 5 minutes</p>
+      <p><strong>Benefits:</strong> Improves digestion, reduces bloating, aids weight management.</p>
+      
+      <h3>Ginger-Lemon Morning Tonic</h3>
+      <p><strong>Ingredients:</strong> 1 inch ginger grated, juice of half lemon, 1 cup warm water</p>
+      <p><strong>Benefits:</strong> Kickstarts metabolism, clears toxins, energizes the body.</p>
+      
+      <h3>Tulsi Tea for Immunity</h3>
+      <p><strong>Ingredients:</strong> 5-7 fresh tulsi leaves steeped in hot water for 5 minutes</p>
+      <p><strong>Benefits:</strong> Natural immunity booster, stress reliever, respiratory health.</p>
+      
+      <h3>CCF Tea (Cumin-Coriander-Fennel)</h3>
+      <p><strong>Ingredients:</strong> Equal parts cumin, coriander, fennel seeds (1/2 tsp each) in 2 cups water</p>
+      <p><strong>Benefits:</strong> Balances all three doshas, excellent digestive tonic.</p>
+      
       <h2>Getting Started with Ayurveda</h2>
       <ul>
         <li>Take a dosha quiz to understand your constitution</li>
@@ -69,6 +92,7 @@ export const blogPosts: BlogPost[] = [
         <li>Eat according to your dosha</li>
         <li>Practice yoga and meditation</li>
         <li>Use herbs and spices mindfully</li>
+        <li>Start with simple kitchen remedies before supplements</li>
       </ul>
     `,
     contentHi: `
@@ -87,12 +111,32 @@ export const blogPosts: BlogPost[] = [
       <h3>कफ (पृथ्वी + जल)</h3>
       <p>कफ संरचना और स्थिरता प्रदान करता है। संतुलित होने पर यह प्रेम और शांति व्यक्त करता है।</p>
       
+      <h2>आयुर्वेदिक यात्रा शुरू करने के सरल रसोई उपचार</h2>
+      <p>महंगी दवाओं की जरूरत नहीं। ये रसोई की चीजें शक्तिशाली उपचारक हैं:</p>
+      
+      <h3>सुबह का हल्दी दूध</h3>
+      <p><strong>सामग्री:</strong> 1 कप गर्म दूध, 1/2 चम्मच हल्दी, चुटकी काली मिर्च, 1/2 चम्मच शहद</p>
+      <p><strong>लाभ:</strong> प्रतिरक्षा बढ़ाता है, सूजन कम करता है, नींद सुधारता है।</p>
+      
+      <h3>पाचक जीरा पानी</h3>
+      <p><strong>सामग्री:</strong> 1 चम्मच जीरा 2 कप पानी में 5 मिनट उबालें</p>
+      <p><strong>लाभ:</strong> पाचन सुधारता है, पेट फूलना कम करता है।</p>
+      
+      <h3>अदरक-नींबू सुबह का टॉनिक</h3>
+      <p><strong>सामग्री:</strong> 1 इंच अदरक कद्दूकस, आधा नींबू का रस, 1 कप गर्म पानी</p>
+      <p><strong>लाभ:</strong> चयापचय शुरू करता है, विषाक्त पदार्थ साफ करता है।</p>
+      
+      <h3>तुलसी की चाय प्रतिरक्षा के लिए</h3>
+      <p><strong>सामग्री:</strong> 5-7 ताजी तुलसी पत्तियां गर्म पानी में 5 मिनट भिगोएं</p>
+      <p><strong>लाभ:</strong> प्राकृतिक प्रतिरक्षा बूस्टर, तनाव निवारक।</p>
+      
       <h2>आयुर्वेद शुरू करना</h2>
       <ul>
         <li>अपनी प्रकृति समझने के लिए दोष परीक्षण लें</li>
         <li>दैनिक दिनचर्या का पालन करें</li>
         <li>अपने दोष के अनुसार खाएं</li>
         <li>योग और ध्यान का अभ्यास करें</li>
+        <li>सप्लीमेंट्स से पहले सरल रसोई उपचारों से शुरू करें</li>
       </ul>
     `,
     author: "Dr. Ananya Sharma",
@@ -133,6 +177,32 @@ export const blogPosts: BlogPost[] = [
         <li>Insomnia</li>
       </ul>
       
+      <h2>Kitchen Remedies for Vata Balance</h2>
+      
+      <h3>1. Warm Ginger-Ghee Remedy for Digestion</h3>
+      <p><strong>Recipe:</strong> Mix 1/2 tsp grated ginger with 1 tsp warm ghee. Consume before meals.</p>
+      <p><strong>Benefits:</strong> Stimulates digestive fire, lubricates dry intestines, prevents constipation.</p>
+      
+      <h3>2. Sesame Oil Self-Massage (Abhyanga)</h3>
+      <p><strong>Method:</strong> Warm sesame oil, massage entire body for 10-15 minutes before bath.</p>
+      <p><strong>Benefits:</strong> Calms nervous system, moisturizes dry skin, grounds Vata energy.</p>
+      
+      <h3>3. Warm Milk with Nutmeg for Sleep</h3>
+      <p><strong>Recipe:</strong> 1 cup warm milk, pinch of nutmeg, 1/2 tsp ghee, 1 tsp honey</p>
+      <p><strong>Benefits:</strong> Natural sleep aid, calms anxiety, nourishes nervous system.</p>
+      
+      <h3>4. Cumin-Coriander-Fennel Tea (CCF Tea)</h3>
+      <p><strong>Recipe:</strong> Equal parts cumin, coriander, fennel seeds (1/2 tsp each) boiled in 2 cups water</p>
+      <p><strong>Benefits:</strong> Aids digestion, reduces bloating, calms Vata in digestive tract.</p>
+      
+      <h3>5. Dates and Almonds Energy Balls</h3>
+      <p><strong>Recipe:</strong> Blend 5 dates, 10 soaked almonds, 1/2 tsp ghee, pinch of cardamom. Roll into balls.</p>
+      <p><strong>Benefits:</strong> Grounding snack, provides sustained energy, nourishes tissues.</p>
+      
+      <h3>6. Ajwain Water for Gas and Bloating</h3>
+      <p><strong>Recipe:</strong> Boil 1 tsp ajwain (carom seeds) in 1 cup water. Strain and drink warm.</p>
+      <p><strong>Benefits:</strong> Instantly relieves gas, bloating, and digestive discomfort.</p>
+      
       <h2>How to Balance Vata</h2>
       <h3>Diet</h3>
       <p>Favor warm, moist, grounding foods. Include healthy fats, root vegetables, and warming spices like ginger and cinnamon.</p>
@@ -163,6 +233,28 @@ export const blogPosts: BlogPost[] = [
         <li>जोड़ों का दर्द</li>
         <li>अनिद्रा</li>
       </ul>
+      
+      <h2>वात संतुलन के लिए रसोई उपचार</h2>
+      
+      <h3>1. पाचन के लिए अदरक-घी उपचार</h3>
+      <p><strong>विधि:</strong> 1/2 चम्मच कसा हुआ अदरक 1 चम्मच गर्म घी में मिलाएं। भोजन से पहले लें।</p>
+      <p><strong>लाभ:</strong> पाचन अग्नि उत्तेजित करता है, सूखी आंतों को चिकनाई देता है।</p>
+      
+      <h3>2. तिल तेल मालिश (अभ्यंग)</h3>
+      <p><strong>विधि:</strong> गर्म तिल का तेल, स्नान से पहले 10-15 मिनट पूरे शरीर की मालिश करें।</p>
+      <p><strong>लाभ:</strong> तंत्रिका तंत्र को शांत करता है, रूखी त्वचा को नमी देता है।</p>
+      
+      <h3>3. नींद के लिए जायफल वाला दूध</h3>
+      <p><strong>विधि:</strong> 1 कप गर्म दूध, चुटकी जायफल, 1/2 चम्मच घी, 1 चम्मच शहद</p>
+      <p><strong>लाभ:</strong> प्राकृतिक नींद सहायक, चिंता शांत करता है।</p>
+      
+      <h3>4. जीरा-धनिया-सौंफ चाय</h3>
+      <p><strong>विधि:</strong> बराबर मात्रा में जीरा, धनिया, सौंफ (1/2 चम्मच प्रत्येक) 2 कप पानी में उबालें</p>
+      <p><strong>लाभ:</strong> पाचन में सहायता, पेट फूलना कम करता है।</p>
+      
+      <h3>5. अजवाइन पानी गैस के लिए</h3>
+      <p><strong>विधि:</strong> 1 चम्मच अजवाइन 1 कप पानी में उबालें। छानकर गर्म पिएं।</p>
+      <p><strong>लाभ:</strong> तुरंत गैस, पेट फूलना और पाचन असुविधा से राहत।</p>
       
       <h2>वात को संतुलित करने के उपाय</h2>
       <h3>आहार</h3>
@@ -201,6 +293,44 @@ export const blogPosts: BlogPost[] = [
       <h3>Better Sleep</h3>
       <p>The herb promotes restful sleep and helps with insomnia.</p>
       
+      <h2>Simple Kitchen Remedies with Ashwagandha</h2>
+      
+      <h3>1. Stress-Relief Ashwagandha Milk (Ksheerpak)</h3>
+      <p><strong>Recipe:</strong> 1 cup warm milk, 1/2 tsp ashwagandha powder, 1/2 tsp honey, pinch of cardamom</p>
+      <p><strong>When:</strong> Take before bed for stress relief and better sleep.</p>
+      
+      <h3>2. Energy-Boosting Morning Tonic</h3>
+      <p><strong>Recipe:</strong> 1/2 tsp ashwagandha powder mixed with 1 tsp honey and warm water</p>
+      <p><strong>Benefits:</strong> Sustained energy throughout the day without jitters.</p>
+      
+      <h3>3. Ashwagandha Ghee for Strength</h3>
+      <p><strong>Recipe:</strong> Mix 1/4 tsp ashwagandha with 1 tsp warm ghee, consume in morning</p>
+      <p><strong>Benefits:</strong> Builds muscle strength, improves stamina, nourishes tissues.</p>
+      
+      <h2>Kitchen Alternatives for Similar Benefits</h2>
+      <p>If ashwagandha is not available, try these kitchen alternatives:</p>
+      
+      <h3>For Stress Relief</h3>
+      <ul>
+        <li><strong>Tulsi Tea:</strong> 5-7 tulsi leaves in hot water - natural stress reliever</li>
+        <li><strong>Warm Milk with Nutmeg:</strong> Natural calming effect before sleep</li>
+        <li><strong>Brahmi Water:</strong> Soak brahmi leaves overnight, drink in morning</li>
+      </ul>
+      
+      <h3>For Energy</h3>
+      <ul>
+        <li><strong>Dates and Almonds:</strong> 3 dates + 5 soaked almonds every morning</li>
+        <li><strong>Ginger-Honey Tonic:</strong> Fresh ginger juice with honey</li>
+        <li><strong>Chyawanprash:</strong> 1 tsp with warm milk in morning</li>
+      </ul>
+      
+      <h3>For Better Sleep</h3>
+      <ul>
+        <li><strong>Chamomile with Honey:</strong> Chamomile tea with 1 tsp honey before bed</li>
+        <li><strong>Nutmeg Milk:</strong> Pinch of nutmeg in warm milk</li>
+        <li><strong>Banana with Cinnamon:</strong> Natural sleep-inducing combination</li>
+      </ul>
+      
       <h2>How to Take Ashwagandha</h2>
       <ul>
         <li><strong>Powder:</strong> 1-2 teaspoons with warm milk</li>
@@ -221,6 +351,30 @@ export const blogPosts: BlogPost[] = [
       
       <h3>बेहतर शारीरिक प्रदर्शन</h3>
       <p>शोध शक्ति और मांसपेशियों में सुधार दर्शाता है।</p>
+      
+      <h2>अश्वगंधा के सरल घरेलू उपचार</h2>
+      
+      <h3>1. तनाव-राहत अश्वगंधा दूध</h3>
+      <p><strong>विधि:</strong> 1 कप गर्म दूध, 1/2 चम्मच अश्वगंधा पाउडर, 1/2 चम्मच शहद, चुटकी इलायची</p>
+      <p><strong>कब:</strong> तनाव राहत और बेहतर नींद के लिए सोने से पहले लें।</p>
+      
+      <h3>2. ऊर्जा बढ़ाने वाला सुबह का टॉनिक</h3>
+      <p><strong>विधि:</strong> 1/2 चम्मच अश्वगंधा पाउडर 1 चम्मच शहद और गर्म पानी में मिलाएं</p>
+      <p><strong>लाभ:</strong> बिना घबराहट के पूरे दिन निरंतर ऊर्जा।</p>
+      
+      <h2>समान लाभ के लिए रसोई विकल्प</h2>
+      
+      <h3>तनाव राहत के लिए</h3>
+      <ul>
+        <li><strong>तुलसी की चाय:</strong> गर्म पानी में 5-7 तुलसी पत्ते - प्राकृतिक तनाव निवारक</li>
+        <li><strong>जायफल वाला दूध:</strong> नींद से पहले प्राकृतिक शांत प्रभाव</li>
+      </ul>
+      
+      <h3>ऊर्जा के लिए</h3>
+      <ul>
+        <li><strong>खजूर और बादाम:</strong> हर सुबह 3 खजूर + 5 भीगे बादाम</li>
+        <li><strong>च्यवनप्राश:</strong> सुबह गर्म दूध के साथ 1 चम्मच</li>
+      </ul>
       
       <h2>अश्वगंधा कैसे लें</h2>
       <ul>
