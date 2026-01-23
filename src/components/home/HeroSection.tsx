@@ -99,56 +99,86 @@ const HeroSection = () => {
         const normalizedValue = normalize(value);
         const lowerValue = value.toLowerCase();
         
-        const filteredDiseases: SuggestionItem[] = diseases
-          .filter((d) =>
-            d.name.toLowerCase().includes(lowerValue) ||
-            normalize(d.name).includes(normalizedValue) ||
-            d.symptoms.some((s) => 
+        // Score function: higher score = better match
+        const getMatchScore = (text: string, query: string, normalizedQuery: string): number => {
+          const lowerText = text.toLowerCase();
+          const normalizedText = normalize(text);
+          
+          // Exact match gets highest priority
+          if (lowerText === query) return 100;
+          // Starts with query
+          if (lowerText.startsWith(query)) return 90;
+          // Word starts with query (e.g., "Type 2 Diabetes" when searching "Diabetes")
+          if (lowerText.split(/[\s\-()]+/).some(w => w.startsWith(query))) return 80;
+          // Contains query as substring in name
+          if (lowerText.includes(query)) return 70;
+          // Normalized match
+          if (normalizedText.includes(normalizedQuery)) return 60;
+          return 0;
+        };
+        
+        // Filter and score diseases - prioritize name matches over symptom matches
+        const scoredDiseases = diseases
+          .map((d) => {
+            const nameScore = getMatchScore(d.name, lowerValue, normalizedValue);
+            const symptomScore = d.symptoms.some((s) => 
               s.toLowerCase().includes(lowerValue) || 
               normalize(s).includes(normalizedValue)
-            )
-          )
-          .slice(0, 3)
-          .map((d) => ({
+            ) ? 30 : 0;
+            const score = Math.max(nameScore, symptomScore);
+            return { disease: d, score };
+          })
+          .filter(({ score }) => score > 0)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 4)
+          .map(({ disease: d }) => ({
             id: d.id,
             name: d.name,
             category: d.category,
             type: "disease" as const
           }));
 
-        const filteredMedicines: SuggestionItem[] = medicines
-          .filter((m) =>
-            m.name.toLowerCase().includes(lowerValue) ||
-            normalize(m.name).includes(normalizedValue) ||
-            m.uses.some((u) => 
+        // Filter and score medicines - prioritize name matches over uses
+        const scoredMedicines = medicines
+          .map((m) => {
+            const nameScore = getMatchScore(m.name, lowerValue, normalizedValue);
+            const usesScore = m.uses.some((u) => 
               u.toLowerCase().includes(lowerValue) || 
               normalize(u).includes(normalizedValue)
-            )
-          )
-          .slice(0, 3)
-          .map((m) => ({
+            ) ? 20 : 0; // Lower priority for use-based matches
+            const score = Math.max(nameScore, usesScore);
+            return { medicine: m, score };
+          })
+          .filter(({ score }) => score > 0)
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 2)
+          .map(({ medicine: m }) => ({
             id: m.id,
             name: m.name,
             category: m.brand,
             type: "medicine" as const
           }));
 
-        const filteredRemedies: SuggestionItem[] = remedies
-          .filter((r) =>
-            r.title.toLowerCase().includes(lowerValue) ||
-            normalize(r.title).includes(normalizedValue) ||
-            r.problem.toLowerCase().includes(lowerValue) ||
-            normalize(r.problem).includes(normalizedValue)
-          )
+        // Filter and score remedies
+        const scoredRemedies = remedies
+          .map((r) => {
+            const titleScore = getMatchScore(r.title, lowerValue, normalizedValue);
+            const problemScore = getMatchScore(r.problem, lowerValue, normalizedValue);
+            const score = Math.max(titleScore, problemScore);
+            return { remedy: r, score };
+          })
+          .filter(({ score }) => score > 0)
+          .sort((a, b) => b.score - a.score)
           .slice(0, 2)
-          .map((r) => ({
+          .map(({ remedy: r }) => ({
             id: r.id,
             name: r.title,
             category: r.problem,
             type: "remedy" as const
           }));
 
-        const allSuggestions = [...filteredDiseases, ...filteredMedicines, ...filteredRemedies];
+        // Combine: show diseases first (prioritized), then medicines, then remedies
+        const allSuggestions = [...scoredDiseases, ...scoredMedicines, ...scoredRemedies].slice(0, 8);
         setSuggestions(allSuggestions);
         
         if (allSuggestions.length === 0 && value.length >= 3) {
