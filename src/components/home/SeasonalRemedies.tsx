@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { remedies } from "@/data/remedies";
@@ -55,8 +55,8 @@ const seasonConfig = {
 
 const SeasonalRemedies = () => {
   const { language } = useLanguage();
-  const currentSeason = getCurrentSeason();
-  const config = seasonConfig[currentSeason];
+  const [selectedSeason, setSelectedSeason] = useState<"monsoon" | "winter" | "summer">(getCurrentSeason());
+  const config = seasonConfig[selectedSeason];
   const SeasonIcon = config.icon;
 
   const seasonalRemedies = useMemo(() => {
@@ -100,28 +100,30 @@ const SeasonalRemedies = () => {
           </LocalizedLink>
         </div>
 
-        {/* Season Indicator Pills */}
+        {/* Season Selector Tabs */}
         <div className="flex flex-wrap gap-2 mb-8">
           {Object.entries(seasonConfig).map(([key, season]) => {
             const Icon = season.icon;
-            const isActive = key === currentSeason;
+            const isActive = key === selectedSeason;
+            const isCurrent = key === getCurrentSeason();
             return (
-              <div
+              <button
                 key={key}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all ${
+                onClick={() => setSelectedSeason(key as "monsoon" | "winter" | "summer")}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full border transition-all cursor-pointer hover:shadow-md ${
                   isActive 
-                    ? "bg-primary text-primary-foreground border-primary" 
-                    : "bg-card border-border text-muted-foreground"
+                    ? "bg-primary text-primary-foreground border-primary shadow-glow-terracotta" 
+                    : "bg-card border-border text-muted-foreground hover:border-primary/50 hover:bg-muted/50"
                 }`}
               >
                 <Icon className="h-4 w-4" />
                 <span className="text-sm font-medium">{season.label[language]}</span>
-                {isActive && (
-                  <span className="text-xs opacity-80">
-                    ({language === "hi" ? "वर्तमान" : "Current"})
+                {isCurrent && (
+                  <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? "bg-background/20" : "bg-primary/10 text-primary"}`}>
+                    {language === "hi" ? "वर्तमान" : "Now"}
                   </span>
                 )}
-              </div>
+              </button>
             );
           })}
         </div>
@@ -175,7 +177,7 @@ const SeasonalRemedies = () => {
                   ? `${config.label.hi} के मौसम के लिए सुझाव` 
                   : `${config.label.en} Season Tips`}
               </h3>
-              {currentSeason === "monsoon" && (
+              {selectedSeason === "monsoon" && (
                 <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• {language === "hi" ? "उबला हुआ पानी पिएं" : "Drink boiled or filtered water"}</li>
                   <li>• {language === "hi" ? "हल्का और ताजा खाना खाएं" : "Eat light and freshly cooked food"}</li>
@@ -183,7 +185,7 @@ const SeasonalRemedies = () => {
                   <li>• {language === "hi" ? "तुलसी और अदरक का काढ़ा पिएं" : "Drink tulsi and ginger kadha daily"}</li>
                 </ul>
               )}
-              {currentSeason === "winter" && (
+              {selectedSeason === "winter" && (
                 <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• {language === "hi" ? "गर्म तेल से मालिश करें" : "Massage with warm sesame oil"}</li>
                   <li>• {language === "hi" ? "च्यवनप्राश रोजाना लें" : "Take Chyawanprash daily for immunity"}</li>
@@ -191,7 +193,7 @@ const SeasonalRemedies = () => {
                   <li>• {language === "hi" ? "सूप और काढ़ा लें" : "Include soups and warm kadhas"}</li>
                 </ul>
               )}
-              {currentSeason === "summer" && (
+              {selectedSeason === "summer" && (
                 <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• {language === "hi" ? "छाछ और नारियल पानी पिएं" : "Drink buttermilk and coconut water"}</li>
                   <li>• {language === "hi" ? "धूप में जाने से बचें" : "Avoid going out in peak sun"}</li>
