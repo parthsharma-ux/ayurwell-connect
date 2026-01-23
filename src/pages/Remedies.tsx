@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { remedies, remedyCategories } from "@/data/remedies";
-import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles } from "lucide-react";
+import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -95,6 +95,65 @@ const allIngredients = [...new Set(
   remedies.flatMap(r => r.ingredients.map(i => i.name))
 )].sort();
 
+// Body system categories with their associated conditions
+const bodySystems = {
+  all: {
+    label: { en: "All Systems", hi: "सभी अंग" },
+    icon: Sparkles,
+    conditions: [] as string[]
+  },
+  heart: {
+    label: { en: "Heart & Blood", hi: "हृदय और रक्त" },
+    icon: Heart,
+    conditions: ["Hypertension", "High Cholesterol", "Anemia", "Iron Deficiency (Women)", "Heart Health"]
+  },
+  brain: {
+    label: { en: "Brain & Mind", hi: "मस्तिष्क और मन" },
+    icon: Brain,
+    conditions: ["Migraine", "Anxiety", "Insomnia", "Memory", "Stress", "Headache", "Vertigo", "Neuropathy", "Stroke Recovery"]
+  },
+  digestive: {
+    label: { en: "Digestive", hi: "पाचन" },
+    icon: Activity,
+    conditions: ["Acidity", "Constipation", "Piles", "Bloating", "Gas", "Heartburn", "Nausea", "Diarrhea", "Stomach Ache", "Food Poisoning", "Intestinal Worms", "Liver Health", "Fatty Liver"]
+  },
+  respiratory: {
+    label: { en: "Respiratory", hi: "श्वसन" },
+    icon: Wind,
+    conditions: ["Asthma", "Cold & Cough", "Sinusitis", "Cough", "Sore Throat", "Common Cold", "Chest Congestion", "Runny Nose", "Allergies", "Seasonal Allergies"]
+  },
+  kidney: {
+    label: { en: "Kidney & Urinary", hi: "गुर्दा और मूत्र" },
+    icon: Droplets,
+    conditions: ["Kidney Stones", "UTI", "UTI (Women)", "Dehydration"]
+  },
+  bones: {
+    label: { en: "Bones & Joints", hi: "हड्डी और जोड़" },
+    icon: Bone,
+    conditions: ["Arthritis", "Joint Pain", "Back Pain", "Muscle Cramps", "Leg Cramps", "Winter Joint Pain", "Autoimmune Support"]
+  },
+  skin: {
+    label: { en: "Skin & Hair", hi: "त्वचा और बाल" },
+    icon: Zap,
+    conditions: ["Skin Disorders", "Hair Fall", "Acne", "Dark Circles", "Dry Skin", "Dandruff", "Chapped Lips", "Cracked Heels", "Sunburn", "Dry Skin (Winter)", "Prickly Heat", "Fungal Infections"]
+  },
+  eyes: {
+    label: { en: "Eyes & Ears", hi: "आँख और कान" },
+    icon: Eye,
+    conditions: ["Eye Strain", "Weak Eyesight", "Ear Infection"]
+  },
+  metabolic: {
+    label: { en: "Metabolic", hi: "चयापचय" },
+    icon: Activity,
+    conditions: ["Diabetes", "Thyroid", "Weight Loss", "Obesity", "Type 2 Diabetes Support", "Fatigue", "Low Energy"]
+  },
+  immunity: {
+    label: { en: "Immunity", hi: "प्रतिरक्षा" },
+    icon: Sparkles,
+    conditions: ["Immunity", "Winter Immunity", "Weak Immunity (Children)", "Flu & Viral Fever", "Fever", "Cancer Support", "Monsoon Infections", "Waterborne Diseases"]
+  }
+};
+
 // Define category groups
 const categoryGroups = {
   all: {
@@ -154,6 +213,7 @@ const Remedies = () => {
   const [category, setCategory] = useState("all");
   const [selectedIngredient, setSelectedIngredient] = useState("all");
   const [activeGroup, setActiveGroup] = useState<keyof typeof categoryGroups>("all");
+  const [activeBodySystem, setActiveBodySystem] = useState<keyof typeof bodySystems>("all");
 
   // Apply SEO structured data
   useRemediesSEO(language);
@@ -180,17 +240,22 @@ const Remedies = () => {
       const matchesIngredient = selectedIngredient === "all" || 
         r.ingredients.some(i => i.name === selectedIngredient);
       
-      return matchesSearch && matchesGroup && matchesCategory && matchesIngredient;
+      // Filter by body system
+      const matchesBodySystem = activeBodySystem === "all" || 
+        bodySystems[activeBodySystem].conditions.includes(r.problem);
+      
+      return matchesSearch && matchesGroup && matchesCategory && matchesIngredient && matchesBodySystem;
     });
-  }, [search, category, selectedIngredient, activeGroup]);
+  }, [search, category, selectedIngredient, activeGroup, activeBodySystem]);
 
   const clearFilters = () => {
     setSearch("");
     setCategory("all");
     setSelectedIngredient("all");
+    setActiveBodySystem("all");
   };
 
-  const hasActiveFilters = search || category !== "all" || selectedIngredient !== "all";
+  const hasActiveFilters = search || category !== "all" || selectedIngredient !== "all" || activeBodySystem !== "all";
 
   // Get count per group for display
   const groupCounts = useMemo(() => {
@@ -200,6 +265,19 @@ const Remedies = () => {
         counts[key] = remedies.length;
       } else {
         counts[key] = remedies.filter(r => group.categories.includes(r.problem)).length;
+      }
+    });
+    return counts;
+  }, []);
+
+  // Get count per body system for display
+  const bodySystemCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    Object.entries(bodySystems).forEach(([key, system]) => {
+      if (key === "all") {
+        counts[key] = remedies.length;
+      } else {
+        counts[key] = remedies.filter(r => system.conditions.includes(r.problem)).length;
       }
     });
     return counts;
@@ -246,6 +324,39 @@ const Remedies = () => {
             })}
           </TabsList>
         </Tabs>
+
+        {/* Body System Filter */}
+        <div className="mb-6">
+          <h3 className="text-sm font-medium text-muted-foreground mb-3">
+            {language === "hi" ? "शरीर के अंग द्वारा फ़िल्टर करें" : "Filter by Body System"}
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {Object.entries(bodySystems).map(([key, system]) => {
+              const Icon = system.icon;
+              const count = bodySystemCounts[key] || 0;
+              const isActive = activeBodySystem === key;
+              return (
+                <button
+                  key={key}
+                  onClick={() => setActiveBodySystem(key as keyof typeof bodySystems)}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm transition-all ${
+                    isActive 
+                      ? "bg-secondary text-secondary-foreground border-secondary shadow-sm" 
+                      : "bg-card hover:bg-muted/50 border-border text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span>{system.label[language]}</span>
+                  <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                    isActive ? "bg-secondary-foreground/20" : "bg-muted"
+                  }`}>
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
         
         {/* Search and Filters */}
         <div className="flex flex-col gap-4 mb-6">
@@ -305,6 +416,12 @@ const Remedies = () => {
             <span className="text-sm text-muted-foreground">
               {language === "hi" ? `${filtered.length} उपचार दिखा रहे हैं` : `Showing ${filtered.length} remedies`}
             </span>
+            {activeBodySystem !== "all" && (
+              <Badge variant="secondary" className="gap-1">
+                {bodySystems[activeBodySystem].label[language]}
+                <X className="h-3 w-3 cursor-pointer" onClick={() => setActiveBodySystem("all")} />
+              </Badge>
+            )}
             {category !== "all" && (
               <Badge variant="secondary" className="gap-1">
                 {category}
