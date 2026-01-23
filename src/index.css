@@ -392,3 +392,13 @@
   background: hsl(var(--terracotta) / 0.3);
   color: hsl(var(--foreground));
 }
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
