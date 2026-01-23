@@ -17,7 +17,13 @@ type FilterCategory = "all" | "diseases" | "medicines" | "remedies";
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") || "");
-  const [activeFilter, setActiveFilter] = useState<FilterCategory>("all");
+  const [activeFilter, setActiveFilter] = useState<FilterCategory>(() => {
+    const filterParam = searchParams.get("filter");
+    if (filterParam === "diseases" || filterParam === "medicines" || filterParam === "remedies") {
+      return filterParam;
+    }
+    return "all";
+  });
   const [isSearching, setIsSearching] = useState(false);
   const { toast } = useToast();
 
@@ -45,6 +51,10 @@ const Search = () => {
 
   useEffect(() => {
     setQuery(searchParams.get("q") || "");
+    const filterParam = searchParams.get("filter");
+    if (filterParam === "diseases" || filterParam === "medicines" || filterParam === "remedies") {
+      setActiveFilter(filterParam);
+    }
   }, [searchParams]);
 
   const handleSearch = (newQuery: string) => {
