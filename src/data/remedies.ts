@@ -7290,6 +7290,758 @@ export const remedies: Remedy[] = [
     related_diseases: ["diabetes", "high-blood-sugar"],
     difficulty: "Medium",
     preparation_time: "15 minutes"
+  },
+
+  // ========== WORLDWIDE COMMON DISEASES ==========
+  
+  // Flu & Viral Infections (Worldwide)
+  {
+    id: "remedy-flu-1",
+    problem: "Flu & Viral Fever",
+    title: "Elderberry-Ginger Immune Syrup",
+    ingredients: [
+      { name: "Dried elderberries", quantity: "1 cup" },
+      { name: "Fresh ginger", quantity: "2 inches" },
+      { name: "Cinnamon sticks", quantity: "2" },
+      { name: "Cloves", quantity: "5-6" },
+      { name: "Water", quantity: "3 cups" },
+      { name: "Raw honey", quantity: "1 cup" }
+    ],
+    method: [
+      "Simmer elderberries, ginger, cinnamon, and cloves in water for 45 minutes",
+      "Mash berries and strain through cheesecloth",
+      "Let cool to lukewarm, then add honey",
+      "Store in glass jar in refrigerator"
+    ],
+    how_often: "1 tablespoon every 2-3 hours during illness",
+    precautions: [
+      "Raw elderberries are toxic - must be cooked",
+      "Not for children under 1 year (honey)",
+      "Consult doctor if symptoms persist"
+    ],
+    benefits: [
+      "Powerful antiviral properties",
+      "Reduces flu duration by 3-4 days",
+      "Boosts immune response"
+    ],
+    related_diseases: ["flu", "viral-fever", "cold-cough"],
+    difficulty: "Medium",
+    preparation_time: "1 hour"
+  },
+  {
+    id: "remedy-flu-2",
+    problem: "Seasonal Flu",
+    title: "Turmeric-Black Pepper Hot Toddy",
+    ingredients: [
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Black pepper", quantity: "1/4 teaspoon" },
+      { name: "Lemon juice", quantity: "2 tablespoons" },
+      { name: "Honey", quantity: "1 tablespoon" },
+      { name: "Fresh ginger", quantity: "1 inch grated" }
+    ],
+    method: [
+      "Boil water with grated ginger for 3 minutes",
+      "Strain into a cup",
+      "Add turmeric and black pepper, stir well",
+      "Add lemon and honey when slightly cooled"
+    ],
+    how_often: "3-4 times daily during flu",
+    precautions: [
+      "Avoid if on blood thinners",
+      "May stain teeth temporarily",
+      "Reduce turmeric if causing stomach upset"
+    ],
+    benefits: [
+      "Anti-inflammatory and antiviral",
+      "Soothes throat and reduces congestion",
+      "Provides hydration"
+    ],
+    related_diseases: ["flu", "seasonal-flu", "cold-cough"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+
+  // Allergies (Worldwide common)
+  {
+    id: "remedy-allergy-1",
+    problem: "Seasonal Allergies",
+    title: "Local Honey-Bee Pollen Remedy",
+    ingredients: [
+      { name: "Local raw honey", quantity: "1 tablespoon" },
+      { name: "Bee pollen granules", quantity: "1/4 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" }
+    ],
+    method: [
+      "Start with small amount of bee pollen (few granules)",
+      "Mix honey and pollen in warm water",
+      "Drink slowly",
+      "Gradually increase pollen over 2 weeks"
+    ],
+    how_often: "Once daily, start 6 weeks before allergy season",
+    precautions: [
+      "Start with tiny dose to check for allergy to bee products",
+      "Not for those allergic to bee stings",
+      "Consult doctor before starting"
+    ],
+    benefits: [
+      "Builds natural tolerance to local pollen",
+      "Reduces histamine response",
+      "Natural antihistamine effect"
+    ],
+    related_diseases: ["allergies", "hay-fever", "pollen-allergy"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-allergy-2",
+    problem: "Dust & Mold Allergy",
+    title: "Nettle-Quercetin Tea",
+    ingredients: [
+      { name: "Dried nettle leaves", quantity: "2 teaspoons" },
+      { name: "Apple (with skin)", quantity: "1/4 sliced" },
+      { name: "Hot water", quantity: "2 cups" },
+      { name: "Honey", quantity: "Optional" }
+    ],
+    method: [
+      "Pour hot water over nettle leaves and apple slices",
+      "Steep covered for 10-15 minutes",
+      "Strain and add honey if desired",
+      "Drink warm"
+    ],
+    how_often: "2-3 cups daily during allergy flare-ups",
+    precautions: [
+      "May interact with blood pressure medications",
+      "Avoid if pregnant",
+      "May increase urination"
+    ],
+    benefits: [
+      "Natural antihistamine",
+      "Reduces inflammation",
+      "Quercetin blocks histamine release"
+    ],
+    related_diseases: ["allergies", "dust-allergy", "sinusitis"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+
+  // Cancer Support (Complementary, not replacement)
+  {
+    id: "remedy-cancer-1",
+    problem: "Cancer Support (Nausea)",
+    title: "Ginger-Peppermint Nausea Relief",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch" },
+      { name: "Fresh peppermint leaves", quantity: "10 leaves" },
+      { name: "Lemon slice", quantity: "1" },
+      { name: "Hot water", quantity: "1 cup" }
+    ],
+    method: [
+      "Slice ginger thinly",
+      "Add ginger, peppermint, and lemon to cup",
+      "Pour hot water and steep 5-10 minutes",
+      "Sip slowly"
+    ],
+    how_often: "30 minutes before chemotherapy or as needed",
+    precautions: [
+      "Consult oncologist before use",
+      "Not a replacement for anti-nausea medications",
+      "Avoid if mouth sores present"
+    ],
+    benefits: [
+      "Reduces chemotherapy-induced nausea",
+      "Settles stomach naturally",
+      "Provides hydration"
+    ],
+    related_diseases: ["cancer-support", "nausea", "chemotherapy-side-effects"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-cancer-2",
+    problem: "Cancer Support (Immunity)",
+    title: "Turmeric-Mushroom Immunity Broth",
+    ingredients: [
+      { name: "Shiitake mushrooms", quantity: "1/2 cup sliced" },
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Garlic cloves", quantity: "3 minced" },
+      { name: "Vegetable broth", quantity: "2 cups" },
+      { name: "Black pepper", quantity: "1/4 teaspoon" },
+      { name: "Fresh ginger", quantity: "1 inch" }
+    ],
+    method: [
+      "Simmer mushrooms in broth with ginger for 20 minutes",
+      "Add garlic and turmeric, simmer 5 more minutes",
+      "Add black pepper",
+      "Strain or drink with mushrooms"
+    ],
+    how_often: "Once daily during treatment",
+    precautions: [
+      "Always consult oncologist before use",
+      "May interact with certain cancer drugs",
+      "Not a replacement for medical treatment"
+    ],
+    benefits: [
+      "Beta-glucans support immune function",
+      "Anti-inflammatory properties",
+      "Provides nutrients during treatment"
+    ],
+    related_diseases: ["cancer-support", "weak-immunity"],
+    difficulty: "Medium",
+    preparation_time: "30 minutes"
+  },
+
+  // Stroke Recovery Support
+  {
+    id: "remedy-stroke-1",
+    problem: "Stroke Recovery Support",
+    title: "Ginkgo-Gotu Kola Brain Tonic",
+    ingredients: [
+      { name: "Gotu kola powder", quantity: "1/2 teaspoon" },
+      { name: "Brahmi powder", quantity: "1/2 teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm the milk (don't boil)",
+      "Add gotu kola and brahmi powders",
+      "Stir well until dissolved",
+      "Add honey when slightly cooled"
+    ],
+    how_often: "Once daily in evening",
+    precautions: [
+      "Must be under medical supervision",
+      "May interact with blood thinners",
+      "Not for acute stroke - only recovery phase"
+    ],
+    benefits: [
+      "Supports brain circulation",
+      "Aids neural regeneration",
+      "Traditional brain tonic"
+    ],
+    related_diseases: ["stroke-recovery", "brain-health"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+
+  // Autoimmune Support
+  {
+    id: "remedy-autoimmune-1",
+    problem: "Autoimmune Support",
+    title: "Anti-Inflammatory Golden Paste",
+    ingredients: [
+      { name: "Turmeric powder", quantity: "1/2 cup" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Coconut oil", quantity: "1/3 cup" },
+      { name: "Black pepper", quantity: "2 teaspoons" }
+    ],
+    method: [
+      "Mix turmeric and water in pan, stir on low heat 7-10 minutes until paste forms",
+      "Remove from heat, add coconut oil and black pepper",
+      "Mix well and store in glass jar in refrigerator",
+      "Take 1/4 to 1/2 teaspoon with meals"
+    ],
+    how_often: "Start with 1/4 teaspoon, increase gradually to 1 teaspoon 3x daily",
+    precautions: [
+      "Consult rheumatologist before use",
+      "May interact with immunosuppressants",
+      "Start slowly to check tolerance"
+    ],
+    benefits: [
+      "Powerful anti-inflammatory",
+      "Modulates immune response",
+      "Reduces joint inflammation"
+    ],
+    related_diseases: ["autoimmune-disorders", "rheumatoid-arthritis", "lupus-support"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes"
+  },
+
+  // Chronic Fatigue
+  {
+    id: "remedy-fatigue-1",
+    problem: "Chronic Fatigue",
+    title: "Ashwagandha-Shilajit Energy Tonic",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "1/2 teaspoon" },
+      { name: "Shilajit resin", quantity: "Pea-sized" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Ghee", quantity: "1/2 teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Dissolve shilajit in warm milk",
+      "Add ashwagandha powder and ghee",
+      "Stir well until dissolved",
+      "Add honey when slightly cooled"
+    ],
+    how_often: "Once daily in morning or evening",
+    precautions: [
+      "Not during pregnancy",
+      "May affect thyroid medications",
+      "Start with smaller dose"
+    ],
+    benefits: [
+      "Adaptogenic - reduces fatigue",
+      "Increases stamina and endurance",
+      "Supports adrenal function"
+    ],
+    related_diseases: ["chronic-fatigue", "low-energy", "burnout"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+
+  // Nerve Damage / Neuropathy
+  {
+    id: "remedy-nerve-1",
+    problem: "Nerve Health (Neuropathy)",
+    title: "Ashwagandha-Saffron Nerve Tonic",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "1/2 teaspoon" },
+      { name: "Saffron strands", quantity: "4-5" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Almonds (soaked & peeled)", quantity: "5" },
+      { name: "Ghee", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Soak saffron in 1 tablespoon warm milk for 10 minutes",
+      "Blend almonds with remaining milk until smooth",
+      "Add ashwagandha, saffron milk, and ghee",
+      "Warm slightly and drink"
+    ],
+    how_often: "Once daily at bedtime",
+    precautions: [
+      "Expensive due to saffron - can reduce amount",
+      "Consult neurologist for diabetic neuropathy",
+      "Not for those with nut allergies"
+    ],
+    benefits: [
+      "Supports nerve regeneration",
+      "Reduces nerve pain",
+      "Traditional nerve tonic"
+    ],
+    related_diseases: ["neuropathy", "nerve-damage", "diabetic-neuropathy"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes"
+  },
+
+  // Obesity (Worldwide epidemic)
+  {
+    id: "remedy-obesity-1",
+    problem: "Weight Management",
+    title: "Triphala-Apple Cider Vinegar Drink",
+    ingredients: [
+      { name: "Triphala powder", quantity: "1 teaspoon" },
+      { name: "Apple cider vinegar (with mother)", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Honey", quantity: "1/2 teaspoon (optional)" }
+    ],
+    method: [
+      "Add triphala powder to warm water",
+      "Add apple cider vinegar",
+      "Mix well and add honey if needed",
+      "Drink on empty stomach"
+    ],
+    how_often: "Twice daily - morning and before bed",
+    precautions: [
+      "May cause loose stools initially",
+      "Dilute vinegar to protect teeth",
+      "Not during pregnancy"
+    ],
+    benefits: [
+      "Boosts metabolism",
+      "Aids fat burning",
+      "Improves digestion and elimination"
+    ],
+    related_diseases: ["obesity", "weight-gain", "slow-metabolism"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-obesity-2",
+    problem: "Belly Fat",
+    title: "Cumin-Lemon Morning Detox",
+    ingredients: [
+      { name: "Cumin seeds", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "1.5 cups" },
+      { name: "Lemon juice", quantity: "1/2 lemon" },
+      { name: "Honey", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Soak cumin seeds in water overnight",
+      "In morning, boil for 5 minutes",
+      "Strain and let cool to lukewarm",
+      "Add lemon juice and honey"
+    ],
+    how_often: "Every morning on empty stomach",
+    precautions: [
+      "May increase body heat",
+      "Avoid if suffering from acidity",
+      "Drink through straw to protect teeth"
+    ],
+    benefits: [
+      "Targets belly fat specifically",
+      "Boosts morning metabolism",
+      "Aids digestion all day"
+    ],
+    related_diseases: ["belly-fat", "obesity", "slow-digestion"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes + overnight soak"
+  },
+
+  // Summer Seasonal Remedies (Worldwide applicable)
+  {
+    id: "remedy-summer-1",
+    problem: "Summer Heat",
+    title: "Cooling Mint-Cucumber Cooler",
+    ingredients: [
+      { name: "Fresh mint leaves", quantity: "15-20 leaves" },
+      { name: "Cucumber", quantity: "1/2 sliced" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "2 glasses" },
+      { name: "Rock salt", quantity: "A pinch" },
+      { name: "Cumin powder (roasted)", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Blend cucumber and mint with 1 glass water",
+      "Strain if desired or drink with pulp",
+      "Add remaining water, lemon, salt, and cumin",
+      "Serve chilled"
+    ],
+    how_often: "2-3 times daily in summer",
+    precautions: [
+      "Avoid if prone to cold",
+      "Reduce if causing excess urination",
+      "Use organic cucumber if possible"
+    ],
+    benefits: [
+      "Instantly cools body temperature",
+      "Prevents dehydration",
+      "Balances electrolytes"
+    ],
+    related_diseases: ["summer-heat", "heat-stroke", "dehydration"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-summer-2",
+    problem: "Heat Stroke",
+    title: "Raw Mango Panna (Aam Panna)",
+    ingredients: [
+      { name: "Raw green mango", quantity: "2 medium" },
+      { name: "Jaggery or sugar", quantity: "1/2 cup" },
+      { name: "Cumin powder (roasted)", quantity: "1 teaspoon" },
+      { name: "Black salt", quantity: "1/2 teaspoon" },
+      { name: "Mint leaves", quantity: "10 leaves" },
+      { name: "Cold water", quantity: "4 cups" }
+    ],
+    method: [
+      "Boil or roast raw mangoes until soft",
+      "Remove pulp and blend smooth",
+      "Mix all ingredients with water",
+      "Serve over ice"
+    ],
+    how_often: "1-2 glasses daily in peak summer",
+    precautions: [
+      "Avoid if diabetic (high sugar content)",
+      "May cause mouth tingling in excess",
+      "Store concentrate in fridge up to 1 week"
+    ],
+    benefits: [
+      "Prevents heat stroke",
+      "Replenishes minerals lost in sweat",
+      "Traditional Indian summer cooler"
+    ],
+    related_diseases: ["heat-stroke", "summer-heat", "summer-fatigue"],
+    difficulty: "Medium",
+    preparation_time: "30 minutes"
+  },
+  {
+    id: "remedy-summer-3",
+    problem: "Prickly Heat",
+    title: "Sandalwood-Rose Water Paste",
+    ingredients: [
+      { name: "Sandalwood powder", quantity: "2 tablespoons" },
+      { name: "Rose water", quantity: "Enough to make paste" },
+      { name: "Fuller's earth (multani mitti)", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Mix sandalwood and fuller's earth",
+      "Add rose water gradually to form smooth paste",
+      "Apply on affected areas",
+      "Leave for 20-30 minutes, rinse with cool water"
+    ],
+    how_often: "Once or twice daily until healed",
+    precautions: [
+      "Patch test first",
+      "Avoid if skin is broken",
+      "Use pure sandalwood powder"
+    ],
+    benefits: [
+      "Instantly cools and soothes skin",
+      "Reduces prickly heat rash",
+      "Natural antiseptic"
+    ],
+    related_diseases: ["prickly-heat", "heat-rash", "summer-heat"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-summer-4",
+    problem: "Summer Dehydration",
+    title: "Coconut Water Electrolyte Drink",
+    ingredients: [
+      { name: "Fresh coconut water", quantity: "1 cup" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Pink salt", quantity: "1/8 teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix all ingredients together",
+      "Stir well until honey dissolves",
+      "Serve immediately or chilled"
+    ],
+    how_often: "2-3 times daily in hot weather",
+    precautions: [
+      "Diabetics reduce or skip honey",
+      "Use fresh coconut water when possible",
+      "Not a complete replacement for severe dehydration"
+    ],
+    benefits: [
+      "Natural isotonic drink",
+      "Replaces lost electrolytes",
+      "More effective than plain water"
+    ],
+    related_diseases: ["dehydration", "summer-heat", "electrolyte-imbalance"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+
+  // Monsoon Remedies
+  {
+    id: "remedy-monsoon-1",
+    problem: "Monsoon Infections",
+    title: "Anti-Infection Tulsi-Neem Kadha",
+    ingredients: [
+      { name: "Fresh tulsi leaves", quantity: "15 leaves" },
+      { name: "Neem leaves", quantity: "5 leaves" },
+      { name: "Fresh ginger", quantity: "1 inch" },
+      { name: "Black pepper", quantity: "5 whole" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Jaggery", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Boil water with all ingredients except jaggery",
+      "Simmer until reduced to 1 cup",
+      "Strain and add jaggery",
+      "Drink warm"
+    ],
+    how_often: "Once daily during monsoon",
+    precautions: [
+      "Neem is very bitter - adjust amount",
+      "Avoid during pregnancy",
+      "May cause body heat"
+    ],
+    benefits: [
+      "Prevents monsoon infections",
+      "Boosts immunity against waterborne diseases",
+      "Natural antibiotic effect"
+    ],
+    related_diseases: ["monsoon-infections", "viral-fever", "waterborne-diseases"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes"
+  },
+  {
+    id: "remedy-monsoon-2",
+    problem: "Fungal Infections",
+    title: "Neem-Tea Tree Antifungal Paste",
+    ingredients: [
+      { name: "Neem leaves", quantity: "1 cup fresh" },
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Tea tree oil", quantity: "3-4 drops" },
+      { name: "Coconut oil", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Grind neem leaves into paste",
+      "Mix with turmeric and coconut oil",
+      "Add tea tree oil and mix well",
+      "Apply on affected areas"
+    ],
+    how_often: "Twice daily until infection clears",
+    precautions: [
+      "Patch test first for sensitivity",
+      "Avoid on open wounds",
+      "Keep area dry between applications"
+    ],
+    benefits: [
+      "Powerful antifungal combination",
+      "Stops fungal growth",
+      "Soothes itching and inflammation"
+    ],
+    related_diseases: ["fungal-infections", "ringworm", "athletes-foot"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-monsoon-3",
+    problem: "Waterborne Diseases",
+    title: "Cumin-Coriander Digestive Water",
+    ingredients: [
+      { name: "Cumin seeds", quantity: "1 teaspoon" },
+      { name: "Coriander seeds", quantity: "1 teaspoon" },
+      { name: "Fennel seeds", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "4 cups" }
+    ],
+    method: [
+      "Dry roast all seeds lightly",
+      "Boil with water for 10 minutes",
+      "Strain and store in thermos",
+      "Drink throughout the day"
+    ],
+    how_often: "As drinking water during monsoon",
+    precautions: [
+      "Make fresh daily",
+      "Don't add cold water later",
+      "Safe for children too"
+    ],
+    benefits: [
+      "Prevents waterborne stomach infections",
+      "Aids digestion",
+      "Traditional CCF tea"
+    ],
+    related_diseases: ["waterborne-diseases", "stomach-infection", "diarrhea"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+
+  // Winter Remedies
+  {
+    id: "remedy-winter-1",
+    problem: "Winter Cold",
+    title: "Warming Spiced Kadha",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch" },
+      { name: "Cinnamon stick", quantity: "1 inch" },
+      { name: "Black pepper", quantity: "4-5" },
+      { name: "Cloves", quantity: "2" },
+      { name: "Tulsi leaves", quantity: "8-10" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Honey", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Crush ginger and spices lightly",
+      "Boil with water and tulsi for 10 minutes",
+      "Strain and add honey when warm",
+      "Drink hot"
+    ],
+    how_often: "2-3 times daily during cold",
+    precautions: [
+      "May cause acidity in some",
+      "Reduce spices for children",
+      "Not on completely empty stomach"
+    ],
+    benefits: [
+      "Clears congestion",
+      "Warms the body from inside",
+      "Fights cold and cough"
+    ],
+    related_diseases: ["winter-cold", "cold-cough", "congestion"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-winter-2",
+    problem: "Winter Immunity",
+    title: "Chyawanprash Milk Shake",
+    ingredients: [
+      { name: "Chyawanprash", quantity: "1 tablespoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Ghee", quantity: "1/2 teaspoon" },
+      { name: "Saffron strands", quantity: "2-3" }
+    ],
+    method: [
+      "Warm milk with saffron",
+      "Add chyawanprash and ghee",
+      "Whisk well until mixed",
+      "Drink while warm"
+    ],
+    how_often: "Once daily in winter months",
+    precautions: [
+      "Check chyawanprash sugar content if diabetic",
+      "Not for children under 3",
+      "May cause weight gain - use in moderation"
+    ],
+    benefits: [
+      "Traditional immunity booster",
+      "Provides warmth in winter",
+      "Rich in Vitamin C and antioxidants"
+    ],
+    related_diseases: ["winter-immunity", "weak-immunity", "frequent-cold"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-winter-3",
+    problem: "Winter Joint Pain",
+    title: "Warming Sesame-Ajwain Oil",
+    ingredients: [
+      { name: "Sesame oil", quantity: "1/4 cup" },
+      { name: "Ajwain (carom seeds)", quantity: "1 tablespoon" },
+      { name: "Garlic cloves", quantity: "4-5" },
+      { name: "Methi (fenugreek) seeds", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Heat sesame oil on low",
+      "Add crushed garlic and all seeds",
+      "Cook until garlic browns slightly",
+      "Strain and use warm for massage"
+    ],
+    how_often: "Daily massage before bath in winter",
+    precautions: [
+      "Test temperature before applying",
+      "Avoid on broken skin",
+      "Store in dark bottle"
+    ],
+    benefits: [
+      "Deep warming effect",
+      "Reduces winter joint stiffness",
+      "Improves blood circulation"
+    ],
+    related_diseases: ["winter-joint-pain", "arthritis", "joint-stiffness"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-winter-4",
+    problem: "Dry Skin (Winter)",
+    title: "Ghee-Almond Skin Moisturizer",
+    ingredients: [
+      { name: "Pure ghee", quantity: "2 tablespoons" },
+      { name: "Sweet almond oil", quantity: "1 tablespoon" },
+      { name: "Rose water", quantity: "1 teaspoon" },
+      { name: "Vitamin E capsule", quantity: "1 (optional)" }
+    ],
+    method: [
+      "Melt ghee gently (don't heat too much)",
+      "Mix with almond oil and rose water",
+      "Add vitamin E if using",
+      "Apply on dry areas before bed"
+    ],
+    how_often: "Nightly in winter",
+    precautions: [
+      "Use only on body, not face if acne-prone",
+      "May stain light clothes",
+      "Store in cool place"
+    ],
+    benefits: [
+      "Intense moisturization",
+      "Heals cracked skin",
+      "Traditional Ayurvedic skincare"
+    ],
+    related_diseases: ["dry-skin", "cracked-heels", "winter-skin"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
   }
 ];
 
