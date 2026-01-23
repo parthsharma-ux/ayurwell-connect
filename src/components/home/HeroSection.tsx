@@ -16,7 +16,10 @@ type SuggestionItem = {
   name: string;
   category: string;
   type: "disease" | "medicine" | "remedy";
+  preview?: string; // Symptoms/uses snippet
 };
+
+const MAX_DROPDOWN_RESULTS = 6;
 
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -27,6 +30,7 @@ const HeroSection = () => {
   const [activeSuggestionFilter, setActiveSuggestionFilter] = useState<
     "all" | SuggestionItem["type"]
   >("all");
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const navigate = useLocalizedNavigate();
   const { toast } = useToast();
   const { t, language } = useLanguage();
@@ -69,8 +73,11 @@ const HeroSection = () => {
 
   const visibleSuggestions =
     activeSuggestionFilter === "all"
-      ? suggestions
-      : suggestions.filter((s) => s.type === activeSuggestionFilter);
+      ? suggestions.slice(0, MAX_DROPDOWN_RESULTS)
+      : suggestions.filter((s) => s.type === activeSuggestionFilter).slice(0, MAX_DROPDOWN_RESULTS);
+
+  // Reset selected index when suggestions change
+  const resetSelection = () => setSelectedIndex(-1);
 
   const handleSearch = () => {
     const trimmedQuery = searchQuery.trim();
@@ -86,7 +93,24 @@ const HeroSection = () => {
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      handleSearch();
+      if (selectedIndex >= 0 && selectedIndex < visibleSuggestions.length) {
+        handleSuggestionClick(visibleSuggestions[selectedIndex]);
+      } else {
+        handleSearch();
+      }
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex((prev) => 
+        prev < visibleSuggestions.length - 1 ? prev + 1 : prev
+      );
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex((prev) => (prev > 0 ? prev - 1 : -1));
+    } else if (e.key === "Escape") {
+      setSuggestions([]);
+      setDidYouMean([]);
+      setShowNoResults(false);
+      resetSelection();
     }
   };
 
@@ -96,6 +120,7 @@ const HeroSection = () => {
     setShowNoResults(false);
     setActiveSuggestionFilter("all");
     setSearchQuery("");
+    resetSelection();
     if (item.type === "disease") {
       navigate(`/diseases/${item.id}`);
     } else if (item.type === "medicine") {
@@ -108,7 +133,13 @@ const HeroSection = () => {
   const handleDidYouMeanClick = (term: string) => {
     setSearchQuery(term);
     setActiveSuggestionFilter("all");
+    resetSelection();
     handleInputChange(term);
+  };
+
+  const handleViewAllCategory = (type: SuggestionItem["type"]) => {
+    setSuggestions([]);
+    navigate(`/search?q=${encodeURIComponent(searchQuery)}&filter=${type === "disease" ? "diseases" : type === "medicine" ? "medicines" : "remedies"}`);
   };
 
   const handleInputChange = useCallback((value: string) => {
@@ -116,6 +147,7 @@ const HeroSection = () => {
     setDidYouMean([]);
     setShowNoResults(false);
     setActiveSuggestionFilter("all");
+    setSelectedIndex(-1);
     
     if (value.length > 1) {
       setIsSearching(true);
@@ -155,12 +187,13 @@ const HeroSection = () => {
           })
           .filter(({ score }) => score > 0)
           .sort((a, b) => b.score - a.score)
-          .slice(0, 4)
+          .slice(0, 6)
           .map(({ disease: d }) => ({
             id: d.id,
             name: d.name,
             category: d.category,
-            type: "disease" as const
+            type: "disease" as const,
+            preview: d.symptoms.slice(0, 2).join(", ")
           }));
 
         // Filter and score medicines - prioritize name matches over uses
@@ -170,18 +203,19 @@ const HeroSection = () => {
             const usesScore = m.uses.some((u) => 
               u.toLowerCase().includes(lowerValue) || 
               normalize(u).includes(normalizedValue)
-            ) ? 20 : 0; // Lower priority for use-based matches
+            ) ? 20 : 0;
             const score = Math.max(nameScore, usesScore);
             return { medicine: m, score };
           })
           .filter(({ score }) => score > 0)
           .sort((a, b) => b.score - a.score)
-          .slice(0, 2)
+          .slice(0, 4)
           .map(({ medicine: m }) => ({
             id: m.id,
             name: m.name,
             category: m.brand,
-            type: "medicine" as const
+            type: "medicine" as const,
+            preview: m.uses.slice(0, 2).join(", ")
           }));
 
         // Filter and score remedies
@@ -194,16 +228,17 @@ const HeroSection = () => {
           })
           .filter(({ score }) => score > 0)
           .sort((a, b) => b.score - a.score)
-          .slice(0, 2)
+          .slice(0, 4)
           .map(({ remedy: r }) => ({
             id: r.id,
             name: r.title,
             category: r.problem,
-            type: "remedy" as const
+            type: "remedy" as const,
+            preview: r.ingredients?.slice(0, 3).join(", ") || r.problem
           }));
 
-        // Combine: show diseases first (prioritized), then medicines, then remedies
-        const allSuggestions = [...scoredDiseases, ...scoredMedicines, ...scoredRemedies].slice(0, 8);
+        // Combine all suggestions (we'll limit per filter in visibleSuggestions)
+        const allSuggestions = [...scoredDiseases, ...scoredMedicines, ...scoredRemedies];
         setSuggestions(allSuggestions);
         
         if (allSuggestions.length === 0 && value.length >= 3) {
@@ -352,18 +387,18 @@ const HeroSection = () => {
                    <div className="flex flex-wrap gap-2">
                      <button
                        type="button"
-                       onClick={() => setActiveSuggestionFilter("all")}
+                       onClick={() => { setActiveSuggestionFilter("all"); resetSelection(); }}
                        className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${
                          activeSuggestionFilter === "all"
                            ? "bg-primary/15 text-primary border-primary/30"
                            : "bg-muted/40 text-muted-foreground border-border/30 hover:bg-muted/60"
                        }`}
                      >
-                       All ({suggestions.length})
+                       All ({suggestions.length > MAX_DROPDOWN_RESULTS ? `${MAX_DROPDOWN_RESULTS}+` : suggestions.length})
                      </button>
                      <button
                        type="button"
-                       onClick={() => setActiveSuggestionFilter("disease")}
+                       onClick={() => { setActiveSuggestionFilter("disease"); resetSelection(); }}
                        className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${
                          activeSuggestionFilter === "disease"
                            ? "bg-primary/15 text-primary border-primary/30"
@@ -375,7 +410,7 @@ const HeroSection = () => {
                      </button>
                      <button
                        type="button"
-                       onClick={() => setActiveSuggestionFilter("medicine")}
+                       onClick={() => { setActiveSuggestionFilter("medicine"); resetSelection(); }}
                        className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${
                          activeSuggestionFilter === "medicine"
                            ? "bg-primary/15 text-primary border-primary/30"
@@ -387,7 +422,7 @@ const HeroSection = () => {
                      </button>
                      <button
                        type="button"
-                       onClick={() => setActiveSuggestionFilter("remedy")}
+                       onClick={() => { setActiveSuggestionFilter("remedy"); resetSelection(); }}
                        className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${
                          activeSuggestionFilter === "remedy"
                            ? "bg-primary/15 text-primary border-primary/30"
@@ -400,36 +435,63 @@ const HeroSection = () => {
                    </div>
                  </div>
 
-                 {visibleSuggestions.map((item) => (
+                 {visibleSuggestions.map((item, index) => (
                   <button
                     key={`${item.type}-${item.id}`}
                     onClick={() => handleSuggestionClick(item)}
-                    className="w-full px-5 py-4 text-left hover:bg-muted/50 transition-colors flex items-center gap-4 border-b border-border/20 last:border-0"
+                    onMouseEnter={() => setSelectedIndex(index)}
+                    className={`w-full px-5 py-3 text-left transition-colors flex items-center gap-4 border-b border-border/20 last:border-0 ${
+                      selectedIndex === index ? "bg-primary/10" : "hover:bg-muted/50"
+                    }`}
                   >
-                    <div className="p-2 rounded-lg bg-muted/50">
+                    <div className={`p-2 rounded-lg ${selectedIndex === index ? "bg-primary/20" : "bg-muted/50"}`}>
                       {getIcon(item.type)}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium text-foreground truncate">{item.name}</p>
-                      <p className="text-sm text-muted-foreground truncate">{item.category}</p>
+                      {item.preview && (
+                        <p className="text-xs text-muted-foreground truncate mt-0.5">
+                          {item.type === "disease" ? "Symptoms: " : item.type === "medicine" ? "Uses: " : "Ingredients: "}
+                          {item.preview}
+                        </p>
+                      )}
                     </div>
-                    <span className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground font-medium">
+                    <span className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground font-medium hidden sm:inline">
                       {getTypeLabel(item.type)}
                     </span>
                   </button>
                 ))}
-                <button
-                  onClick={handleSearch}
-                  className="w-full px-5 py-4 text-left hover:bg-primary/10 transition-colors flex items-center gap-4 bg-muted/30"
-                >
-                  <div className="p-2 rounded-lg bg-primary/20">
-                    <Search className="h-4 w-4 text-primary" />
-                  </div>
-                  <span className="text-muted-foreground">
-                    {t("common_search_anyway")} "<span className="text-primary font-semibold">{searchQuery}</span>"
-                  </span>
-                  <ArrowRight className="h-4 w-4 text-primary ml-auto" />
-                </button>
+
+                {/* View All buttons per category */}
+                {activeSuggestionFilter === "all" && suggestions.length > MAX_DROPDOWN_RESULTS && (
+                  <button
+                    onClick={handleSearch}
+                    className="w-full px-5 py-3 text-left hover:bg-primary/10 transition-colors flex items-center gap-4 bg-muted/30 border-t border-border/20"
+                  >
+                    <div className="p-2 rounded-lg bg-primary/20">
+                      <Search className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-muted-foreground text-sm">
+                      {t("common_search_anyway")} "<span className="text-primary font-semibold">{searchQuery}</span>" — {language === "hi" ? "सभी परिणाम देखें" : "View all results"}
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-primary ml-auto" />
+                  </button>
+                )}
+
+                {activeSuggestionFilter !== "all" && (
+                  <button
+                    onClick={() => handleViewAllCategory(activeSuggestionFilter)}
+                    className="w-full px-5 py-3 text-left hover:bg-primary/10 transition-colors flex items-center gap-4 bg-muted/30 border-t border-border/20"
+                  >
+                    <div className="p-2 rounded-lg bg-primary/20">
+                      <ArrowRight className="h-4 w-4 text-primary" />
+                    </div>
+                    <span className="text-muted-foreground text-sm">
+                      {language === "hi" ? `सभी ${getTypeLabel(activeSuggestionFilter)} देखें` : `View all ${getTypeLabel(activeSuggestionFilter)}`} ({suggestionCounts[activeSuggestionFilter]}+)
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-primary ml-auto" />
+                  </button>
+                )}
               </div>
             )}
 
