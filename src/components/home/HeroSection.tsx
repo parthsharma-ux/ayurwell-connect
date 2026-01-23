@@ -24,6 +24,9 @@ const HeroSection = () => {
   const [isSearching, setIsSearching] = useState(false);
   const [didYouMean, setDidYouMean] = useState<string[]>([]);
   const [showNoResults, setShowNoResults] = useState(false);
+  const [activeSuggestionFilter, setActiveSuggestionFilter] = useState<
+    "all" | SuggestionItem["type"]
+  >("all");
   const navigate = useLocalizedNavigate();
   const { toast } = useToast();
   const { t, language } = useLanguage();
@@ -51,12 +54,31 @@ const HeroSection = () => {
     onError: handleVoiceError,
   });
 
+  const isDropdownOpen =
+    isListening ||
+    (isSearching && searchQuery.length > 1) ||
+    suggestions.length > 0 ||
+    didYouMean.length > 0 ||
+    (showNoResults && searchQuery.length >= 3);
+
+  const suggestionCounts = {
+    disease: suggestions.filter((s) => s.type === "disease").length,
+    medicine: suggestions.filter((s) => s.type === "medicine").length,
+    remedy: suggestions.filter((s) => s.type === "remedy").length,
+  };
+
+  const visibleSuggestions =
+    activeSuggestionFilter === "all"
+      ? suggestions
+      : suggestions.filter((s) => s.type === activeSuggestionFilter);
+
   const handleSearch = () => {
     const trimmedQuery = searchQuery.trim();
     if (trimmedQuery) {
       setSuggestions([]);
       setDidYouMean([]);
       setShowNoResults(false);
+      setActiveSuggestionFilter("all");
       navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
     }
   };
@@ -72,6 +94,7 @@ const HeroSection = () => {
     setSuggestions([]);
     setDidYouMean([]);
     setShowNoResults(false);
+    setActiveSuggestionFilter("all");
     setSearchQuery("");
     if (item.type === "disease") {
       navigate(`/diseases/${item.id}`);
@@ -84,6 +107,7 @@ const HeroSection = () => {
 
   const handleDidYouMeanClick = (term: string) => {
     setSearchQuery(term);
+    setActiveSuggestionFilter("all");
     handleInputChange(term);
   };
 
@@ -91,6 +115,7 @@ const HeroSection = () => {
     setSearchQuery(value);
     setDidYouMean([]);
     setShowNoResults(false);
+    setActiveSuggestionFilter("all");
     
     if (value.length > 1) {
       setIsSearching(true);
@@ -261,7 +286,7 @@ const HeroSection = () => {
             <span className="text-secondary font-medium">{t("hero_subtitle_4")}</span>.
           </p>
 
-          <div className="relative max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+           <div className="relative max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity" />
               
@@ -299,7 +324,7 @@ const HeroSection = () => {
             </div>
 
             {isListening && (
-              <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-primary/50 shadow-glow-terracotta z-50 p-6 animate-scale-in">
+              <div className="mt-3 glass-premium rounded-2xl border border-primary/50 shadow-glow-terracotta p-6 animate-scale-in">
                 <div className="flex items-center justify-center gap-3">
                   <div className="relative">
                     <Mic className="h-6 w-6 text-primary animate-pulse" />
@@ -313,7 +338,7 @@ const HeroSection = () => {
             )}
 
             {isSearching && searchQuery.length > 1 && (
-              <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 p-6 animate-scale-in">
+              <div className="mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated p-6 animate-scale-in">
                 <div className="flex items-center justify-center gap-3">
                   <Loader2 className="h-5 w-5 text-primary animate-spin" />
                   <span className="text-muted-foreground">{t("common_loading")}</span>
@@ -321,9 +346,61 @@ const HeroSection = () => {
               </div>
             )}
 
-            {!isSearching && suggestions.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 overflow-hidden animate-scale-in">
-                {suggestions.map((item) => (
+             {!isSearching && suggestions.length > 0 && (
+               <div className="mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated overflow-hidden animate-scale-in max-h-[60vh] overflow-y-auto">
+                 <div className="px-4 pt-4 pb-3 border-b border-border/20">
+                   <div className="flex flex-wrap gap-2">
+                     <button
+                       type="button"
+                       onClick={() => setActiveSuggestionFilter("all")}
+                       className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${
+                         activeSuggestionFilter === "all"
+                           ? "bg-primary/15 text-primary border-primary/30"
+                           : "bg-muted/40 text-muted-foreground border-border/30 hover:bg-muted/60"
+                       }`}
+                     >
+                       All ({suggestions.length})
+                     </button>
+                     <button
+                       type="button"
+                       onClick={() => setActiveSuggestionFilter("disease")}
+                       className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${
+                         activeSuggestionFilter === "disease"
+                           ? "bg-primary/15 text-primary border-primary/30"
+                           : "bg-muted/40 text-muted-foreground border-border/30 hover:bg-muted/60"
+                       }`}
+                       disabled={suggestionCounts.disease === 0}
+                     >
+                       {t("nav_diseases")} ({suggestionCounts.disease})
+                     </button>
+                     <button
+                       type="button"
+                       onClick={() => setActiveSuggestionFilter("medicine")}
+                       className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${
+                         activeSuggestionFilter === "medicine"
+                           ? "bg-primary/15 text-primary border-primary/30"
+                           : "bg-muted/40 text-muted-foreground border-border/30 hover:bg-muted/60"
+                       }`}
+                       disabled={suggestionCounts.medicine === 0}
+                     >
+                       {t("nav_medicines")} ({suggestionCounts.medicine})
+                     </button>
+                     <button
+                       type="button"
+                       onClick={() => setActiveSuggestionFilter("remedy")}
+                       className={`px-3 py-1.5 text-xs rounded-full border transition-colors ${
+                         activeSuggestionFilter === "remedy"
+                           ? "bg-primary/15 text-primary border-primary/30"
+                           : "bg-muted/40 text-muted-foreground border-border/30 hover:bg-muted/60"
+                       }`}
+                       disabled={suggestionCounts.remedy === 0}
+                     >
+                       {t("nav_remedies")} ({suggestionCounts.remedy})
+                     </button>
+                   </div>
+                 </div>
+
+                 {visibleSuggestions.map((item) => (
                   <button
                     key={`${item.type}-${item.id}`}
                     onClick={() => handleSuggestionClick(item)}
@@ -357,7 +434,7 @@ const HeroSection = () => {
             )}
 
             {!isSearching && didYouMean.length > 0 && suggestions.length === 0 && (
-              <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 p-5 animate-scale-in">
+              <div className="mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated p-5 animate-scale-in">
                 <div className="flex items-center gap-2 mb-3">
                   <AlertCircle className="h-4 w-4 text-accent" />
                   <span className="text-sm text-muted-foreground">{t("common_did_you_mean")}</span>
@@ -386,7 +463,7 @@ const HeroSection = () => {
             )}
 
             {!isSearching && showNoResults && searchQuery.length >= 3 && (
-              <div className="absolute top-full left-0 right-0 mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated z-50 p-5 animate-scale-in">
+              <div className="mt-3 glass-premium rounded-2xl border border-border/30 shadow-elevated p-5 animate-scale-in">
                 <div className="text-center mb-4">
                   <p className="text-muted-foreground text-sm">
                     {t("common_no_results")} "<span className="text-foreground font-medium">{searchQuery}</span>"
