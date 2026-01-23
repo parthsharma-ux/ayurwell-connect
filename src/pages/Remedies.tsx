@@ -325,36 +325,42 @@ const Remedies = () => {
           </TabsList>
         </Tabs>
 
-        {/* Body System Filter */}
-        <div className="mb-6">
-          <h3 className="text-sm font-medium text-muted-foreground mb-3">
-            {language === "hi" ? "शरीर के अंग द्वारा फ़िल्टर करें" : "Filter by Body System"}
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {Object.entries(bodySystems).map(([key, system]) => {
-              const Icon = system.icon;
-              const count = bodySystemCounts[key] || 0;
-              const isActive = activeBodySystem === key;
-              return (
-                <button
-                  key={key}
-                  onClick={() => setActiveBodySystem(key as keyof typeof bodySystems)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm transition-all ${
-                    isActive 
-                      ? "bg-secondary text-secondary-foreground border-secondary shadow-sm" 
-                      : "bg-card hover:bg-muted/50 border-border text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{system.label[language]}</span>
-                  <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                    isActive ? "bg-secondary-foreground/20" : "bg-muted"
-                  }`}>
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
+        {/* Body System Filter - Compact Horizontal Bar */}
+        <div className="mb-6 -mx-4 px-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Activity className="h-4 w-4 text-muted-foreground" />
+            <h3 className="text-sm font-medium text-muted-foreground">
+              {language === "hi" ? "शरीर के अंग" : "Body System"}
+            </h3>
+          </div>
+          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
+            <div className="flex gap-1.5 pb-2 min-w-max">
+              {Object.entries(bodySystems).map(([key, system]) => {
+                const Icon = system.icon;
+                const count = bodySystemCounts[key] || 0;
+                const isActive = activeBodySystem === key;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setActiveBodySystem(key as keyof typeof bodySystems)}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+                      isActive 
+                        ? "bg-primary text-primary-foreground shadow-sm" 
+                        : "bg-muted/50 hover:bg-muted text-muted-foreground hover:text-foreground border border-border/50"
+                    }`}
+                  >
+                    <Icon className="h-3.5 w-3.5" />
+                    <span className="hidden sm:inline">{system.label[language]}</span>
+                    <span className="sm:hidden">{key === "all" ? (language === "hi" ? "सभी" : "All") : system.label[language].split(" ")[0]}</span>
+                    <span className={`text-[10px] px-1 py-0.5 rounded-full min-w-[18px] text-center ${
+                      isActive ? "bg-primary-foreground/20" : "bg-background"
+                    }`}>
+                      {count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
         
