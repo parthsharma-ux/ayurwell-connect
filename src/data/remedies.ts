@@ -6072,6 +6072,1224 @@ export const remedies: Remedy[] = [
     related_diseases: ["uti", "urinary-infection"],
     difficulty: "Easy",
     preparation_time: "15 minutes + overnight soaking"
+  },
+
+  // ========== HEART HEALTH REMEDIES ==========
+  {
+    id: "remedy-heart-1",
+    problem: "High Cholesterol",
+    title: "Garlic-Honey Elixir",
+    ingredients: [
+      { name: "Garlic cloves", quantity: "2-3 crushed" },
+      { name: "Raw honey", quantity: "1 tablespoon" },
+      { name: "Lemon juice", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Crush garlic and let sit for 10 minutes to activate allicin",
+      "Mix with honey and lemon juice",
+      "Consume on empty stomach in morning",
+      "Follow with warm water after 30 minutes"
+    ],
+    how_often: "Daily for 3 months",
+    precautions: [
+      "Avoid if on blood thinners",
+      "May cause heartburn in some",
+      "Not for children under 5"
+    ],
+    benefits: [
+      "Reduces LDL cholesterol",
+      "Improves blood circulation",
+      "Supports heart health"
+    ],
+    related_diseases: ["high-cholesterol", "heart-disease"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-heart-2",
+    problem: "High Cholesterol",
+    title: "Arjun Bark Tea",
+    ingredients: [
+      { name: "Arjun bark powder", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Cinnamon stick", quantity: "1 small" }
+    ],
+    method: [
+      "Boil water with arjun bark and cinnamon",
+      "Simmer for 10 minutes",
+      "Strain and let cool slightly",
+      "Drink while warm"
+    ],
+    how_often: "Twice daily before meals",
+    precautions: [
+      "Consult doctor if on heart medication",
+      "Not during pregnancy",
+      "May lower BP significantly"
+    ],
+    benefits: [
+      "Strengthens heart muscle",
+      "Reduces cholesterol",
+      "Improves cardiac function"
+    ],
+    related_diseases: ["heart-disease", "high-cholesterol", "hypertension"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-heart-3",
+    problem: "Poor Circulation",
+    title: "Ginger-Cayenne Tonic",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch grated" },
+      { name: "Cayenne pepper", quantity: "1/4 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Grate ginger and steep in warm water for 5 minutes",
+      "Add cayenne pepper and stir well",
+      "Add honey to taste",
+      "Drink warm"
+    ],
+    how_often: "Once daily",
+    precautions: [
+      "Avoid if you have ulcers",
+      "Start with less cayenne",
+      "Not on empty stomach if sensitive"
+    ],
+    benefits: [
+      "Improves blood circulation",
+      "Warms extremities",
+      "Boosts metabolism"
+    ],
+    related_diseases: ["poor-circulation", "cold-hands-feet"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+
+  // ========== LIVER HEALTH REMEDIES ==========
+  {
+    id: "remedy-liver-1",
+    problem: "Fatty Liver",
+    title: "Lemon-Turmeric Morning Detox",
+    ingredients: [
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1 whole lemon" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" },
+      { name: "Black pepper", quantity: "1 pinch" }
+    ],
+    method: [
+      "Squeeze fresh lemon into warm water",
+      "Add turmeric and black pepper",
+      "Mix well and drink immediately",
+      "Wait 30 minutes before eating"
+    ],
+    how_often: "Every morning on empty stomach",
+    precautions: [
+      "Avoid if you have gallstones",
+      "Use straw to protect tooth enamel",
+      "Not for those with citrus allergy"
+    ],
+    benefits: [
+      "Detoxifies liver",
+      "Aids bile production",
+      "Reduces fatty liver"
+    ],
+    related_diseases: ["fatty-liver", "liver-disease"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "remedy-liver-2",
+    problem: "Liver Detox",
+    title: "Papaya Seeds Remedy",
+    ingredients: [
+      { name: "Papaya seeds", quantity: "1 teaspoon dried" },
+      { name: "Honey", quantity: "1 tablespoon" },
+      { name: "Lemon juice", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Dry papaya seeds in sun or oven",
+      "Grind to fine powder",
+      "Mix with honey and lemon",
+      "Consume on empty stomach"
+    ],
+    how_often: "Once daily for 2 weeks",
+    precautions: [
+      "Not during pregnancy",
+      "Start with small quantity",
+      "May have strong taste"
+    ],
+    benefits: [
+      "Natural liver cleanser",
+      "Anti-parasitic",
+      "Improves digestion"
+    ],
+    related_diseases: ["liver-disease", "fatty-liver"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-liver-3",
+    problem: "Jaundice Support",
+    title: "Sugarcane-Lemon Juice",
+    ingredients: [
+      { name: "Fresh sugarcane juice", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Ginger juice", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Extract fresh sugarcane juice",
+      "Add lemon and ginger juice",
+      "Mix well and consume immediately",
+      "Best consumed fresh"
+    ],
+    how_often: "2-3 times daily during recovery",
+    precautions: [
+      "Diabetics should consult doctor",
+      "Ensure sugarcane is clean",
+      "Continue medical treatment"
+    ],
+    benefits: [
+      "Supports liver recovery",
+      "Provides instant energy",
+      "Natural detoxifier"
+    ],
+    related_diseases: ["jaundice", "liver-disease"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+
+  // ========== KIDNEY HEALTH REMEDIES ==========
+  {
+    id: "remedy-kidney-1",
+    problem: "Kidney Stones",
+    title: "Banana Stem Juice",
+    ingredients: [
+      { name: "Banana stem", quantity: "6 inches" },
+      { name: "Water", quantity: "1/2 cup" },
+      { name: "Cardamom powder", quantity: "1 pinch" }
+    ],
+    method: [
+      "Extract juice from banana stem",
+      "Add water and cardamom",
+      "Blend and strain",
+      "Drink fresh"
+    ],
+    how_often: "Once daily for 1 month",
+    precautions: [
+      "Consult doctor for large stones",
+      "Stay hydrated",
+      "Monitor stone size with ultrasound"
+    ],
+    benefits: [
+      "Helps dissolve kidney stones",
+      "Natural diuretic",
+      "Prevents stone formation"
+    ],
+    related_diseases: ["kidney-stones", "kidney-disease"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-kidney-2",
+    problem: "Kidney Health",
+    title: "Coconut Water-Barley Drink",
+    ingredients: [
+      { name: "Tender coconut water", quantity: "1 glass" },
+      { name: "Barley water", quantity: "1/2 cup" },
+      { name: "Cumin powder", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Boil barley in water and strain",
+      "Mix with fresh coconut water",
+      "Add cumin powder",
+      "Consume at room temperature"
+    ],
+    how_often: "Twice daily",
+    precautions: [
+      "Avoid if allergic to barley",
+      "Best consumed fresh",
+      "Monitor potassium if on dialysis"
+    ],
+    benefits: [
+      "Flushes toxins",
+      "Prevents kidney stones",
+      "Cools the body"
+    ],
+    related_diseases: ["kidney-health", "kidney-stones"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes"
+  },
+
+  // ========== RESPIRATORY REMEDIES ==========
+  {
+    id: "remedy-respiratory-1",
+    problem: "Bronchitis",
+    title: "Onion-Honey Syrup",
+    ingredients: [
+      { name: "Onion", quantity: "1 medium sliced" },
+      { name: "Raw honey", quantity: "4 tablespoons" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Layer onion slices in a jar",
+      "Cover with honey and turmeric",
+      "Let sit overnight",
+      "Strain syrup and store in fridge"
+    ],
+    how_often: "1 tablespoon 3-4 times daily",
+    precautions: [
+      "Not for children under 1 year",
+      "Diabetics monitor sugar intake",
+      "Seek medical care for severe cases"
+    ],
+    benefits: [
+      "Natural expectorant",
+      "Soothes bronchial tubes",
+      "Antimicrobial properties"
+    ],
+    related_diseases: ["bronchitis", "cough", "cold"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes + overnight"
+  },
+  {
+    id: "remedy-respiratory-2",
+    problem: "Wheezing",
+    title: "Black Pepper-Ghee Mix",
+    ingredients: [
+      { name: "Black pepper", quantity: "5-6 crushed" },
+      { name: "Ghee", quantity: "1 tablespoon" },
+      { name: "Jaggery", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm ghee slightly",
+      "Mix in crushed black pepper",
+      "Add jaggery and blend well",
+      "Consume while warm"
+    ],
+    how_often: "Once daily",
+    precautions: [
+      "Not for those with ulcers",
+      "May cause heat in body",
+      "Continue prescribed inhalers"
+    ],
+    benefits: [
+      "Opens airways",
+      "Reduces wheezing",
+      "Warms respiratory tract"
+    ],
+    related_diseases: ["wheezing", "asthma", "bronchitis"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-respiratory-3",
+    problem: "Nasal Congestion",
+    title: "Steam with Ajwain-Eucalyptus",
+    ingredients: [
+      { name: "Hot water", quantity: "1 large bowl" },
+      { name: "Ajwain seeds", quantity: "1 tablespoon" },
+      { name: "Eucalyptus oil", quantity: "3-4 drops" }
+    ],
+    method: [
+      "Boil water and pour in bowl",
+      "Add ajwain and eucalyptus oil",
+      "Cover head with towel",
+      "Inhale steam for 10 minutes"
+    ],
+    how_often: "2-3 times daily when congested",
+    precautions: [
+      "Keep safe distance from hot water",
+      "Not for small children unsupervised",
+      "Close eyes during steam"
+    ],
+    benefits: [
+      "Clears nasal passages",
+      "Kills airborne pathogens",
+      "Relieves sinus pressure"
+    ],
+    related_diseases: ["nasal-congestion", "sinusitis", "cold"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+
+  // ========== DIGESTIVE REMEDIES ==========
+  {
+    id: "remedy-digestive-1",
+    problem: "IBS (Irritable Bowel)",
+    title: "Fennel-Mint Digestive Tea",
+    ingredients: [
+      { name: "Fennel seeds", quantity: "1 teaspoon" },
+      { name: "Fresh mint leaves", quantity: "8-10" },
+      { name: "Water", quantity: "1.5 cups" },
+      { name: "Honey", quantity: "1/2 teaspoon optional" }
+    ],
+    method: [
+      "Boil water with fennel seeds for 5 minutes",
+      "Add mint leaves and steep for 3 minutes",
+      "Strain and add honey if desired",
+      "Drink warm after meals"
+    ],
+    how_often: "After each meal",
+    precautions: [
+      "Avoid if allergic to fennel",
+      "Not during pregnancy in large amounts",
+      "May cause drowsiness in some"
+    ],
+    benefits: [
+      "Reduces bloating and gas",
+      "Calms intestinal spasms",
+      "Improves digestion"
+    ],
+    related_diseases: ["ibs", "bloating", "indigestion"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-digestive-2",
+    problem: "Food Poisoning",
+    title: "Ginger-Apple Cider Vinegar Remedy",
+    ingredients: [
+      { name: "Fresh ginger juice", quantity: "1 teaspoon" },
+      { name: "Apple cider vinegar", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix all ingredients in warm water",
+      "Stir well until combined",
+      "Sip slowly over 15 minutes",
+      "Rest after consuming"
+    ],
+    how_often: "Every 2-3 hours until better",
+    precautions: [
+      "Seek medical help for severe cases",
+      "Stay hydrated with ORS",
+      "Avoid solid foods initially"
+    ],
+    benefits: [
+      "Kills harmful bacteria",
+      "Settles stomach",
+      "Reduces nausea"
+    ],
+    related_diseases: ["food-poisoning", "stomach-infection"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-digestive-3",
+    problem: "Ulcerative Colitis Support",
+    title: "Aloe Vera-Pomegranate Juice",
+    ingredients: [
+      { name: "Fresh aloe vera gel", quantity: "2 tablespoons" },
+      { name: "Pomegranate juice", quantity: "1 cup" },
+      { name: "Cumin powder", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Extract fresh aloe vera gel",
+      "Blend with pomegranate juice",
+      "Add cumin powder and mix",
+      "Consume fresh on empty stomach"
+    ],
+    how_often: "Once daily in morning",
+    precautions: [
+      "Ensure aloe vera is food-grade",
+      "Continue prescribed medications",
+      "Avoid during flare-ups initially"
+    ],
+    benefits: [
+      "Soothes intestinal lining",
+      "Reduces inflammation",
+      "Promotes healing"
+    ],
+    related_diseases: ["ulcerative-colitis", "ibd"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+
+  // ========== BONE & JOINT REMEDIES ==========
+  {
+    id: "remedy-bone-1",
+    problem: "Osteoporosis",
+    title: "Sesame-Jaggery Calcium Balls",
+    ingredients: [
+      { name: "White sesame seeds", quantity: "1 cup" },
+      { name: "Jaggery", quantity: "1/2 cup" },
+      { name: "Ghee", quantity: "2 tablespoons" },
+      { name: "Dry coconut shredded", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Dry roast sesame seeds until golden",
+      "Melt jaggery with ghee until smooth",
+      "Mix sesame and coconut into jaggery",
+      "Form small balls while warm"
+    ],
+    how_often: "2 balls daily",
+    precautions: [
+      "Diabetics limit intake",
+      "High in calories",
+      "Store in airtight container"
+    ],
+    benefits: [
+      "Very high in calcium",
+      "Strengthens bones",
+      "Prevents osteoporosis"
+    ],
+    related_diseases: ["osteoporosis", "weak-bones"],
+    difficulty: "Medium",
+    preparation_time: "25 minutes"
+  },
+  {
+    id: "remedy-bone-2",
+    problem: "Gout",
+    title: "Cherry-Celery Juice",
+    ingredients: [
+      { name: "Tart cherries", quantity: "1 cup" },
+      { name: "Celery stalks", quantity: "2" },
+      { name: "Water", quantity: "1/2 cup" },
+      { name: "Lemon juice", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Blend cherries and celery with water",
+      "Strain if desired",
+      "Add lemon juice",
+      "Drink fresh"
+    ],
+    how_often: "Once daily during flare-ups",
+    precautions: [
+      "Monitor with uric acid tests",
+      "Avoid if diabetic (high sugar)",
+      "Continue prescribed medications"
+    ],
+    benefits: [
+      "Reduces uric acid",
+      "Anti-inflammatory",
+      "Relieves gout pain"
+    ],
+    related_diseases: ["gout", "high-uric-acid"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-bone-3",
+    problem: "Sciatica",
+    title: "Garlic-Mustard Oil Massage",
+    ingredients: [
+      { name: "Mustard oil", quantity: "1/4 cup" },
+      { name: "Garlic cloves", quantity: "6-8" },
+      { name: "Carom seeds (ajwain)", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Heat mustard oil with crushed garlic",
+      "Add carom seeds and cook until garlic browns",
+      "Strain and let cool to warm temperature",
+      "Massage along the sciatic nerve path"
+    ],
+    how_often: "Daily massage at night",
+    precautions: [
+      "Test on small area first",
+      "Avoid if skin is broken",
+      "Keep area warm after massage"
+    ],
+    benefits: [
+      "Reduces nerve inflammation",
+      "Improves blood flow",
+      "Relieves sciatic pain"
+    ],
+    related_diseases: ["sciatica", "back-pain", "nerve-pain"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes"
+  },
+
+  // ========== SKIN HEALTH REMEDIES ==========
+  {
+    id: "remedy-skin-1",
+    problem: "Eczema",
+    title: "Neem-Coconut Healing Paste",
+    ingredients: [
+      { name: "Fresh neem leaves", quantity: "1 cup" },
+      { name: "Coconut oil", quantity: "3 tablespoons" },
+      { name: "Turmeric powder", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Grind neem leaves to paste",
+      "Warm coconut oil slightly",
+      "Mix all ingredients well",
+      "Apply on affected areas"
+    ],
+    how_often: "Twice daily",
+    precautions: [
+      "Patch test first",
+      "May stain clothes",
+      "Consult dermatologist for severe cases"
+    ],
+    benefits: [
+      "Antibacterial and antifungal",
+      "Reduces itching",
+      "Heals skin naturally"
+    ],
+    related_diseases: ["eczema", "skin-rash", "dermatitis"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-skin-2",
+    problem: "Psoriasis",
+    title: "Oatmeal-Aloe Bath",
+    ingredients: [
+      { name: "Oatmeal (colloidal)", quantity: "1 cup" },
+      { name: "Fresh aloe vera gel", quantity: "1/4 cup" },
+      { name: "Chamomile tea bags", quantity: "2" }
+    ],
+    method: [
+      "Brew chamomile tea in warm bath water",
+      "Add colloidal oatmeal and stir",
+      "Add aloe vera gel",
+      "Soak for 20-30 minutes"
+    ],
+    how_often: "3-4 times per week",
+    precautions: [
+      "Ensure bath is lukewarm not hot",
+      "Pat dry gently",
+      "Moisturize immediately after"
+    ],
+    benefits: [
+      "Soothes inflamed skin",
+      "Reduces scaling",
+      "Moisturizes deeply"
+    ],
+    related_diseases: ["psoriasis", "dry-skin", "skin-inflammation"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-skin-3",
+    problem: "Vitiligo Support",
+    title: "Radish Seeds Paste",
+    ingredients: [
+      { name: "Radish seeds", quantity: "2 tablespoons" },
+      { name: "Apple cider vinegar", quantity: "To make paste" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Soak radish seeds overnight",
+      "Grind to smooth paste with vinegar",
+      "Add turmeric and mix",
+      "Apply on affected patches"
+    ],
+    how_often: "Once daily, leave for 2 hours",
+    precautions: [
+      "Results may vary",
+      "Consult dermatologist",
+      "Protect from sun exposure"
+    ],
+    benefits: [
+      "May stimulate melanin",
+      "Traditional remedy for vitiligo",
+      "Natural approach"
+    ],
+    related_diseases: ["vitiligo", "skin-pigmentation"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes + overnight"
+  },
+
+  // ========== MENTAL HEALTH REMEDIES ==========
+  {
+    id: "remedy-mental-1",
+    problem: "Depression Support",
+    title: "Saffron-Milk Mood Booster",
+    ingredients: [
+      { name: "Saffron strands", quantity: "4-5 strands" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Cardamom powder", quantity: "1 pinch" }
+    ],
+    method: [
+      "Soak saffron in 1 tbsp warm milk for 5 minutes",
+      "Heat remaining milk and add saffron",
+      "Add cardamom and honey",
+      "Drink warm at bedtime"
+    ],
+    how_often: "Daily at night",
+    precautions: [
+      "Not a substitute for professional help",
+      "Avoid during pregnancy in excess",
+      "Use genuine saffron only"
+    ],
+    benefits: [
+      "Natural mood enhancer",
+      "Promotes restful sleep",
+      "Reduces mild depression"
+    ],
+    related_diseases: ["depression", "anxiety", "mood-disorders"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-mental-2",
+    problem: "Panic Attacks",
+    title: "Brahmi-Shankhpushpi Calming Tea",
+    ingredients: [
+      { name: "Brahmi powder", quantity: "1/2 teaspoon" },
+      { name: "Shankhpushpi powder", quantity: "1/2 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix both powders in warm water",
+      "Stir well until dissolved",
+      "Add honey",
+      "Drink during stressful times"
+    ],
+    how_often: "1-2 times daily",
+    precautions: [
+      "Consult mental health professional",
+      "May cause drowsiness",
+      "Not during pregnancy"
+    ],
+    benefits: [
+      "Calms nervous system",
+      "Reduces anxiety",
+      "Improves mental clarity"
+    ],
+    related_diseases: ["panic-attacks", "anxiety", "stress"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-mental-3",
+    problem: "Focus & Concentration",
+    title: "Brahmi-Almond Brain Tonic",
+    ingredients: [
+      { name: "Almonds soaked overnight", quantity: "5-6" },
+      { name: "Brahmi powder", quantity: "1/2 teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Mishri (rock sugar)", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Peel and grind soaked almonds",
+      "Add to warm milk with brahmi",
+      "Mix in mishri",
+      "Drink in morning"
+    ],
+    how_often: "Daily in morning",
+    precautions: [
+      "Nut allergy caution",
+      "Best on empty stomach",
+      "Give 30 minutes before breakfast"
+    ],
+    benefits: [
+      "Enhances concentration",
+      "Improves memory",
+      "Brain nourishment"
+    ],
+    related_diseases: ["memory-issues", "concentration-problems"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes + overnight soaking"
+  },
+
+  // ========== EYE HEALTH REMEDIES ==========
+  {
+    id: "remedy-eye-1",
+    problem: "Weak Eyesight",
+    title: "Triphala Eye Wash",
+    ingredients: [
+      { name: "Triphala powder", quantity: "1 teaspoon" },
+      { name: "Filtered water", quantity: "1 cup" },
+      { name: "Rose water", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Soak triphala in water overnight",
+      "Strain through fine cloth multiple times",
+      "Add rose water to clear liquid",
+      "Use as eye wash with eye cup"
+    ],
+    how_often: "Once daily in morning",
+    precautions: [
+      "Ensure liquid is completely clear",
+      "Use clean eye cup",
+      "Stop if irritation occurs"
+    ],
+    benefits: [
+      "Strengthens eye muscles",
+      "Cleanses and refreshes eyes",
+      "Improves vision over time"
+    ],
+    related_diseases: ["weak-eyesight", "eye-strain"],
+    difficulty: "Medium",
+    preparation_time: "5 minutes + overnight soaking"
+  },
+  {
+    id: "remedy-eye-2",
+    problem: "Computer Eye Strain",
+    title: "Cucumber-Rose Water Compress",
+    ingredients: [
+      { name: "Cucumber slices", quantity: "4 thin slices" },
+      { name: "Rose water", quantity: "2 tablespoons" },
+      { name: "Cotton pads", quantity: "2" }
+    ],
+    method: [
+      "Refrigerate cucumber slices for 15 minutes",
+      "Soak cotton pads in rose water",
+      "Place cucumber on closed eyes",
+      "Relax for 15-20 minutes"
+    ],
+    how_often: "After prolonged screen time",
+    precautions: [
+      "Take regular screen breaks",
+      "Ensure clean cucumber",
+      "Remove contact lenses first"
+    ],
+    benefits: [
+      "Reduces eye fatigue",
+      "Cools and refreshes eyes",
+      "Reduces puffiness"
+    ],
+    related_diseases: ["eye-strain", "digital-eye-strain"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-eye-3",
+    problem: "Night Blindness",
+    title: "Carrot-Ghee Vision Booster",
+    ingredients: [
+      { name: "Carrot juice", quantity: "1 cup fresh" },
+      { name: "Ghee", quantity: "1 teaspoon" },
+      { name: "Black pepper", quantity: "1 pinch" }
+    ],
+    method: [
+      "Extract fresh carrot juice",
+      "Warm ghee slightly",
+      "Add ghee and pepper to juice",
+      "Mix well and drink immediately"
+    ],
+    how_often: "Once daily",
+    precautions: [
+      "Use fresh organic carrots",
+      "May cause slight skin yellowing if excessive",
+      "Continue for 3 months"
+    ],
+    benefits: [
+      "Rich in Vitamin A",
+      "Improves night vision",
+      "Nourishes eyes"
+    ],
+    related_diseases: ["night-blindness", "weak-eyesight"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+
+  // ========== ORAL HEALTH REMEDIES ==========
+  {
+    id: "remedy-oral-1",
+    problem: "Gum Disease",
+    title: "Neem-Salt Gum Massage",
+    ingredients: [
+      { name: "Neem bark powder", quantity: "1/2 teaspoon" },
+      { name: "Rock salt", quantity: "1/4 teaspoon" },
+      { name: "Mustard oil", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix neem powder and salt",
+      "Add mustard oil to form paste",
+      "Massage gently on gums",
+      "Leave for 5 minutes and rinse"
+    ],
+    how_often: "Twice daily",
+    precautions: [
+      "Gentle massage only",
+      "Rinse thoroughly",
+      "See dentist for severe cases"
+    ],
+    benefits: [
+      "Antibacterial action",
+      "Strengthens gums",
+      "Reduces bleeding"
+    ],
+    related_diseases: ["gum-disease", "gingivitis"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-oral-2",
+    problem: "Tooth Sensitivity",
+    title: "Clove-Sesame Oil Treatment",
+    ingredients: [
+      { name: "Clove oil", quantity: "3-4 drops" },
+      { name: "Sesame oil", quantity: "1 tablespoon" },
+      { name: "Salt", quantity: "1 pinch" }
+    ],
+    method: [
+      "Mix clove oil with sesame oil",
+      "Add pinch of salt",
+      "Swish in mouth for 3-5 minutes",
+      "Spit out and rinse"
+    ],
+    how_often: "Once daily",
+    precautions: [
+      "Don't swallow",
+      "Too much clove can be numbing",
+      "See dentist if persistent"
+    ],
+    benefits: [
+      "Reduces sensitivity",
+      "Natural analgesic",
+      "Strengthens enamel"
+    ],
+    related_diseases: ["tooth-sensitivity", "dental-pain"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+
+  // ========== HAIR HEALTH REMEDIES ==========
+  {
+    id: "remedy-hair-1",
+    problem: "Premature Greying",
+    title: "Curry Leaves-Coconut Oil",
+    ingredients: [
+      { name: "Fresh curry leaves", quantity: "15-20" },
+      { name: "Coconut oil", quantity: "1/2 cup" },
+      { name: "Amla powder", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Heat coconut oil with curry leaves until leaves turn black",
+      "Add amla powder and stir",
+      "Cool and strain",
+      "Apply to scalp and hair"
+    ],
+    how_often: "3 times per week",
+    precautions: [
+      "Results take 3-6 months",
+      "May darken pillow covers",
+      "Store in dark bottle"
+    ],
+    benefits: [
+      "Slows greying process",
+      "Nourishes hair follicles",
+      "Promotes melanin production"
+    ],
+    related_diseases: ["premature-greying", "grey-hair"],
+    difficulty: "Medium",
+    preparation_time: "30 minutes"
+  },
+  {
+    id: "remedy-hair-2",
+    problem: "Dry & Frizzy Hair",
+    title: "Banana-Honey Hair Mask",
+    ingredients: [
+      { name: "Ripe banana", quantity: "1" },
+      { name: "Honey", quantity: "2 tablespoons" },
+      { name: "Olive oil", quantity: "1 tablespoon" },
+      { name: "Yogurt", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Mash banana until no lumps remain",
+      "Mix in honey, olive oil, and yogurt",
+      "Apply to damp hair from roots to tips",
+      "Cover with shower cap for 30 minutes"
+    ],
+    how_often: "Once weekly",
+    precautions: [
+      "Rinse thoroughly to avoid residue",
+      "Use ripe banana only",
+      "May need two shampoos to remove"
+    ],
+    benefits: [
+      "Deep conditioning",
+      "Tames frizz",
+      "Adds natural shine"
+    ],
+    related_diseases: ["dry-hair", "frizzy-hair"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-hair-3",
+    problem: "Scalp Infection",
+    title: "Tea Tree-Neem Scalp Treatment",
+    ingredients: [
+      { name: "Neem oil", quantity: "2 tablespoons" },
+      { name: "Tea tree oil", quantity: "5 drops" },
+      { name: "Coconut oil", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Mix all oils together",
+      "Part hair and apply to scalp sections",
+      "Massage gently for 5 minutes",
+      "Leave overnight or minimum 2 hours"
+    ],
+    how_often: "3 times per week until healed",
+    precautions: [
+      "Patch test for sensitivity",
+      "Avoid eyes",
+      "See doctor if infection persists"
+    ],
+    benefits: [
+      "Antifungal and antibacterial",
+      "Heals scalp infections",
+      "Reduces dandruff"
+    ],
+    related_diseases: ["scalp-infection", "dandruff", "fungal-infection"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+
+  // ========== HORMONAL REMEDIES ==========
+  {
+    id: "remedy-hormone-1",
+    problem: "Hypothyroidism Support",
+    title: "Ashwagandha-Ginger Thyroid Tonic",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "1/2 teaspoon" },
+      { name: "Dried ginger powder", quantity: "1/4 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Add ashwagandha and ginger to warm water",
+      "Stir well until dissolved",
+      "Add honey after water cools slightly",
+      "Drink in morning or evening"
+    ],
+    how_often: "Once or twice daily",
+    precautions: [
+      "Consult doctor if on thyroid medication",
+      "Not during pregnancy",
+      "Monitor thyroid levels regularly"
+    ],
+    benefits: [
+      "Supports thyroid function",
+      "Reduces fatigue",
+      "Balances hormones"
+    ],
+    related_diseases: ["hypothyroidism", "thyroid-disorder"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-hormone-2",
+    problem: "Hyperthyroidism Support",
+    title: "Bugleweed-Lemon Balm Tea",
+    ingredients: [
+      { name: "Dried lemon balm", quantity: "1 teaspoon" },
+      { name: "Motherwort herb", quantity: "1/2 teaspoon" },
+      { name: "Water", quantity: "1.5 cups" }
+    ],
+    method: [
+      "Boil water and pour over herbs",
+      "Steep covered for 10 minutes",
+      "Strain and let cool slightly",
+      "Drink warm"
+    ],
+    how_often: "2-3 times daily",
+    precautions: [
+      "Not a replacement for medication",
+      "Consult endocrinologist",
+      "May interact with thyroid drugs"
+    ],
+    benefits: [
+      "Calms overactive thyroid",
+      "Reduces palpitations",
+      "Promotes relaxation"
+    ],
+    related_diseases: ["hyperthyroidism", "thyroid-disorder"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+
+  // ========== IMMUNITY BOOSTERS ==========
+  {
+    id: "remedy-immunity-1",
+    problem: "Weak Immunity",
+    title: "Chyawanprash-Style Energy Balls",
+    ingredients: [
+      { name: "Dates pitted", quantity: "1 cup" },
+      { name: "Amla powder", quantity: "2 tablespoons" },
+      { name: "Ashwagandha powder", quantity: "1 teaspoon" },
+      { name: "Ghee", quantity: "1 tablespoon" },
+      { name: "Cardamom powder", quantity: "1/4 teaspoon" },
+      { name: "Desiccated coconut", quantity: "For coating" }
+    ],
+    method: [
+      "Blend dates until smooth paste",
+      "Mix in all powders and ghee",
+      "Roll into small balls",
+      "Coat with desiccated coconut"
+    ],
+    how_often: "1-2 balls daily",
+    precautions: [
+      "Diabetics limit intake",
+      "Store in refrigerator",
+      "Good for children too"
+    ],
+    benefits: [
+      "Builds immunity naturally",
+      "Provides sustained energy",
+      "Rich in antioxidants"
+    ],
+    related_diseases: ["weak-immunity", "frequent-infections"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes"
+  },
+  {
+    id: "remedy-immunity-2",
+    problem: "Frequent Infections",
+    title: "Giloy-Tulsi Immunity Kadha",
+    ingredients: [
+      { name: "Giloy stem", quantity: "4-5 inches" },
+      { name: "Fresh tulsi leaves", quantity: "10-12" },
+      { name: "Black pepper", quantity: "4-5" },
+      { name: "Dry ginger", quantity: "1/2 teaspoon" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Jaggery", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Crush giloy stem lightly",
+      "Boil all ingredients except jaggery until reduced by half",
+      "Strain and add jaggery",
+      "Drink warm"
+    ],
+    how_often: "Once daily for 2 weeks",
+    precautions: [
+      "Avoid if autoimmune condition",
+      "Not during pregnancy",
+      "Consult if on immunosuppressants"
+    ],
+    benefits: [
+      "Powerful immunomodulator",
+      "Fights infections",
+      "Purifies blood"
+    ],
+    related_diseases: ["weak-immunity", "frequent-infections", "viral-infections"],
+    difficulty: "Medium",
+    preparation_time: "25 minutes"
+  },
+
+  // ========== PAIN RELIEF REMEDIES ==========
+  {
+    id: "remedy-pain-1",
+    problem: "Chronic Headache",
+    title: "Brahmi-Peppermint Head Massage Oil",
+    ingredients: [
+      { name: "Coconut oil", quantity: "1/4 cup" },
+      { name: "Brahmi powder", quantity: "1 tablespoon" },
+      { name: "Peppermint oil", quantity: "5 drops" }
+    ],
+    method: [
+      "Heat coconut oil with brahmi powder on low",
+      "Strain after 10 minutes",
+      "Add peppermint oil when cool",
+      "Massage on scalp and temples"
+    ],
+    how_often: "During headache or preventively at night",
+    precautions: [
+      "Avoid eyes",
+      "Not for migraine with aura",
+      "See doctor for persistent headaches"
+    ],
+    benefits: [
+      "Relieves tension headaches",
+      "Cooling sensation",
+      "Calms mind"
+    ],
+    related_diseases: ["headache", "tension-headache"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-pain-2",
+    problem: "Fibromyalgia Support",
+    title: "Epsom Salt-Turmeric Bath",
+    ingredients: [
+      { name: "Epsom salt", quantity: "2 cups" },
+      { name: "Turmeric powder", quantity: "1 tablespoon" },
+      { name: "Lavender oil", quantity: "10 drops" },
+      { name: "Ginger powder", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Fill bathtub with warm water",
+      "Add Epsom salt and dissolve",
+      "Mix in turmeric, ginger, and lavender oil",
+      "Soak for 20-30 minutes"
+    ],
+    how_often: "3-4 times per week",
+    precautions: [
+      "May stain tub - rinse immediately after",
+      "Drink water before and after",
+      "Not if you have open wounds"
+    ],
+    benefits: [
+      "Reduces muscle pain",
+      "Magnesium absorption",
+      "Decreases inflammation"
+    ],
+    related_diseases: ["fibromyalgia", "chronic-pain", "muscle-pain"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+
+  // ========== BLOOD SUGAR REMEDIES ==========
+  {
+    id: "remedy-sugar-1",
+    problem: "Pre-Diabetes",
+    title: "Cinnamon-Fenugreek Water",
+    ingredients: [
+      { name: "Fenugreek seeds", quantity: "1 tablespoon" },
+      { name: "Cinnamon stick", quantity: "1 inch" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: [
+      "Soak fenugreek and cinnamon in water overnight",
+      "In morning, boil for 5 minutes",
+      "Strain and drink warm",
+      "Eat the softened fenugreek seeds"
+    ],
+    how_often: "Every morning on empty stomach",
+    precautions: [
+      "Monitor blood sugar regularly",
+      "May interact with diabetes medications",
+      "Don't stop prescribed medications"
+    ],
+    benefits: [
+      "Improves insulin sensitivity",
+      "Lowers fasting blood sugar",
+      "Prevents progression to diabetes"
+    ],
+    related_diseases: ["pre-diabetes", "diabetes", "insulin-resistance"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes + overnight"
+  },
+  {
+    id: "remedy-sugar-2",
+    problem: "Type 2 Diabetes Support",
+    title: "Bitter Gourd-Jamun Juice",
+    ingredients: [
+      { name: "Bitter gourd (karela)", quantity: "1 medium" },
+      { name: "Jamun (Indian blackberry)", quantity: "10-12" },
+      { name: "Amla juice", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Extract juice from bitter gourd",
+      "Blend jamun and strain",
+      "Mix both juices with amla",
+      "Drink on empty stomach"
+    ],
+    how_often: "Once daily in morning",
+    precautions: [
+      "Very bitter taste",
+      "Monitor blood sugar closely",
+      "Continue prescribed medications"
+    ],
+    benefits: [
+      "Lowers blood glucose",
+      "Rich in plant insulin",
+      "Supports pancreatic function"
+    ],
+    related_diseases: ["diabetes", "high-blood-sugar"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes"
   }
 ];
 
@@ -6192,5 +7410,55 @@ export const remedyCategories = [
   "Leucorrhea",
   "Iron Deficiency (Women)",
   "Postpartum Care",
-  "UTI (Women)"
+  "UTI (Women)",
+  // Heart Health
+  "High Cholesterol",
+  "Poor Circulation",
+  "Heart Disease",
+  // Liver Health
+  "Fatty Liver",
+  "Liver Detox",
+  "Jaundice Support",
+  // Kidney Health
+  "Kidney Health",
+  // Respiratory
+  "Bronchitis",
+  "Wheezing",
+  "Nasal Congestion",
+  // Digestive
+  "IBS (Irritable Bowel)",
+  "Ulcerative Colitis Support",
+  // Bone & Joint
+  "Osteoporosis",
+  "Gout",
+  "Sciatica",
+  // Skin Health
+  "Eczema",
+  "Psoriasis",
+  "Vitiligo Support",
+  // Mental Health
+  "Depression Support",
+  "Panic Attacks",
+  "Focus & Concentration",
+  // Eye Health
+  "Computer Eye Strain",
+  "Night Blindness",
+  // Oral Health
+  "Gum Disease",
+  "Tooth Sensitivity",
+  // Hair Health
+  "Premature Greying",
+  "Dry & Frizzy Hair",
+  "Scalp Infection",
+  // Hormonal
+  "Hypothyroidism Support",
+  "Hyperthyroidism Support",
+  // Immunity
+  "Frequent Infections",
+  // Pain Relief
+  "Chronic Headache",
+  "Fibromyalgia Support",
+  // Blood Sugar
+  "Pre-Diabetes",
+  "Type 2 Diabetes Support"
 ];
