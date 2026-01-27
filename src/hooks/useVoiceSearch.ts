@@ -31,6 +31,9 @@ interface SpeechRecognitionInstance extends EventTarget {
   lang: string;
   maxAlternatives: number;
   onstart: (() => void) | null;
+  onaudiostart: (() => void) | null;
+  onspeechstart: (() => void) | null;
+  onspeechend: (() => void) | null;
   onresult: ((event: SpeechRecognitionEvent) => void) | null;
   onerror: ((event: SpeechRecognitionErrorEvent) => void) | null;
   onend: (() => void) | null;
@@ -65,15 +68,30 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
 
     if (SpeechRecognitionAPI) {
       const recognition = new SpeechRecognitionAPI();
-      recognition.continuous = false;
+      recognition.continuous = true; // Keep listening until manually stopped
       recognition.interimResults = true;
       recognition.lang = language;
       recognition.maxAlternatives = 1;
 
       recognition.onstart = () => {
-        console.log('Voice recognition started');
+        console.log('Voice recognition started - speak now');
         setIsListening(true);
         setInterimTranscript('');
+      };
+
+      // Handle audio start - microphone is now capturing
+      recognition.onaudiostart = () => {
+        console.log('Audio capture started - microphone is active');
+      };
+
+      // Handle speech detection start
+      recognition.onspeechstart = () => {
+        console.log('Speech detected - listening...');
+      };
+
+      // Handle speech detection end
+      recognition.onspeechend = () => {
+        console.log('Speech ended - processing...');
       };
 
       recognition.onresult = (event: SpeechRecognitionEvent) => {
@@ -89,12 +107,15 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
           }
         }
 
-        setInterimTranscript(interim);
+        console.log('Voice result - interim:', interim, 'final:', final);
+        setInterimTranscript(interim || final); // Show something even before final
 
         if (final) {
           console.log('Final transcript:', final);
           onResult(final.trim());
           setInterimTranscript('');
+          // Stop recognition after getting a final result
+          recognition.stop();
         }
       };
 
@@ -106,17 +127,22 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
         let errorMessage = 'Voice recognition failed';
         switch (event.error) {
           case 'no-speech':
-            errorMessage = 'No speech detected. Please try again.';
+            // Don't show error for no-speech when continuous mode times out
+            console.log('No speech detected - try speaking louder or closer to mic');
+            errorMessage = 'No speech detected. Please speak louder or try again.';
             break;
           case 'audio-capture':
             errorMessage = 'No microphone found. Please check your device.';
             break;
           case 'not-allowed':
-            errorMessage = 'Microphone access denied. Please allow microphone access.';
+            errorMessage = 'Microphone access denied. Please allow microphone access in your browser settings.';
             break;
           case 'network':
             errorMessage = 'Network error. Please check your connection.';
             break;
+          case 'aborted':
+            // User stopped, not an error
+            return;
         }
         
         onError?.(errorMessage);
