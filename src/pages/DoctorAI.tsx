@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic } from "lucide-react";
+import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic, Volume2, VolumeX, Square } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { useVaidyaChat } from "@/hooks/useVaidyaChat";
@@ -14,6 +14,7 @@ type Message = { role: "user" | "assistant"; content: string };
 type UserLanguage = "hinglish" | "english";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/vaidya-chat`;
+const TTS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/elevenlabs-tts`;
 
 const DoctorAI = () => {
   const [input, setInput] = useState("");
@@ -21,6 +22,9 @@ const DoctorAI = () => {
   const [language, setLanguage] = useState<UserLanguage>("hinglish");
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
+  const [speakingMessageIndex, setSpeakingMessageIndex] = useState<number | null>(null);
+  const [isLoadingTTS, setIsLoadingTTS] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   const { user, signOut } = useAuth();
@@ -38,7 +42,9 @@ const DoctorAI = () => {
     startNewChat,
   } = useVaidyaChat(language);
 
-  // Voice search integration
+  // Voice search integration - store pending voice message
+  const pendingVoiceMessageRef = useRef<string | null>(null);
+
   const {
     isListening,
     isSupported: voiceSupported,
@@ -47,6 +53,7 @@ const DoctorAI = () => {
   } = useVoiceSearch({
     onResult: (transcript) => {
       setInput(transcript);
+      pendingVoiceMessageRef.current = transcript;
     },
     onError: (error) => {
       toast({
@@ -57,6 +64,76 @@ const DoctorAI = () => {
     },
     language: language === "hinglish" ? "hi-IN" : "en-IN",
   });
+
+  // We'll handle auto-send in the sendMessage flow instead
+
+  // TTS function
+  const speakMessage = useCallback(async (text: string, messageIndex: number) => {
+    // Stop any currently playing audio
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+
+    // If clicking the same message that's playing, just stop
+    if (speakingMessageIndex === messageIndex) {
+      setSpeakingMessageIndex(null);
+      return;
+    }
+
+    setIsLoadingTTS(true);
+    setSpeakingMessageIndex(messageIndex);
+
+    try {
+      const response = await fetch(TTS_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+        body: JSON.stringify({ text }),
+      });
+
+      if (!response.ok) {
+        throw new Error("TTS request failed");
+      }
+
+      const data = await response.json();
+      
+      if (data.audioContent) {
+        const audioUrl = `data:audio/mpeg;base64,${data.audioContent}`;
+        const audio = new Audio(audioUrl);
+        audioRef.current = audio;
+        
+        audio.onended = () => {
+          setSpeakingMessageIndex(null);
+          audioRef.current = null;
+        };
+        
+        audio.onerror = () => {
+          setSpeakingMessageIndex(null);
+          audioRef.current = null;
+          toast({
+            title: "Audio Error",
+            description: "Failed to play audio",
+            variant: "destructive",
+          });
+        };
+
+        await audio.play();
+      }
+    } catch (error) {
+      console.error("TTS error:", error);
+      setSpeakingMessageIndex(null);
+      toast({
+        title: "Speech Error",
+        description: language === "hinglish" ? "Awaaz nahi sun sakte" : "Could not generate speech",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoadingTTS(false);
+    }
+  }, [speakingMessageIndex, language, toast]);
   useEffect(() => {
     // Scroll to bottom only when new messages are added, keeping user at bottom
     if (messagesEndRef.current) {
@@ -180,10 +257,9 @@ const DoctorAI = () => {
     }
   }, [language, setMessages, saveMessage]);
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return;
+  const sendMessage = useCallback(async (userMessage: string) => {
+    if (!userMessage.trim() || isLoading) return;
     
-    const userMessage = input.trim();
     const newUserMsg: Message = { role: "user", content: userMessage };
     
     // Get current messages without the initial greeting for context
@@ -218,7 +294,26 @@ const DoctorAI = () => {
     } finally {
       setIsLoading(false);
     }
+  }, [isLoading, messages, currentSessionId, user, createSession, saveMessage, streamChat, toast, setMessages]);
+
+  const handleSend = () => {
+    sendMessage(input.trim());
   };
+
+  // Auto-send voice message after listening stops
+  useEffect(() => {
+    if (!isListening && pendingVoiceMessageRef.current) {
+      const message = pendingVoiceMessageRef.current;
+      pendingVoiceMessageRef.current = null;
+      // Small delay to show the transcribed text before sending
+      const timer = setTimeout(() => {
+        if (message.trim()) {
+          sendMessage(message.trim());
+        }
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isListening, sendMessage]);
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === "hinglish" ? "english" : "hinglish");
@@ -320,12 +415,44 @@ const DoctorAI = () => {
                     <Brain className="h-4 w-4 text-secondary" />
                   </div>
                 )}
-                <div className={`max-w-[85%] p-4 rounded-2xl ${msg.role === "user" ? "bg-primary/20 rounded-tr-sm" : "bg-muted rounded-tl-sm"}`}>
-                  {msg.role === "user" ? (
-                    <p className="text-base leading-relaxed whitespace-pre-line">{msg.content}</p>
-                  ) : (
-                    <div className="prose prose-sm dark:prose-invert max-w-none text-base leading-relaxed [&>p]:my-2 [&>ul]:my-2 [&>ol]:my-2 [&>ul]:pl-4 [&>ol]:pl-4 [&>li]:my-1 [&>h1]:text-lg [&>h2]:text-base [&>h3]:text-base [&>code]:bg-background/50 [&>code]:px-1 [&>code]:rounded [&>pre]:bg-background/50 [&>pre]:p-2 [&>pre]:rounded-lg [&>blockquote]:border-l-2 [&>blockquote]:border-primary [&>blockquote]:pl-3 [&>blockquote]:italic">
-                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                <div className={`max-w-[85%] rounded-2xl ${msg.role === "user" ? "bg-primary/20 rounded-tr-sm" : "bg-muted rounded-tl-sm"}`}>
+                  <div className="p-4">
+                    {msg.role === "user" ? (
+                      <p className="text-base leading-relaxed whitespace-pre-line">{msg.content}</p>
+                    ) : (
+                      <div className="prose prose-sm dark:prose-invert max-w-none text-base leading-relaxed [&>p]:my-2 [&>ul]:my-2 [&>ol]:my-2 [&>ul]:pl-4 [&>ol]:pl-4 [&>li]:my-1 [&>h1]:text-lg [&>h2]:text-base [&>h3]:text-base [&>code]:bg-background/50 [&>code]:px-1 [&>code]:rounded [&>pre]:bg-background/50 [&>pre]:p-2 [&>pre]:rounded-lg [&>blockquote]:border-l-2 [&>blockquote]:border-primary [&>blockquote]:pl-3 [&>blockquote]:italic">
+                        <ReactMarkdown>{msg.content}</ReactMarkdown>
+                      </div>
+                    )}
+                  </div>
+                  {/* TTS Button for AI messages */}
+                  {msg.role === "assistant" && i > 0 && (
+                    <div className="px-4 pb-3 pt-0">
+                      <button
+                        onClick={() => speakMessage(msg.content, i)}
+                        disabled={isLoadingTTS && speakingMessageIndex === i}
+                        className={`flex items-center gap-1.5 text-xs px-2 py-1 rounded-full transition-all ${
+                          speakingMessageIndex === i
+                            ? "bg-primary/20 text-primary"
+                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                        }`}
+                        title={speakingMessageIndex === i 
+                          ? (language === "hinglish" ? "Awaaz band karein" : "Stop speaking") 
+                          : (language === "hinglish" ? "Sunein" : "Listen")}
+                      >
+                        {isLoadingTTS && speakingMessageIndex === i ? (
+                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                        ) : speakingMessageIndex === i ? (
+                          <Square className="h-3.5 w-3.5" />
+                        ) : (
+                          <Volume2 className="h-3.5 w-3.5" />
+                        )}
+                        <span>
+                          {speakingMessageIndex === i 
+                            ? (language === "hinglish" ? "Band karein" : "Stop") 
+                            : (language === "hinglish" ? "Sunein" : "Listen")}
+                        </span>
+                      </button>
                     </div>
                   )}
                 </div>
