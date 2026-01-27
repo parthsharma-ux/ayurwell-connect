@@ -37,8 +37,11 @@ const DoctorAI = () => {
   } = useVaidyaChat(language);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    // Scroll to bottom only when new messages are added, keeping user at bottom
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [messages.length]);
 
   // Initial greeting when no session is loaded
   useEffect(() => {
@@ -297,7 +300,7 @@ const DoctorAI = () => {
                   </div>
                 )}
                 <div className={`max-w-[85%] p-4 rounded-2xl ${msg.role === "user" ? "bg-primary/20 rounded-tr-sm" : "bg-muted rounded-tl-sm"}`}>
-                  <p className="text-sm whitespace-pre-line">{msg.content}</p>
+                  <p className="text-base sm:text-base leading-relaxed whitespace-pre-line">{msg.content}</p>
                 </div>
                 {msg.role === "user" && (
                   <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center ml-3 flex-shrink-0">
