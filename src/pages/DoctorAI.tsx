@@ -14,7 +14,6 @@ type Message = { role: "user" | "assistant"; content: string };
 type UserLanguage = "hinglish" | "english";
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/vaidya-chat`;
-const TTS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/elevenlabs-tts`;
 
 const DoctorAI = () => {
   const [input, setInput] = useState("");
@@ -23,8 +22,6 @@ const DoctorAI = () => {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [speakingMessageIndex, setSpeakingMessageIndex] = useState<number | null>(null);
-  const [isLoadingTTS, setIsLoadingTTS] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   const { user, signOut } = useAuth();
@@ -67,12 +64,11 @@ const DoctorAI = () => {
 
   // We'll handle auto-send in the sendMessage flow instead
 
-  // TTS function
-  const speakMessage = useCallback(async (text: string, messageIndex: number) => {
-    // Stop any currently playing audio
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
+  // TTS function using browser's Web Speech API (free, no API key needed)
+  const speakMessage = useCallback((text: string, messageIndex: number) => {
+    // Stop any currently playing speech
+    if (window.speechSynthesis.speaking) {
+      window.speechSynthesis.cancel();
     }
 
     // If clicking the same message that's playing, just stop
@@ -81,58 +77,48 @@ const DoctorAI = () => {
       return;
     }
 
-    setIsLoadingTTS(true);
+    // Check if speech synthesis is supported
+    if (!('speechSynthesis' in window)) {
+      toast({
+        title: "Not Supported",
+        description: language === "hinglish" ? "Aapka browser speech support nahi karta" : "Your browser doesn't support text-to-speech",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setSpeakingMessageIndex(messageIndex);
 
-    try {
-      const response = await fetch(TTS_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-        },
-        body: JSON.stringify({ text }),
-      });
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Set language based on user preference
+    utterance.lang = language === "hinglish" ? "hi-IN" : "en-IN";
+    utterance.rate = 0.9; // Slightly slower for clarity
+    utterance.pitch = 1;
+    
+    // Try to find a suitable voice
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find(voice => 
+      voice.lang.startsWith(language === "hinglish" ? "hi" : "en")
+    );
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+    }
 
-      if (!response.ok) {
-        throw new Error("TTS request failed");
-      }
+    utterance.onend = () => {
+      setSpeakingMessageIndex(null);
+    };
 
-      const data = await response.json();
-      
-      if (data.audioContent) {
-        const audioUrl = `data:audio/mpeg;base64,${data.audioContent}`;
-        const audio = new Audio(audioUrl);
-        audioRef.current = audio;
-        
-        audio.onended = () => {
-          setSpeakingMessageIndex(null);
-          audioRef.current = null;
-        };
-        
-        audio.onerror = () => {
-          setSpeakingMessageIndex(null);
-          audioRef.current = null;
-          toast({
-            title: "Audio Error",
-            description: "Failed to play audio",
-            variant: "destructive",
-          });
-        };
-
-        await audio.play();
-      }
-    } catch (error) {
-      console.error("TTS error:", error);
+    utterance.onerror = () => {
       setSpeakingMessageIndex(null);
       toast({
         title: "Speech Error",
         description: language === "hinglish" ? "Awaaz nahi sun sakte" : "Could not generate speech",
         variant: "destructive",
       });
-    } finally {
-      setIsLoadingTTS(false);
-    }
+    };
+
+    window.speechSynthesis.speak(utterance);
   }, [speakingMessageIndex, language, toast]);
   useEffect(() => {
     // Scroll to bottom only when new messages are added, keeping user at bottom
@@ -430,7 +416,6 @@ const DoctorAI = () => {
                     <div className="px-4 pb-3 pt-0">
                       <button
                         onClick={() => speakMessage(msg.content, i)}
-                        disabled={isLoadingTTS && speakingMessageIndex === i}
                         className={`flex items-center gap-1.5 text-xs px-2 py-1 rounded-full transition-all ${
                           speakingMessageIndex === i
                             ? "bg-primary/20 text-primary"
@@ -440,9 +425,7 @@ const DoctorAI = () => {
                           ? (language === "hinglish" ? "Awaaz band karein" : "Stop speaking") 
                           : (language === "hinglish" ? "Sunein" : "Listen")}
                       >
-                        {isLoadingTTS && speakingMessageIndex === i ? (
-                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                        ) : speakingMessageIndex === i ? (
+                        {speakingMessageIndex === i ? (
                           <Square className="h-3.5 w-3.5" />
                         ) : (
                           <Volume2 className="h-3.5 w-3.5" />
