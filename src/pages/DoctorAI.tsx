@@ -1,13 +1,14 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut } from "lucide-react";
+import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { useVaidyaChat } from "@/hooks/useVaidyaChat";
 import { AuthModal } from "@/components/vaidya/AuthModal";
 import { ChatHistory } from "@/components/vaidya/ChatHistory";
 import ReactMarkdown from "react-markdown";
+import { useVoiceSearch } from "@/hooks/useVoiceSearch";
 
 type Message = { role: "user" | "assistant"; content: string };
 type UserLanguage = "hinglish" | "english";
@@ -37,6 +38,25 @@ const DoctorAI = () => {
     startNewChat,
   } = useVaidyaChat(language);
 
+  // Voice search integration
+  const {
+    isListening,
+    isSupported: voiceSupported,
+    interimTranscript,
+    toggleListening,
+  } = useVoiceSearch({
+    onResult: (transcript) => {
+      setInput(transcript);
+    },
+    onError: (error) => {
+      toast({
+        title: language === "hinglish" ? "Voice Error" : "Voice Error",
+        description: error,
+        variant: "destructive",
+      });
+    },
+    language: language === "hinglish" ? "hi-IN" : "en-IN",
+  });
   useEffect(() => {
     // Scroll to bottom only when new messages are added, keeping user at bottom
     if (messagesEndRef.current) {
@@ -353,15 +373,42 @@ const DoctorAI = () => {
           )}
 
           <div className="p-4 border-t border-border">
-            <div className="flex gap-3">
+            {/* Show interim transcript while listening */}
+            {isListening && interimTranscript && (
+              <div className="mb-2 text-sm text-muted-foreground italic px-2">
+                {interimTranscript}...
+              </div>
+            )}
+            <div className="flex gap-2">
+              {voiceSupported && (
+                <button
+                  type="button"
+                  onClick={toggleListening}
+                  disabled={isLoading}
+                  className={`flex items-center justify-center rounded-xl h-11 w-11 transition-all ${
+                    isListening 
+                      ? "bg-primary text-primary-foreground animate-pulse" 
+                      : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground"
+                  }`}
+                  title={isListening 
+                    ? (language === "hinglish" ? "Sunna band karein" : "Stop listening") 
+                    : (language === "hinglish" ? "Bolkar batayein" : "Speak your concern")}
+                >
+                  <Mic className="h-5 w-5" />
+                </button>
+              )}
               <input
                 type="text"
-                value={input}
+                value={isListening ? interimTranscript || input : input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-                placeholder={language === "hinglish" ? "Apni taklif yahan likhein..." : "Type your concern here..."}
+                placeholder={
+                  isListening 
+                    ? (language === "hinglish" ? "Sun raha hoon..." : "Listening...") 
+                    : (language === "hinglish" ? "Apni taklif yahan likhein ya mic dabayein..." : "Type or tap mic to speak...")
+                }
                 className="flex-1 bg-muted rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-                disabled={isLoading}
+                disabled={isLoading || isListening}
               />
               <Button 
                 variant="gold" 
