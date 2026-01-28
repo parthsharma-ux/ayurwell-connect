@@ -8042,6 +8042,605 @@ export const remedies: Remedy[] = [
     related_diseases: ["dry-skin", "cracked-heels", "winter-skin"],
     difficulty: "Easy",
     preparation_time: "10 minutes"
+  },
+  // ============= US-FRIENDLY REMEDIES =============
+  // Using common ingredients available in American supermarkets
+  {
+    id: "remedy-us-1",
+    problem: "Cold & Cough",
+    title: "Apple Cider Vinegar Tonic",
+    ingredients: [
+      { name: "Apple cider vinegar", quantity: "2 tablespoons" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 tablespoon" },
+      { name: "Lemon juice", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Mix apple cider vinegar in warm water",
+      "Add honey and lemon juice",
+      "Stir well until honey dissolves",
+      "Sip slowly while warm"
+    ],
+    how_often: "2-3 times daily when sick",
+    precautions: [
+      "May erode tooth enamel - rinse mouth after",
+      "Avoid if you have acid reflux",
+      "Always dilute - never drink straight"
+    ],
+    benefits: [
+      "Boosts immune system",
+      "Soothes sore throat",
+      "Has antimicrobial properties"
+    ],
+    related_diseases: ["cold-cough", "sore-throat", "immunity"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "remedy-us-2",
+    problem: "Sore Throat",
+    title: "Cayenne Pepper Gargle",
+    ingredients: [
+      { name: "Cayenne pepper", quantity: "1/4 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Salt", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Add cayenne pepper and salt to warm water",
+      "Stir until dissolved",
+      "Gargle for 30 seconds",
+      "Spit out - do not swallow"
+    ],
+    how_often: "Every 2-3 hours as needed",
+    precautions: [
+      "Do not swallow",
+      "Avoid if mouth has sores",
+      "Start with less cayenne if sensitive"
+    ],
+    benefits: [
+      "Capsaicin numbs throat pain",
+      "Reduces inflammation",
+      "Kills bacteria naturally"
+    ],
+    related_diseases: ["sore-throat", "cold-cough"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-us-3",
+    problem: "Headache",
+    title: "Peppermint Oil Temple Massage",
+    ingredients: [
+      { name: "Peppermint essential oil", quantity: "2-3 drops" },
+      { name: "Coconut oil (carrier)", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix peppermint oil with coconut oil",
+      "Apply to temples and forehead",
+      "Massage in circular motions",
+      "Lie down in a dark room for 15 minutes"
+    ],
+    how_often: "As needed for headaches",
+    precautions: [
+      "Never apply undiluted essential oil",
+      "Keep away from eyes",
+      "Patch test first for sensitivity"
+    ],
+    benefits: [
+      "Menthol provides cooling relief",
+      "Relaxes tense muscles",
+      "Improves blood circulation"
+    ],
+    related_diseases: ["headache", "migraine", "stress"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-us-4",
+    problem: "Insomnia",
+    title: "Warm Milk with Nutmeg",
+    ingredients: [
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Nutmeg powder", quantity: "1/4 teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm milk gently (do not boil)",
+      "Add nutmeg powder and honey",
+      "Stir well and drink 30 minutes before bed"
+    ],
+    how_often: "Nightly before bed",
+    precautions: [
+      "Do not exceed 1/4 tsp nutmeg",
+      "Avoid if lactose intolerant - use almond milk",
+      "Not suitable for children under 2"
+    ],
+    benefits: [
+      "Tryptophan in milk promotes sleep",
+      "Nutmeg has sedative properties",
+      "Calms the nervous system"
+    ],
+    related_diseases: ["insomnia", "anxiety", "stress"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-us-5",
+    problem: "Bloating",
+    title: "Ginger Lemon Digestive Tea",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch piece" },
+      { name: "Lemon", quantity: "Half" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Hot water", quantity: "1 cup" }
+    ],
+    method: [
+      "Slice ginger thinly or grate it",
+      "Steep in hot water for 5-10 minutes",
+      "Squeeze in lemon juice",
+      "Add honey and drink warm"
+    ],
+    how_often: "After meals or when bloated",
+    precautions: [
+      "Avoid on empty stomach if acid-sensitive",
+      "May interact with blood thinners",
+      "Use less ginger if you get heartburn"
+    ],
+    benefits: [
+      "Reduces gas and bloating",
+      "Stimulates digestive enzymes",
+      "Settles upset stomach"
+    ],
+    related_diseases: ["bloating", "gas", "nausea", "acidity"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-us-6",
+    problem: "Muscle Cramps",
+    title: "Pickle Juice Shot",
+    ingredients: [
+      { name: "Pickle juice (dill)", quantity: "2-3 oz" }
+    ],
+    method: [
+      "Take pickle juice directly from jar",
+      "Drink quickly like a shot",
+      "Follow with water if needed"
+    ],
+    how_often: "During or immediately after cramp",
+    precautions: [
+      "High in sodium - limit if on low-salt diet",
+      "May cause heartburn in some",
+      "Not for daily use"
+    ],
+    benefits: [
+      "Fast relief from muscle cramps",
+      "Replaces electrolytes quickly",
+      "Works within seconds"
+    ],
+    related_diseases: ["muscle-cramps", "leg-cramps", "dehydration"],
+    difficulty: "Easy",
+    preparation_time: "1 minute"
+  },
+  {
+    id: "remedy-us-7",
+    problem: "Nausea",
+    title: "Flat Ginger Ale Remedy",
+    ingredients: [
+      { name: "Ginger ale (real ginger)", quantity: "1 can" },
+      { name: "Crackers (saltines)", quantity: "4-5" }
+    ],
+    method: [
+      "Open ginger ale and let it go flat (stir to speed up)",
+      "Sip slowly at room temperature",
+      "Nibble on crackers between sips"
+    ],
+    how_often: "As needed for nausea",
+    precautions: [
+      "Choose brands with real ginger",
+      "Avoid if diabetic - high sugar content",
+      "Do not gulp - sip slowly"
+    ],
+    benefits: [
+      "Ginger settles stomach",
+      "Crackers absorb excess acid",
+      "Easy to keep down"
+    ],
+    related_diseases: ["nausea", "motion-sickness", "stomach-ache"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-us-8",
+    problem: "Hangover",
+    title: "Coconut Water & Banana Recovery",
+    ingredients: [
+      { name: "Coconut water", quantity: "1 bottle (11 oz)" },
+      { name: "Banana", quantity: "1 ripe" },
+      { name: "Salt", quantity: "Tiny pinch" }
+    ],
+    method: [
+      "Drink coconut water slowly",
+      "Eat banana in small bites",
+      "Add tiny pinch of salt to water if desired"
+    ],
+    how_often: "Morning after, repeat once if needed",
+    precautions: [
+      "Seek medical help if symptoms are severe",
+      "Avoid caffeine which dehydrates",
+      "Rest adequately"
+    ],
+    benefits: [
+      "Coconut water rehydrates and restores electrolytes",
+      "Banana replenishes potassium",
+      "Gentle on upset stomach"
+    ],
+    related_diseases: ["hangover", "dehydration", "nausea"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-us-9",
+    problem: "Acne",
+    title: "Oatmeal Honey Face Mask",
+    ingredients: [
+      { name: "Oatmeal (plain)", quantity: "2 tablespoons" },
+      { name: "Raw honey", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Grind oatmeal into fine powder",
+      "Mix with honey and warm water to form paste",
+      "Apply to clean face avoiding eyes",
+      "Leave for 15-20 minutes",
+      "Rinse with lukewarm water"
+    ],
+    how_often: "2-3 times per week",
+    precautions: [
+      "Patch test first",
+      "Avoid if allergic to oats",
+      "Do not use on broken skin"
+    ],
+    benefits: [
+      "Oatmeal absorbs excess oil",
+      "Honey has antibacterial properties",
+      "Gentle exfoliation without irritation"
+    ],
+    related_diseases: ["acne", "skin-disorders", "dry-skin"],
+    difficulty: "Easy",
+    preparation_time: "25 minutes"
+  },
+  {
+    id: "remedy-us-10",
+    problem: "Constipation",
+    title: "Prune Juice Morning Flush",
+    ingredients: [
+      { name: "Prune juice", quantity: "1 cup (8 oz)" },
+      { name: "Warm water", quantity: "Half cup" }
+    ],
+    method: [
+      "Mix prune juice with warm water",
+      "Drink on empty stomach in morning",
+      "Wait 30 minutes before eating",
+      "Stay near bathroom!"
+    ],
+    how_often: "Once daily until relief",
+    precautions: [
+      "Start with half cup if new to prunes",
+      "May cause cramping initially",
+      "Not for long-term daily use"
+    ],
+    benefits: [
+      "Natural laxative effect",
+      "High in fiber and sorbitol",
+      "Gentle on digestive system"
+    ],
+    related_diseases: ["constipation", "bloating"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-us-11",
+    problem: "Sunburn",
+    title: "Aloe Vera & Coconut Oil Soothe",
+    ingredients: [
+      { name: "Aloe vera gel (pure)", quantity: "2 tablespoons" },
+      { name: "Coconut oil", quantity: "1 teaspoon" },
+      { name: "Lavender essential oil", quantity: "2 drops (optional)" }
+    ],
+    method: [
+      "Mix aloe vera gel with coconut oil",
+      "Add lavender oil if using",
+      "Apply gently to sunburned areas",
+      "Reapply every 2-3 hours"
+    ],
+    how_often: "Multiple times daily until healed",
+    precautions: [
+      "Keep refrigerated for extra cooling",
+      "Avoid on blistered or broken skin",
+      "Use pure aloe - avoid colored products"
+    ],
+    benefits: [
+      "Cools and soothes burned skin",
+      "Promotes healing",
+      "Prevents peeling"
+    ],
+    related_diseases: ["sunburn", "dry-skin", "minor-burns"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "remedy-us-12",
+    problem: "Allergies",
+    title: "Local Honey Allergy Defense",
+    ingredients: [
+      { name: "Local raw honey", quantity: "1 tablespoon" },
+      { name: "Warm water or tea", quantity: "Optional" }
+    ],
+    method: [
+      "Take 1 tablespoon of local raw honey",
+      "Eat directly or mix with warm tea",
+      "Start 4-6 weeks before allergy season"
+    ],
+    how_often: "Daily throughout allergy season",
+    precautions: [
+      "Must be LOCAL honey for effectiveness",
+      "Not suitable for children under 1 year",
+      "Not a replacement for allergy medication"
+    ],
+    benefits: [
+      "May reduce pollen sensitivity over time",
+      "Soothes irritated throat",
+      "Natural immune support"
+    ],
+    related_diseases: ["allergies", "seasonal-allergies", "sore-throat"],
+    difficulty: "Easy",
+    preparation_time: "1 minute"
+  },
+  {
+    id: "remedy-us-13",
+    problem: "High Cholesterol",
+    title: "Oatmeal Heart Health Breakfast",
+    ingredients: [
+      { name: "Steel-cut oats", quantity: "1/2 cup" },
+      { name: "Walnuts", quantity: "1/4 cup chopped" },
+      { name: "Blueberries", quantity: "1/2 cup" },
+      { name: "Cinnamon", quantity: "1/2 teaspoon" },
+      { name: "Water or milk", quantity: "1.5 cups" }
+    ],
+    method: [
+      "Cook oats according to package directions",
+      "Top with walnuts and blueberries",
+      "Sprinkle with cinnamon",
+      "Avoid adding sugar"
+    ],
+    how_often: "Daily for breakfast",
+    precautions: [
+      "Choose steel-cut or rolled oats, not instant",
+      "Monitor portion if diabetic",
+      "Check nut allergies"
+    ],
+    benefits: [
+      "Soluble fiber binds cholesterol",
+      "Omega-3s from walnuts support heart",
+      "Antioxidants from berries"
+    ],
+    related_diseases: ["high-cholesterol", "heart-health", "diabetes"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "remedy-us-14",
+    problem: "Anxiety",
+    title: "Chamomile Lavender Calm Tea",
+    ingredients: [
+      { name: "Chamomile tea bag", quantity: "1" },
+      { name: "Dried lavender", quantity: "1/2 teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Hot water", quantity: "1 cup" }
+    ],
+    method: [
+      "Steep chamomile tea bag and lavender in hot water",
+      "Cover and let sit for 5-7 minutes",
+      "Strain out lavender buds",
+      "Add honey and sip slowly"
+    ],
+    how_often: "1-2 times daily or during anxious moments",
+    precautions: [
+      "May cause drowsiness",
+      "Avoid if allergic to ragweed",
+      "Not a substitute for prescribed medication"
+    ],
+    benefits: [
+      "Natural calming effect",
+      "Reduces cortisol levels",
+      "Promotes relaxation without drugs"
+    ],
+    related_diseases: ["anxiety", "stress", "insomnia"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "remedy-us-15",
+    problem: "Joint Pain",
+    title: "Epsom Salt Joint Soak",
+    ingredients: [
+      { name: "Epsom salt", quantity: "2 cups" },
+      { name: "Warm bath water", quantity: "Full tub" },
+      { name: "Eucalyptus oil", quantity: "5-10 drops (optional)" }
+    ],
+    method: [
+      "Fill bathtub with warm (not hot) water",
+      "Add Epsom salt and stir to dissolve",
+      "Add eucalyptus oil if using",
+      "Soak for 20-30 minutes",
+      "Rinse and pat dry"
+    ],
+    how_often: "2-3 times per week",
+    precautions: [
+      "Avoid if you have heart conditions",
+      "Not for diabetics with neuropathy",
+      "Stay hydrated - drink water during soak"
+    ],
+    benefits: [
+      "Magnesium absorbs through skin",
+      "Reduces muscle tension and pain",
+      "Decreases inflammation"
+    ],
+    related_diseases: ["joint-pain", "arthritis", "muscle-cramps", "back-pain"],
+    difficulty: "Easy",
+    preparation_time: "30 minutes"
+  },
+  {
+    id: "remedy-us-16",
+    problem: "Bad Breath",
+    title: "Baking Soda Mouth Rinse",
+    ingredients: [
+      { name: "Baking soda", quantity: "1/2 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Peppermint extract", quantity: "1-2 drops (optional)" }
+    ],
+    method: [
+      "Dissolve baking soda in warm water",
+      "Add peppermint if desired",
+      "Swish around mouth for 30 seconds",
+      "Spit out and rinse with plain water"
+    ],
+    how_often: "Once daily or as needed",
+    precautions: [
+      "Do not swallow",
+      "Not for daily long-term use",
+      "See dentist if bad breath persists"
+    ],
+    benefits: [
+      "Neutralizes odor-causing acids",
+      "Kills bacteria in mouth",
+      "Cheaper than commercial rinses"
+    ],
+    related_diseases: ["bad-breath", "oral-health"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "remedy-us-17",
+    problem: "Fatigue",
+    title: "Green Smoothie Energy Boost",
+    ingredients: [
+      { name: "Spinach", quantity: "2 cups" },
+      { name: "Banana", quantity: "1 frozen" },
+      { name: "Almond butter", quantity: "1 tablespoon" },
+      { name: "Almond milk", quantity: "1 cup" },
+      { name: "Chia seeds", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Add all ingredients to blender",
+      "Blend until smooth",
+      "Drink immediately for best nutrition"
+    ],
+    how_often: "Once daily, preferably morning",
+    precautions: [
+      "Check for nut allergies",
+      "May interact with blood thinners (vitamin K in spinach)",
+      "Add protein powder if using as meal replacement"
+    ],
+    benefits: [
+      "Iron and B-vitamins from spinach",
+      "Sustained energy from healthy fats",
+      "No caffeine crash"
+    ],
+    related_diseases: ["fatigue", "low-energy", "anemia"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-us-18",
+    problem: "Dry Skin",
+    title: "Olive Oil Body Moisturizer",
+    ingredients: [
+      { name: "Extra virgin olive oil", quantity: "2 tablespoons" },
+      { name: "Vitamin E oil", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Mix olive oil with vitamin E oil",
+      "Apply to damp skin after shower",
+      "Massage gently until absorbed",
+      "Focus on elbows, knees, and heels"
+    ],
+    how_often: "Daily after bathing",
+    precautions: [
+      "May stain light fabrics",
+      "Let absorb before dressing",
+      "Avoid on face if acne-prone"
+    ],
+    benefits: [
+      "Deep moisturization",
+      "Rich in antioxidants",
+      "Repairs skin barrier"
+    ],
+    related_diseases: ["dry-skin", "cracked-heels", "eczema"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "remedy-us-19",
+    problem: "Weight Loss",
+    title: "Green Tea Metabolism Booster",
+    ingredients: [
+      { name: "Green tea", quantity: "1 tea bag or 1 tsp loose" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Lemon wedge", quantity: "1" },
+      { name: "Cayenne pepper", quantity: "Tiny pinch (optional)" }
+    ],
+    method: [
+      "Steep green tea in hot water for 3-4 minutes",
+      "Remove tea bag",
+      "Squeeze lemon and add cayenne if using",
+      "Drink warm before meals"
+    ],
+    how_often: "2-3 cups daily",
+    precautions: [
+      "Contains caffeine - avoid late evening",
+      "May cause nausea on empty stomach",
+      "Start with 1 cup to assess tolerance"
+    ],
+    benefits: [
+      "EGCG boosts metabolism",
+      "Cayenne increases thermogenesis",
+      "Natural appetite suppressant"
+    ],
+    related_diseases: ["weight-loss", "obesity", "fatigue"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "remedy-us-20",
+    problem: "Immunity",
+    title: "Elderberry Syrup Immunity Shot",
+    ingredients: [
+      { name: "Elderberry syrup", quantity: "1 tablespoon" },
+      { name: "Orange juice", quantity: "1/4 cup" },
+      { name: "Fresh ginger", quantity: "Small slice" }
+    ],
+    method: [
+      "Mix elderberry syrup with orange juice",
+      "Grate or muddle ginger into mixture",
+      "Strain if desired",
+      "Take as a quick shot"
+    ],
+    how_often: "Daily during cold/flu season",
+    precautions: [
+      "Buy commercial syrup - raw elderberries are toxic",
+      "May interact with immunosuppressants",
+      "Not for children under 1 year"
+    ],
+    benefits: [
+      "Rich in antioxidants and vitamins",
+      "Supports immune response",
+      "May shorten cold duration"
+    ],
+    related_diseases: ["immunity", "cold-cough", "flu"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
   }
 ];
 

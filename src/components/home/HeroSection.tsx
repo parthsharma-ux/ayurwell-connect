@@ -53,7 +53,7 @@ const HeroSection = () => {
     });
   }, []);
 
-  const { isListening, isSupported, interimTranscript, toggleListening } = useVoiceSearch({
+  const { isListening, isSupported, interimTranscript, startListening, stopListening, toggleListening } = useVoiceSearch({
     onResult: handleVoiceResult,
     onError: handleVoiceError,
   });
@@ -340,8 +340,10 @@ const HeroSection = () => {
                   <VoiceSearchButton
                     isListening={isListening}
                     isSupported={isSupported}
-                    onClick={toggleListening}
+                    onStart={startListening}
+                    onStop={stopListening}
                     size="md"
+                    mode="push-to-talk"
                   />
                   <Button
                     type="button"
