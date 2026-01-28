@@ -13,8 +13,8 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useGeoLocation, getRegionName } from "@/hooks/useGeoLocation";
+import { useLanguage, Region } from "@/contexts/LanguageContext";
+import { getRegionName } from "@/hooks/useGeoLocation";
 
 // SEO JSON-LD structured data hook
 const useRemediesSEO = (language: string) => {
@@ -209,8 +209,8 @@ const categoryGroups = {
 };
 
 const Remedies = () => {
-  const { language } = useLanguage();
-  const { country, region, isLoading: geoLoading } = useGeoLocation();
+  const { language, preferredRegion } = useLanguage();
+  const region = preferredRegion;
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [selectedIngredient, setSelectedIngredient] = useState("all");
@@ -307,27 +307,25 @@ const Remedies = () => {
           {language === "hi" ? "रसोई की सामग्री से प्राकृतिक समाधान" : "Natural solutions using kitchen ingredients"}
         </p>
         
-        {/* Location Badge */}
-        {!geoLoading && country && (
-          <div className="flex items-center gap-2 mb-6">
-            <Badge variant="outline" className="gap-1.5 py-1.5 px-3">
-              <MapPin className="h-3.5 w-3.5" />
-              <span>{country}</span>
-            </Badge>
-            <button
-              onClick={() => setPrioritizeLocal(!prioritizeLocal)}
-              className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                prioritizeLocal 
-                  ? 'bg-primary/10 border-primary text-primary' 
-                  : 'border-border text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {prioritizeLocal 
-                ? (language === "hi" ? "✓ स्थानीय उपचार प्राथमिकता" : "✓ Local remedies first")
-                : (language === "hi" ? "सभी उपचार दिखाएं" : "Show all remedies")}
-            </button>
-          </div>
-        )}
+        {/* Region Badge */}
+        <div className="flex items-center gap-2 mb-6">
+          <Badge variant="outline" className="gap-1.5 py-1.5 px-3">
+            <MapPin className="h-3.5 w-3.5" />
+            <span>{getRegionName(region, language)}</span>
+          </Badge>
+          <button
+            onClick={() => setPrioritizeLocal(!prioritizeLocal)}
+            className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+              prioritizeLocal 
+                ? 'bg-primary/10 border-primary text-primary' 
+                : 'border-border text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            {prioritizeLocal 
+              ? (language === "hi" ? "✓ स्थानीय उपचार प्राथमिकता" : "✓ Local remedies first")
+              : (language === "hi" ? "सभी उपचार दिखाएं" : "Show all remedies")}
+          </button>
+        </div>
 
         {/* Category Group Tabs */}
         <Tabs 
