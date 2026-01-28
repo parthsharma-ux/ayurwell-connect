@@ -1,3 +1,5 @@
+export type RemedyRegion = 'india' | 'us' | 'uk' | 'global';
+
 export interface Remedy {
   id: string;
   problem: string;
@@ -10,7 +12,13 @@ export interface Remedy {
   related_diseases: string[];
   difficulty: "Easy" | "Medium" | "Advanced";
   preparation_time: string;
+  region?: RemedyRegion; // 'india' | 'us' | 'uk' | 'global' - defaults to 'india' for traditional remedies
 }
+
+// Helper to get remedy region (defaults to 'india' for traditional Ayurvedic remedies)
+export const getRemedyRegion = (remedy: Remedy): RemedyRegion => {
+  return remedy.region || 'india';
+};
 
 export const remedies: Remedy[] = [
   // Diabetes remedies
@@ -8074,7 +8082,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["cold-cough", "sore-throat", "immunity"],
     difficulty: "Easy",
-    preparation_time: "3 minutes"
+    preparation_time: "3 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-2",
@@ -8104,7 +8113,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["sore-throat", "cold-cough"],
     difficulty: "Easy",
-    preparation_time: "2 minutes"
+    preparation_time: "2 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-3",
@@ -8133,7 +8143,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["headache", "migraine", "stress"],
     difficulty: "Easy",
-    preparation_time: "2 minutes"
+    preparation_time: "2 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-4",
@@ -8162,7 +8173,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["insomnia", "anxiety", "stress"],
     difficulty: "Easy",
-    preparation_time: "5 minutes"
+    preparation_time: "5 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-5",
@@ -8193,7 +8205,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["bloating", "gas", "nausea", "acidity"],
     difficulty: "Easy",
-    preparation_time: "10 minutes"
+    preparation_time: "10 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-6",
@@ -8220,7 +8233,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["muscle-cramps", "leg-cramps", "dehydration"],
     difficulty: "Easy",
-    preparation_time: "1 minute"
+    preparation_time: "1 minute",
+    region: "us"
   },
   {
     id: "remedy-us-7",
@@ -8248,7 +8262,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["nausea", "motion-sickness", "stomach-ache"],
     difficulty: "Easy",
-    preparation_time: "5 minutes"
+    preparation_time: "5 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-8",
@@ -8277,7 +8292,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["hangover", "dehydration", "nausea"],
     difficulty: "Easy",
-    preparation_time: "2 minutes"
+    preparation_time: "2 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-9",
@@ -8308,7 +8324,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["acne", "skin-disorders", "dry-skin"],
     difficulty: "Easy",
-    preparation_time: "25 minutes"
+    preparation_time: "25 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-10",
@@ -8337,7 +8354,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["constipation", "bloating"],
     difficulty: "Easy",
-    preparation_time: "2 minutes"
+    preparation_time: "2 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-11",
@@ -8367,7 +8385,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["sunburn", "dry-skin", "minor-burns"],
     difficulty: "Easy",
-    preparation_time: "3 minutes"
+    preparation_time: "3 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-12",
@@ -8395,7 +8414,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["allergies", "seasonal-allergies", "sore-throat"],
     difficulty: "Easy",
-    preparation_time: "1 minute"
+    preparation_time: "1 minute",
+    region: "us"
   },
   {
     id: "remedy-us-13",
@@ -8427,7 +8447,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["high-cholesterol", "heart-health", "diabetes"],
     difficulty: "Easy",
-    preparation_time: "15 minutes"
+    preparation_time: "15 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-14",
@@ -8458,7 +8479,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["anxiety", "stress", "insomnia"],
     difficulty: "Easy",
-    preparation_time: "10 minutes"
+    preparation_time: "10 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-15",
@@ -8489,7 +8511,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["joint-pain", "arthritis", "muscle-cramps", "back-pain"],
     difficulty: "Easy",
-    preparation_time: "30 minutes"
+    preparation_time: "30 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-16",
@@ -8519,7 +8542,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["bad-breath", "oral-health"],
     difficulty: "Easy",
-    preparation_time: "2 minutes"
+    preparation_time: "2 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-17",
@@ -8550,7 +8574,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["fatigue", "low-energy", "anemia"],
     difficulty: "Easy",
-    preparation_time: "5 minutes"
+    preparation_time: "5 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-18",
@@ -8579,7 +8604,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["dry-skin", "cracked-heels", "eczema"],
     difficulty: "Easy",
-    preparation_time: "3 minutes"
+    preparation_time: "3 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-19",
@@ -8610,7 +8636,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["weight-loss", "obesity", "fatigue"],
     difficulty: "Easy",
-    preparation_time: "5 minutes"
+    preparation_time: "5 minutes",
+    region: "us"
   },
   {
     id: "remedy-us-20",
@@ -8640,7 +8667,8 @@ export const remedies: Remedy[] = [
     ],
     related_diseases: ["immunity", "cold-cough", "flu"],
     difficulty: "Easy",
-    preparation_time: "3 minutes"
+    preparation_time: "3 minutes",
+    region: "us"
   }
 ];
 
