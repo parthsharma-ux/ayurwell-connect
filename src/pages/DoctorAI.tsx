@@ -46,6 +46,8 @@ const DoctorAI = () => {
     isListening,
     isSupported: voiceSupported,
     interimTranscript,
+    startListening,
+    stopListening,
     toggleListening,
   } = useVoiceSearch({
     onResult: (transcript) => {
@@ -525,18 +527,24 @@ const DoctorAI = () => {
               {voiceSupported && (
                 <button
                   type="button"
-                  onClick={toggleListening}
+                  onPointerDown={() => !isLoading && startListening()}
+                  onPointerUp={stopListening}
+                  onPointerLeave={stopListening}
+                  onContextMenu={(e) => e.preventDefault()}
                   disabled={isLoading}
-                  className={`flex items-center justify-center rounded-xl h-11 w-11 transition-all ${
+                  className={`relative flex items-center justify-center rounded-xl h-11 w-11 transition-all select-none touch-none ${
                     isListening 
-                      ? "bg-primary text-primary-foreground animate-pulse" 
+                      ? "bg-primary text-primary-foreground animate-pulse scale-110" 
                       : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground"
                   }`}
-                  title={isListening 
-                    ? (language === "hinglish" ? "Sunna band karein" : "Stop listening") 
-                    : (language === "hinglish" ? "Bolkar batayein" : "Speak your concern")}
+                  title={language === "hinglish" ? "Dabaye rakhein aur bolein" : "Hold to speak"}
                 >
                   <Mic className="h-5 w-5" />
+                  {isListening && (
+                    <span className="absolute -bottom-5 text-[9px] font-medium text-primary whitespace-nowrap">
+                      {language === "hinglish" ? "Chhod dein" : "Release"}
+                    </span>
+                  )}
                 </button>
               )}
               <input
