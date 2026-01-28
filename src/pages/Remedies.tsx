@@ -1,8 +1,8 @@
 import { useState, useMemo, useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
-import { remedies, remedyCategories } from "@/data/remedies";
-import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap } from "lucide-react";
+import { remedies, remedyCategories, getRemedyRegion } from "@/data/remedies";
+import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -14,6 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useGeoLocation, getRegionName } from "@/hooks/useGeoLocation";
 
 // SEO JSON-LD structured data hook
 const useRemediesSEO = (language: string) => {
@@ -209,11 +210,13 @@ const categoryGroups = {
 
 const Remedies = () => {
   const { language } = useLanguage();
+  const { country, region, isLoading: geoLoading } = useGeoLocation();
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const [selectedIngredient, setSelectedIngredient] = useState("all");
   const [activeGroup, setActiveGroup] = useState<keyof typeof categoryGroups>("all");
   const [activeBodySystem, setActiveBodySystem] = useState<keyof typeof bodySystems>("all");
+  const [prioritizeLocal, setPrioritizeLocal] = useState(true);
 
   // Apply SEO structured data
   useRemediesSEO(language);
@@ -224,14 +227,13 @@ const Remedies = () => {
   }, [activeGroup]);
 
   const filtered = useMemo(() => {
-    return remedies.filter((r) => {
+    let results = remedies.filter((r) => {
       const searchLower = search.toLowerCase();
       const matchesSearch = !search || 
         r.title.toLowerCase().includes(searchLower) || 
         r.problem.toLowerCase().includes(searchLower) ||
         r.ingredients.some(i => i.name.toLowerCase().includes(searchLower));
       
-      // Filter by category group first
       const matchesGroup = activeGroup === "all" || 
         categoryGroups[activeGroup].categories.includes(r.problem);
       
@@ -240,13 +242,25 @@ const Remedies = () => {
       const matchesIngredient = selectedIngredient === "all" || 
         r.ingredients.some(i => i.name === selectedIngredient);
       
-      // Filter by body system
       const matchesBodySystem = activeBodySystem === "all" || 
         bodySystems[activeBodySystem].conditions.includes(r.problem);
       
       return matchesSearch && matchesGroup && matchesCategory && matchesIngredient && matchesBodySystem;
     });
-  }, [search, category, selectedIngredient, activeGroup, activeBodySystem]);
+
+    // Sort to prioritize user's region if enabled
+    if (prioritizeLocal && region !== 'global') {
+      results = results.sort((a, b) => {
+        const aRegion = getRemedyRegion(a);
+        const bRegion = getRemedyRegion(b);
+        const aMatch = aRegion === region || aRegion === 'global' ? 0 : 1;
+        const bMatch = bRegion === region || bRegion === 'global' ? 0 : 1;
+        return aMatch - bMatch;
+      });
+    }
+
+    return results;
+  }, [search, category, selectedIngredient, activeGroup, activeBodySystem, prioritizeLocal, region]);
 
   const clearFilters = () => {
     setSearch("");
@@ -289,9 +303,31 @@ const Remedies = () => {
         <h1 className="font-display text-4xl font-bold text-foreground mb-2">
           {language === "hi" ? "घरेलू उपचार" : "Home Remedies"}
         </h1>
-        <p className="text-muted-foreground mb-8">
+        <p className="text-muted-foreground mb-4">
           {language === "hi" ? "रसोई की सामग्री से प्राकृतिक समाधान" : "Natural solutions using kitchen ingredients"}
         </p>
+        
+        {/* Location Badge */}
+        {!geoLoading && country && (
+          <div className="flex items-center gap-2 mb-6">
+            <Badge variant="outline" className="gap-1.5 py-1.5 px-3">
+              <MapPin className="h-3.5 w-3.5" />
+              <span>{country}</span>
+            </Badge>
+            <button
+              onClick={() => setPrioritizeLocal(!prioritizeLocal)}
+              className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                prioritizeLocal 
+                  ? 'bg-primary/10 border-primary text-primary' 
+                  : 'border-border text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              {prioritizeLocal 
+                ? (language === "hi" ? "✓ स्थानीय उपचार प्राथमिकता" : "✓ Local remedies first")
+                : (language === "hi" ? "सभी उपचार दिखाएं" : "Show all remedies")}
+            </button>
+          </div>
+        )}
 
         {/* Category Group Tabs */}
         <Tabs 
