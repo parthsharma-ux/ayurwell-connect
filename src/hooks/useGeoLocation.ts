@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Region } from '@/contexts/LanguageContext';
 
-export type Region = 'india' | 'us' | 'uk' | 'global';
+// Re-export Region type for convenience
+export type { Region } from '@/contexts/LanguageContext';
 
 interface GeoData {
   country: string;
