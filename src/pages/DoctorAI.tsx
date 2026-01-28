@@ -64,6 +64,27 @@ const DoctorAI = () => {
 
   // We'll handle auto-send in the sendMessage flow instead
 
+  const textForSpeech = useCallback((raw: string) => {
+    // Remove markdown artifacts + noisy characters so TTS sounds natural.
+    // Keep the actual words, but avoid reading bracket characters and emojis.
+    return raw
+      // Strip fenced/inline code markers
+      .replace(/```[\s\S]*?```/g, ' ')
+      .replace(/`([^`]+)`/g, '$1')
+      // Links: [text](url) -> text
+      .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '$1')
+      // Remove markdown emphasis/list markers
+      .replace(/^[\s>*#-]+/gm, '')
+      .replace(/[\*_~]/g, '')
+      // Don't read bracket characters (keep content)
+      .replace(/[\[\]\(\){}<>]/g, ' ')
+      // Remove emojis / pictographs (broad but effective)
+      .replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, ' ')
+      // Collapse whitespace
+      .replace(/\s+/g, ' ')
+      .trim();
+  }, []);
+
   // TTS function using browser's Web Speech API (free, no API key needed)
   const speakMessage = useCallback((text: string, messageIndex: number) => {
     // Stop any currently playing speech
@@ -89,7 +110,18 @@ const DoctorAI = () => {
 
     setSpeakingMessageIndex(messageIndex);
 
-    const utterance = new SpeechSynthesisUtterance(text);
+    const cleaned = textForSpeech(text);
+    if (!cleaned) {
+      toast({
+        title: "Nothing to read",
+        description: language === "hinglish" ? "Padhne ke liye text nahi mila" : "No readable text found",
+        variant: "destructive",
+      });
+      setSpeakingMessageIndex(null);
+      return;
+    }
+
+    const utterance = new SpeechSynthesisUtterance(cleaned);
     
     // Set language based on user preference
     utterance.lang = language === "hinglish" ? "hi-IN" : "en-IN";
@@ -119,7 +151,7 @@ const DoctorAI = () => {
     };
 
     window.speechSynthesis.speak(utterance);
-  }, [speakingMessageIndex, language, toast]);
+  }, [speakingMessageIndex, language, toast, textForSpeech]);
   useEffect(() => {
     // Scroll to bottom only when new messages are added, keeping user at bottom
     if (messagesEndRef.current) {

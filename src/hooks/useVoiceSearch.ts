@@ -60,6 +60,10 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
   const [isSupported, setIsSupported] = useState(false);
   const [interimTranscript, setInterimTranscript] = useState('');
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
+  // Controls whether we should keep restarting recognition when it ends.
+  // Web Speech can end unexpectedly (silence timeout, focus changes, etc.).
+  const shouldKeepListeningRef = useRef(false);
+  const finalReceivedRef = useRef(false);
 
   useEffect(() => {
     // Check for browser support
@@ -112,9 +116,11 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
 
         if (final) {
           console.log('Final transcript:', final);
+          finalReceivedRef.current = true;
           onResult(final.trim());
           setInterimTranscript('');
           // Stop recognition after getting a final result
+          shouldKeepListeningRef.current = false;
           recognition.stop();
         }
       };
@@ -145,12 +151,30 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
             return;
         }
         
+        // If we're meant to keep listening, Web Speech might recover via onend restart.
         onError?.(errorMessage);
       };
 
       recognition.onend = () => {
         console.log('Voice recognition ended');
         setIsListening(false);
+
+        // If the user didn't manually stop and we didn't already capture a final transcript,
+        // restart recognition to improve reliability.
+        if (shouldKeepListeningRef.current && !finalReceivedRef.current) {
+          const r = recognitionRef.current;
+          if (!r) return;
+          // Small delay helps avoid "recognition has already started" errors in some browsers.
+          setTimeout(() => {
+            try {
+              r.start();
+            } catch (e) {
+              console.warn('Voice recognition restart failed:', e);
+            }
+          }, 250);
+        }
+
+        finalReceivedRef.current = false;
       };
 
       recognitionRef.current = recognition;
@@ -166,6 +190,8 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
   const startListening = useCallback(() => {
     if (recognitionRef.current && !isListening) {
       try {
+        shouldKeepListeningRef.current = true;
+        finalReceivedRef.current = false;
         recognitionRef.current.start();
       } catch (error) {
         console.error('Error starting recognition:', error);
@@ -175,6 +201,7 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
 
   const stopListening = useCallback(() => {
     if (recognitionRef.current && isListening) {
+      shouldKeepListeningRef.current = false;
       recognitionRef.current.stop();
     }
   }, [isListening]);
