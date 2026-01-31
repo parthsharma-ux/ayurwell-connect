@@ -145,6 +145,7 @@ export type Database = {
           created_at: string
           first_chat_at: string | null
           free_chat_used: boolean
+          free_chats_count: number
           id: string
           user_id: string
         }
@@ -152,6 +153,7 @@ export type Database = {
           created_at?: string
           first_chat_at?: string | null
           free_chat_used?: boolean
+          free_chats_count?: number
           id?: string
           user_id: string
         }
@@ -159,6 +161,7 @@ export type Database = {
           created_at?: string
           first_chat_at?: string | null
           free_chat_used?: boolean
+          free_chats_count?: number
           id?: string
           user_id?: string
         }

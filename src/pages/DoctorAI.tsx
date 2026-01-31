@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic, Volume2, Square, Crown, Lock, Star, Gem } from "lucide-react";
+import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic, Volume2, Square, Crown, Lock, Star, Gem, Zap, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { useVaidyaChat } from "@/hooks/useVaidyaChat";
@@ -11,7 +11,7 @@ import { ChatHistory } from "@/components/vaidya/ChatHistory";
 import SubscriptionModal from "@/components/vaidya/SubscriptionModal";
 import ReactMarkdown from "react-markdown";
 import { useVoiceSearch } from "@/hooks/useVoiceSearch";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 type Message = { role: "user" | "assistant"; content: string };
 type UserLanguage = "hinglish" | "english";
@@ -26,13 +26,12 @@ const DoctorAI = () => {
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [speakingMessageIndex, setSpeakingMessageIndex] = useState<number | null>(null);
-  const [hasUsedFirstMessage, setHasUsedFirstMessage] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   const { user, signOut } = useAuth();
   
   // Access control hook
-  const { hasAccess, reason, freeChatAvailable, loading: accessLoading, checkAccess, markFreeChatUsed } = useVaidyaAccess();
+  const { hasAccess, reason, freeChatAvailable, freeChatsRemaining, loading: accessLoading, checkAccess, markFreeChatUsed } = useVaidyaAccess();
   
   const {
     sessions,
@@ -56,7 +55,6 @@ const DoctorAI = () => {
     interimTranscript,
     startListening,
     stopListening,
-    toggleListening,
   } = useVoiceSearch({
     onResult: (transcript) => {
       setInput(transcript);
@@ -72,43 +70,30 @@ const DoctorAI = () => {
     language: language === "hinglish" ? "hi-IN" : "en-IN",
   });
 
-  // We'll handle auto-send in the sendMessage flow instead
-
   const textForSpeech = useCallback((raw: string) => {
-    // Remove markdown artifacts + noisy characters so TTS sounds natural.
-    // Keep the actual words, but avoid reading bracket characters and emojis.
     return raw
-      // Strip fenced/inline code markers
       .replace(/```[\s\S]*?```/g, ' ')
       .replace(/`([^`]+)`/g, '$1')
-      // Links: [text](url) -> text
       .replace(/\[([^\]]+)\]\(([^\)]+)\)/g, '$1')
-      // Remove markdown emphasis/list markers
       .replace(/^[\s>*#-]+/gm, '')
       .replace(/[\*_~]/g, '')
-      // Don't read bracket characters (keep content)
       .replace(/[\[\]\(\){}<>]/g, ' ')
-      // Remove emojis / pictographs (broad but effective)
       .replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, ' ')
-      // Collapse whitespace
       .replace(/\s+/g, ' ')
       .trim();
   }, []);
 
-  // TTS function using browser's Web Speech API (free, no API key needed)
+  // TTS function using browser's Web Speech API
   const speakMessage = useCallback((text: string, messageIndex: number) => {
-    // Stop any currently playing speech
     if (window.speechSynthesis.speaking) {
       window.speechSynthesis.cancel();
     }
 
-    // If clicking the same message that's playing, just stop
     if (speakingMessageIndex === messageIndex) {
       setSpeakingMessageIndex(null);
       return;
     }
 
-    // Check if speech synthesis is supported
     if (!('speechSynthesis' in window)) {
       toast({
         title: "Not Supported",
@@ -132,13 +117,10 @@ const DoctorAI = () => {
     }
 
     const utterance = new SpeechSynthesisUtterance(cleaned);
-    
-    // Set language based on user preference
     utterance.lang = language === "hinglish" ? "hi-IN" : "en-IN";
-    utterance.rate = 0.9; // Slightly slower for clarity
+    utterance.rate = 0.9;
     utterance.pitch = 1;
     
-    // Try to find a suitable voice
     const voices = window.speechSynthesis.getVoices();
     const preferredVoice = voices.find(voice => 
       voice.lang.startsWith(language === "hinglish" ? "hi" : "en")
@@ -147,10 +129,7 @@ const DoctorAI = () => {
       utterance.voice = preferredVoice;
     }
 
-    utterance.onend = () => {
-      setSpeakingMessageIndex(null);
-    };
-
+    utterance.onend = () => setSpeakingMessageIndex(null);
     utterance.onerror = () => {
       setSpeakingMessageIndex(null);
       toast({
@@ -162,8 +141,8 @@ const DoctorAI = () => {
 
     window.speechSynthesis.speak(utterance);
   }, [speakingMessageIndex, language, toast, textForSpeech]);
+
   useEffect(() => {
-    // Scroll to bottom only when new messages are added, keeping user at bottom
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
     }
@@ -299,7 +278,7 @@ const DoctorAI = () => {
       return;
     }
     
-    // Check access - if no access and already used free chat, show paywall
+    // Check access - if no access and already used free chats, show paywall
     if (!hasAccess && reason === "subscription_required") {
       setShowSubscriptionModal(true);
       return;
@@ -330,10 +309,9 @@ const DoctorAI = () => {
 
       await streamChat(allMessages, sessionId);
       
-      // Mark free chat as used after first successful message
-      if (freeChatAvailable && !hasUsedFirstMessage) {
+      // Mark free chat as used after successful message (only if using free tier)
+      if (freeChatAvailable && reason === 'free_chat') {
         await markFreeChatUsed();
-        setHasUsedFirstMessage(true);
       }
     } catch (error) {
       console.error("Chat error:", error);
@@ -345,7 +323,7 @@ const DoctorAI = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, messages, currentSessionId, user, createSession, saveMessage, streamChat, toast, setMessages, hasAccess, reason, freeChatAvailable, hasUsedFirstMessage, markFreeChatUsed, language]);
+  }, [isLoading, messages, currentSessionId, user, createSession, saveMessage, streamChat, toast, setMessages, hasAccess, reason, freeChatAvailable, markFreeChatUsed, language]);
 
   const handleSend = () => {
     sendMessage(input.trim());
@@ -356,7 +334,6 @@ const DoctorAI = () => {
     if (!isListening && pendingVoiceMessageRef.current) {
       const message = pendingVoiceMessageRef.current;
       pendingVoiceMessageRef.current = null;
-      // Small delay to show the transcribed text before sending
       const timer = setTimeout(() => {
         if (message.trim()) {
           sendMessage(message.trim());
@@ -385,28 +362,62 @@ const DoctorAI = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Premium Header with animated gradient */}
+        {/* Premium Header with luxury animations */}
         <motion.div 
           className="text-center mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           {isPremium ? (
             <motion.div 
-              className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold/20 via-primary/20 to-gold/20 text-gold text-sm font-semibold mb-4 border border-gold/30 shadow-glow-gold"
-              animate={{ 
-                boxShadow: [
-                  "0 0 20px hsl(45 90% 55% / 0.2), 0 0 40px hsl(45 90% 55% / 0.1)",
-                  "0 0 30px hsl(45 90% 55% / 0.3), 0 0 60px hsl(45 90% 55% / 0.15)",
-                  "0 0 20px hsl(45 90% 55% / 0.2), 0 0 40px hsl(45 90% 55% / 0.1)"
-                ]
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="relative inline-block mb-6"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5 }}
             >
-              <Crown className="h-4 w-4" />
-              <span>Premium AI Vaidya</span>
-              <Star className="h-3.5 w-3.5 fill-gold" />
+              {/* Glowing background effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-gold/30 via-primary/20 to-gold/30 blur-2xl rounded-full transform scale-150" />
+              
+              <motion.div 
+                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-gold/20 via-primary/10 to-gold/20 border-2 border-gold/50 shadow-glow-gold backdrop-blur-sm"
+                animate={{ 
+                  boxShadow: [
+                    "0 0 30px hsl(45 90% 55% / 0.3), 0 0 60px hsl(45 90% 55% / 0.15)",
+                    "0 0 50px hsl(45 90% 55% / 0.5), 0 0 100px hsl(45 90% 55% / 0.25)",
+                    "0 0 30px hsl(45 90% 55% / 0.3), 0 0 60px hsl(45 90% 55% / 0.15)"
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Crown className="h-6 w-6 text-gold drop-shadow-lg" />
+                </motion.div>
+                <span className="text-lg font-bold bg-gradient-to-r from-gold via-primary to-gold bg-clip-text text-transparent">
+                  {language === "hinglish" ? "प्रीमियम AI वैद्य" : "Premium AI Vaidya"}
+                </span>
+                <div className="flex gap-0.5">
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      animate={{ 
+                        scale: [1, 1.3, 1],
+                        opacity: [0.7, 1, 0.7] 
+                      }}
+                      transition={{ 
+                        duration: 1.5, 
+                        repeat: Infinity, 
+                        delay: i * 0.2 
+                      }}
+                    >
+                      <Star className="h-4 w-4 text-gold fill-gold" />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
           ) : (
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
@@ -415,181 +426,248 @@ const DoctorAI = () => {
             </div>
           )}
           
-          <h1 className={`font-display text-3xl font-bold ${isPremium ? "bg-gradient-to-r from-gold via-primary to-gold bg-clip-text text-transparent" : ""}`}>
+          <h1 className={`font-display text-3xl md:text-4xl font-bold mb-2 ${
+            isPremium 
+              ? "bg-gradient-to-r from-gold via-primary to-gold bg-[length:200%_auto] animate-shimmer bg-clip-text text-transparent" 
+              : ""
+          }`}>
             {isPremium 
-              ? (language === "hinglish" ? "प्रीमियम AI वैद्य" : "Premium AI Vaidya")
+              ? (language === "hinglish" ? "श्रेष्ठ आयुर्वेद विशेषज्ञ" : "Elite Ayurveda Expert")
               : "Ayurveda AI Vaidya"
             }
           </h1>
-          <p className="text-muted-foreground mt-2">
+          
+          <p className={`text-base ${isPremium ? "text-gold/80" : "text-muted-foreground"} mt-2 max-w-lg mx-auto`}>
             {isPremium 
               ? (language === "hinglish" 
-                  ? "असीमित व्यक्तिगत आयुर्वेदिक परामर्श का आनंद लें" 
-                  : "Enjoy unlimited personalized Ayurvedic consultations")
+                  ? "✨ असीमित प्रीमियम परामर्श • व्यक्तिगत उपचार योजना • प्राथमिकता सहायता" 
+                  : "✨ Unlimited Premium Consultations • Personalized Treatment Plans • Priority Support")
               : (language === "hinglish" 
                   ? "Apni taklif batayein, personalized Ayurvedic guidance payein" 
                   : "Share your concerns, receive personalized Ayurvedic guidance")
             }
           </p>
           
-          <div className="mt-4 flex items-center justify-center gap-3 flex-wrap">
-            <button
+          <div className="mt-5 flex items-center justify-center gap-3 flex-wrap">
+            <motion.button
               onClick={toggleLanguage}
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border transition-colors text-sm ${
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all text-sm font-medium ${
                 isPremium 
-                  ? "border-gold/30 bg-gold/10 hover:bg-gold/20 text-gold" 
+                  ? "border-gold/40 bg-gold/10 hover:bg-gold/20 text-gold shadow-sm" 
                   : "border-border bg-card hover:bg-muted"
               }`}
             >
               <Globe className="h-4 w-4" />
               {language === "hinglish" ? "Switch to English" : "हिंग्लिश में बदलें"}
-            </button>
+            </motion.button>
             
             {user ? (
               <>
                 {/* Subscription Status Badge */}
                 {isPremium ? (
-                  <motion.span 
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-gold/30 to-primary/30 text-gold text-sm font-semibold border border-gold/40"
-                    animate={{ scale: [1, 1.02, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                  <motion.div 
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold/30 via-primary/20 to-gold/30 border-2 border-gold/50 shadow-glow-gold"
+                    animate={{ 
+                      scale: [1, 1.02, 1],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
                   >
-                    <Gem className="h-4 w-4" />
-                    {language === "hinglish" ? "प्रीमियम सदस्य" : "Premium Member"}
-                  </motion.span>
+                    <Gem className="h-5 w-5 text-gold" />
+                    <span className="text-sm font-bold text-gold">
+                      {language === "hinglish" ? "प्रीमियम सदस्य" : "Premium Member"}
+                    </span>
+                    <Shield className="h-4 w-4 text-gold/70" />
+                  </motion.div>
                 ) : freeChatAvailable ? (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium">
-                    <Sparkles className="h-3.5 w-3.5" />
-                    {language === "hinglish" ? "1 मुफ्त चैट" : "1 Free Chat"}
-                  </span>
-                ) : (
-                  <button
-                    onClick={() => setShowSubscriptionModal(true)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/20 text-primary text-xs font-medium hover:bg-primary/30 transition-colors"
+                  <motion.span 
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-semibold border border-emerald-500/30"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
                   >
-                    <Lock className="h-3.5 w-3.5" />
-                    {language === "hinglish" ? "अपग्रेड करें" : "Upgrade"}
-                  </button>
+                    <Zap className="h-4 w-4" />
+                    {language === "hinglish" 
+                      ? `${freeChatsRemaining} मुफ्त चैट बाकी` 
+                      : `${freeChatsRemaining} Free Chats Left`}
+                  </motion.span>
+                ) : (
+                  <motion.button
+                    onClick={() => setShowSubscriptionModal(true)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-gold/20 to-primary/20 text-gold text-sm font-semibold border border-gold/30 hover:border-gold/50 transition-all shadow-sm hover:shadow-glow-gold"
+                  >
+                    <Lock className="h-4 w-4" />
+                    {language === "hinglish" ? "प्रीमियम अपग्रेड" : "Go Premium"}
+                  </motion.button>
                 )}
                 <button
                   onClick={() => setShowHistory(!showHistory)}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border transition-colors text-sm ${
+                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all text-sm ${
                     isPremium 
                       ? "border-gold/30 bg-gold/10 hover:bg-gold/20 text-gold" 
                       : "border-border bg-card hover:bg-muted"
                   }`}
                 >
                   <History className="h-4 w-4" />
-                  {showHistory ? "Hide History" : "Past Consultations"}
+                  {showHistory ? "Hide" : "History"}
                 </button>
                 <button
                   onClick={() => signOut()}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
                 >
                   <LogOut className="h-4 w-4" />
-                  Sign Out
                 </button>
               </>
             ) : (
-              <button
+              <motion.button
                 onClick={() => setShowAuthModal(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary bg-primary/10 hover:bg-primary/20 transition-colors text-sm text-primary"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-gold text-primary-foreground font-semibold text-sm shadow-lg hover:shadow-glow-terracotta transition-all"
               >
                 <LogIn className="h-4 w-4" />
                 {language === "hinglish" ? "लॉगिन करें" : "Sign In to Chat"}
-              </button>
+              </motion.button>
             )}
           </div>
         </motion.div>
 
         {/* Chat History Panel */}
-        {user && showHistory && (
-          <div className={`rounded-xl p-4 mb-6 ${isPremium ? "bg-gradient-to-r from-gold/5 to-primary/5 border border-gold/20" : "bg-card border border-border"}`}>
-            <h3 className={`font-medium text-sm mb-3 ${isPremium ? "text-gold" : ""}`}>
-              {isPremium 
-                ? (language === "hinglish" ? "आपके प्रीमियम परामर्श" : "Your Premium Consultations")
-                : "Your Consultations"
-              }
-            </h3>
-            <ChatHistory
-              sessions={sessions}
-              currentSessionId={currentSessionId}
-              loading={loadingSessions}
-              onSelectSession={loadSession}
-              onDeleteSession={deleteSession}
-              onNewChat={handleNewChat}
-            />
-          </div>
-        )}
+        <AnimatePresence>
+          {user && showHistory && (
+            <motion.div 
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className={`rounded-xl p-4 mb-6 overflow-hidden ${
+                isPremium 
+                  ? "bg-gradient-to-r from-gold/5 via-card to-gold/5 border-2 border-gold/20" 
+                  : "bg-card border border-border"
+              }`}
+            >
+              <h3 className={`font-medium text-sm mb-3 ${isPremium ? "text-gold" : ""}`}>
+                {isPremium 
+                  ? (language === "hinglish" ? "आपके प्रीमियम परामर्श" : "Your Premium Consultations")
+                  : "Your Consultations"
+                }
+              </h3>
+              <ChatHistory
+                sessions={sessions}
+                currentSessionId={currentSessionId}
+                loading={loadingSessions}
+                onSelectSession={loadSession}
+                onDeleteSession={deleteSession}
+                onNewChat={handleNewChat}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        <div className={`rounded-xl p-4 mb-6 flex items-start gap-3 ${isPremium ? "bg-gold/10 border border-gold/20" : "bg-amber-950/30 border border-amber-700/30"}`}>
+        <motion.div 
+          className={`rounded-xl p-4 mb-6 flex items-start gap-3 ${
+            isPremium 
+              ? "bg-gradient-to-r from-gold/10 via-card to-gold/10 border border-gold/30" 
+              : "bg-amber-950/30 border border-amber-700/30"
+          }`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
           <AlertCircle className={`h-5 w-5 flex-shrink-0 mt-0.5 ${isPremium ? "text-gold" : "text-amber-500"}`} />
           <p className={`text-sm ${isPremium ? "text-gold/80" : "text-amber-200/80"}`}>
             {language === "hinglish" 
               ? "Yeh AI Vaidya sirf general Ayurvedic guidance deta hai. Serious problems ke liye physical doctor se milein."
               : "This AI Vaidya provides general Ayurvedic guidance only. Please consult a physical doctor for serious conditions."}
           </p>
-        </div>
+        </motion.div>
 
-        {/* Chat Container - Premium styling */}
+        {/* Chat Container - Premium luxury styling */}
         <motion.div 
-          className={`rounded-2xl overflow-hidden ${
+          className={`rounded-2xl overflow-hidden transition-all duration-500 ${
             isPremium 
-              ? "bg-gradient-to-br from-card via-card to-gold/5 border-2 border-gold/30 shadow-glow-gold" 
-              : "bg-card border border-border"
+              ? "bg-gradient-to-br from-card via-card to-gold/5 border-2 border-gold/40 shadow-glow-gold" 
+              : "bg-card border border-border shadow-card"
           }`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {/* Premium header bar */}
+          {/* Premium header bar with shimmer */}
           {isPremium && (
-            <div className="px-6 py-3 bg-gradient-to-r from-gold/10 via-transparent to-gold/10 border-b border-gold/20 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
-                <span className="text-xs font-medium text-gold">
+            <motion.div 
+              className="px-6 py-4 bg-gradient-to-r from-gold/10 via-transparent to-gold/10 border-b border-gold/30 flex items-center justify-between relative overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              {/* Shimmer effect */}
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/10 to-transparent"
+                animate={{ x: ["-100%", "100%"] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              />
+              
+              <div className="flex items-center gap-3 relative z-10">
+                <motion.div 
+                  className="w-3 h-3 rounded-full bg-gold"
+                  animate={{ 
+                    scale: [1, 1.3, 1],
+                    opacity: [1, 0.7, 1] 
+                  }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                />
+                <span className="text-sm font-semibold text-gold">
                   {language === "hinglish" ? "प्रीमियम सत्र सक्रिय" : "Premium Session Active"}
                 </span>
               </div>
-              <div className="flex items-center gap-1.5 text-xs text-gold/60">
-                <Star className="h-3 w-3 fill-gold/50" />
+              <div className="flex items-center gap-2 text-sm text-gold/70 relative z-10">
+                <Crown className="h-4 w-4 text-gold" />
                 <span>{language === "hinglish" ? "असीमित परामर्श" : "Unlimited Consultations"}</span>
               </div>
-            </div>
+            </motion.div>
           )}
           
-          <div className="h-[450px] overflow-y-auto p-6 space-y-4">
+          <div className="h-[450px] overflow-y-auto p-6 space-y-4 scroll-smooth">
             {messages.map((msg, i) => (
               <motion.div 
                 key={i} 
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
               >
                 {msg.role === "assistant" && (
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0 ${
-                    isPremium 
-                      ? "bg-gradient-to-br from-gold/30 to-primary/30 border border-gold/40 shadow-glow-gold" 
-                      : "bg-secondary/20"
-                  }`}>
+                  <motion.div 
+                    className={`w-11 h-11 rounded-full flex items-center justify-center mr-3 flex-shrink-0 ${
+                      isPremium 
+                        ? "bg-gradient-to-br from-gold/40 to-primary/30 border-2 border-gold/50 shadow-glow-gold" 
+                        : "bg-secondary/20 border border-secondary/30"
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                  >
                     {isPremium ? (
-                      <Crown className="h-5 w-5 text-gold" />
+                      <Crown className="h-5 w-5 text-gold drop-shadow-sm" />
                     ) : (
-                      <Brain className="h-4 w-4 text-secondary" />
+                      <Brain className="h-5 w-5 text-secondary" />
                     )}
-                  </div>
+                  </motion.div>
                 )}
-                <div className={`max-w-[85%] rounded-2xl ${
+                <div className={`max-w-[85%] rounded-2xl transition-all ${
                   msg.role === "user" 
-                    ? (isPremium ? "bg-gradient-to-r from-gold/20 to-primary/20 border border-gold/20 rounded-tr-sm" : "bg-primary/20 rounded-tr-sm")
-                    : (isPremium ? "bg-gradient-to-r from-muted to-gold/5 border border-gold/10 rounded-tl-sm" : "bg-muted rounded-tl-sm")
+                    ? (isPremium 
+                        ? "bg-gradient-to-r from-gold/25 to-primary/20 border border-gold/30 rounded-tr-sm shadow-sm" 
+                        : "bg-primary/20 border border-primary/20 rounded-tr-sm")
+                    : (isPremium 
+                        ? "bg-gradient-to-r from-muted via-muted to-gold/5 border border-gold/20 rounded-tl-sm shadow-sm" 
+                        : "bg-muted rounded-tl-sm")
                 }`}>
                   <div className="p-4">
                     {msg.role === "user" ? (
                       <p className="text-base leading-relaxed whitespace-pre-line">{msg.content}</p>
                     ) : (
-                      <div className={`prose prose-sm dark:prose-invert max-w-none text-base leading-relaxed [&>p]:my-2 [&>ul]:my-2 [&>ol]:my-2 [&>ul]:pl-4 [&>ol]:pl-4 [&>li]:my-1 [&>h1]:text-lg [&>h2]:text-base [&>h3]:text-base [&>code]:bg-background/50 [&>code]:px-1 [&>code]:rounded [&>pre]:bg-background/50 [&>pre]:p-2 [&>pre]:rounded-lg [&>blockquote]:border-l-2 [&>blockquote]:pl-3 [&>blockquote]:italic ${isPremium ? "[&>blockquote]:border-gold" : "[&>blockquote]:border-primary"}`}>
+                      <div className={`prose prose-sm dark:prose-invert max-w-none text-base leading-relaxed [&>p]:my-2 [&>ul]:my-2 [&>ol]:my-2 [&>ul]:pl-4 [&>ol]:pl-4 [&>li]:my-1 [&>h1]:text-lg [&>h2]:text-base [&>h3]:text-base [&>code]:bg-background/50 [&>code]:px-1.5 [&>code]:py-0.5 [&>code]:rounded [&>pre]:bg-background/50 [&>pre]:p-3 [&>pre]:rounded-lg [&>blockquote]:border-l-3 [&>blockquote]:pl-4 [&>blockquote]:italic ${isPremium ? "[&>blockquote]:border-gold [&>strong]:text-gold" : "[&>blockquote]:border-primary"}`}>
                         <ReactMarkdown>{msg.content}</ReactMarkdown>
                       </div>
                     )}
@@ -597,11 +675,13 @@ const DoctorAI = () => {
                   {/* TTS Button for AI messages */}
                   {msg.role === "assistant" && i > 0 && (
                     <div className="px-4 pb-3 pt-0">
-                      <button
+                      <motion.button
                         onClick={() => speakMessage(msg.content, i)}
-                        className={`flex items-center gap-1.5 text-xs px-2 py-1 rounded-full transition-all ${
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full transition-all ${
                           speakingMessageIndex === i
-                            ? "bg-primary/20 text-primary"
+                            ? (isPremium ? "bg-gold/20 text-gold" : "bg-primary/20 text-primary")
                             : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                         }`}
                         title={speakingMessageIndex === i 
@@ -615,86 +695,137 @@ const DoctorAI = () => {
                         )}
                         <span>
                           {speakingMessageIndex === i 
-                            ? (language === "hinglish" ? "Band karein" : "Stop") 
+                            ? (language === "hinglish" ? "Band" : "Stop") 
                             : (language === "hinglish" ? "Sunein" : "Listen")}
                         </span>
-                      </button>
+                      </motion.button>
                     </div>
                   )}
                 </div>
                 {msg.role === "user" && (
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ml-3 flex-shrink-0 ${isPremium ? "bg-gradient-to-r from-gold/20 to-primary/20 border border-gold/30" : "bg-primary/20"}`}>
-                    <User className={`h-4 w-4 ${isPremium ? "text-gold" : "text-primary"}`} />
-                  </div>
+                  <motion.div 
+                    className={`w-11 h-11 rounded-full flex items-center justify-center ml-3 flex-shrink-0 ${
+                      isPremium 
+                        ? "bg-gradient-to-r from-gold/30 to-primary/20 border-2 border-gold/40" 
+                        : "bg-primary/20 border border-primary/30"
+                    }`}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <User className={`h-5 w-5 ${isPremium ? "text-gold" : "text-primary"}`} />
+                  </motion.div>
                 )}
               </motion.div>
             ))}
             {isLoading && messages[messages.length - 1]?.role === "user" && (
-              <div className="flex justify-start">
-                <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center mr-3 flex-shrink-0">
-                  <Brain className="h-4 w-4 text-secondary" />
+              <motion.div 
+                className="flex justify-start"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0 ${
+                  isPremium ? "bg-gradient-to-br from-gold/30 to-primary/20 border border-gold/30" : "bg-secondary/20"
+                }`}>
+                  {isPremium ? <Crown className="h-4 w-4 text-gold" /> : <Brain className="h-4 w-4 text-secondary" />}
                 </div>
-                <div className="bg-muted rounded-2xl rounded-tl-sm p-4">
-                  <div className="flex gap-1">
-                    <span className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-                    <span className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-                    <span className="w-2 h-2 bg-muted-foreground/50 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                <div className={`rounded-2xl rounded-tl-sm p-4 ${isPremium ? "bg-gradient-to-r from-muted to-gold/5 border border-gold/20" : "bg-muted"}`}>
+                  <div className="flex gap-1.5">
+                    {[0, 1, 2].map((i) => (
+                      <motion.span 
+                        key={i}
+                        className={`w-2.5 h-2.5 rounded-full ${isPremium ? "bg-gold/60" : "bg-muted-foreground/50"}`}
+                        animate={{ y: [0, -8, 0] }}
+                        transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
+                      />
+                    ))}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
           {messages.length <= 1 && (
-            <div className="px-6 pb-4">
+            <motion.div 
+              className="px-6 pb-4"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+            >
               <p className="text-xs text-muted-foreground mb-2">
                 {language === "hinglish" ? "Ya inme se chunein:" : "Or choose from:"}
               </p>
               <div className="flex flex-wrap gap-2">
                 {suggestedPrompts.map((prompt, i) => (
-                  <button
+                  <motion.button
                     key={i}
                     onClick={() => setInput(prompt)}
-                    className="text-xs px-3 py-1.5 rounded-full border border-border bg-muted/50 hover:bg-muted transition-colors"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`text-xs px-3 py-2 rounded-full border transition-all ${
+                      isPremium 
+                        ? "border-gold/30 bg-gold/5 hover:bg-gold/10 hover:border-gold/50 text-foreground" 
+                        : "border-border bg-muted/50 hover:bg-muted"
+                    }`}
                   >
                     {prompt}
-                  </button>
+                  </motion.button>
                 ))}
               </div>
-            </div>
+            </motion.div>
           )}
 
-          <div className="p-4 border-t border-border">
+          <div className={`p-4 border-t ${isPremium ? "border-gold/20 bg-gradient-to-r from-gold/5 via-transparent to-gold/5" : "border-border"}`}>
             {/* Show interim transcript while listening */}
-            {isListening && interimTranscript && (
-              <div className="mb-2 text-sm text-muted-foreground italic px-2">
-                {interimTranscript}...
-              </div>
-            )}
+            <AnimatePresence>
+              {isListening && interimTranscript && (
+                <motion.div 
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="mb-2 text-sm text-muted-foreground italic px-2"
+                >
+                  {interimTranscript}...
+                </motion.div>
+              )}
+            </AnimatePresence>
             <div className="flex gap-2">
               {voiceSupported && (
-                <button
+                <motion.button
                   type="button"
                   onPointerDown={() => !isLoading && startListening()}
                   onPointerUp={stopListening}
                   onPointerLeave={stopListening}
+                  onPointerCancel={stopListening}
                   onContextMenu={(e) => e.preventDefault()}
                   disabled={isLoading}
-                  className={`relative flex items-center justify-center rounded-xl h-11 w-11 transition-all select-none touch-none ${
+                  whileHover={{ scale: isListening ? 1 : 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`relative flex items-center justify-center rounded-xl h-12 w-12 transition-all select-none touch-none ${
                     isListening 
-                      ? "bg-primary text-primary-foreground animate-pulse scale-110" 
-                      : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground"
+                      ? (isPremium 
+                          ? "bg-gradient-to-br from-gold to-primary text-primary-foreground scale-110 shadow-glow-gold" 
+                          : "bg-primary text-primary-foreground scale-110 shadow-glow-terracotta")
+                      : (isPremium 
+                          ? "bg-gold/10 hover:bg-gold/20 text-gold border border-gold/30" 
+                          : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground")
                   }`}
+                  style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none' }}
                   title={language === "hinglish" ? "Dabaye rakhein aur bolein" : "Hold to speak"}
                 >
-                  <Mic className="h-5 w-5" />
-                  {isListening && (
-                    <span className="absolute -bottom-5 text-[9px] font-medium text-primary whitespace-nowrap">
-                      {language === "hinglish" ? "Chhod dein" : "Release"}
-                    </span>
-                  )}
-                </button>
+                  <Mic className={`h-5 w-5 ${isListening ? "animate-pulse" : ""}`} />
+                  <AnimatePresence>
+                    {isListening && (
+                      <motion.span 
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -5 }}
+                        className="absolute -bottom-5 text-[9px] font-semibold text-primary whitespace-nowrap"
+                      >
+                        {language === "hinglish" ? "Chhod dein" : "Release"}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </motion.button>
               )}
               <input
                 type="text"
@@ -706,22 +837,28 @@ const DoctorAI = () => {
                     ? (language === "hinglish" ? "Sun raha hoon..." : "Listening...") 
                     : (language === "hinglish" ? "Apni taklif yahan likhein ya mic dabayein..." : "Type or tap mic to speak...")
                 }
-                className="flex-1 bg-muted rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                className={`flex-1 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${
+                  isPremium 
+                    ? "bg-gold/5 border border-gold/20 focus:ring-gold/30 focus:border-gold/40 placeholder:text-gold/40" 
+                    : "bg-muted focus:ring-primary/50"
+                }`}
                 disabled={isLoading || isListening}
               />
-              <Button 
-                variant="gold" 
-                size="icon" 
-                onClick={handleSend}
-                disabled={!input.trim() || isLoading}
-                className="rounded-xl h-11 w-11"
-              >
-                {isLoading ? (
-                  <Loader2 className="h-5 w-5 animate-spin" />
-                ) : (
-                  <Send className="h-5 w-5" />
-                )}
-              </Button>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Button 
+                  variant={isPremium ? "gold" : "gold"}
+                  size="icon" 
+                  onClick={handleSend}
+                  disabled={!input.trim() || isLoading}
+                  className={`rounded-xl h-12 w-12 ${isPremium ? "shadow-glow-gold" : ""}`}
+                >
+                  {isLoading ? (
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                  ) : (
+                    <Send className="h-5 w-5" />
+                  )}
+                </Button>
+              </motion.div>
             </div>
           </div>
         </motion.div>

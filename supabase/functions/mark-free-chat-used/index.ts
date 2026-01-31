@@ -29,27 +29,53 @@ serve(async (req) => {
       throw new Error('Invalid token');
     }
 
-    // Upsert free chat record
-    const { error } = await supabase
+    // Check if record exists
+    const { data: existingRecord } = await supabase
       .from('vaidya_free_chats')
-      .upsert({
-        user_id: user.id,
-        free_chat_used: true,
-        first_chat_at: new Date().toISOString(),
-      }, {
-        onConflict: 'user_id',
+      .select('*')
+      .eq('user_id', user.id)
+      .maybeSingle();
+
+    if (existingRecord) {
+      // Increment the count (trigger will cap at 5)
+      const { error } = await supabase
+        .from('vaidya_free_chats')
+        .update({
+          free_chats_count: existingRecord.free_chats_count + 1,
+        })
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+
+      return new Response(JSON.stringify({
+        success: true,
+        message: 'Free chat count incremented',
+        chats_used: existingRecord.free_chats_count + 1,
+        chats_remaining: Math.max(0, 5 - (existingRecord.free_chats_count + 1)),
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
+    } else {
+      // Create new record with count 1
+      const { error } = await supabase
+        .from('vaidya_free_chats')
+        .insert({
+          user_id: user.id,
+          free_chats_count: 1,
+          first_chat_at: new Date().toISOString(),
+        });
 
-    if (error) {
-      throw error;
+      if (error) throw error;
+
+      return new Response(JSON.stringify({
+        success: true,
+        message: 'First free chat used',
+        chats_used: 1,
+        chats_remaining: 4,
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
-
-    return new Response(JSON.stringify({
-      success: true,
-      message: 'Free chat marked as used',
-    }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
 
   } catch (err) {
     const error = err instanceof Error ? err : new Error(String(err));

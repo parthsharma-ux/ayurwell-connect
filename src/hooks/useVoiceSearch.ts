@@ -60,42 +60,46 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
   const [isSupported, setIsSupported] = useState(false);
   const [interimTranscript, setInterimTranscript] = useState('');
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
-  // Controls whether we should keep restarting recognition when it ends.
-  // Web Speech can end unexpectedly (silence timeout, focus changes, etc.).
   const shouldKeepListeningRef = useRef(false);
   const finalReceivedRef = useRef(false);
+  const accumulatedTranscriptRef = useRef('');
 
   useEffect(() => {
-    // Check for browser support
+    // Check for browser support - enhanced mobile detection
     const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-    setIsSupported(!!SpeechRecognitionAPI);
+    
+    // Check if we're on a mobile device and if speech recognition is available
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const hasSupport = !!SpeechRecognitionAPI;
+    
+    setIsSupported(hasSupport);
 
     if (SpeechRecognitionAPI) {
       const recognition = new SpeechRecognitionAPI();
-      recognition.continuous = true; // Keep listening until manually stopped
+      
+      // Mobile-optimized settings
+      recognition.continuous = !isMobile; // Disable continuous on mobile for better reliability
       recognition.interimResults = true;
       recognition.lang = language;
       recognition.maxAlternatives = 1;
 
       recognition.onstart = () => {
-        console.log('Voice recognition started - speak now');
+        console.log('Voice recognition started');
         setIsListening(true);
         setInterimTranscript('');
+        accumulatedTranscriptRef.current = '';
       };
 
-      // Handle audio start - microphone is now capturing
       recognition.onaudiostart = () => {
-        console.log('Audio capture started - microphone is active');
+        console.log('Audio capture started');
       };
 
-      // Handle speech detection start
       recognition.onspeechstart = () => {
-        console.log('Speech detected - listening...');
+        console.log('Speech detected');
       };
 
-      // Handle speech detection end
       recognition.onspeechend = () => {
-        console.log('Speech ended - processing...');
+        console.log('Speech ended');
       };
 
       recognition.onresult = (event: SpeechRecognitionEvent) => {
@@ -111,15 +115,31 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
           }
         }
 
-        console.log('Voice result - interim:', interim, 'final:', final);
-        setInterimTranscript(interim || final); // Show something even before final
-
+        // Accumulate transcripts for mobile where results come in chunks
         if (final) {
+          accumulatedTranscriptRef.current += final;
+        }
+
+        const displayText = accumulatedTranscriptRef.current + interim;
+        setInterimTranscript(displayText || final);
+
+        // On mobile, handle final result immediately
+        if (final && isMobile) {
+          console.log('Final transcript (mobile):', accumulatedTranscriptRef.current);
+          finalReceivedRef.current = true;
+          onResult(accumulatedTranscriptRef.current.trim());
+          setInterimTranscript('');
+          shouldKeepListeningRef.current = false;
+          try {
+            recognition.stop();
+          } catch (e) {
+            console.warn('Error stopping recognition:', e);
+          }
+        } else if (final && !isMobile) {
           console.log('Final transcript:', final);
           finalReceivedRef.current = true;
           onResult(final.trim());
           setInterimTranscript('');
-          // Stop recognition after getting a final result
           shouldKeepListeningRef.current = false;
           recognition.stop();
         }
@@ -127,31 +147,43 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
 
       recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
         console.error('Voice recognition error:', event.error);
+        
+        // Don't set listening to false on 'no-speech' if we should keep listening
+        if (event.error === 'no-speech' && shouldKeepListeningRef.current) {
+          console.log('No speech detected, but keeping listener active');
+          return;
+        }
+        
         setIsListening(false);
         setInterimTranscript('');
         
         let errorMessage = 'Voice recognition failed';
         switch (event.error) {
           case 'no-speech':
-            // Don't show error for no-speech when continuous mode times out
-            console.log('No speech detected - try speaking louder or closer to mic');
-            errorMessage = 'No speech detected. Please speak louder or try again.';
+            errorMessage = language.startsWith('hi') 
+              ? 'Koi awaaz nahi suni. Phir se bolein.' 
+              : 'No speech detected. Please try again.';
             break;
           case 'audio-capture':
-            errorMessage = 'No microphone found. Please check your device.';
+            errorMessage = language.startsWith('hi')
+              ? 'Microphone nahi mila. Device check karein.'
+              : 'No microphone found. Please check your device.';
             break;
           case 'not-allowed':
-            errorMessage = 'Microphone access denied. Please allow microphone access in your browser settings.';
+            errorMessage = language.startsWith('hi')
+              ? 'Microphone permission denied. Browser settings mein allow karein.'
+              : 'Microphone access denied. Please allow in browser settings.';
             break;
           case 'network':
-            errorMessage = 'Network error. Please check your connection.';
+            errorMessage = language.startsWith('hi')
+              ? 'Network error. Connection check karein.'
+              : 'Network error. Please check your connection.';
             break;
           case 'aborted':
             // User stopped, not an error
             return;
         }
         
-        // If we're meant to keep listening, Web Speech might recover via onend restart.
         onError?.(errorMessage);
       };
 
@@ -159,15 +191,18 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
         console.log('Voice recognition ended');
         setIsListening(false);
 
-        // If the user didn't manually stop and we didn't already capture a final transcript,
-        // restart recognition to improve reliability.
-        if (shouldKeepListeningRef.current && !finalReceivedRef.current) {
-          const r = recognitionRef.current;
-          if (!r) return;
-          // Small delay helps avoid "recognition has already started" errors in some browsers.
+        // On mobile, if we have accumulated transcript but no final was received, send it
+        if (isMobile && accumulatedTranscriptRef.current && !finalReceivedRef.current) {
+          console.log('Sending accumulated transcript on end:', accumulatedTranscriptRef.current);
+          onResult(accumulatedTranscriptRef.current.trim());
+          accumulatedTranscriptRef.current = '';
+        }
+
+        // Restart if needed (desktop only)
+        if (!isMobile && shouldKeepListeningRef.current && !finalReceivedRef.current) {
           setTimeout(() => {
             try {
-              r.start();
+              recognition.start();
             } catch (e) {
               console.warn('Voice recognition restart failed:', e);
             }
@@ -182,7 +217,11 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
 
     return () => {
       if (recognitionRef.current) {
-        recognitionRef.current.abort();
+        try {
+          recognitionRef.current.abort();
+        } catch (e) {
+          // Ignore errors on cleanup
+        }
       }
     };
   }, [language, onResult, onError]);
@@ -192,19 +231,33 @@ export const useVoiceSearch = ({ onResult, onError, language = 'en-IN' }: UseVoi
       try {
         shouldKeepListeningRef.current = true;
         finalReceivedRef.current = false;
+        accumulatedTranscriptRef.current = '';
         recognitionRef.current.start();
       } catch (error) {
         console.error('Error starting recognition:', error);
+        // If already started, try stopping and restarting
+        try {
+          recognitionRef.current.stop();
+          setTimeout(() => {
+            recognitionRef.current?.start();
+          }, 100);
+        } catch (e) {
+          console.error('Failed to restart recognition:', e);
+        }
       }
     }
   }, [isListening]);
 
   const stopListening = useCallback(() => {
-    if (recognitionRef.current && isListening) {
+    if (recognitionRef.current) {
       shouldKeepListeningRef.current = false;
-      recognitionRef.current.stop();
+      try {
+        recognitionRef.current.stop();
+      } catch (e) {
+        console.warn('Error stopping recognition:', e);
+      }
     }
-  }, [isListening]);
+  }, []);
 
   const toggleListening = useCallback(() => {
     if (isListening) {
