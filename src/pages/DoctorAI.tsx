@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic, Volume2, Square, Crown, Lock } from "lucide-react";
+import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic, Volume2, Square, Crown, Lock, Star, Gem } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { useVaidyaChat } from "@/hooks/useVaidyaChat";
@@ -11,6 +11,7 @@ import { ChatHistory } from "@/components/vaidya/ChatHistory";
 import SubscriptionModal from "@/components/vaidya/SubscriptionModal";
 import ReactMarkdown from "react-markdown";
 import { useVoiceSearch } from "@/hooks/useVoiceSearch";
+import { motion } from "framer-motion";
 
 type Message = { role: "user" | "assistant"; content: string };
 type UserLanguage = "hinglish" | "english";
@@ -379,25 +380,66 @@ const DoctorAI = () => {
     ? ["Pet mein gas aur acidity", "Bahut stress ho raha hai", "Ghutno mein dard", "Skin pe pimples", "Neend nahi aati"]
     : ["Digestive issues", "Stress and anxiety", "Joint pain", "Skin problems", "Sleep issues"];
 
+  const isPremium = reason === "subscribed";
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            <Sparkles className="h-4 w-4" />
-            AI-Powered Ayurvedic Consultation
-          </div>
-          <h1 className="font-display text-3xl font-bold">Ayurveda AI Vaidya</h1>
+        {/* Premium Header with animated gradient */}
+        <motion.div 
+          className="text-center mb-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {isPremium ? (
+            <motion.div 
+              className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold/20 via-primary/20 to-gold/20 text-gold text-sm font-semibold mb-4 border border-gold/30 shadow-glow-gold"
+              animate={{ 
+                boxShadow: [
+                  "0 0 20px hsl(45 90% 55% / 0.2), 0 0 40px hsl(45 90% 55% / 0.1)",
+                  "0 0 30px hsl(45 90% 55% / 0.3), 0 0 60px hsl(45 90% 55% / 0.15)",
+                  "0 0 20px hsl(45 90% 55% / 0.2), 0 0 40px hsl(45 90% 55% / 0.1)"
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Crown className="h-4 w-4" />
+              <span>Premium AI Vaidya</span>
+              <Star className="h-3.5 w-3.5 fill-gold" />
+            </motion.div>
+          ) : (
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              <Sparkles className="h-4 w-4" />
+              AI-Powered Ayurvedic Consultation
+            </div>
+          )}
+          
+          <h1 className={`font-display text-3xl font-bold ${isPremium ? "bg-gradient-to-r from-gold via-primary to-gold bg-clip-text text-transparent" : ""}`}>
+            {isPremium 
+              ? (language === "hinglish" ? "प्रीमियम AI वैद्य" : "Premium AI Vaidya")
+              : "Ayurveda AI Vaidya"
+            }
+          </h1>
           <p className="text-muted-foreground mt-2">
-            {language === "hinglish" 
-              ? "Apni taklif batayein, personalized Ayurvedic guidance payein" 
-              : "Share your concerns, receive personalized Ayurvedic guidance"}
+            {isPremium 
+              ? (language === "hinglish" 
+                  ? "असीमित व्यक्तिगत आयुर्वेदिक परामर्श का आनंद लें" 
+                  : "Enjoy unlimited personalized Ayurvedic consultations")
+              : (language === "hinglish" 
+                  ? "Apni taklif batayein, personalized Ayurvedic guidance payein" 
+                  : "Share your concerns, receive personalized Ayurvedic guidance")
+            }
           </p>
           
           <div className="mt-4 flex items-center justify-center gap-3 flex-wrap">
             <button
               onClick={toggleLanguage}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border transition-colors text-sm ${
+                isPremium 
+                  ? "border-gold/30 bg-gold/10 hover:bg-gold/20 text-gold" 
+                  : "border-border bg-card hover:bg-muted"
+              }`}
             >
               <Globe className="h-4 w-4" />
               {language === "hinglish" ? "Switch to English" : "हिंग्लिश में बदलें"}
@@ -406,11 +448,15 @@ const DoctorAI = () => {
             {user ? (
               <>
                 {/* Subscription Status Badge */}
-                {reason === "subscribed" ? (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gold/20 text-gold text-xs font-medium">
-                    <Crown className="h-3.5 w-3.5" />
-                    Premium
-                  </span>
+                {isPremium ? (
+                  <motion.span 
+                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-gold/30 to-primary/30 text-gold text-sm font-semibold border border-gold/40"
+                    animate={{ scale: [1, 1.02, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <Gem className="h-4 w-4" />
+                    {language === "hinglish" ? "प्रीमियम सदस्य" : "Premium Member"}
+                  </motion.span>
                 ) : freeChatAvailable ? (
                   <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium">
                     <Sparkles className="h-3.5 w-3.5" />
@@ -427,7 +473,11 @@ const DoctorAI = () => {
                 )}
                 <button
                   onClick={() => setShowHistory(!showHistory)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border transition-colors text-sm ${
+                    isPremium 
+                      ? "border-gold/30 bg-gold/10 hover:bg-gold/20 text-gold" 
+                      : "border-border bg-card hover:bg-muted"
+                  }`}
                 >
                   <History className="h-4 w-4" />
                   {showHistory ? "Hide History" : "Past Consultations"}
@@ -450,12 +500,17 @@ const DoctorAI = () => {
               </button>
             )}
           </div>
-        </div>
+        </motion.div>
 
         {/* Chat History Panel */}
         {user && showHistory && (
-          <div className="bg-card rounded-xl border border-border p-4 mb-6">
-            <h3 className="font-medium text-sm mb-3">Your Consultations</h3>
+          <div className={`rounded-xl p-4 mb-6 ${isPremium ? "bg-gradient-to-r from-gold/5 to-primary/5 border border-gold/20" : "bg-card border border-border"}`}>
+            <h3 className={`font-medium text-sm mb-3 ${isPremium ? "text-gold" : ""}`}>
+              {isPremium 
+                ? (language === "hinglish" ? "आपके प्रीमियम परामर्श" : "Your Premium Consultations")
+                : "Your Consultations"
+              }
+            </h3>
             <ChatHistory
               sessions={sessions}
               currentSessionId={currentSessionId}
@@ -467,30 +522,74 @@ const DoctorAI = () => {
           </div>
         )}
 
-        <div className="bg-amber-950/30 border border-amber-700/30 rounded-xl p-4 mb-6 flex items-start gap-3">
-          <AlertCircle className="h-5 w-5 text-amber-500 flex-shrink-0 mt-0.5" />
-          <p className="text-sm text-amber-200/80">
+        <div className={`rounded-xl p-4 mb-6 flex items-start gap-3 ${isPremium ? "bg-gold/10 border border-gold/20" : "bg-amber-950/30 border border-amber-700/30"}`}>
+          <AlertCircle className={`h-5 w-5 flex-shrink-0 mt-0.5 ${isPremium ? "text-gold" : "text-amber-500"}`} />
+          <p className={`text-sm ${isPremium ? "text-gold/80" : "text-amber-200/80"}`}>
             {language === "hinglish" 
               ? "Yeh AI Vaidya sirf general Ayurvedic guidance deta hai. Serious problems ke liye physical doctor se milein."
               : "This AI Vaidya provides general Ayurvedic guidance only. Please consult a physical doctor for serious conditions."}
           </p>
         </div>
 
-        <div className="bg-card rounded-2xl border border-border overflow-hidden">
+        {/* Chat Container - Premium styling */}
+        <motion.div 
+          className={`rounded-2xl overflow-hidden ${
+            isPremium 
+              ? "bg-gradient-to-br from-card via-card to-gold/5 border-2 border-gold/30 shadow-glow-gold" 
+              : "bg-card border border-border"
+          }`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          {/* Premium header bar */}
+          {isPremium && (
+            <div className="px-6 py-3 bg-gradient-to-r from-gold/10 via-transparent to-gold/10 border-b border-gold/20 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+                <span className="text-xs font-medium text-gold">
+                  {language === "hinglish" ? "प्रीमियम सत्र सक्रिय" : "Premium Session Active"}
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-gold/60">
+                <Star className="h-3 w-3 fill-gold/50" />
+                <span>{language === "hinglish" ? "असीमित परामर्श" : "Unlimited Consultations"}</span>
+              </div>
+            </div>
+          )}
+          
           <div className="h-[450px] overflow-y-auto p-6 space-y-4">
             {messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+              <motion.div 
+                key={i} 
+                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
                 {msg.role === "assistant" && (
-                  <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center mr-3 flex-shrink-0">
-                    <Brain className="h-4 w-4 text-secondary" />
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0 ${
+                    isPremium 
+                      ? "bg-gradient-to-br from-gold/30 to-primary/30 border border-gold/40 shadow-glow-gold" 
+                      : "bg-secondary/20"
+                  }`}>
+                    {isPremium ? (
+                      <Crown className="h-5 w-5 text-gold" />
+                    ) : (
+                      <Brain className="h-4 w-4 text-secondary" />
+                    )}
                   </div>
                 )}
-                <div className={`max-w-[85%] rounded-2xl ${msg.role === "user" ? "bg-primary/20 rounded-tr-sm" : "bg-muted rounded-tl-sm"}`}>
+                <div className={`max-w-[85%] rounded-2xl ${
+                  msg.role === "user" 
+                    ? (isPremium ? "bg-gradient-to-r from-gold/20 to-primary/20 border border-gold/20 rounded-tr-sm" : "bg-primary/20 rounded-tr-sm")
+                    : (isPremium ? "bg-gradient-to-r from-muted to-gold/5 border border-gold/10 rounded-tl-sm" : "bg-muted rounded-tl-sm")
+                }`}>
                   <div className="p-4">
                     {msg.role === "user" ? (
                       <p className="text-base leading-relaxed whitespace-pre-line">{msg.content}</p>
                     ) : (
-                      <div className="prose prose-sm dark:prose-invert max-w-none text-base leading-relaxed [&>p]:my-2 [&>ul]:my-2 [&>ol]:my-2 [&>ul]:pl-4 [&>ol]:pl-4 [&>li]:my-1 [&>h1]:text-lg [&>h2]:text-base [&>h3]:text-base [&>code]:bg-background/50 [&>code]:px-1 [&>code]:rounded [&>pre]:bg-background/50 [&>pre]:p-2 [&>pre]:rounded-lg [&>blockquote]:border-l-2 [&>blockquote]:border-primary [&>blockquote]:pl-3 [&>blockquote]:italic">
+                      <div className={`prose prose-sm dark:prose-invert max-w-none text-base leading-relaxed [&>p]:my-2 [&>ul]:my-2 [&>ol]:my-2 [&>ul]:pl-4 [&>ol]:pl-4 [&>li]:my-1 [&>h1]:text-lg [&>h2]:text-base [&>h3]:text-base [&>code]:bg-background/50 [&>code]:px-1 [&>code]:rounded [&>pre]:bg-background/50 [&>pre]:p-2 [&>pre]:rounded-lg [&>blockquote]:border-l-2 [&>blockquote]:pl-3 [&>blockquote]:italic ${isPremium ? "[&>blockquote]:border-gold" : "[&>blockquote]:border-primary"}`}>
                         <ReactMarkdown>{msg.content}</ReactMarkdown>
                       </div>
                     )}
@@ -524,11 +623,11 @@ const DoctorAI = () => {
                   )}
                 </div>
                 {msg.role === "user" && (
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center ml-3 flex-shrink-0">
-                    <User className="h-4 w-4 text-primary" />
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ml-3 flex-shrink-0 ${isPremium ? "bg-gradient-to-r from-gold/20 to-primary/20 border border-gold/30" : "bg-primary/20"}`}>
+                    <User className={`h-4 w-4 ${isPremium ? "text-gold" : "text-primary"}`} />
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
             {isLoading && messages[messages.length - 1]?.role === "user" && (
               <div className="flex justify-start">
@@ -625,7 +724,7 @@ const DoctorAI = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
