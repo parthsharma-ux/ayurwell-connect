@@ -1,12 +1,14 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic, Volume2, VolumeX, Square } from "lucide-react";
+import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic, Volume2, Square, Crown, Lock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { useVaidyaChat } from "@/hooks/useVaidyaChat";
+import { useVaidyaAccess } from "@/hooks/useVaidyaAccess";
 import { AuthModal } from "@/components/vaidya/AuthModal";
 import { ChatHistory } from "@/components/vaidya/ChatHistory";
+import SubscriptionModal from "@/components/vaidya/SubscriptionModal";
 import ReactMarkdown from "react-markdown";
 import { useVoiceSearch } from "@/hooks/useVoiceSearch";
 
@@ -20,11 +22,16 @@ const DoctorAI = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [language, setLanguage] = useState<UserLanguage>("hinglish");
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [speakingMessageIndex, setSpeakingMessageIndex] = useState<number | null>(null);
+  const [hasUsedFirstMessage, setHasUsedFirstMessage] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   const { user, signOut } = useAuth();
+  
+  // Access control hook
+  const { hasAccess, reason, freeChatAvailable, loading: accessLoading, checkAccess, markFreeChatUsed } = useVaidyaAccess();
   
   const {
     sessions,
@@ -280,6 +287,23 @@ const DoctorAI = () => {
   const sendMessage = useCallback(async (userMessage: string) => {
     if (!userMessage.trim() || isLoading) return;
     
+    // Check if user needs to login
+    if (!user) {
+      setShowAuthModal(true);
+      toast({
+        title: language === "hinglish" ? "Login karein" : "Please Login",
+        description: language === "hinglish" ? "Chat karne ke liye pehle login karein" : "Please login to start chatting",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Check access - if no access and already used free chat, show paywall
+    if (!hasAccess && reason === "subscription_required") {
+      setShowSubscriptionModal(true);
+      return;
+    }
+    
     const newUserMsg: Message = { role: "user", content: userMessage };
     
     // Get current messages without the initial greeting for context
@@ -304,6 +328,12 @@ const DoctorAI = () => {
       }
 
       await streamChat(allMessages, sessionId);
+      
+      // Mark free chat as used after first successful message
+      if (freeChatAvailable && !hasUsedFirstMessage) {
+        await markFreeChatUsed();
+        setHasUsedFirstMessage(true);
+      }
     } catch (error) {
       console.error("Chat error:", error);
       toast({
@@ -314,7 +344,7 @@ const DoctorAI = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, messages, currentSessionId, user, createSession, saveMessage, streamChat, toast, setMessages]);
+  }, [isLoading, messages, currentSessionId, user, createSession, saveMessage, streamChat, toast, setMessages, hasAccess, reason, freeChatAvailable, hasUsedFirstMessage, markFreeChatUsed, language]);
 
   const handleSend = () => {
     sendMessage(input.trim());
@@ -375,6 +405,26 @@ const DoctorAI = () => {
             
             {user ? (
               <>
+                {/* Subscription Status Badge */}
+                {reason === "subscribed" ? (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gold/20 text-gold text-xs font-medium">
+                    <Crown className="h-3.5 w-3.5" />
+                    Premium
+                  </span>
+                ) : freeChatAvailable ? (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium">
+                    <Sparkles className="h-3.5 w-3.5" />
+                    {language === "hinglish" ? "1 मुफ्त चैट" : "1 Free Chat"}
+                  </span>
+                ) : (
+                  <button
+                    onClick={() => setShowSubscriptionModal(true)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/20 text-primary text-xs font-medium hover:bg-primary/30 transition-colors"
+                  >
+                    <Lock className="h-3.5 w-3.5" />
+                    {language === "hinglish" ? "अपग्रेड करें" : "Upgrade"}
+                  </button>
+                )}
                 <button
                   onClick={() => setShowHistory(!showHistory)}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
@@ -396,7 +446,7 @@ const DoctorAI = () => {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary bg-primary/10 hover:bg-primary/20 transition-colors text-sm text-primary"
               >
                 <LogIn className="h-4 w-4" />
-                Sign In to Save Chats
+                {language === "hinglish" ? "लॉगिन करें" : "Sign In to Chat"}
               </button>
             )}
           </div>
@@ -579,6 +629,11 @@ const DoctorAI = () => {
       </div>
 
       <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
+      <SubscriptionModal 
+        open={showSubscriptionModal} 
+        onOpenChange={setShowSubscriptionModal}
+        onSuccess={checkAccess}
+      />
     </Layout>
   );
 };

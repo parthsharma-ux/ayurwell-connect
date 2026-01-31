@@ -5,3 +5,15 @@ verify_jwt = false
 
 [functions.vaidya-chat]
 verify_jwt = false
+
+[functions.razorpay-create-order]
+verify_jwt = false
+
+[functions.razorpay-verify-payment]
+verify_jwt = false
+
+[functions.check-vaidya-access]
+verify_jwt = false
+
+[functions.mark-free-chat-used]
+verify_jwt = false
