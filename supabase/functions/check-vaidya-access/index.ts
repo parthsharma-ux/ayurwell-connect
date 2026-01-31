@@ -6,6 +6,8 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+const MAX_FREE_CHATS = 5;
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -17,6 +19,7 @@ serve(async (req) => {
       return new Response(JSON.stringify({
         has_access: false,
         reason: 'not_authenticated',
+        free_chats_remaining: 0,
         free_chat_available: false,
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -35,6 +38,7 @@ serve(async (req) => {
       return new Response(JSON.stringify({
         has_access: false,
         reason: 'invalid_token',
+        free_chats_remaining: 0,
         free_chat_available: false,
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -66,27 +70,35 @@ serve(async (req) => {
           plan: subscription.plan_type,
           expires_at: subscription.current_period_end,
         },
+        free_chats_remaining: 0,
         free_chat_available: false,
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    // If user hasn't used free chat yet
-    if (!freeChat || !freeChat.free_chat_used) {
+    // Calculate remaining free chats
+    const usedChats = freeChat?.free_chats_count || 0;
+    const remainingChats = Math.max(0, MAX_FREE_CHATS - usedChats);
+    const hasFreeChatAccess = remainingChats > 0;
+
+    // If user still has free chats remaining
+    if (hasFreeChatAccess) {
       return new Response(JSON.stringify({
         has_access: true,
         reason: 'free_chat',
+        free_chats_remaining: remainingChats,
         free_chat_available: true,
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
 
-    // User has used free chat and no subscription
+    // User has used all free chats and no subscription
     return new Response(JSON.stringify({
       has_access: false,
       reason: 'subscription_required',
+      free_chats_remaining: 0,
       free_chat_available: false,
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -98,6 +110,7 @@ serve(async (req) => {
     return new Response(JSON.stringify({ 
       has_access: false,
       reason: 'error',
+      free_chats_remaining: 0,
       error: error.message 
     }), {
       status: 500,
