@@ -118,8 +118,8 @@ const Footer = () => {
             </p>
             <p className="text-xs text-muted-foreground mt-1">
               Founded by <span className="font-medium text-foreground">Pradhuman Sharma</span> • 
-              <a href="mailto:pradhumansharma004@gmail.com" className="hover:text-primary transition-colors ml-1">
-                pradhumansharma004@gmail.com
+              <a href="mailto:parth@ayurwellconnect.com" className="hover:text-primary transition-colors ml-1">
+                parth@ayurwellconnect.com
               </a>
             </p>
           </div>
