@@ -6,7 +6,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const MAX_FREE_CHATS = 5;
+const MAX_FREE_CHATS = 15;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {

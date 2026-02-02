@@ -197,7 +197,7 @@ export const useRazorpay = () => {
         throw new Error('Failed to load payment gateway');
       }
 
-      const amount = currency === 'INR' ? 1100 : 1000; // ₹11 or $10 in smallest unit
+      const amount = currency === 'INR' ? 9900 : 2500; // ₹99 or $25 in smallest unit
       
       const { data, error } = await supabase.functions.invoke('razorpay-create-order', {
         body: {
