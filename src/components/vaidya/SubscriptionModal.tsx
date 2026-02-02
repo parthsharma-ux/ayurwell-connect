@@ -79,7 +79,7 @@ const SubscriptionModal = ({ open, onOpenChange, onSuccess }: SubscriptionModalP
               </Badge>
               <div className="flex items-baseline justify-center gap-1">
                 <span className="text-4xl font-bold text-foreground">
-                  {selectedCurrency === 'INR' ? '₹11' : '$10'}
+                  {selectedCurrency === 'INR' ? '₹99' : '$25'}
                 </span>
                 <span className="text-muted-foreground">
                   /{isHindi ? 'महीना' : 'month'}
