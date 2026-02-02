@@ -83,8 +83,26 @@ const DoctorAI = () => {
       .trim();
   }, []);
 
+  // Stop TTS when user starts listening (to avoid conflict)
+  useEffect(() => {
+    if (isListening && window.speechSynthesis.speaking) {
+      window.speechSynthesis.cancel();
+      setSpeakingMessageIndex(null);
+    }
+  }, [isListening]);
+
   // TTS function using browser's Web Speech API
   const speakMessage = useCallback((text: string, messageIndex: number) => {
+    // Don't start TTS if user is listening
+    if (isListening) {
+      toast({
+        title: language === "hinglish" ? "Pehle bolna band karein" : "Stop listening first",
+        description: language === "hinglish" ? "Voice input chal raha hai" : "Voice input is active",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (window.speechSynthesis.speaking) {
       window.speechSynthesis.cancel();
     }
@@ -140,7 +158,7 @@ const DoctorAI = () => {
     };
 
     window.speechSynthesis.speak(utterance);
-  }, [speakingMessageIndex, language, toast, textForSpeech]);
+  }, [speakingMessageIndex, language, toast, textForSpeech, isListening]);
 
   useEffect(() => {
     if (messagesEndRef.current) {
