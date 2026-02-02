@@ -12,16 +12,20 @@ const NotFound = () => {
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
     
-    // Auto-redirect to home after a delay on mobile to prevent stuck state
+    // Auto-redirect on mobile to prevent stuck state after reload
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     if (isMobile) {
-      // Check if this looks like a valid language route that failed to load
       const pathParts = location.pathname.split('/').filter(Boolean);
-      if (pathParts.length === 1 && (pathParts[0] === 'en' || pathParts[0] === 'hi')) {
-        // Redirect to the language index
-        navigate(`/${pathParts[0]}`, { replace: true });
+      const lang = pathParts[0];
+      
+      // If starts with valid language prefix, redirect to that language's home
+      if (lang === 'en' || lang === 'hi') {
+        navigate(`/${lang}`, { replace: true });
         return;
       }
+      
+      // Otherwise redirect to English home
+      navigate('/en', { replace: true });
     }
   }, [location.pathname, navigate]);
 
