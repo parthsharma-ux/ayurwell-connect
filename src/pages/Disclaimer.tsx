@@ -124,7 +124,7 @@ const Disclaimer = () => {
                 Agar aap in terms se agree nahi karte, toh please is website ka use na karein.
               </p>
               <p className="text-sm text-muted-foreground mt-4">
-                Questions ke liye contact karein: legal@ayurveda.com
+                Questions ke liye contact karein: parth@ayurwellconnect.com
               </p>
             </section>
           </div>

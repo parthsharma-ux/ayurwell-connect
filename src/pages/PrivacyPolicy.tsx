@@ -137,7 +137,7 @@ const PrivacyPolicy = () => {
               <p className="text-muted-foreground">
                 Agar aapke koi privacy related questions hain, toh hum se contact karein:
               </p>
-              <p className="text-primary mt-2">privacy@ayurveda.com</p>
+              <p className="text-primary mt-2">parth@ayurwellconnect.com</p>
             </section>
 
             <section className="bg-muted/30 rounded-2xl p-6">
