@@ -46,12 +46,36 @@ serve(async (req) => {
       });
     }
 
-    // Check if user is within 3-day free trial period
-    const userCreatedAt = new Date(user.created_at);
+    // Free trial starts from the user's first AI Doctor use (first_chat_at)
+    // We persist this in vaidya_free_chats so the trial is consistent across devices.
     const now = new Date();
-    const daysSinceSignup = (now.getTime() - userCreatedAt.getTime()) / (1000 * 60 * 60 * 24);
-    const isInFreeTrial = daysSinceSignup <= FREE_TRIAL_DAYS;
-    const trialDaysRemaining = Math.max(0, Math.ceil(FREE_TRIAL_DAYS - daysSinceSignup));
+    let { data: freeChat } = await supabase
+      .from('vaidya_free_chats')
+      .select('*')
+      .eq('user_id', user.id)
+      .maybeSingle();
+
+    // If the user doesn't have a record yet, create one and start the trial now.
+    if (!freeChat) {
+      const { data: inserted } = await supabase
+        .from('vaidya_free_chats')
+        .insert({
+          user_id: user.id,
+          free_chats_count: 0,
+          free_chat_used: false,
+          first_chat_at: now.toISOString(),
+        })
+        .select('*')
+        .maybeSingle();
+
+      freeChat = inserted ?? null;
+    }
+
+    const trialStartIso = freeChat?.first_chat_at ?? now.toISOString();
+    const trialStart = new Date(trialStartIso);
+    const daysSinceTrialStart = (now.getTime() - trialStart.getTime()) / (1000 * 60 * 60 * 24);
+    const isInFreeTrial = daysSinceTrialStart <= FREE_TRIAL_DAYS;
+    const trialDaysRemaining = Math.max(0, Math.ceil(FREE_TRIAL_DAYS - daysSinceTrialStart));
 
     // If user is within 3-day free trial - unlimited access
     if (isInFreeTrial) {
@@ -91,13 +115,6 @@ serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
-
-    // Check free chat status (after trial expires)
-    const { data: freeChat } = await supabase
-      .from('vaidya_free_chats')
-      .select('*')
-      .eq('user_id', user.id)
-      .maybeSingle();
 
     // Calculate remaining free chats
     const usedChats = freeChat?.free_chats_count || 0;
