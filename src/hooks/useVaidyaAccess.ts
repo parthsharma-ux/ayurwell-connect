@@ -4,9 +4,11 @@ import { useAuth } from '@/contexts/AuthContext';
 
 type AccessStatus = {
   hasAccess: boolean;
-  reason: 'subscribed' | 'free_chat' | 'subscription_required' | 'not_authenticated' | 'loading' | 'error';
+  reason: 'subscribed' | 'free_chat' | 'free_trial' | 'subscription_required' | 'not_authenticated' | 'loading' | 'error';
   freeChatAvailable: boolean;
   freeChatsRemaining: number;
+  freeTrial?: boolean;
+  trialDaysRemaining?: number;
   subscription?: {
     plan: string;
     expiresAt: string;
@@ -54,6 +56,8 @@ export const useVaidyaAccess = () => {
         reason: data.reason,
         freeChatAvailable: data.free_chat_available || false,
         freeChatsRemaining: data.free_chats_remaining || 0,
+        freeTrial: data.free_trial || false,
+        trialDaysRemaining: data.trial_days_remaining || 0,
         subscription: data.subscription,
       });
     } catch (err) {
@@ -79,15 +83,20 @@ export const useVaidyaAccess = () => {
         },
       });
       
-      // Update local state with remaining chats
+      // Update local state with remaining chats (only if not in free trial)
       if (data?.success) {
-        setAccessStatus(prev => ({
-          ...prev,
-          freeChatsRemaining: data.chats_remaining,
-          freeChatAvailable: data.chats_remaining > 0,
-          hasAccess: data.chats_remaining > 0 || prev.reason === 'subscribed',
-          reason: data.chats_remaining > 0 ? 'free_chat' : 'subscription_required',
-        }));
+        setAccessStatus(prev => {
+          // Don't change access during free trial
+          if (prev.freeTrial) return prev;
+          
+          return {
+            ...prev,
+            freeChatsRemaining: data.chats_remaining,
+            freeChatAvailable: data.chats_remaining > 0,
+            hasAccess: data.chats_remaining > 0 || prev.reason === 'subscribed',
+            reason: data.chats_remaining > 0 ? 'free_chat' : 'subscription_required',
+          };
+        });
       }
     } catch (err) {
       console.error('Error marking free chat used:', err);

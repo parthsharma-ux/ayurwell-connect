@@ -7,6 +7,7 @@ const corsHeaders = {
 };
 
 const MAX_FREE_CHATS = 15;
+const FREE_TRIAL_DAYS = 3;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -45,12 +46,26 @@ serve(async (req) => {
       });
     }
 
-    // Check free chat status
-    const { data: freeChat } = await supabase
-      .from('vaidya_free_chats')
-      .select('*')
-      .eq('user_id', user.id)
-      .maybeSingle();
+    // Check if user is within 3-day free trial period
+    const userCreatedAt = new Date(user.created_at);
+    const now = new Date();
+    const daysSinceSignup = (now.getTime() - userCreatedAt.getTime()) / (1000 * 60 * 60 * 24);
+    const isInFreeTrial = daysSinceSignup <= FREE_TRIAL_DAYS;
+    const trialDaysRemaining = Math.max(0, Math.ceil(FREE_TRIAL_DAYS - daysSinceSignup));
+
+    // If user is within 3-day free trial - unlimited access
+    if (isInFreeTrial) {
+      return new Response(JSON.stringify({
+        has_access: true,
+        reason: 'free_trial',
+        free_trial: true,
+        trial_days_remaining: trialDaysRemaining,
+        free_chats_remaining: 0,
+        free_chat_available: false,
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
 
     // Check active subscription
     const { data: subscription } = await supabase
@@ -76,6 +91,13 @@ serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     }
+
+    // Check free chat status (after trial expires)
+    const { data: freeChat } = await supabase
+      .from('vaidya_free_chats')
+      .select('*')
+      .eq('user_id', user.id)
+      .maybeSingle();
 
     // Calculate remaining free chats
     const usedChats = freeChat?.free_chats_count || 0;
