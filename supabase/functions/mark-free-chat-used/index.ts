@@ -6,6 +6,8 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+const MAX_FREE_CHATS = 15;
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -37,7 +39,7 @@ serve(async (req) => {
       .maybeSingle();
 
     if (existingRecord) {
-      // Increment the count (trigger will cap at 5)
+      // Increment the count (DB trigger will cap at MAX_FREE_CHATS)
       const { error } = await supabase
         .from('vaidya_free_chats')
         .update({
@@ -51,7 +53,7 @@ serve(async (req) => {
         success: true,
         message: 'Free chat count incremented',
         chats_used: existingRecord.free_chats_count + 1,
-        chats_remaining: Math.max(0, 5 - (existingRecord.free_chats_count + 1)),
+        chats_remaining: Math.max(0, MAX_FREE_CHATS - (existingRecord.free_chats_count + 1)),
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
@@ -71,7 +73,7 @@ serve(async (req) => {
         success: true,
         message: 'First free chat used',
         chats_used: 1,
-        chats_remaining: 4,
+        chats_remaining: MAX_FREE_CHATS - 1,
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
