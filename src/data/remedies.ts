@@ -8669,6 +8669,1235 @@ export const remedies: Remedy[] = [
     difficulty: "Easy",
     preparation_time: "3 minutes",
     region: "us"
+  },
+  // ========================================
+  // SERIOUS CONDITIONS - SUPPORTIVE CARE
+  // DISCLAIMER: These remedies are for supportive care only.
+  // They do NOT replace medical treatment. Always consult a doctor.
+  // ========================================
+
+  // --- CANCER SUPPORT (Supportive Care) ---
+  {
+    id: "remedy-cancer-1",
+    problem: "Cancer Support",
+    title: "Turmeric Golden Paste",
+    ingredients: [
+      { name: "Turmeric powder", quantity: "1/4 cup" },
+      { name: "Water", quantity: "1/2 cup" },
+      { name: "Black pepper", quantity: "1/2 teaspoon" },
+      { name: "Coconut oil or olive oil", quantity: "1/4 cup" }
+    ],
+    method: [
+      "Mix turmeric with water in a pan",
+      "Heat on low flame, stirring constantly until thick paste forms (7-10 mins)",
+      "Remove from heat, stir in black pepper and oil",
+      "Store in glass jar in refrigerator (lasts 2 weeks)",
+      "Take 1/4 to 1/2 teaspoon with warm water or food"
+    ],
+    how_often: "1-3 times daily with meals",
+    precautions: [
+      "⚠️ IMPORTANT: This is supportive care only - NOT a cancer treatment",
+      "Always continue medical treatment as advised by oncologist",
+      "May interact with chemotherapy drugs - consult doctor first",
+      "Avoid if on blood thinners or before surgery"
+    ],
+    benefits: [
+      "Curcumin has anti-inflammatory properties",
+      "May support overall wellbeing during treatment",
+      "Traditional Ayurvedic immune support"
+    ],
+    related_diseases: ["cancer-support", "inflammation", "immunity"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-cancer-2",
+    problem: "Cancer Support",
+    title: "Ginger-Lemon Nausea Relief",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch piece" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" }
+    ],
+    method: [
+      "Grate or finely chop fresh ginger",
+      "Steep in warm (not boiling) water for 5 minutes",
+      "Strain and add lemon juice and honey",
+      "Sip slowly when experiencing nausea"
+    ],
+    how_often: "As needed for nausea, up to 3 times daily",
+    precautions: [
+      "⚠️ Supportive care only - does not treat cancer",
+      "Ask oncologist before using during chemotherapy",
+      "Stop 2 weeks before any surgery"
+    ],
+    benefits: [
+      "Ginger traditionally used for nausea relief",
+      "May help with chemotherapy-induced nausea",
+      "Gentle on stomach"
+    ],
+    related_diseases: ["cancer-support", "nausea", "digestion"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-cancer-3",
+    problem: "Cancer Support",
+    title: "Amla-Tulsi Immunity Drink",
+    ingredients: [
+      { name: "Amla powder (or fresh amla juice)", quantity: "1 teaspoon" },
+      { name: "Fresh tulsi leaves", quantity: "5-6 leaves" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 glass" }
+    ],
+    method: [
+      "Crush tulsi leaves lightly",
+      "Add to warm water with amla powder",
+      "Stir well and let sit for 2-3 minutes",
+      "Add honey and drink"
+    ],
+    how_often: "Once daily in the morning",
+    precautions: [
+      "⚠️ Supportive care only - consult oncologist",
+      "High Vitamin C may affect certain treatments",
+      "Not a replacement for medical care"
+    ],
+    benefits: [
+      "Rich in Vitamin C and antioxidants",
+      "Traditional immunity booster",
+      "Supports overall energy levels"
+    ],
+    related_diseases: ["cancer-support", "immunity", "fatigue"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "remedy-cancer-4",
+    problem: "Cancer Support",
+    title: "Fatigue-Fighting Energy Balls",
+    ingredients: [
+      { name: "Dates (pitted)", quantity: "1 cup" },
+      { name: "Almonds or walnuts", quantity: "1/2 cup" },
+      { name: "Oats", quantity: "1/2 cup" },
+      { name: "Honey", quantity: "2 tablespoons" },
+      { name: "Cardamom powder", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Blend dates, nuts, and oats in food processor",
+      "Add honey and cardamom, pulse until combined",
+      "Roll into small balls",
+      "Refrigerate for 1 hour before eating",
+      "Store in refrigerator for up to 2 weeks"
+    ],
+    how_often: "1-2 balls when fatigued, as a healthy snack",
+    precautions: [
+      "⚠️ Supportive nutrition only",
+      "Check with dietitian if on special cancer diet",
+      "Contains nuts - avoid if allergic"
+    ],
+    benefits: [
+      "Natural energy from dates and nuts",
+      "Easy to digest",
+      "Provides sustained energy"
+    ],
+    related_diseases: ["cancer-support", "fatigue", "low-energy"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-cancer-5",
+    problem: "Cancer Support",
+    title: "Appetite-Boosting CCF Tea",
+    ingredients: [
+      { name: "Cumin seeds", quantity: "1/2 teaspoon" },
+      { name: "Coriander seeds", quantity: "1/2 teaspoon" },
+      { name: "Fennel seeds", quantity: "1/2 teaspoon" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: [
+      "Lightly crush the seeds",
+      "Add to water and bring to boil",
+      "Simmer for 5-7 minutes",
+      "Strain and sip warm before meals"
+    ],
+    how_often: "Before meals, 2-3 times daily",
+    precautions: [
+      "⚠️ Supportive care for appetite - not cancer treatment",
+      "Generally safe but consult doctor during treatment"
+    ],
+    benefits: [
+      "Traditional digestive aid",
+      "May help stimulate appetite",
+      "Gentle and soothing"
+    ],
+    related_diseases: ["cancer-support", "loss-of-appetite", "digestion"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "remedy-cancer-6",
+    problem: "Cancer Support",
+    title: "Soothing Sleep Milk",
+    ingredients: [
+      { name: "Warm milk (dairy or plant-based)", quantity: "1 cup" },
+      { name: "Ashwagandha powder", quantity: "1/4 teaspoon" },
+      { name: "Nutmeg powder", quantity: "A tiny pinch" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm the milk gently",
+      "Add ashwagandha and nutmeg",
+      "Stir well and add honey",
+      "Drink 30 minutes before bed"
+    ],
+    how_often: "Nightly before sleep",
+    precautions: [
+      "⚠️ Supportive care only",
+      "Ashwagandha may interact with thyroid/sedative medications",
+      "Consult oncologist before use"
+    ],
+    benefits: [
+      "May promote restful sleep",
+      "Ashwagandha is an adaptogen",
+      "Calming nighttime ritual"
+    ],
+    related_diseases: ["cancer-support", "insomnia", "anxiety"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+
+  // --- STROKE RECOVERY SUPPORT ---
+  {
+    id: "remedy-stroke-1",
+    problem: "Stroke Recovery Support",
+    title: "Omega-Rich Flaxseed Smoothie",
+    ingredients: [
+      { name: "Banana", quantity: "1 ripe" },
+      { name: "Ground flaxseed", quantity: "1 tablespoon" },
+      { name: "Blueberries (fresh or frozen)", quantity: "1/2 cup" },
+      { name: "Milk or plant milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Add all ingredients to blender",
+      "Blend until smooth",
+      "Drink immediately for best nutrition"
+    ],
+    how_often: "Once daily, preferably morning",
+    precautions: [
+      "⚠️ IMPORTANT: Supportive nutrition only - follow doctor's rehabilitation plan",
+      "If on blood thinners, consult doctor about flaxseed intake",
+      "Introduce gradually to diet"
+    ],
+    benefits: [
+      "Omega-3 fatty acids support brain health",
+      "Antioxidants from blueberries",
+      "Easy to consume if swallowing is difficult"
+    ],
+    related_diseases: ["stroke-recovery", "brain-health", "heart-health"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-stroke-2",
+    problem: "Stroke Recovery Support",
+    title: "Anti-Inflammatory Garlic-Ginger Broth",
+    ingredients: [
+      { name: "Vegetable broth", quantity: "2 cups" },
+      { name: "Garlic cloves (minced)", quantity: "2" },
+      { name: "Fresh ginger (grated)", quantity: "1 teaspoon" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" },
+      { name: "Black pepper", quantity: "A pinch" }
+    ],
+    method: [
+      "Heat broth in a pot",
+      "Add garlic, ginger, and turmeric",
+      "Simmer for 10 minutes",
+      "Add black pepper and strain if desired",
+      "Sip warm"
+    ],
+    how_often: "Once daily",
+    precautions: [
+      "⚠️ Supportive care only - continue medical rehabilitation",
+      "Garlic may interact with blood thinners - consult doctor",
+      "Monitor blood pressure regularly"
+    ],
+    benefits: [
+      "Anti-inflammatory properties",
+      "Supports circulation",
+      "Warm and comforting"
+    ],
+    related_diseases: ["stroke-recovery", "circulation", "inflammation"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-stroke-3",
+    problem: "Stroke Recovery Support",
+    title: "Brain-Boosting Walnut-Date Snack",
+    ingredients: [
+      { name: "Walnuts", quantity: "5-6 halves" },
+      { name: "Dates (pitted)", quantity: "2" },
+      { name: "A pinch of cinnamon", quantity: "Optional" }
+    ],
+    method: [
+      "Soak walnuts for 2 hours or overnight (easier to digest)",
+      "Eat with dates as a snack",
+      "Add cinnamon for extra flavor"
+    ],
+    how_often: "Once daily as a snack",
+    precautions: [
+      "⚠️ Supportive nutrition only",
+      "Ensure nuts are soft enough if swallowing is affected",
+      "Contains natural sugars from dates"
+    ],
+    benefits: [
+      "Walnuts resemble brain shape - traditional brain food",
+      "Omega-3 and antioxidants",
+      "Natural energy boost"
+    ],
+    related_diseases: ["stroke-recovery", "brain-health", "memory"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes (plus soaking)",
+    region: "global"
+  },
+  {
+    id: "remedy-stroke-4",
+    problem: "Stroke Recovery Support",
+    title: "Easy-to-Swallow Moong Dal Soup",
+    ingredients: [
+      { name: "Yellow moong dal", quantity: "1/4 cup" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Turmeric", quantity: "1/4 teaspoon" },
+      { name: "Cumin powder", quantity: "1/4 teaspoon" },
+      { name: "Salt", quantity: "To taste" },
+      { name: "Ghee", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Wash dal and pressure cook with water and turmeric until very soft",
+      "Blend until smooth (important for swallowing ease)",
+      "Add cumin, salt, and ghee",
+      "Serve warm"
+    ],
+    how_often: "As part of regular meals",
+    precautions: [
+      "⚠️ Supportive nutrition - work with speech therapist for swallowing",
+      "Adjust consistency as needed for safe swallowing"
+    ],
+    benefits: [
+      "Easy to digest protein",
+      "Smooth texture for those with swallowing difficulties",
+      "Traditional comfort food"
+    ],
+    related_diseases: ["stroke-recovery", "nutrition", "digestion"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes",
+    region: "india"
+  },
+  {
+    id: "remedy-stroke-5",
+    problem: "Stroke Recovery Support",
+    title: "Circulation-Boosting Beetroot Juice",
+    ingredients: [
+      { name: "Beetroot", quantity: "1 small" },
+      { name: "Carrot", quantity: "1 medium" },
+      { name: "Apple", quantity: "1/2" },
+      { name: "Ginger", quantity: "1/2 inch" },
+      { name: "Water", quantity: "1/2 cup" }
+    ],
+    method: [
+      "Wash and chop all ingredients",
+      "Blend together with water",
+      "Strain if desired",
+      "Drink fresh"
+    ],
+    how_often: "Once daily, morning preferred",
+    precautions: [
+      "⚠️ Supportive care - not a treatment",
+      "Beetroot may lower blood pressure - monitor if on BP meds",
+      "May turn urine/stool pink (normal)"
+    ],
+    benefits: [
+      "Nitrates in beetroot support blood flow",
+      "Rich in vitamins and antioxidants",
+      "Naturally sweet"
+    ],
+    related_diseases: ["stroke-recovery", "circulation", "blood-pressure"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+
+  // --- AUTOIMMUNE SUPPORT ---
+  {
+    id: "remedy-autoimmune-1",
+    problem: "Autoimmune Support",
+    title: "Anti-Inflammatory Golden Milk",
+    ingredients: [
+      { name: "Warm milk (coconut/almond preferred)", quantity: "1 cup" },
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Ginger powder", quantity: "1/4 teaspoon" },
+      { name: "Cinnamon", quantity: "1/4 teaspoon" },
+      { name: "Black pepper", quantity: "A pinch" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm the milk gently",
+      "Whisk in all spices",
+      "Add honey after removing from heat",
+      "Drink warm"
+    ],
+    how_often: "Once daily, preferably evening",
+    precautions: [
+      "⚠️ Supportive care - continue prescribed immunosuppressants",
+      "High turmeric may affect certain medications",
+      "Consult rheumatologist before regular use"
+    ],
+    benefits: [
+      "Curcumin has anti-inflammatory properties",
+      "Warming and soothing",
+      "Traditional Ayurvedic support"
+    ],
+    related_diseases: ["autoimmune-support", "inflammation", "rheumatoid-arthritis"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-autoimmune-2",
+    problem: "Autoimmune Support",
+    title: "Omega-3 Chia Pudding",
+    ingredients: [
+      { name: "Chia seeds", quantity: "3 tablespoons" },
+      { name: "Coconut milk", quantity: "1 cup" },
+      { name: "Maple syrup or honey", quantity: "1 tablespoon" },
+      { name: "Vanilla extract", quantity: "1/4 teaspoon" },
+      { name: "Fresh berries", quantity: "For topping" }
+    ],
+    method: [
+      "Mix chia seeds with coconut milk",
+      "Add sweetener and vanilla",
+      "Stir well and refrigerate overnight",
+      "Top with berries before serving"
+    ],
+    how_often: "3-4 times per week",
+    precautions: [
+      "⚠️ Supportive nutrition only",
+      "Introduce chia gradually to avoid digestive issues",
+      "Ensure adequate hydration"
+    ],
+    benefits: [
+      "Rich in omega-3 fatty acids",
+      "Anti-inflammatory potential",
+      "Fiber supports gut health"
+    ],
+    related_diseases: ["autoimmune-support", "inflammation", "gut-health"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes (plus overnight)",
+    region: "global"
+  },
+  {
+    id: "remedy-autoimmune-3",
+    problem: "Autoimmune Support",
+    title: "Gut-Healing Bone Broth",
+    ingredients: [
+      { name: "Chicken or vegetable bones/scraps", quantity: "1-2 lbs" },
+      { name: "Water", quantity: "8 cups" },
+      { name: "Apple cider vinegar", quantity: "2 tablespoons" },
+      { name: "Onion, celery, carrots", quantity: "Chopped, 1 cup each" },
+      { name: "Salt, pepper, herbs", quantity: "To taste" }
+    ],
+    method: [
+      "Place bones and vegetables in large pot",
+      "Add water and vinegar",
+      "Bring to boil, then simmer for 12-24 hours",
+      "Strain and season",
+      "Store in refrigerator or freeze"
+    ],
+    how_often: "1 cup daily",
+    precautions: [
+      "⚠️ Supportive gut health measure",
+      "Skim fat if needed for dietary restrictions",
+      "Use within 5 days if refrigerated"
+    ],
+    benefits: [
+      "Collagen and gelatin support gut lining",
+      "Easy to digest",
+      "Traditional healing food"
+    ],
+    related_diseases: ["autoimmune-support", "gut-health", "ibs"],
+    difficulty: "Medium",
+    preparation_time: "12-24 hours (mostly passive)",
+    region: "global"
+  },
+  {
+    id: "remedy-autoimmune-4",
+    problem: "Autoimmune Support",
+    title: "Soothing Aloe Vera Juice",
+    ingredients: [
+      { name: "Fresh aloe vera gel", quantity: "2 tablespoons" },
+      { name: "Water or coconut water", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Extract fresh gel from aloe vera leaf (avoid yellow latex)",
+      "Blend with water until smooth",
+      "Add lemon and honey",
+      "Drink fresh"
+    ],
+    how_often: "Once daily on empty stomach",
+    precautions: [
+      "⚠️ May interact with immunosuppressants - consult doctor",
+      "Use only inner gel, avoid latex (yellow part)",
+      "Start with small amount to test tolerance"
+    ],
+    benefits: [
+      "May support gut healing",
+      "Hydrating and cooling",
+      "Traditional digestive aid"
+    ],
+    related_diseases: ["autoimmune-support", "gut-health", "inflammation"],
+    difficulty: "Medium",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "remedy-autoimmune-5",
+    problem: "Autoimmune Support",
+    title: "Ashwagandha Adaptogen Tea",
+    ingredients: [
+      { name: "Ashwagandha root powder", quantity: "1/2 teaspoon" },
+      { name: "Warm milk or water", quantity: "1 cup" },
+      { name: "Cinnamon stick", quantity: "1 small" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Heat milk/water with cinnamon",
+      "Add ashwagandha powder and stir well",
+      "Simmer for 2-3 minutes",
+      "Strain, add honey, and drink"
+    ],
+    how_often: "Once daily, evening preferred",
+    precautions: [
+      "⚠️ May affect thyroid - avoid with Hashimoto's unless doctor approves",
+      "May interact with immunosuppressants",
+      "Not during pregnancy"
+    ],
+    benefits: [
+      "Adaptogenic herb for stress support",
+      "Traditional immune modulator in Ayurveda",
+      "May help with fatigue"
+    ],
+    related_diseases: ["autoimmune-support", "stress", "fatigue"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "remedy-autoimmune-6",
+    problem: "Autoimmune Support",
+    title: "Anti-Inflammatory Ginger-Turmeric Shots",
+    ingredients: [
+      { name: "Fresh ginger juice", quantity: "1 tablespoon" },
+      { name: "Fresh turmeric juice (or 1/4 tsp powder)", quantity: "1 teaspoon" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Black pepper", quantity: "A pinch" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Juice fresh ginger and turmeric (or use powder)",
+      "Mix all ingredients in a small glass",
+      "Take as a shot"
+    ],
+    how_often: "Once daily in the morning",
+    precautions: [
+      "⚠️ Check with doctor if on blood thinners or immunosuppressants",
+      "Strong taste - may need to adjust",
+      "Turmeric stains - handle carefully"
+    ],
+    benefits: [
+      "Concentrated anti-inflammatory compounds",
+      "Quick and potent",
+      "Traditional immune support"
+    ],
+    related_diseases: ["autoimmune-support", "inflammation", "immunity"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // --- THYROID SUPPORT (AUTOIMMUNE) ---
+  {
+    id: "remedy-thyroid-auto-1",
+    problem: "Thyroid Autoimmune Support",
+    title: "Selenium-Rich Brazil Nut Snack",
+    ingredients: [
+      { name: "Brazil nuts", quantity: "2-3 nuts" },
+      { name: "Dates", quantity: "1-2" }
+    ],
+    method: [
+      "Eat 2-3 Brazil nuts with dates",
+      "Chew thoroughly"
+    ],
+    how_often: "Once daily (do not exceed 3 nuts)",
+    precautions: [
+      "⚠️ Supportive nutrition - continue thyroid medication",
+      "Selenium toxicity possible with excess - stick to 2-3 nuts max",
+      "Check selenium levels with doctor"
+    ],
+    benefits: [
+      "Brazil nuts are richest food source of selenium",
+      "Selenium important for thyroid function",
+      "Easy daily habit"
+    ],
+    related_diseases: ["hashimotos", "thyroid", "autoimmune-support"],
+    difficulty: "Easy",
+    preparation_time: "1 minute",
+    region: "global"
+  },
+  {
+    id: "remedy-thyroid-auto-2",
+    problem: "Thyroid Autoimmune Support",
+    title: "Coconut Oil Morning Routine",
+    ingredients: [
+      { name: "Virgin coconut oil", quantity: "1 teaspoon" },
+      { name: "Warm water or herbal tea", quantity: "Optional chaser" }
+    ],
+    method: [
+      "Take 1 teaspoon of virgin coconut oil",
+      "Swallow directly or add to warm drink",
+      "Take on empty stomach"
+    ],
+    how_often: "Once daily in the morning",
+    precautions: [
+      "⚠️ Supportive care only - maintain medication schedule",
+      "Medium-chain fats - generally well tolerated",
+      "Start with 1/2 teaspoon if new to coconut oil"
+    ],
+    benefits: [
+      "Medium-chain triglycerides for energy",
+      "May support metabolism",
+      "Easy to incorporate"
+    ],
+    related_diseases: ["thyroid", "autoimmune-support", "metabolism"],
+    difficulty: "Easy",
+    preparation_time: "1 minute",
+    region: "global"
+  },
+
+  // --- METABOLIC CHRONIC: HIGH BLOOD PRESSURE ---
+  {
+    id: "remedy-bp-1",
+    problem: "High Blood Pressure Support",
+    title: "DASH-Friendly Banana Potassium Boost",
+    ingredients: [
+      { name: "Ripe banana", quantity: "1" },
+      { name: "Plain yogurt (low-fat)", quantity: "1/2 cup" },
+      { name: "Spinach leaves", quantity: "Handful" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Blend all ingredients until smooth",
+      "Drink as a morning smoothie"
+    ],
+    how_often: "Once daily",
+    precautions: [
+      "⚠️ Supportive nutrition - continue BP medications",
+      "High potassium - check with doctor if on potassium-sparing diuretics",
+      "Monitor blood pressure regularly"
+    ],
+    benefits: [
+      "Potassium helps balance sodium",
+      "Supports healthy blood pressure",
+      "Heart-healthy nutrients"
+    ],
+    related_diseases: ["hypertension", "heart-health", "metabolic"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-bp-2",
+    problem: "High Blood Pressure Support",
+    title: "Celery Seed Infusion",
+    ingredients: [
+      { name: "Celery seeds", quantity: "1 teaspoon" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Honey", quantity: "Optional" }
+    ],
+    method: [
+      "Crush celery seeds slightly",
+      "Steep in hot water for 10 minutes",
+      "Strain and add honey if desired",
+      "Drink warm"
+    ],
+    how_often: "Once daily",
+    precautions: [
+      "⚠️ Supportive care - do not stop BP medication",
+      "May increase sun sensitivity",
+      "Avoid during pregnancy"
+    ],
+    benefits: [
+      "Traditional remedy for blood pressure",
+      "May have mild diuretic effect",
+      "Calming properties"
+    ],
+    related_diseases: ["hypertension", "fluid-retention", "metabolic"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "remedy-bp-3",
+    problem: "High Blood Pressure Support",
+    title: "Hibiscus BP Tea",
+    ingredients: [
+      { name: "Dried hibiscus flowers", quantity: "2 tablespoons" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Lime juice", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "To taste" }
+    ],
+    method: [
+      "Boil water and add hibiscus flowers",
+      "Steep for 5-10 minutes until deep red",
+      "Strain and add lime and honey",
+      "Enjoy hot or cold"
+    ],
+    how_often: "2-3 cups daily",
+    precautions: [
+      "⚠️ May lower BP significantly - monitor levels",
+      "Not with BP medications without doctor approval",
+      "Avoid during pregnancy"
+    ],
+    benefits: [
+      "Research supports BP-lowering effects",
+      "Rich in antioxidants",
+      "Refreshing taste"
+    ],
+    related_diseases: ["hypertension", "heart-health", "antioxidant"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+
+  // --- METABOLIC CHRONIC: HIGH CHOLESTEROL ---
+  {
+    id: "remedy-cholesterol-1",
+    problem: "High Cholesterol Support",
+    title: "Oat Bran Heart-Healthy Breakfast",
+    ingredients: [
+      { name: "Oat bran", quantity: "1/2 cup" },
+      { name: "Water or milk", quantity: "1 cup" },
+      { name: "Walnuts (chopped)", quantity: "2 tablespoons" },
+      { name: "Apple (diced)", quantity: "1/2" },
+      { name: "Cinnamon", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Cook oat bran with water/milk until creamy",
+      "Top with walnuts, apple, and cinnamon",
+      "Eat warm"
+    ],
+    how_often: "Daily for breakfast",
+    precautions: [
+      "⚠️ Supportive diet - continue cholesterol medications if prescribed",
+      "High fiber - increase water intake",
+      "Monitor cholesterol levels regularly"
+    ],
+    benefits: [
+      "Beta-glucan fiber binds cholesterol",
+      "Heart-healthy omega-3 from walnuts",
+      "Filling and nutritious"
+    ],
+    related_diseases: ["cholesterol", "heart-health", "metabolic"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-cholesterol-2",
+    problem: "High Cholesterol Support",
+    title: "Garlic-Lemon Morning Elixir",
+    ingredients: [
+      { name: "Raw garlic cloves", quantity: "2 (crushed)" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Crush garlic and let sit 10 minutes (activates allicin)",
+      "Mix with warm water, lemon, and honey",
+      "Drink on empty stomach"
+    ],
+    how_often: "Once daily in the morning",
+    precautions: [
+      "⚠️ May interact with blood thinners and statins",
+      "Can cause bad breath and stomach upset",
+      "Consult doctor if on cholesterol medication"
+    ],
+    benefits: [
+      "Allicin may help lower LDL cholesterol",
+      "Supports circulation",
+      "Traditional heart tonic"
+    ],
+    related_diseases: ["cholesterol", "heart-health", "circulation"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-cholesterol-3",
+    problem: "High Cholesterol Support",
+    title: "Fenugreek Water Cholesterol Aid",
+    ingredients: [
+      { name: "Fenugreek seeds (Methi)", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "1 glass" }
+    ],
+    method: [
+      "Soak fenugreek seeds overnight in water",
+      "Drink the water on empty stomach",
+      "Chew the seeds or discard"
+    ],
+    how_often: "Daily in the morning",
+    precautions: [
+      "⚠️ May affect blood sugar and cholesterol meds",
+      "Bitter taste",
+      "Avoid during pregnancy"
+    ],
+    benefits: [
+      "Soluble fiber may bind bile acids",
+      "Traditional cholesterol remedy",
+      "Also supports blood sugar"
+    ],
+    related_diseases: ["cholesterol", "diabetes", "metabolic"],
+    difficulty: "Easy",
+    preparation_time: "Overnight soaking",
+    region: "india"
+  },
+
+  // --- METABOLIC CHRONIC: FATTY LIVER ---
+  {
+    id: "remedy-liver-1",
+    problem: "Fatty Liver Support",
+    title: "Lemon-Turmeric Liver Flush",
+    ingredients: [
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1/2 lemon" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" },
+      { name: "Cayenne pepper", quantity: "A tiny pinch (optional)" }
+    ],
+    method: [
+      "Squeeze lemon into warm water",
+      "Add turmeric and cayenne",
+      "Stir and drink first thing in the morning"
+    ],
+    how_often: "Daily on empty stomach",
+    precautions: [
+      "⚠️ Supportive care - liver disease needs medical monitoring",
+      "Avoid if you have gallstones",
+      "Turmeric may interact with medications"
+    ],
+    benefits: [
+      "Supports liver detoxification pathways",
+      "Vitamin C and antioxidants",
+      "Hydrating morning ritual"
+    ],
+    related_diseases: ["fatty-liver", "liver-health", "detox"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-liver-2",
+    problem: "Fatty Liver Support",
+    title: "Bitter Greens Salad",
+    ingredients: [
+      { name: "Arugula or dandelion greens", quantity: "2 cups" },
+      { name: "Radicchio", quantity: "1/2 cup" },
+      { name: "Olive oil", quantity: "1 tablespoon" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Walnuts", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Wash and dry greens",
+      "Toss with olive oil and lemon",
+      "Top with walnuts",
+      "Eat as a side dish with meals"
+    ],
+    how_often: "3-4 times per week",
+    precautions: [
+      "⚠️ Dietary support - continue medical monitoring",
+      "Bitter taste - can adjust portions",
+      "Wash greens thoroughly"
+    ],
+    benefits: [
+      "Bitter compounds support bile flow",
+      "Low calorie, nutrient-dense",
+      "Healthy fats from olive oil and walnuts"
+    ],
+    related_diseases: ["fatty-liver", "digestion", "weight-loss"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-liver-3",
+    problem: "Fatty Liver Support",
+    title: "Amla-Aloe Liver Tonic",
+    ingredients: [
+      { name: "Amla juice", quantity: "2 tablespoons" },
+      { name: "Aloe vera juice (food grade)", quantity: "2 tablespoons" },
+      { name: "Water", quantity: "1/2 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix amla juice and aloe vera juice",
+      "Add water and honey",
+      "Stir and drink on empty stomach"
+    ],
+    how_often: "Once daily in the morning",
+    precautions: [
+      "⚠️ Not a cure - liver function needs medical monitoring",
+      "Use only food-grade aloe vera juice",
+      "Start with smaller amounts"
+    ],
+    benefits: [
+      "Vitamin C from amla supports liver function",
+      "Aloe may help with inflammation",
+      "Traditional Ayurvedic liver support"
+    ],
+    related_diseases: ["fatty-liver", "liver-health", "detox"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+
+  // --- METABOLIC CHRONIC: TYPE 2 DIABETES SUPPORT ---
+  {
+    id: "remedy-diabetes-support-1",
+    problem: "Type 2 Diabetes Support",
+    title: "Cinnamon-Apple Cider Vinegar Drink",
+    ingredients: [
+      { name: "Apple cider vinegar (with mother)", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Cinnamon powder", quantity: "1/4 teaspoon" },
+      { name: "Honey (optional)", quantity: "1/2 teaspoon" }
+    ],
+    method: [
+      "Mix apple cider vinegar with warm water",
+      "Add cinnamon and stir well",
+      "Add minimal honey if needed",
+      "Drink before meals"
+    ],
+    how_often: "1-2 times daily before meals",
+    precautions: [
+      "⚠️ IMPORTANT: Continue diabetes medications as prescribed",
+      "May lower blood sugar - monitor levels closely",
+      "Acidic - rinse mouth after to protect teeth"
+    ],
+    benefits: [
+      "May improve insulin sensitivity",
+      "Cinnamon traditionally used for blood sugar",
+      "Low calorie"
+    ],
+    related_diseases: ["diabetes", "pre-diabetes", "metabolic"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-diabetes-support-2",
+    problem: "Type 2 Diabetes Support",
+    title: "Okra (Bhindi) Water",
+    ingredients: [
+      { name: "Fresh okra (bhindi)", quantity: "2-3 pods" },
+      { name: "Water", quantity: "1 glass" }
+    ],
+    method: [
+      "Wash okra and cut off ends",
+      "Slice lengthwise and place in water",
+      "Soak overnight",
+      "Remove okra and drink the water in the morning"
+    ],
+    how_often: "Daily on empty stomach",
+    precautions: [
+      "⚠️ Supportive care - do not replace medication",
+      "Slimy texture is normal",
+      "Monitor blood sugar levels regularly"
+    ],
+    benefits: [
+      "Soluble fiber may help with blood sugar",
+      "Traditional remedy in South Asia",
+      "Low calorie"
+    ],
+    related_diseases: ["diabetes", "pre-diabetes", "metabolic"],
+    difficulty: "Easy",
+    preparation_time: "Overnight soaking",
+    region: "india"
+  },
+  {
+    id: "remedy-diabetes-support-3",
+    problem: "Type 2 Diabetes Support",
+    title: "Low-Glycemic Chia Seed Pudding",
+    ingredients: [
+      { name: "Chia seeds", quantity: "3 tablespoons" },
+      { name: "Unsweetened almond milk", quantity: "1 cup" },
+      { name: "Cinnamon", quantity: "1/4 teaspoon" },
+      { name: "Vanilla extract", quantity: "1/4 teaspoon" },
+      { name: "Berries", quantity: "For topping" }
+    ],
+    method: [
+      "Mix chia seeds with almond milk",
+      "Add cinnamon and vanilla",
+      "Refrigerate for 2+ hours or overnight",
+      "Top with low-glycemic berries"
+    ],
+    how_often: "As a healthy snack or breakfast",
+    precautions: [
+      "⚠️ Count carbs if tracking",
+      "Fiber-rich - stay hydrated",
+      "Natural sugars in berries - portion control"
+    ],
+    benefits: [
+      "Low glycemic index",
+      "Fiber slows glucose absorption",
+      "Filling and satisfying"
+    ],
+    related_diseases: ["diabetes", "pre-diabetes", "weight-management"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes (plus setting time)",
+    region: "global"
+  },
+  {
+    id: "remedy-diabetes-support-4",
+    problem: "Type 2 Diabetes Support",
+    title: "Karela-Amla Juice",
+    ingredients: [
+      { name: "Bitter gourd (karela)", quantity: "1 small" },
+      { name: "Amla (Indian gooseberry)", quantity: "1" },
+      { name: "Water", quantity: "1/2 cup" },
+      { name: "Salt", quantity: "A pinch" }
+    ],
+    method: [
+      "Remove seeds from karela",
+      "Blend karela and amla with water",
+      "Strain and add salt",
+      "Drink fresh"
+    ],
+    how_often: "Once daily on empty stomach",
+    precautions: [
+      "⚠️ May cause hypoglycemia with medications - monitor closely",
+      "Very bitter - adjust to taste",
+      "Not during pregnancy"
+    ],
+    benefits: [
+      "Both karela and amla traditionally used for blood sugar",
+      "Rich in Vitamin C",
+      "Potent combination"
+    ],
+    related_diseases: ["diabetes", "pre-diabetes", "immunity"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+
+  // --- IBD / ULCERATIVE COLITIS SUPPORT (AUTOIMMUNE) ---
+  {
+    id: "remedy-ibd-1",
+    problem: "IBD Gut Support",
+    title: "Soothing Rice Water",
+    ingredients: [
+      { name: "White rice", quantity: "1/2 cup" },
+      { name: "Water", quantity: "4 cups" },
+      { name: "Salt", quantity: "A pinch" }
+    ],
+    method: [
+      "Boil rice in excess water until very soft",
+      "Strain and collect the starchy water",
+      "Add a pinch of salt",
+      "Sip throughout the day"
+    ],
+    how_often: "During flares, as tolerated",
+    precautions: [
+      "⚠️ Supportive care during flares - follow GI doctor's plan",
+      "Very bland - that's the point",
+      "Resume regular diet as advised by doctor"
+    ],
+    benefits: [
+      "Easily digestible",
+      "Provides calories and hydration",
+      "Gentle on inflamed gut"
+    ],
+    related_diseases: ["ibs", "ulcerative-colitis", "crohns-support"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-ibd-2",
+    problem: "IBD Gut Support",
+    title: "Slippery Elm Soothing Drink",
+    ingredients: [
+      { name: "Slippery elm powder", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "Optional" }
+    ],
+    method: [
+      "Mix slippery elm powder with warm water",
+      "Stir until dissolved (forms a gel-like consistency)",
+      "Add honey if desired",
+      "Drink slowly"
+    ],
+    how_often: "1-2 times daily between meals",
+    precautions: [
+      "⚠️ May affect medication absorption - take 2 hours apart from meds",
+      "Check with GI doctor before use",
+      "Start with small amounts"
+    ],
+    benefits: [
+      "Mucilage coats and soothes digestive tract",
+      "Traditional remedy for GI issues",
+      "May help with discomfort"
+    ],
+    related_diseases: ["ibs", "ulcerative-colitis", "gut-health"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "us"
+  },
+
+  // --- RHEUMATOID ARTHRITIS SUPPORT (AUTOIMMUNE) ---
+  {
+    id: "remedy-ra-1",
+    problem: "Rheumatoid Arthritis Support",
+    title: "Anti-Inflammatory Cherry Juice",
+    ingredients: [
+      { name: "Tart cherry juice (unsweetened)", quantity: "1 cup" },
+      { name: "Ginger (grated)", quantity: "1/2 teaspoon" },
+      { name: "Turmeric powder", quantity: "1/4 teaspoon" }
+    ],
+    method: [
+      "Mix ginger and turmeric into cherry juice",
+      "Stir well",
+      "Drink cold or at room temperature"
+    ],
+    how_often: "Once daily",
+    precautions: [
+      "⚠️ Supportive care - continue RA medications",
+      "Natural sugars in juice - monitor if diabetic",
+      "May interact with blood thinners"
+    ],
+    benefits: [
+      "Anthocyanins have anti-inflammatory properties",
+      "May help with joint pain",
+      "Tasty and easy to consume"
+    ],
+    related_diseases: ["rheumatoid-arthritis", "joint-pain", "inflammation"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "us"
+  },
+  {
+    id: "remedy-ra-2",
+    problem: "Rheumatoid Arthritis Support",
+    title: "Epsom Salt Warm Soak",
+    ingredients: [
+      { name: "Epsom salt", quantity: "2 cups" },
+      { name: "Warm bath water", quantity: "Full tub" },
+      { name: "Lavender essential oil (optional)", quantity: "5-10 drops" }
+    ],
+    method: [
+      "Fill bathtub with warm (not hot) water",
+      "Add Epsom salt and stir to dissolve",
+      "Add lavender oil if desired",
+      "Soak for 15-20 minutes"
+    ],
+    how_often: "2-3 times per week",
+    precautions: [
+      "⚠️ External use only - supportive comfort measure",
+      "Avoid very hot water if you have circulatory issues",
+      "Stay hydrated during soak"
+    ],
+    benefits: [
+      "Magnesium may be absorbed through skin",
+      "Warm water relaxes muscles",
+      "Stress relief"
+    ],
+    related_diseases: ["rheumatoid-arthritis", "muscle-pain", "stress"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "us"
+  },
+
+  // --- ADDITIONAL METABOLIC SUPPORT ---
+  {
+    id: "remedy-metabolic-1",
+    problem: "Metabolic Syndrome Support",
+    title: "Green Tea Metabolism Booster",
+    ingredients: [
+      { name: "Green tea bag or loose leaves", quantity: "1 teaspoon" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Lemon slice", quantity: "1" },
+      { name: "Mint leaves", quantity: "2-3" }
+    ],
+    method: [
+      "Steep green tea in hot (not boiling) water for 2-3 minutes",
+      "Add lemon and mint",
+      "Drink warm"
+    ],
+    how_often: "2-3 cups daily",
+    precautions: [
+      "⚠️ Contains caffeine - avoid late in day",
+      "May affect iron absorption - drink between meals",
+      "Check with doctor if on blood thinners"
+    ],
+    benefits: [
+      "EGCG catechins support metabolism",
+      "Antioxidant-rich",
+      "May support weight management"
+    ],
+    related_diseases: ["metabolic-syndrome", "weight-loss", "energy"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "remedy-metabolic-2",
+    problem: "Metabolic Syndrome Support",
+    title: "Fiber-Rich Isabgol (Psyllium) Drink",
+    ingredients: [
+      { name: "Isabgol (psyllium husk)", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1 teaspoon (optional)" }
+    ],
+    method: [
+      "Add isabgol to water",
+      "Stir quickly and drink immediately (it thickens fast)",
+      "Follow with another glass of water"
+    ],
+    how_often: "Once daily, preferably before bed",
+    precautions: [
+      "⚠️ Take 2 hours apart from medications",
+      "Must drink enough water - can cause blockage if dehydrated",
+      "Start with small amounts"
+    ],
+    benefits: [
+      "Soluble fiber supports cholesterol and blood sugar",
+      "Promotes regular bowel movements",
+      "Supports gut health"
+    ],
+    related_diseases: ["metabolic-syndrome", "constipation", "cholesterol"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes",
+    region: "india"
   }
 ];
 
@@ -8839,5 +10068,16 @@ export const remedyCategories = [
   "Fibromyalgia Support",
   // Blood Sugar
   "Pre-Diabetes",
-  "Type 2 Diabetes Support"
+  "Type 2 Diabetes Support",
+  // NEW: Serious Conditions (Supportive Care)
+  "Cancer Support",
+  "Stroke Recovery Support",
+  "Autoimmune Support",
+  "Thyroid Autoimmune Support",
+  "High Blood Pressure Support",
+  "High Cholesterol Support",
+  "Fatty Liver Support",
+  "IBD Gut Support",
+  "Rheumatoid Arthritis Support",
+  "Metabolic Syndrome Support"
 ];
