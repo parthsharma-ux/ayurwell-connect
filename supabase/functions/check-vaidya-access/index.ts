@@ -7,7 +7,7 @@ const corsHeaders = {
 };
 
 const MAX_FREE_CHATS = 15;
-const FREE_TRIAL_DAYS = 3;
+const FREE_TRIAL_DAYS = 1;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -73,17 +73,18 @@ serve(async (req) => {
 
     const trialStartIso = freeChat?.first_chat_at ?? now.toISOString();
     const trialStart = new Date(trialStartIso);
-    const daysSinceTrialStart = (now.getTime() - trialStart.getTime()) / (1000 * 60 * 60 * 24);
-    const isInFreeTrial = daysSinceTrialStart <= FREE_TRIAL_DAYS;
-    const trialDaysRemaining = Math.max(0, Math.ceil(FREE_TRIAL_DAYS - daysSinceTrialStart));
+    const hoursSinceTrialStart = (now.getTime() - trialStart.getTime()) / (1000 * 60 * 60);
+    const trialHours = FREE_TRIAL_DAYS * 24; // Convert days to hours (1 day = 24 hours)
+    const isInFreeTrial = hoursSinceTrialStart <= trialHours;
+    const trialHoursRemaining = Math.max(0, Math.ceil(trialHours - hoursSinceTrialStart));
 
-    // If user is within 3-day free trial - unlimited access
+    // If user is within 1-day (24 hour) free trial - unlimited access
     if (isInFreeTrial) {
       return new Response(JSON.stringify({
         has_access: true,
         reason: 'free_trial',
         free_trial: true,
-        trial_days_remaining: trialDaysRemaining,
+        trial_hours_remaining: trialHoursRemaining,
         free_chats_remaining: 0,
         free_chat_available: false,
       }), {

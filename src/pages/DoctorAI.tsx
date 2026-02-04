@@ -31,7 +31,7 @@ const DoctorAI = () => {
   const { user, signOut } = useAuth();
   
   // Access control hook
-  const { hasAccess, reason, freeChatAvailable, freeChatsRemaining, loading: accessLoading, checkAccess, markFreeChatUsed } = useVaidyaAccess();
+  const { hasAccess, reason, freeChatAvailable, freeChatsRemaining, freeTrial, trialHoursRemaining, loading: accessLoading, checkAccess, markFreeChatUsed } = useVaidyaAccess();
   
   const {
     sessions,
@@ -498,17 +498,51 @@ const DoctorAI = () => {
                     </span>
                     <Shield className="h-4 w-4 text-gold/70" />
                   </motion.div>
+                ) : freeTrial ? (
+                  <>
+                    {/* Free Trial Badge + Go Premium Button */}
+                    <motion.span 
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-semibold border border-emerald-500/30"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                    >
+                      <Sparkles className="h-4 w-4" />
+                      {language === "hinglish" 
+                        ? `🎉 फ्री ट्रायल: ${trialHoursRemaining}h बाकी` 
+                        : `🎉 Free Trial: ${trialHoursRemaining}h left`}
+                    </motion.span>
+                    <motion.button
+                      onClick={() => setShowSubscriptionModal(true)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-gold/20 to-primary/20 text-gold text-sm font-semibold border border-gold/30 hover:border-gold/50 transition-all shadow-sm hover:shadow-glow-gold"
+                    >
+                      <Crown className="h-4 w-4" />
+                      {language === "hinglish" ? "प्रीमियम लें" : "Go Premium"}
+                    </motion.button>
+                  </>
                 ) : freeChatAvailable ? (
-                  <motion.span 
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-semibold border border-emerald-500/30"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                  >
-                    <Zap className="h-4 w-4" />
-                    {language === "hinglish" 
-                      ? `${freeChatsRemaining} मुफ्त चैट बाकी` 
-                      : `${freeChatsRemaining} Free Chats Left`}
-                  </motion.span>
+                  <>
+                    <motion.span 
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-semibold border border-emerald-500/30"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                    >
+                      <Zap className="h-4 w-4" />
+                      {language === "hinglish" 
+                        ? `${freeChatsRemaining} मुफ्त चैट बाकी` 
+                        : `${freeChatsRemaining} Free Chats Left`}
+                    </motion.span>
+                    <motion.button
+                      onClick={() => setShowSubscriptionModal(true)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-gold/20 to-primary/20 text-gold text-sm font-semibold border border-gold/30 hover:border-gold/50 transition-all shadow-sm hover:shadow-glow-gold"
+                    >
+                      <Crown className="h-4 w-4" />
+                      {language === "hinglish" ? "प्रीमियम लें" : "Go Premium"}
+                    </motion.button>
+                  </>
                 ) : (
                   <motion.button
                     onClick={() => setShowSubscriptionModal(true)}
