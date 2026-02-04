@@ -508,8 +508,8 @@ const DoctorAI = () => {
                     >
                       <Sparkles className="h-4 w-4" />
                       {language === "hinglish" 
-                        ? `🎉 फ्री ट्रायल: ${trialHoursRemaining}h बाकी` 
-                        : `🎉 Free Trial: ${trialHoursRemaining}h left`}
+                        ? `🎉 3 दिन फ्री ट्रायल चालू!` 
+                        : `🎉 3-Day Free Trial Active!`}
                     </motion.span>
                     <motion.button
                       onClick={() => setShowSubscriptionModal(true)}

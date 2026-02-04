@@ -7,7 +7,7 @@ const corsHeaders = {
 };
 
 const MAX_FREE_CHATS = 15;
-const FREE_TRIAL_DAYS = 1;
+const FREE_TRIAL_DAYS = 3;
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
