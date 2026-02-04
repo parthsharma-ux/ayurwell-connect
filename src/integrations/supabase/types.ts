@@ -147,6 +147,7 @@ export type Database = {
           free_chat_used: boolean
           free_chats_count: number
           id: string
+          reminder_sent: boolean | null
           user_id: string
         }
         Insert: {
@@ -155,6 +156,7 @@ export type Database = {
           free_chat_used?: boolean
           free_chats_count?: number
           id?: string
+          reminder_sent?: boolean | null
           user_id: string
         }
         Update: {
@@ -163,6 +165,7 @@ export type Database = {
           free_chat_used?: boolean
           free_chats_count?: number
           id?: string
+          reminder_sent?: boolean | null
           user_id?: string
         }
         Relationships: []
