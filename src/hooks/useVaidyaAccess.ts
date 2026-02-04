@@ -8,7 +8,7 @@ type AccessStatus = {
   freeChatAvailable: boolean;
   freeChatsRemaining: number;
   freeTrial?: boolean;
-  trialDaysRemaining?: number;
+  trialHoursRemaining?: number;
   subscription?: {
     plan: string;
     expiresAt: string;
@@ -57,7 +57,7 @@ export const useVaidyaAccess = () => {
         freeChatAvailable: data.free_chat_available || false,
         freeChatsRemaining: data.free_chats_remaining || 0,
         freeTrial: data.free_trial || false,
-        trialDaysRemaining: data.trial_days_remaining || 0,
+        trialHoursRemaining: data.trial_hours_remaining || 0,
         subscription: data.subscription,
       });
     } catch (err) {
