@@ -11065,6 +11065,1150 @@ export const remedies: Remedy[] = [
     difficulty: "Easy",
     preparation_time: "5 minutes",
     region: "global"
+  },
+  // ============= NEW KITCHEN REMEDIES BATCH 2 =============
+  {
+    id: "kitchen-51",
+    problem: "Bloating",
+    title: "Ajwain Jeera Digestive Water",
+    ingredients: [
+      { name: "Ajwain (carom seeds)", quantity: "1 teaspoon" },
+      { name: "Cumin seeds (jeera)", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Black salt", quantity: "A pinch" }
+    ],
+    method: [
+      "Boil water with ajwain and cumin",
+      "Simmer for 5 minutes",
+      "Strain and add black salt",
+      "Drink warm after meals"
+    ],
+    how_often: "After heavy meals or when bloated",
+    precautions: ["May increase body heat", "Avoid in hyperacidity"],
+    benefits: ["Releases trapped gas", "Improves digestion", "Reduces stomach distension"],
+    related_diseases: ["bloating", "gas", "indigestion"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-52",
+    problem: "Gas",
+    title: "Asafoetida Buttermilk",
+    ingredients: [
+      { name: "Fresh buttermilk", quantity: "1 glass" },
+      { name: "Asafoetida (hing)", quantity: "A pinch" },
+      { name: "Cumin powder", quantity: "½ teaspoon" },
+      { name: "Salt", quantity: "To taste" }
+    ],
+    method: [
+      "Blend buttermilk until smooth",
+      "Add hing, cumin powder and salt",
+      "Mix well and drink after lunch"
+    ],
+    how_often: "With lunch daily",
+    precautions: ["Avoid if lactose intolerant", "Use fresh buttermilk only"],
+    benefits: ["Relieves flatulence instantly", "Cools digestive system", "Probiotic benefits"],
+    related_diseases: ["gas", "bloating", "acidity"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-53",
+    problem: "Nausea",
+    title: "Clove Cardamom Remedy",
+    ingredients: [
+      { name: "Cloves", quantity: "2" },
+      { name: "Cardamom", quantity: "1 pod" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Crush cloves and cardamom coarsely",
+      "Mix with honey to form paste",
+      "Take small amounts slowly",
+      "Let it dissolve in mouth"
+    ],
+    how_often: "As needed for nausea",
+    precautions: ["Don't use more than 3-4 cloves daily", "May cause numbness in mouth"],
+    benefits: ["Stops nausea quickly", "Freshens breath", "Settles stomach"],
+    related_diseases: ["nausea", "motion-sickness", "morning-sickness"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-54",
+    problem: "Sore Throat",
+    title: "Licorice Ginger Gargle",
+    ingredients: [
+      { name: "Mulethi (licorice) powder", quantity: "1 teaspoon" },
+      { name: "Ginger powder", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Salt", quantity: "½ teaspoon" }
+    ],
+    method: [
+      "Add all powders and salt to warm water",
+      "Mix well until dissolved",
+      "Gargle for 30 seconds",
+      "Repeat 3-4 times"
+    ],
+    how_often: "3-4 times daily during infection",
+    precautions: ["Don't swallow", "Avoid licorice if hypertensive"],
+    benefits: ["Soothes inflamed throat", "Antibacterial action", "Reduces pain"],
+    related_diseases: ["sore-throat", "cough", "tonsillitis"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-55",
+    problem: "Cough",
+    title: "Onion Honey Cough Syrup",
+    ingredients: [
+      { name: "Red onion", quantity: "1 medium" },
+      { name: "Raw honey", quantity: "3 tablespoons" }
+    ],
+    method: [
+      "Slice onion thinly",
+      "Layer in jar with honey between slices",
+      "Cover and leave overnight",
+      "Strain the syrup next morning",
+      "Take 1 teaspoon every few hours"
+    ],
+    how_often: "1 teaspoon every 3-4 hours",
+    precautions: ["Not for children under 1 year", "May cause bad breath"],
+    benefits: ["Natural expectorant", "Soothes cough", "Antibacterial properties"],
+    related_diseases: ["cough", "cold", "bronchitis"],
+    difficulty: "Easy",
+    preparation_time: "Overnight",
+    region: "global"
+  },
+  {
+    id: "kitchen-56",
+    problem: "Common Cold",
+    title: "Pepper Tulsi Kadha",
+    ingredients: [
+      { name: "Black pepper", quantity: "5 whole" },
+      { name: "Tulsi leaves", quantity: "10-12" },
+      { name: "Ginger", quantity: "1 inch" },
+      { name: "Jaggery", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: [
+      "Crush pepper and ginger coarsely",
+      "Boil water with all ingredients except jaggery",
+      "Reduce to 1 cup",
+      "Strain, add jaggery while hot",
+      "Drink warm"
+    ],
+    how_often: "2-3 times daily during cold",
+    precautions: ["May cause sweating", "Reduce pepper if too spicy"],
+    benefits: ["Clears congestion", "Boosts immunity", "Relieves body ache"],
+    related_diseases: ["cold", "flu", "fever", "congestion"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-57",
+    problem: "Headache",
+    title: "Cinnamon Forehead Paste",
+    ingredients: [
+      { name: "Cinnamon powder", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "Just enough to make paste" }
+    ],
+    method: [
+      "Mix cinnamon with water to form thick paste",
+      "Apply on forehead and temples",
+      "Leave for 20-30 minutes",
+      "Wash off with warm water"
+    ],
+    how_often: "As needed for headache",
+    precautions: ["Do patch test first", "Avoid near eyes", "May cause warmth sensation"],
+    benefits: ["Relieves tension headache", "Improves blood flow", "Cooling effect after removal"],
+    related_diseases: ["headache", "migraine", "tension"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-58",
+    problem: "Fever",
+    title: "Coriander Seed Infusion",
+    ingredients: [
+      { name: "Coriander seeds", quantity: "2 tablespoons" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Boil water with coriander seeds",
+      "Reduce to half",
+      "Strain and cool slightly",
+      "Add honey and drink"
+    ],
+    how_often: "3-4 times daily during fever",
+    precautions: ["Monitor temperature", "Seek medical help if fever persists"],
+    benefits: ["Reduces body heat", "Vitamin C boost", "Hydrating"],
+    related_diseases: ["fever", "viral", "flu"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-59",
+    problem: "Muscle Cramps",
+    title: "Mustard Oil Warm Massage",
+    ingredients: [
+      { name: "Mustard oil", quantity: "3 tablespoons" },
+      { name: "Garlic cloves", quantity: "3-4" }
+    ],
+    method: [
+      "Heat oil with crushed garlic until garlic turns brown",
+      "Let cool to warm temperature",
+      "Massage on cramped muscle in circular motion",
+      "Leave for 30 minutes, then wash"
+    ],
+    how_often: "Whenever cramps occur",
+    precautions: ["Test oil temperature", "Avoid on broken skin"],
+    benefits: ["Relaxes tight muscles", "Improves circulation", "Pain relief"],
+    related_diseases: ["muscle-cramps", "leg-cramps", "muscle-pain"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-60",
+    problem: "Eye Strain",
+    title: "Rose Water Eye Compress",
+    ingredients: [
+      { name: "Pure rose water", quantity: "2 tablespoons" },
+      { name: "Cotton pads", quantity: "2" }
+    ],
+    method: [
+      "Soak cotton pads in cold rose water",
+      "Squeeze out excess",
+      "Place on closed eyes",
+      "Rest for 15-20 minutes"
+    ],
+    how_often: "After screen work or when eyes feel tired",
+    precautions: ["Use pure rose water only", "Store in refrigerator for extra cooling"],
+    benefits: ["Cools and refreshes eyes", "Reduces puffiness", "Relieves strain"],
+    related_diseases: ["eye-strain", "computer-eyes", "tired-eyes"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-61",
+    problem: "Dark Circles",
+    title: "Potato Cucumber Eye Mask",
+    ingredients: [
+      { name: "Potato", quantity: "Half" },
+      { name: "Cucumber", quantity: "Half" }
+    ],
+    method: [
+      "Grate potato and cucumber",
+      "Extract juice by squeezing through cloth",
+      "Soak cotton pads in mixed juice",
+      "Apply under eyes for 20 minutes",
+      "Rinse with cold water"
+    ],
+    how_often: "Daily before bed",
+    precautions: ["Avoid if allergic to either", "Be gentle around eyes"],
+    benefits: ["Lightens dark circles", "Reduces puffiness", "Hydrates skin"],
+    related_diseases: ["dark-circles", "puffy-eyes"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-62",
+    problem: "Acne",
+    title: "Neem Turmeric Face Pack",
+    ingredients: [
+      { name: "Neem leaves paste", quantity: "2 tablespoons" },
+      { name: "Turmeric powder", quantity: "½ teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Grind fresh neem leaves to paste",
+      "Mix with turmeric and honey",
+      "Apply on face avoiding eyes",
+      "Leave for 15-20 minutes",
+      "Wash with lukewarm water"
+    ],
+    how_often: "3 times a week",
+    precautions: ["Turmeric may stain temporarily", "Patch test first"],
+    benefits: ["Antibacterial action", "Reduces inflammation", "Controls oil"],
+    related_diseases: ["acne", "pimples", "oily-skin"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-63",
+    problem: "Dry Skin",
+    title: "Coconut Oil Honey Moisturizer",
+    ingredients: [
+      { name: "Virgin coconut oil", quantity: "2 tablespoons" },
+      { name: "Raw honey", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Mix coconut oil and honey",
+      "Warm slightly for better blending",
+      "Apply on damp skin after shower",
+      "Massage gently and let absorb"
+    ],
+    how_often: "Daily after bathing",
+    precautions: ["May feel oily initially", "Use thin layer"],
+    benefits: ["Deep moisturizing", "Heals dry patches", "Natural glow"],
+    related_diseases: ["dry-skin", "rough-skin", "winter-dryness"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-64",
+    problem: "Dandruff",
+    title: "Apple Cider Vinegar Rinse",
+    ingredients: [
+      { name: "Apple cider vinegar", quantity: "2 tablespoons" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Tea tree oil (optional)", quantity: "3 drops" }
+    ],
+    method: [
+      "Mix ACV with water",
+      "Add tea tree oil if using",
+      "After shampooing, pour on scalp",
+      "Massage for 2-3 minutes",
+      "Rinse with cold water"
+    ],
+    how_often: "2-3 times per week",
+    precautions: ["May dry hair initially", "Avoid on cuts/wounds"],
+    benefits: ["Balances scalp pH", "Reduces flakes", "Adds shine"],
+    related_diseases: ["dandruff", "itchy-scalp", "scalp-buildup"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "us"
+  },
+  {
+    id: "kitchen-65",
+    problem: "Hair Fall",
+    title: "Onion Juice Hair Treatment",
+    ingredients: [
+      { name: "Red onion", quantity: "2 medium" },
+      { name: "Coconut oil", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Blend onions and strain juice",
+      "Mix with coconut oil",
+      "Apply to scalp with cotton",
+      "Leave for 30-60 minutes",
+      "Wash with mild shampoo"
+    ],
+    how_often: "2-3 times weekly",
+    precautions: ["Strong smell lingers", "Avoid if scalp is sensitive"],
+    benefits: ["Promotes hair growth", "Strengthens follicles", "Rich in sulfur"],
+    related_diseases: ["hair-fall", "thin-hair", "weak-hair"],
+    difficulty: "Medium",
+    preparation_time: "45 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-66",
+    problem: "Bad Breath",
+    title: "Fennel Clove Mouth Freshener",
+    ingredients: [
+      { name: "Fennel seeds", quantity: "1 teaspoon" },
+      { name: "Cloves", quantity: "2" },
+      { name: "Cardamom", quantity: "2 pods" }
+    ],
+    method: [
+      "Dry roast all spices lightly",
+      "Let cool completely",
+      "Chew a pinch after meals",
+      "Don't swallow immediately, let flavors release"
+    ],
+    how_often: "After every meal",
+    precautions: ["Don't overuse cloves", "May cause dryness"],
+    benefits: ["Freshens breath instantly", "Aids digestion", "Antibacterial"],
+    related_diseases: ["bad-breath", "halitosis", "oral-hygiene"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-67",
+    problem: "Tooth Pain",
+    title: "Clove Oil Direct Application",
+    ingredients: [
+      { name: "Clove oil", quantity: "2-3 drops" },
+      { name: "Cotton ball", quantity: "Small piece" }
+    ],
+    method: [
+      "Soak cotton in clove oil",
+      "Apply directly on painful tooth",
+      "Hold for 10-15 minutes",
+      "Repeat as needed"
+    ],
+    how_often: "Every 2-3 hours as needed",
+    precautions: ["May cause numbness", "Don't swallow", "See dentist if pain persists"],
+    benefits: ["Natural anesthetic", "Antibacterial", "Fast pain relief"],
+    related_diseases: ["tooth-pain", "toothache", "cavity-pain"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-68",
+    problem: "Mouth Ulcers",
+    title: "Honey Turmeric Paste",
+    ingredients: [
+      { name: "Raw honey", quantity: "1 teaspoon" },
+      { name: "Turmeric powder", quantity: "¼ teaspoon" }
+    ],
+    method: [
+      "Mix honey and turmeric to form paste",
+      "Apply directly on ulcer",
+      "Leave for 5 minutes before eating",
+      "Don't rinse immediately"
+    ],
+    how_often: "3-4 times daily",
+    precautions: ["May stain temporarily", "Avoid spicy food"],
+    benefits: ["Heals ulcers faster", "Antibacterial", "Reduces pain"],
+    related_diseases: ["mouth-ulcers", "canker-sores", "oral-sores"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-69",
+    problem: "Stress",
+    title: "Ashwagandha Warm Milk",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "½ teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Nutmeg", quantity: "A pinch" }
+    ],
+    method: [
+      "Warm milk (don't boil)",
+      "Add ashwagandha and nutmeg",
+      "Mix well and add honey",
+      "Drink before bedtime"
+    ],
+    how_often: "Daily at bedtime",
+    precautions: ["May cause drowsiness", "Avoid during pregnancy"],
+    benefits: ["Reduces cortisol", "Calms nervous system", "Improves sleep"],
+    related_diseases: ["stress", "anxiety", "insomnia"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-70",
+    problem: "Anxiety",
+    title: "Chamomile Lavender Tea",
+    ingredients: [
+      { name: "Dried chamomile flowers", quantity: "1 tablespoon" },
+      { name: "Dried lavender", quantity: "½ teaspoon" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Honey", quantity: "To taste" }
+    ],
+    method: [
+      "Steep chamomile and lavender in hot water",
+      "Cover and let sit for 5-7 minutes",
+      "Strain and add honey",
+      "Drink slowly, inhaling aroma"
+    ],
+    how_often: "1-2 times daily, especially evening",
+    precautions: ["Avoid if allergic to daisies", "May cause drowsiness"],
+    benefits: ["Natural calming effect", "Reduces anxiety", "Promotes relaxation"],
+    related_diseases: ["anxiety", "stress", "nervousness"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-71",
+    problem: "Insomnia",
+    title: "Nutmeg Warm Milk",
+    ingredients: [
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Nutmeg powder", quantity: "¼ teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm milk to comfortable temperature",
+      "Add nutmeg powder and mix well",
+      "Add honey and drink 30 minutes before bed"
+    ],
+    how_often: "Nightly 30 minutes before sleep",
+    precautions: ["Don't exceed ¼ tsp nutmeg", "May cause vivid dreams initially"],
+    benefits: ["Natural sedative", "Improves sleep quality", "Relaxes muscles"],
+    related_diseases: ["insomnia", "sleeplessness", "restlessness"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-72",
+    problem: "Memory",
+    title: "Brahmi Almond Brain Tonic",
+    ingredients: [
+      { name: "Brahmi powder", quantity: "½ teaspoon" },
+      { name: "Almonds (soaked overnight)", quantity: "5" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Peel and grind soaked almonds",
+      "Blend with warm milk",
+      "Add brahmi powder and honey",
+      "Drink in the morning"
+    ],
+    how_often: "Daily in the morning",
+    precautions: ["May cause digestive issues initially", "Consult doctor if on medications"],
+    benefits: ["Enhances memory", "Improves focus", "Brain nourishment"],
+    related_diseases: ["memory", "concentration", "brain-fog"],
+    difficulty: "Medium",
+    preparation_time: "10 minutes + overnight",
+    region: "india"
+  },
+  {
+    id: "kitchen-73",
+    problem: "Low Energy",
+    title: "Date Banana Energy Shake",
+    ingredients: [
+      { name: "Dates (pitted)", quantity: "3" },
+      { name: "Ripe banana", quantity: "1" },
+      { name: "Milk or almond milk", quantity: "1 cup" },
+      { name: "Walnuts", quantity: "3" }
+    ],
+    method: [
+      "Soak dates for 30 minutes",
+      "Blend all ingredients until smooth",
+      "Drink as morning energizer"
+    ],
+    how_often: "Morning or when fatigued",
+    precautions: ["High in natural sugars", "Diabetics use cautiously"],
+    benefits: ["Instant energy boost", "Rich in iron", "Natural sugars"],
+    related_diseases: ["fatigue", "low-energy", "tiredness"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-74",
+    problem: "Immunity",
+    title: "Turmeric Ginger Immunity Shot",
+    ingredients: [
+      { name: "Fresh turmeric", quantity: "1 inch" },
+      { name: "Fresh ginger", quantity: "1 inch" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Black pepper", quantity: "A pinch" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Grate turmeric and ginger finely",
+      "Extract juice by squeezing",
+      "Mix with lemon juice, pepper and honey",
+      "Take as a quick shot"
+    ],
+    how_often: "Daily in the morning",
+    precautions: ["May stain clothes", "Avoid on empty stomach if acidic"],
+    benefits: ["Powerful immunity booster", "Anti-inflammatory", "Antioxidant rich"],
+    related_diseases: ["immunity", "cold-prevention", "flu-prevention"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-75",
+    problem: "Weight Loss",
+    title: "Warm Lemon Honey Water",
+    ingredients: [
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Fresh lemon juice", quantity: "2 tablespoons" },
+      { name: "Raw honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm water (not boiling)",
+      "Add fresh lemon juice",
+      "Mix in honey",
+      "Drink first thing in morning on empty stomach"
+    ],
+    how_often: "Daily morning before breakfast",
+    precautions: ["May erode enamel - use straw", "Rinse mouth after"],
+    benefits: ["Boosts metabolism", "Aids digestion", "Detoxifying"],
+    related_diseases: ["weight-loss", "obesity", "metabolism"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-76",
+    problem: "Indigestion",
+    title: "Ginger Mint Digestive Tea",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch" },
+      { name: "Fresh mint leaves", quantity: "10" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Lemon", quantity: "1 wedge" }
+    ],
+    method: [
+      "Slice ginger thinly",
+      "Boil water with ginger for 5 minutes",
+      "Add mint leaves and steep 3 minutes",
+      "Strain, squeeze lemon and drink"
+    ],
+    how_often: "After heavy meals",
+    precautions: ["May aggravate acid reflux in some", "Reduce ginger if too strong"],
+    benefits: ["Settles stomach", "Reduces bloating", "Freshens breath"],
+    related_diseases: ["indigestion", "bloating", "heaviness"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-77",
+    problem: "Diarrhea",
+    title: "Pomegranate Peel Tea",
+    ingredients: [
+      { name: "Dried pomegranate peel", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Honey", quantity: "½ teaspoon" }
+    ],
+    method: [
+      "Boil water with dried peels",
+      "Simmer for 10 minutes",
+      "Strain and add honey when warm",
+      "Drink slowly"
+    ],
+    how_often: "2-3 times daily during diarrhea",
+    precautions: ["Ensure peels are organic", "Stay hydrated"],
+    benefits: ["Astringent action", "Reduces loose motions", "Rich in tannins"],
+    related_diseases: ["diarrhea", "loose-motions", "stomach-upset"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-78",
+    problem: "Joint Pain",
+    title: "Epsom Salt Soak",
+    ingredients: [
+      { name: "Epsom salt", quantity: "2 cups" },
+      { name: "Warm water", quantity: "Bathtub or bucket full" },
+      { name: "Lavender oil (optional)", quantity: "5 drops" }
+    ],
+    method: [
+      "Fill tub or bucket with warm water",
+      "Add Epsom salt and stir to dissolve",
+      "Add lavender oil if using",
+      "Soak affected joints for 20-30 minutes"
+    ],
+    how_often: "3-4 times weekly",
+    precautions: ["Not for diabetics with wounds", "Don't use in very hot water"],
+    benefits: ["Magnesium absorption", "Reduces inflammation", "Relaxes muscles"],
+    related_diseases: ["joint-pain", "arthritis", "muscle-soreness"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "us"
+  },
+  {
+    id: "kitchen-79",
+    problem: "Back Pain",
+    title: "Hot Rice Pack Compress",
+    ingredients: [
+      { name: "Uncooked rice", quantity: "2 cups" },
+      { name: "Clean cotton sock", quantity: "1 long sock" },
+      { name: "Essential oil (optional)", quantity: "Few drops" }
+    ],
+    method: [
+      "Fill sock with rice (add oils if using)",
+      "Tie end securely",
+      "Microwave for 2-3 minutes",
+      "Apply to back for 15-20 minutes"
+    ],
+    how_often: "As needed for pain",
+    precautions: ["Test temperature first", "Don't overheat"],
+    benefits: ["Deep heat therapy", "Relaxes tight muscles", "Reusable"],
+    related_diseases: ["back-pain", "muscle-pain", "stiffness"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-80",
+    problem: "Menstrual Cramps",
+    title: "Carom Jaggery Tea",
+    ingredients: [
+      { name: "Ajwain (carom seeds)", quantity: "1 teaspoon" },
+      { name: "Jaggery", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Boil water with ajwain",
+      "Simmer for 5 minutes",
+      "Strain and add jaggery",
+      "Drink warm when cramps start"
+    ],
+    how_often: "2-3 times during menstruation",
+    precautions: ["May increase flow slightly", "Avoid if bleeding is heavy"],
+    benefits: ["Relieves uterine cramps", "Warming effect", "Iron from jaggery"],
+    related_diseases: ["menstrual-cramps", "period-pain", "dysmenorrhea"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-81",
+    problem: "Sunburn",
+    title: "Aloe Cucumber Cooling Gel",
+    ingredients: [
+      { name: "Fresh aloe vera gel", quantity: "3 tablespoons" },
+      { name: "Cucumber juice", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Extract fresh aloe gel",
+      "Blend cucumber and strain juice",
+      "Mix together",
+      "Apply generously on sunburned areas",
+      "Store excess in refrigerator"
+    ],
+    how_often: "Every 2-3 hours on sunburn",
+    precautions: ["Test for allergies first", "Keep refrigerated"],
+    benefits: ["Instant cooling", "Promotes healing", "Reduces redness"],
+    related_diseases: ["sunburn", "skin-burn", "sun-damage"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-82",
+    problem: "Cracked Heels",
+    title: "Coconut Oil Honey Foot Mask",
+    ingredients: [
+      { name: "Coconut oil", quantity: "2 tablespoons" },
+      { name: "Honey", quantity: "1 tablespoon" },
+      { name: "Banana (ripe)", quantity: "Half" }
+    ],
+    method: [
+      "Mash banana well",
+      "Mix with coconut oil and honey",
+      "Apply thick layer on heels",
+      "Cover with socks overnight",
+      "Wash in morning"
+    ],
+    how_often: "3 times weekly",
+    precautions: ["Use old socks", "May be slippery"],
+    benefits: ["Deep moisturizing", "Heals cracks", "Softens calluses"],
+    related_diseases: ["cracked-heels", "dry-feet", "rough-heels"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-83",
+    problem: "Hiccups",
+    title: "Sugar Under Tongue",
+    ingredients: [
+      { name: "Granulated sugar", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Place sugar under tongue",
+      "Let it dissolve slowly",
+      "Don't swallow immediately",
+      "Allow to stimulate vagus nerve"
+    ],
+    how_often: "When hiccups occur",
+    precautions: ["Diabetics avoid", "Use sparingly"],
+    benefits: ["Stops hiccups quickly", "Stimulates nerve reflex", "Safe and easy"],
+    related_diseases: ["hiccups"],
+    difficulty: "Easy",
+    preparation_time: "1 minute",
+    region: "global"
+  },
+  {
+    id: "kitchen-84",
+    problem: "Motion Sickness",
+    title: "Ginger Lemon Travel Remedy",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "Small piece" },
+      { name: "Lemon", quantity: "Few slices" },
+      { name: "Mint leaves", quantity: "Few" }
+    ],
+    method: [
+      "Slice ginger thinly",
+      "Pack with lemon slices and mint",
+      "Chew ginger when nausea starts",
+      "Smell lemon for relief"
+    ],
+    how_often: "Before and during travel",
+    precautions: ["May cause heartburn if too much", "Keep handy while traveling"],
+    benefits: ["Prevents nausea", "Settles stomach", "Refreshing"],
+    related_diseases: ["motion-sickness", "travel-sickness", "nausea"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-85",
+    problem: "Hangover",
+    title: "Coconut Water Lemon Rehydrator",
+    ingredients: [
+      { name: "Fresh coconut water", quantity: "2 cups" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Salt", quantity: "A pinch" }
+    ],
+    method: [
+      "Mix coconut water with lemon juice",
+      "Add honey and salt",
+      "Stir well and drink slowly"
+    ],
+    how_often: "Morning after drinking",
+    precautions: ["Don't rush drinking", "Rest adequately"],
+    benefits: ["Rehydrates quickly", "Replaces electrolytes", "Reduces headache"],
+    related_diseases: ["hangover", "dehydration", "nausea"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-86",
+    problem: "Minor Burns",
+    title: "Honey Aloe Burn Treatment",
+    ingredients: [
+      { name: "Raw honey", quantity: "1 tablespoon" },
+      { name: "Fresh aloe vera gel", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Cool burn under running water first",
+      "Mix honey and aloe gel",
+      "Apply gently on burn",
+      "Cover loosely with clean cloth"
+    ],
+    how_often: "Apply 2-3 times daily",
+    precautions: ["For minor burns only", "Seek medical help for serious burns"],
+    benefits: ["Antibacterial", "Promotes healing", "Reduces pain"],
+    related_diseases: ["minor-burns", "kitchen-burns", "first-degree-burns"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-87",
+    problem: "Bee Sting",
+    title: "Baking Soda Paste",
+    ingredients: [
+      { name: "Baking soda", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "Few drops" }
+    ],
+    method: [
+      "Remove stinger if present",
+      "Make thick paste with baking soda and water",
+      "Apply on sting site",
+      "Leave for 15-20 minutes"
+    ],
+    how_often: "Once after sting, repeat if needed",
+    precautions: ["Seek help if allergic reaction occurs", "Monitor for swelling"],
+    benefits: ["Neutralizes venom", "Reduces pain", "Decreases swelling"],
+    related_diseases: ["bee-sting", "insect-bite", "swelling"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-88",
+    problem: "Bruises",
+    title: "Turmeric Ghee Healing Paste",
+    ingredients: [
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Ghee", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix turmeric with warm ghee",
+      "Apply on bruise area",
+      "Leave for 30 minutes",
+      "Wipe clean gently"
+    ],
+    how_often: "2-3 times daily",
+    precautions: ["May stain skin/clothes", "Avoid on open wounds"],
+    benefits: ["Reduces discoloration", "Anti-inflammatory", "Speeds healing"],
+    related_diseases: ["bruises", "contusions", "minor-injuries"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-89",
+    problem: "Chest Congestion",
+    title: "Eucalyptus Steam Inhalation",
+    ingredients: [
+      { name: "Hot water", quantity: "1 bowl" },
+      { name: "Eucalyptus oil", quantity: "3-5 drops" }
+    ],
+    method: [
+      "Boil water and pour in bowl",
+      "Add eucalyptus oil",
+      "Lean over bowl with towel over head",
+      "Inhale steam for 10-15 minutes"
+    ],
+    how_often: "2-3 times daily during congestion",
+    precautions: ["Keep eyes closed", "Careful with hot water"],
+    benefits: ["Opens airways", "Loosens phlegm", "Antibacterial"],
+    related_diseases: ["chest-congestion", "bronchitis", "cold"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-90",
+    problem: "Runny Nose",
+    title: "Black Pepper Honey Remedy",
+    ingredients: [
+      { name: "Black pepper powder", quantity: "½ teaspoon" },
+      { name: "Honey", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Mix pepper powder with honey",
+      "Take this mixture slowly",
+      "Let it coat the throat",
+      "Follow with warm water"
+    ],
+    how_often: "2-3 times daily",
+    precautions: ["May cause sneezing initially", "Reduce pepper if too spicy"],
+    benefits: ["Dries runny nose", "Clears sinuses", "Warms body"],
+    related_diseases: ["runny-nose", "cold", "sinus"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-91",
+    problem: "Allergies",
+    title: "Local Honey Daily Dose",
+    ingredients: [
+      { name: "Local raw honey", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Take 1 tablespoon of local raw honey",
+      "Let it dissolve in mouth slowly",
+      "Don't heat or mix with hot drinks",
+      "Best taken on empty stomach"
+    ],
+    how_often: "Daily, starting 2 months before allergy season",
+    precautions: ["Must be local honey", "Not for children under 1"],
+    benefits: ["Builds allergy resistance", "Natural antihistamine effect", "Soothes throat"],
+    related_diseases: ["allergies", "seasonal-allergies", "hay-fever"],
+    difficulty: "Easy",
+    preparation_time: "1 minute",
+    region: "global"
+  },
+  {
+    id: "kitchen-92",
+    problem: "Vertigo",
+    title: "Ginger Lemon Vertigo Tea",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch" },
+      { name: "Lemon", quantity: "Half" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Grate ginger and boil in water",
+      "Simmer for 5 minutes",
+      "Strain and add lemon juice",
+      "Add honey and sip slowly"
+    ],
+    how_often: "When experiencing vertigo symptoms",
+    precautions: ["Sit down while drinking", "Consult doctor for recurring vertigo"],
+    benefits: ["Reduces dizziness", "Settles inner ear", "Calming"],
+    related_diseases: ["vertigo", "dizziness", "balance-issues"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-93",
+    problem: "Food Poisoning",
+    title: "Apple Cider Vinegar Recovery",
+    ingredients: [
+      { name: "Apple cider vinegar", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix ACV with warm water",
+      "Add honey to taste",
+      "Sip slowly throughout the day",
+      "Stay hydrated"
+    ],
+    how_often: "2-3 times daily until recovery",
+    precautions: ["Seek medical help if severe", "Stay hydrated"],
+    benefits: ["Antibacterial action", "Settles stomach", "Speeds recovery"],
+    related_diseases: ["food-poisoning", "stomach-bug", "nausea"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "us"
+  },
+  {
+    id: "kitchen-94",
+    problem: "Intestinal Worms",
+    title: "Papaya Seeds Morning Treatment",
+    ingredients: [
+      { name: "Papaya seeds (dried and ground)", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Dry papaya seeds in sun for 2 days",
+      "Grind to powder",
+      "Mix with honey",
+      "Take on empty stomach"
+    ],
+    how_often: "Once daily for 7 days",
+    precautions: ["May cause loose stools", "Not during pregnancy"],
+    benefits: ["Natural dewormer", "Anti-parasitic", "Digestive health"],
+    related_diseases: ["intestinal-worms", "parasites", "worm-infection"],
+    difficulty: "Medium",
+    preparation_time: "2 days for drying",
+    region: "global"
+  },
+  {
+    id: "kitchen-95",
+    problem: "Dehydration",
+    title: "Oral Rehydration Drink",
+    ingredients: [
+      { name: "Water (clean)", quantity: "1 liter" },
+      { name: "Sugar", quantity: "6 teaspoons" },
+      { name: "Salt", quantity: "½ teaspoon" },
+      { name: "Lemon juice (optional)", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Boil and cool water if unsure of purity",
+      "Add sugar and salt",
+      "Stir until completely dissolved",
+      "Add lemon for taste",
+      "Sip throughout the day"
+    ],
+    how_often: "Throughout day, especially after illness",
+    precautions: ["Use exact measurements", "Seek help if severe dehydration"],
+    benefits: ["Replaces lost fluids", "Restores electrolytes", "Prevents weakness"],
+    related_diseases: ["dehydration", "diarrhea", "vomiting"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-96",
+    problem: "Leg Cramps",
+    title: "Pickle Juice Quick Relief",
+    ingredients: [
+      { name: "Pickle juice", quantity: "2-3 tablespoons" }
+    ],
+    method: [
+      "Take 2-3 tablespoons of pickle juice",
+      "Drink quickly at onset of cramp",
+      "Follow with water"
+    ],
+    how_often: "When cramps occur",
+    precautions: ["High in sodium", "Not for those on low-salt diet"],
+    benefits: ["Fast cramp relief", "Electrolyte boost", "Nerve signaling"],
+    related_diseases: ["leg-cramps", "muscle-cramps", "night-cramps"],
+    difficulty: "Easy",
+    preparation_time: "1 minute",
+    region: "us"
+  },
+  {
+    id: "kitchen-97",
+    problem: "Ear Infection",
+    title: "Garlic Oil Ear Drops",
+    ingredients: [
+      { name: "Garlic cloves", quantity: "2" },
+      { name: "Olive oil", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Crush garlic and add to oil",
+      "Heat gently for 5 minutes (don't burn)",
+      "Strain and cool to room temperature",
+      "Put 2-3 drops in affected ear",
+      "Keep head tilted for 5 minutes"
+    ],
+    how_often: "2-3 times daily",
+    precautions: ["Test temperature first", "Don't use if eardrum is perforated", "Consult doctor if no improvement"],
+    benefits: ["Antibacterial", "Reduces pain", "Natural antibiotic"],
+    related_diseases: ["ear-infection", "ear-pain", "otitis"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "kitchen-98",
+    problem: "Weak Eyesight",
+    title: "Carrot Beetroot Eye Juice",
+    ingredients: [
+      { name: "Carrots", quantity: "2 medium" },
+      { name: "Beetroot", quantity: "Small piece" },
+      { name: "Amla (Indian gooseberry)", quantity: "1" }
+    ],
+    method: [
+      "Juice all ingredients together",
+      "Drink fresh immediately",
+      "Best taken in morning"
+    ],
+    how_often: "Daily for at least 3 months",
+    precautions: ["May turn urine/stool pinkish from beet", "Fresh juice only"],
+    benefits: ["Rich in Vitamin A", "Antioxidants", "Improves vision over time"],
+    related_diseases: ["weak-eyesight", "night-blindness", "eye-health"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-99",
+    problem: "Chapped Lips",
+    title: "Ghee Honey Lip Balm",
+    ingredients: [
+      { name: "Ghee", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "½ teaspoon" }
+    ],
+    method: [
+      "Mix ghee and honey well",
+      "Apply thick layer on lips",
+      "Leave overnight",
+      "Gently wipe in morning"
+    ],
+    how_often: "Every night before bed",
+    precautions: ["Don't lick lips frequently", "Store in small container"],
+    benefits: ["Deep moisturizing", "Heals cracks", "Natural and safe"],
+    related_diseases: ["chapped-lips", "dry-lips", "cracked-lips"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes",
+    region: "india"
+  },
+  {
+    id: "kitchen-100",
+    problem: "Piles",
+    title: "Radish Juice Remedy",
+    ingredients: [
+      { name: "White radish", quantity: "1 medium" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Grate radish and extract juice",
+      "Add honey to taste",
+      "Drink on empty stomach"
+    ],
+    how_often: "Twice daily - morning and evening",
+    precautions: ["May cause gas initially", "Start with small amount"],
+    benefits: ["Reduces pile inflammation", "Natural cooling", "Aids digestion"],
+    related_diseases: ["piles", "hemorrhoids", "constipation"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
   }
 ];
 
