@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { remedies, remedyCategories, getRemedyRegion } from "@/data/remedies";
-import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin } from "lucide-react";
+import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin, ChefHat, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -14,6 +14,13 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage, Region } from "@/contexts/LanguageContext";
+
+// Kitchen remedies - quick access items with simple ingredients
+const kitchenRemedyIds = [
+  "kitchen-51", "kitchen-52", "kitchen-53", "kitchen-55", "kitchen-56",
+  "kitchen-57", "kitchen-58", "kitchen-74", "kitchen-75", "kitchen-76",
+  "kitchen-83", "kitchen-84", "kitchen-85", "kitchen-90", "kitchen-91"
+];
 import { getRegionName } from "@/hooks/useGeoLocation";
 
 // SEO JSON-LD structured data hook
@@ -297,6 +304,11 @@ const Remedies = () => {
     return counts;
   }, []);
 
+  // Get kitchen remedies for quick access section
+  const kitchenRemedies = useMemo(() => {
+    return remedies.filter(r => kitchenRemedyIds.includes(r.id) || r.id.startsWith('kitchen-')).slice(0, 12);
+  }, []);
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
@@ -326,6 +338,53 @@ const Remedies = () => {
               : (language === "hi" ? "सभी उपचार दिखाएं" : "Show all remedies")}
           </button>
         </div>
+
+        {/* Quick Kitchen Remedies Section */}
+        <section className="mb-10 bg-gradient-to-r from-secondary/10 via-primary/5 to-secondary/10 rounded-2xl p-6 border border-secondary/20">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 bg-secondary/20 rounded-xl">
+                <ChefHat className="h-6 w-6 text-secondary" />
+              </div>
+              <div>
+                <h2 className="font-display text-xl font-semibold text-foreground">
+                  {language === "hi" ? "🍳 झटपट रसोई उपचार" : "🍳 Quick Kitchen Remedies"}
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  {language === "hi" ? "घर में उपलब्ध सामग्री से तुरंत राहत" : "Instant relief with ingredients already in your kitchen"}
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {kitchenRemedies.map((remedy) => (
+              <LocalizedLink
+                key={remedy.id}
+                to={`/remedies/${remedy.id}`}
+                className="group bg-card hover:bg-card/80 rounded-xl p-4 border border-border hover:border-secondary/50 hover:shadow-md transition-all"
+              >
+                <div className="flex items-start justify-between mb-2">
+                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5">
+                    {remedy.problem}
+                  </Badge>
+                  <Clock className="h-3.5 w-3.5 text-muted-foreground" />
+                </div>
+                <h3 className="font-medium text-sm mb-1.5 group-hover:text-primary transition-colors line-clamp-2">
+                  {remedy.title}
+                </h3>
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <Leaf className="h-3 w-3 text-secondary" />
+                  <span className="truncate">{remedy.ingredients.slice(0, 2).map(i => i.name).join(", ")}</span>
+                </div>
+                <div className="mt-2 text-[10px] text-muted-foreground flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  {remedy.preparation_time}
+                </div>
+              </LocalizedLink>
+            ))}
+          </div>
+        </section>
 
         {/* Category Group Tabs */}
         <Tabs 
