@@ -13395,6 +13395,1222 @@ export const remedies: Remedy[] = [
     difficulty: "Easy",
     preparation_time: "5 minutes",
     region: "india"
+  },
+  // NEW DISEASE REMEDIES (disease-151 to disease-200)
+  {
+    id: "disease-151",
+    problem: "Bronchitis",
+    title: "Honey Ginger Mullein Tea",
+    ingredients: [
+      { name: "Mullein leaves", quantity: "1 tablespoon" },
+      { name: "Fresh ginger", quantity: "1 inch piece" },
+      { name: "Honey", quantity: "2 teaspoons" },
+      { name: "Hot water", quantity: "1.5 cups" }
+    ],
+    method: [
+      "Steep mullein leaves and sliced ginger in hot water",
+      "Cover and let infuse for 10-15 minutes",
+      "Strain and add honey",
+      "Drink warm while breathing in the steam"
+    ],
+    how_often: "3 times daily during bronchitis",
+    precautions: ["Not for children under 2", "Consult doctor if symptoms persist"],
+    benefits: ["Soothes bronchial passages", "Expectorant action", "Reduces inflammation"],
+    related_diseases: ["bronchitis", "respiratory-infection", "chest-congestion"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-152",
+    problem: "Gout",
+    title: "Cherry Celery Seed Tonic",
+    ingredients: [
+      { name: "Tart cherry juice", quantity: "1 cup" },
+      { name: "Celery seeds", quantity: "½ teaspoon" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "½ cup" }
+    ],
+    method: [
+      "Crush celery seeds lightly",
+      "Mix cherry juice with water",
+      "Add celery seeds and lemon",
+      "Drink immediately or refrigerate"
+    ],
+    how_often: "Twice daily during flare-ups",
+    precautions: ["May interact with blood thinners", "Check with doctor if on medication"],
+    benefits: ["Reduces uric acid", "Anti-inflammatory", "Pain relief"],
+    related_diseases: ["gout", "uric-acid", "joint-inflammation"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-153",
+    problem: "Sciatica",
+    title: "Warm Sesame Oil Massage Blend",
+    ingredients: [
+      { name: "Sesame oil", quantity: "¼ cup" },
+      { name: "Camphor", quantity: "Small piece" },
+      { name: "Ajwain (carom seeds)", quantity: "1 teaspoon" },
+      { name: "Garlic cloves", quantity: "2" }
+    ],
+    method: [
+      "Heat sesame oil on low flame",
+      "Add crushed garlic and ajwain",
+      "Cook until garlic turns light brown",
+      "Add camphor and let dissolve",
+      "Strain and massage on lower back and leg"
+    ],
+    how_often: "Daily before bed",
+    precautions: ["Avoid on broken skin", "Test for allergies first"],
+    benefits: ["Reduces nerve pain", "Improves circulation", "Muscle relaxation"],
+    related_diseases: ["sciatica", "lower-back-pain", "nerve-pain"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-154",
+    problem: "Eczema",
+    title: "Oatmeal Coconut Oil Skin Paste",
+    ingredients: [
+      { name: "Colloidal oatmeal", quantity: "2 tablespoons" },
+      { name: "Virgin coconut oil", quantity: "1 tablespoon" },
+      { name: "Raw honey", quantity: "1 teaspoon" },
+      { name: "Aloe vera gel", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Mix colloidal oatmeal with coconut oil",
+      "Add honey and aloe vera gel",
+      "Blend into smooth paste",
+      "Apply to affected areas",
+      "Leave for 20 minutes and rinse"
+    ],
+    how_often: "Daily or as needed",
+    precautions: ["Patch test first", "Stop if irritation occurs"],
+    benefits: ["Soothes itching", "Moisturizes skin", "Reduces inflammation"],
+    related_diseases: ["eczema", "dermatitis", "dry-skin-patches"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-155",
+    problem: "Psoriasis",
+    title: "Neem Turmeric Healing Paste",
+    ingredients: [
+      { name: "Neem leaves paste", quantity: "2 tablespoons" },
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Coconut oil", quantity: "1 tablespoon" },
+      { name: "Tea tree oil", quantity: "3 drops" }
+    ],
+    method: [
+      "Grind fresh neem leaves into paste",
+      "Mix with turmeric and coconut oil",
+      "Add tea tree oil drops",
+      "Apply on patches",
+      "Leave for 30 minutes before washing"
+    ],
+    how_often: "Once daily",
+    precautions: ["Turmeric may stain skin temporarily", "Avoid open wounds"],
+    benefits: ["Antibacterial", "Reduces scaling", "Calms inflammation"],
+    related_diseases: ["psoriasis", "scalp-psoriasis", "skin-plaques"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-156",
+    problem: "Osteoporosis",
+    title: "Sesame Seed Calcium Ladoo",
+    ingredients: [
+      { name: "White sesame seeds", quantity: "1 cup" },
+      { name: "Jaggery", quantity: "½ cup" },
+      { name: "Ghee", quantity: "2 tablespoons" },
+      { name: "Cardamom powder", quantity: "¼ teaspoon" }
+    ],
+    method: [
+      "Dry roast sesame seeds until golden",
+      "Melt jaggery with ghee on low heat",
+      "Mix roasted sesame and cardamom",
+      "Shape into small balls while warm",
+      "Store in airtight container"
+    ],
+    how_often: "1-2 ladoos daily",
+    precautions: ["High in calories", "Diabetics limit jaggery"],
+    benefits: ["Rich in calcium", "Strengthens bones", "Iron supplement"],
+    related_diseases: ["osteoporosis", "weak-bones", "calcium-deficiency"],
+    difficulty: "Medium",
+    preparation_time: "25 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-157",
+    problem: "IBS (Irritable Bowel)",
+    title: "Peppermint Fennel Digestive Tea",
+    ingredients: [
+      { name: "Peppermint leaves", quantity: "1 tablespoon" },
+      { name: "Fennel seeds", quantity: "1 teaspoon" },
+      { name: "Ginger slice", quantity: "1 small" },
+      { name: "Hot water", quantity: "1.5 cups" }
+    ],
+    method: [
+      "Lightly crush fennel seeds",
+      "Add all ingredients to hot water",
+      "Steep covered for 10 minutes",
+      "Strain and sip slowly",
+      "Drink 30 minutes before meals"
+    ],
+    how_often: "2-3 times daily",
+    precautions: ["Avoid if GERD present", "May not suit all IBS types"],
+    benefits: ["Reduces bloating", "Calms intestinal spasms", "Aids digestion"],
+    related_diseases: ["ibs", "digestive-issues", "intestinal-discomfort"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-158",
+    problem: "Depression Support",
+    title: "Ashwagandha Brahmi Mood Tonic",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "½ teaspoon" },
+      { name: "Brahmi powder", quantity: "¼ teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm milk on low heat",
+      "Add ashwagandha and brahmi powders",
+      "Stir well and simmer 2 minutes",
+      "Remove from heat and add honey",
+      "Drink before bed"
+    ],
+    how_often: "Daily at bedtime",
+    precautions: ["Consult doctor if on antidepressants", "Not during pregnancy"],
+    benefits: ["Adaptogenic support", "Calms mind", "Improves sleep quality"],
+    related_diseases: ["depression", "low-mood", "mental-fatigue"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-159",
+    problem: "Panic Attacks",
+    title: "Lavender Chamomile Calming Blend",
+    ingredients: [
+      { name: "Dried chamomile", quantity: "1 tablespoon" },
+      { name: "Lavender buds", quantity: "1 teaspoon" },
+      { name: "Lemon balm", quantity: "1 teaspoon" },
+      { name: "Hot water", quantity: "1.5 cups" }
+    ],
+    method: [
+      "Combine all herbs in a teapot",
+      "Pour hot water over herbs",
+      "Steep covered for 10 minutes",
+      "Strain and inhale aroma while sipping",
+      "Drink slowly"
+    ],
+    how_often: "As needed during anxiety",
+    precautions: ["May cause drowsiness", "Avoid driving after"],
+    benefits: ["Calms nervous system", "Reduces anxiety", "Promotes relaxation"],
+    related_diseases: ["panic-attacks", "anxiety", "nervousness"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-160",
+    problem: "Focus & Concentration",
+    title: "Brahmi Shankhpushpi Memory Drink",
+    ingredients: [
+      { name: "Brahmi powder", quantity: "½ teaspoon" },
+      { name: "Shankhpushpi powder", quantity: "¼ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix brahmi and shankhpushpi in warm water",
+      "Stir well until dissolved",
+      "Add honey and mix",
+      "Drink in the morning"
+    ],
+    how_often: "Daily in morning",
+    precautions: ["Start with small dose", "Not for children under 5"],
+    benefits: ["Enhances memory", "Improves concentration", "Brain tonic"],
+    related_diseases: ["poor-focus", "memory-issues", "mental-clarity"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-161",
+    problem: "Night Blindness",
+    title: "Carrot Ghee Eye Nutrition",
+    ingredients: [
+      { name: "Fresh carrot juice", quantity: "1 cup" },
+      { name: "Pure ghee", quantity: "1 teaspoon" },
+      { name: "Black pepper", quantity: "A pinch" }
+    ],
+    method: [
+      "Extract fresh carrot juice",
+      "Warm slightly and add ghee",
+      "Add a pinch of black pepper",
+      "Drink on empty stomach"
+    ],
+    how_often: "Daily in morning",
+    precautions: ["Excess may cause skin yellowing", "Moderate intake"],
+    benefits: ["Rich in Vitamin A", "Improves night vision", "Eye nourishment"],
+    related_diseases: ["night-blindness", "weak-vision", "eye-health"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-162",
+    problem: "Gum Disease",
+    title: "Clove Salt Gum Massage",
+    ingredients: [
+      { name: "Clove oil", quantity: "5 drops" },
+      { name: "Rock salt", quantity: "½ teaspoon" },
+      { name: "Mustard oil", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix clove oil with mustard oil",
+      "Add rock salt and blend",
+      "Massage gently on gums with finger",
+      "Leave for 5 minutes",
+      "Rinse with warm water"
+    ],
+    how_often: "Twice daily",
+    precautions: ["Avoid swallowing", "Stop if burning sensation"],
+    benefits: ["Antibacterial", "Strengthens gums", "Reduces bleeding"],
+    related_diseases: ["gum-disease", "gingivitis", "bleeding-gums"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-163",
+    problem: "Tooth Sensitivity",
+    title: "Sesame Oil Pulling Therapy",
+    ingredients: [
+      { name: "Cold-pressed sesame oil", quantity: "1 tablespoon" },
+      { name: "Clove oil", quantity: "1 drop (optional)" }
+    ],
+    method: [
+      "Take oil in mouth on empty stomach",
+      "Swish around teeth for 15-20 minutes",
+      "Do not swallow",
+      "Spit out and rinse with warm salt water",
+      "Brush teeth normally"
+    ],
+    how_often: "Daily in morning",
+    precautions: ["Never swallow the oil", "Do not gargle"],
+    benefits: ["Reduces sensitivity", "Strengthens enamel", "Detoxifies mouth"],
+    related_diseases: ["tooth-sensitivity", "oral-health", "enamel-weakness"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-164",
+    problem: "Premature Greying",
+    title: "Amla Bhringraj Hair Oil",
+    ingredients: [
+      { name: "Coconut oil", quantity: "1 cup" },
+      { name: "Amla powder", quantity: "2 tablespoons" },
+      { name: "Bhringraj powder", quantity: "1 tablespoon" },
+      { name: "Curry leaves", quantity: "10-15" }
+    ],
+    method: [
+      "Heat coconut oil on low flame",
+      "Add amla and bhringraj powders",
+      "Add curry leaves",
+      "Simmer for 15 minutes",
+      "Cool, strain, and store in dark bottle"
+    ],
+    how_often: "Apply 2-3 times weekly",
+    precautions: ["Patch test first", "May darken hair over time"],
+    benefits: ["Prevents greying", "Nourishes roots", "Promotes melanin"],
+    related_diseases: ["grey-hair", "premature-greying", "hair-pigment"],
+    difficulty: "Medium",
+    preparation_time: "30 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-165",
+    problem: "Dry & Frizzy Hair",
+    title: "Banana Avocado Hair Mask",
+    ingredients: [
+      { name: "Ripe banana", quantity: "1" },
+      { name: "Ripe avocado", quantity: "½" },
+      { name: "Olive oil", quantity: "2 tablespoons" },
+      { name: "Honey", quantity: "1 tablespoon" }
+    ],
+    method: [
+      "Mash banana and avocado together",
+      "Add olive oil and honey",
+      "Blend until smooth paste",
+      "Apply to damp hair",
+      "Leave 30 minutes and rinse"
+    ],
+    how_often: "Once weekly",
+    precautions: ["Rinse thoroughly to avoid residue", "Use mild shampoo after"],
+    benefits: ["Deep conditioning", "Reduces frizz", "Adds shine"],
+    related_diseases: ["dry-hair", "frizzy-hair", "damaged-hair"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-166",
+    problem: "Scalp Infection",
+    title: "Tea Tree Neem Scalp Treatment",
+    ingredients: [
+      { name: "Neem oil", quantity: "2 tablespoons" },
+      { name: "Tea tree oil", quantity: "10 drops" },
+      { name: "Coconut oil", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Mix all oils together",
+      "Part hair and apply directly to scalp",
+      "Massage gently for 5 minutes",
+      "Leave for 1 hour or overnight",
+      "Wash with mild shampoo"
+    ],
+    how_often: "2-3 times weekly",
+    precautions: ["Dilute tea tree properly", "Avoid eyes"],
+    benefits: ["Antifungal", "Antibacterial", "Soothes scalp"],
+    related_diseases: ["scalp-infection", "fungal-scalp", "itchy-scalp"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-167",
+    problem: "Hypothyroidism Support",
+    title: "Ashwagandha Thyroid Tonic",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "½ teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Ghee", quantity: "½ teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm milk on low heat",
+      "Add ashwagandha powder and ghee",
+      "Stir and simmer 2 minutes",
+      "Cool slightly and add honey",
+      "Drink at night"
+    ],
+    how_often: "Daily at bedtime",
+    precautions: ["Consult doctor if on thyroid medication", "Monitor thyroid levels"],
+    benefits: ["Supports thyroid function", "Reduces stress", "Boosts metabolism"],
+    related_diseases: ["hypothyroidism", "underactive-thyroid", "low-thyroid"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-168",
+    problem: "Hyperthyroidism Support",
+    title: "Lemon Balm Bugleweed Tea",
+    ingredients: [
+      { name: "Lemon balm leaves", quantity: "1 tablespoon" },
+      { name: "Bugleweed", quantity: "1 teaspoon" },
+      { name: "Hot water", quantity: "1.5 cups" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Steep herbs in hot water",
+      "Cover and infuse 15 minutes",
+      "Strain and add honey",
+      "Drink warm"
+    ],
+    how_often: "1-2 times daily",
+    precautions: ["Consult doctor first", "Not with thyroid medications without guidance"],
+    benefits: ["May calm overactive thyroid", "Reduces anxiety", "Heart rate support"],
+    related_diseases: ["hyperthyroidism", "overactive-thyroid", "high-thyroid"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-169",
+    problem: "Frequent Infections",
+    title: "Giloy Tulsi Immunity Kadha",
+    ingredients: [
+      { name: "Giloy stem", quantity: "4-5 inches" },
+      { name: "Tulsi leaves", quantity: "10-12" },
+      { name: "Black pepper", quantity: "5-6" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Crush giloy and black pepper",
+      "Boil with tulsi in water",
+      "Reduce to 1 cup",
+      "Strain and add honey when warm",
+      "Drink fresh"
+    ],
+    how_often: "Daily in morning",
+    precautions: ["Not during pregnancy", "May lower blood sugar"],
+    benefits: ["Boosts immunity", "Fights infections", "Detoxifies blood"],
+    related_diseases: ["weak-immunity", "frequent-illness", "low-resistance"],
+    difficulty: "Medium",
+    preparation_time: "25 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-170",
+    problem: "Chronic Headache",
+    title: "Peppermint Lavender Head Massage Oil",
+    ingredients: [
+      { name: "Coconut oil", quantity: "2 tablespoons" },
+      { name: "Peppermint oil", quantity: "5 drops" },
+      { name: "Lavender oil", quantity: "5 drops" },
+      { name: "Eucalyptus oil", quantity: "3 drops" }
+    ],
+    method: [
+      "Mix all oils together",
+      "Warm slightly",
+      "Massage on temples and forehead",
+      "Apply to back of neck",
+      "Rest in dark room for 20 minutes"
+    ],
+    how_often: "As needed during headache",
+    precautions: ["Avoid eyes", "Patch test first"],
+    benefits: ["Cooling effect", "Relaxes muscles", "Eases tension"],
+    related_diseases: ["chronic-headache", "tension-headache", "migraine"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-171",
+    problem: "Fibromyalgia Support",
+    title: "Epsom Salt Lavender Bath Soak",
+    ingredients: [
+      { name: "Epsom salt", quantity: "2 cups" },
+      { name: "Lavender essential oil", quantity: "10 drops" },
+      { name: "Baking soda", quantity: "½ cup" },
+      { name: "Warm bath water", quantity: "Full tub" }
+    ],
+    method: [
+      "Fill bathtub with warm water",
+      "Add Epsom salt and baking soda",
+      "Mix in lavender oil",
+      "Soak for 20-30 minutes",
+      "Pat dry and rest"
+    ],
+    how_often: "2-3 times weekly",
+    precautions: ["Stay hydrated", "Avoid if heart condition"],
+    benefits: ["Muscle relaxation", "Magnesium absorption", "Pain relief"],
+    related_diseases: ["fibromyalgia", "muscle-pain", "chronic-pain"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-172",
+    problem: "Pre-Diabetes",
+    title: "Cinnamon Fenugreek Blood Sugar Tea",
+    ingredients: [
+      { name: "Fenugreek seeds", quantity: "1 teaspoon" },
+      { name: "Cinnamon stick", quantity: "1 small" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Lemon juice", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Soak fenugreek overnight in water",
+      "In morning, add cinnamon and boil",
+      "Simmer until reduced by half",
+      "Strain and add lemon",
+      "Drink warm on empty stomach"
+    ],
+    how_often: "Daily in morning",
+    precautions: ["Monitor blood sugar levels", "Inform doctor if on medication"],
+    benefits: ["Improves insulin sensitivity", "Lowers fasting glucose", "Metabolism support"],
+    related_diseases: ["pre-diabetes", "insulin-resistance", "borderline-diabetes"],
+    difficulty: "Easy",
+    preparation_time: "Overnight + 15 min",
+    region: "india"
+  },
+  {
+    id: "disease-173",
+    problem: "Wheezing",
+    title: "Honey Pepper Ginger Syrup",
+    ingredients: [
+      { name: "Raw honey", quantity: "2 tablespoons" },
+      { name: "Black pepper powder", quantity: "¼ teaspoon" },
+      { name: "Ginger juice", quantity: "1 teaspoon" },
+      { name: "Tulsi juice", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Extract fresh ginger and tulsi juice",
+      "Mix with honey",
+      "Add black pepper powder",
+      "Take directly or mix with warm water"
+    ],
+    how_often: "2-3 times daily",
+    precautions: ["Not for infants under 1 year", "Seek medical help if severe"],
+    benefits: ["Opens airways", "Reduces bronchial spasm", "Soothes throat"],
+    related_diseases: ["wheezing", "breathing-difficulty", "bronchospasm"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-174",
+    problem: "Nasal Congestion",
+    title: "Eucalyptus Steam Inhalation",
+    ingredients: [
+      { name: "Hot water", quantity: "1 large bowl" },
+      { name: "Eucalyptus oil", quantity: "5-7 drops" },
+      { name: "Peppermint oil", quantity: "3 drops" }
+    ],
+    method: [
+      "Boil water and pour in bowl",
+      "Add essential oils",
+      "Cover head with towel",
+      "Inhale steam for 10 minutes",
+      "Keep eyes closed"
+    ],
+    how_often: "2-3 times daily when congested",
+    precautions: ["Keep safe distance from hot water", "Not for asthmatics without guidance"],
+    benefits: ["Clears sinuses", "Opens nasal passages", "Reduces mucus"],
+    related_diseases: ["nasal-congestion", "blocked-nose", "sinus-congestion"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-175",
+    problem: "Computer Eye Strain",
+    title: "Rose Water Cucumber Eye Compress",
+    ingredients: [
+      { name: "Rose water", quantity: "2 tablespoons" },
+      { name: "Cucumber slices", quantity: "4 thin slices" },
+      { name: "Cotton pads", quantity: "2" }
+    ],
+    method: [
+      "Refrigerate cucumber slices and rose water",
+      "Soak cotton pads in rose water",
+      "Lie down and place cucumber on eyes",
+      "Put soaked cotton over cucumber",
+      "Relax for 15-20 minutes"
+    ],
+    how_often: "After long screen time",
+    precautions: ["Remove contact lenses first", "Use pure rose water only"],
+    benefits: ["Cools tired eyes", "Reduces puffiness", "Refreshes vision"],
+    related_diseases: ["eye-strain", "computer-vision", "digital-eye-fatigue"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-176",
+    problem: "Vitiligo Support",
+    title: "Babchi Coconut Oil Treatment",
+    ingredients: [
+      { name: "Babchi (Bakuchi) seeds", quantity: "2 tablespoons" },
+      { name: "Coconut oil", quantity: "1 cup" },
+      { name: "Turmeric powder", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Soak babchi seeds overnight",
+      "Grind into paste next morning",
+      "Heat coconut oil and add paste",
+      "Add turmeric and simmer 10 minutes",
+      "Strain and apply to white patches"
+    ],
+    how_often: "Daily application",
+    precautions: ["May cause sun sensitivity", "Apply sunscreen over it", "Consult dermatologist"],
+    benefits: ["Traditional vitiligo remedy", "May promote repigmentation", "Skin nourishment"],
+    related_diseases: ["vitiligo", "white-patches", "leucoderma"],
+    difficulty: "Medium",
+    preparation_time: "Overnight + 30 min",
+    region: "india"
+  },
+  {
+    id: "disease-177",
+    problem: "Ulcerative Colitis Support",
+    title: "Slippery Elm Soothing Drink",
+    ingredients: [
+      { name: "Slippery elm powder", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Cinnamon", quantity: "A pinch" }
+    ],
+    method: [
+      "Mix slippery elm powder with warm water",
+      "Stir well to avoid lumps",
+      "Add honey and cinnamon",
+      "Drink immediately before it thickens"
+    ],
+    how_often: "1-2 times daily between meals",
+    precautions: ["May interfere with medication absorption", "Take 2 hours apart from meds"],
+    benefits: ["Coats intestinal lining", "Reduces inflammation", "Soothes gut"],
+    related_diseases: ["ulcerative-colitis", "ibd", "gut-inflammation"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-178",
+    problem: "Poor Circulation",
+    title: "Cayenne Ginger Circulation Tonic",
+    ingredients: [
+      { name: "Cayenne pepper", quantity: "⅛ teaspoon" },
+      { name: "Fresh ginger juice", quantity: "1 teaspoon" },
+      { name: "Apple cider vinegar", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix cayenne and ginger juice in warm water",
+      "Add apple cider vinegar",
+      "Stir in honey",
+      "Drink slowly"
+    ],
+    how_often: "Once daily in morning",
+    precautions: ["Start with less cayenne", "Avoid if stomach ulcers"],
+    benefits: ["Improves blood flow", "Warms extremities", "Cardiovascular support"],
+    related_diseases: ["poor-circulation", "cold-hands-feet", "blood-flow"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-179",
+    problem: "Heart Disease",
+    title: "Arjuna Bark Heart Tonic",
+    ingredients: [
+      { name: "Arjuna bark powder", quantity: "1 teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm milk on low heat",
+      "Add arjuna bark powder",
+      "Stir and simmer 3 minutes",
+      "Strain if needed",
+      "Add honey when cooled slightly"
+    ],
+    how_often: "Twice daily",
+    precautions: ["Consult cardiologist", "Not a substitute for heart medication"],
+    benefits: ["Traditional heart tonic", "Supports cardiac function", "Antioxidant"],
+    related_diseases: ["heart-disease", "cardiac-weakness", "heart-health"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-180",
+    problem: "High Cholesterol",
+    title: "Garlic Honey Heart Elixir",
+    ingredients: [
+      { name: "Garlic cloves", quantity: "2-3" },
+      { name: "Raw honey", quantity: "1 tablespoon" },
+      { name: "Lemon juice", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "½ cup" }
+    ],
+    method: [
+      "Crush garlic and let sit 10 minutes",
+      "Mix with honey and lemon",
+      "Add warm water",
+      "Drink on empty stomach"
+    ],
+    how_often: "Daily in morning",
+    precautions: ["May interact with blood thinners", "Strong taste"],
+    benefits: ["Lowers LDL cholesterol", "Antioxidant", "Heart protective"],
+    related_diseases: ["high-cholesterol", "ldl-cholesterol", "lipid-profile"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-181",
+    problem: "Jaundice Support",
+    title: "Sugarcane Lemon Liver Drink",
+    ingredients: [
+      { name: "Fresh sugarcane juice", quantity: "1 cup" },
+      { name: "Lemon juice", quantity: "2 tablespoons" },
+      { name: "Ginger juice", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Extract fresh sugarcane juice",
+      "Add lemon and ginger juice",
+      "Mix well",
+      "Drink immediately while fresh"
+    ],
+    how_often: "2-3 times daily",
+    precautions: ["Ensure sugarcane is fresh", "Not for diabetics"],
+    benefits: ["Supports liver recovery", "Maintains glucose", "Hydration"],
+    related_diseases: ["jaundice", "liver-weakness", "bilirubin"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-182",
+    problem: "Kidney Health",
+    title: "Corn Silk Kidney Tea",
+    ingredients: [
+      { name: "Fresh corn silk", quantity: "2 tablespoons" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Lemon juice", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Wash corn silk thoroughly",
+      "Boil in water for 10 minutes",
+      "Strain the liquid",
+      "Add lemon and honey",
+      "Drink warm"
+    ],
+    how_often: "2-3 times daily",
+    precautions: ["Consult doctor if kidney disease", "May interact with diuretics"],
+    benefits: ["Natural diuretic", "Supports kidney function", "Reduces water retention"],
+    related_diseases: ["kidney-health", "water-retention", "kidney-support"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-183",
+    problem: "Metabolic Syndrome Support",
+    title: "ACV Cinnamon Metabolic Drink",
+    ingredients: [
+      { name: "Apple cider vinegar", quantity: "2 tablespoons" },
+      { name: "Cinnamon powder", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Raw honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix ACV and cinnamon in warm water",
+      "Add honey and stir well",
+      "Drink before meals"
+    ],
+    how_often: "Twice daily before meals",
+    precautions: ["May affect blood sugar", "Protect tooth enamel"],
+    benefits: ["Supports metabolism", "Blood sugar balance", "Weight management"],
+    related_diseases: ["metabolic-syndrome", "insulin-resistance", "obesity"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-184",
+    problem: "Tonsillitis (Children)",
+    title: "Warm Salt Turmeric Gargle",
+    ingredients: [
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Salt", quantity: "½ teaspoon" },
+      { name: "Turmeric powder", quantity: "¼ teaspoon" }
+    ],
+    method: [
+      "Dissolve salt and turmeric in warm water",
+      "Have child gargle (if old enough)",
+      "Spit out after 30 seconds",
+      "Repeat 3-4 times"
+    ],
+    how_often: "3-4 times daily",
+    precautions: ["Only for children who can gargle safely", "Not to be swallowed"],
+    benefits: ["Reduces tonsil inflammation", "Antibacterial", "Soothing"],
+    related_diseases: ["tonsillitis", "sore-throat", "throat-infection"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-185",
+    problem: "Height Growth (Children)",
+    title: "Ashwagandha Milk for Growth",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "¼ teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Almonds (crushed)", quantity: "3-4" }
+    ],
+    method: [
+      "Warm milk on low heat",
+      "Add ashwagandha and crushed almonds",
+      "Simmer 2 minutes",
+      "Cool and add honey",
+      "Give to child at bedtime"
+    ],
+    how_often: "Daily at bedtime",
+    precautions: ["Appropriate for children 8+", "Consult pediatrician"],
+    benefits: ["Supports growth hormones", "Bone strength", "Overall development"],
+    related_diseases: ["height-growth", "child-development", "growth-support"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-186",
+    problem: "Hiccups (Children)",
+    title: "Sugar Lemon Hiccup Remedy",
+    ingredients: [
+      { name: "Sugar", quantity: "1 teaspoon" },
+      { name: "Lemon juice", quantity: "3-4 drops" }
+    ],
+    method: [
+      "Mix lemon drops with sugar",
+      "Let child swallow slowly",
+      "Follow with sips of water"
+    ],
+    how_often: "Once when hiccups occur",
+    precautions: ["Not for infants", "Limit sugar intake"],
+    benefits: ["Stimulates vagus nerve", "Stops hiccup reflex", "Safe for children"],
+    related_diseases: ["hiccups", "persistent-hiccups"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-187",
+    problem: "Diarrhea (Children)",
+    title: "ORS with Pomegranate",
+    ingredients: [
+      { name: "Water (boiled & cooled)", quantity: "1 liter" },
+      { name: "Salt", quantity: "½ teaspoon" },
+      { name: "Sugar", quantity: "6 teaspoons" },
+      { name: "Pomegranate juice", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Dissolve salt and sugar in water",
+      "Add fresh pomegranate juice",
+      "Mix well",
+      "Give small sips frequently"
+    ],
+    how_often: "Throughout the day in small sips",
+    precautions: ["Seek medical help if severe", "Watch for dehydration signs"],
+    benefits: ["Prevents dehydration", "Replaces electrolytes", "Gentle on stomach"],
+    related_diseases: ["diarrhea", "loose-motions", "dehydration"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-188",
+    problem: "Memory Enhancement (Children)",
+    title: "Brahmi Almond Brain Milk",
+    ingredients: [
+      { name: "Brahmi powder", quantity: "¼ teaspoon" },
+      { name: "Almonds (soaked & peeled)", quantity: "5" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Grind soaked almonds to paste",
+      "Add to warm milk with brahmi",
+      "Mix well",
+      "Add honey when slightly cool",
+      "Give in morning"
+    ],
+    how_often: "Daily in morning",
+    precautions: ["Start with less brahmi", "For children 5+"],
+    benefits: ["Memory boost", "Concentration", "Brain development"],
+    related_diseases: ["memory", "focus", "learning-support"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-189",
+    problem: "Eye Infection (Children)",
+    title: "Rose Water Eye Wash",
+    ingredients: [
+      { name: "Pure rose water", quantity: "2 tablespoons" },
+      { name: "Distilled water", quantity: "2 tablespoons" },
+      { name: "Clean dropper", quantity: "1" }
+    ],
+    method: [
+      "Mix rose water with distilled water",
+      "Use clean dropper",
+      "Put 1-2 drops in each eye",
+      "Let child blink naturally"
+    ],
+    how_often: "2-3 times daily",
+    precautions: ["Use only pure rose water", "See doctor if no improvement"],
+    benefits: ["Soothes irritation", "Natural antiseptic", "Cooling effect"],
+    related_diseases: ["eye-infection", "pink-eye", "eye-irritation"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-190",
+    problem: "PCOS",
+    title: "Spearmint Cinnamon Hormone Tea",
+    ingredients: [
+      { name: "Spearmint leaves", quantity: "1 tablespoon" },
+      { name: "Cinnamon stick", quantity: "1 small" },
+      { name: "Hot water", quantity: "1.5 cups" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Steep spearmint and cinnamon in hot water",
+      "Cover and infuse 10 minutes",
+      "Strain and add honey",
+      "Drink warm"
+    ],
+    how_often: "Twice daily",
+    precautions: ["Not during pregnancy", "Consult gynecologist"],
+    benefits: ["May reduce androgens", "Hormone balance", "Blood sugar support"],
+    related_diseases: ["pcos", "hormonal-imbalance", "irregular-periods"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-191",
+    problem: "Heavy Periods",
+    title: "Pomegranate Iron-Rich Smoothie",
+    ingredients: [
+      { name: "Pomegranate seeds", quantity: "½ cup" },
+      { name: "Beetroot (small)", quantity: "½" },
+      { name: "Dates", quantity: "2" },
+      { name: "Water", quantity: "1 cup" }
+    ],
+    method: [
+      "Blend pomegranate seeds and beetroot",
+      "Add pitted dates",
+      "Add water and blend smooth",
+      "Drink fresh"
+    ],
+    how_often: "Daily during periods",
+    precautions: ["May stain teeth temporarily", "Consult if very heavy bleeding"],
+    benefits: ["Iron replenishment", "Blood building", "Energy support"],
+    related_diseases: ["heavy-periods", "menorrhagia", "iron-loss"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-192",
+    problem: "Pregnancy Nausea",
+    title: "Ginger Lemon Morning Sickness Tea",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch piece" },
+      { name: "Lemon slice", quantity: "1" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" }
+    ],
+    method: [
+      "Slice ginger thinly",
+      "Steep in warm (not hot) water",
+      "Add lemon slice",
+      "Stir in honey when cooled slightly",
+      "Sip slowly"
+    ],
+    how_often: "As needed, especially morning",
+    precautions: ["Limit ginger to 1g daily during pregnancy", "Consult obstetrician"],
+    benefits: ["Reduces nausea", "Settles stomach", "Safe in moderation"],
+    related_diseases: ["morning-sickness", "pregnancy-nausea", "first-trimester-nausea"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-193",
+    problem: "Lactation Support",
+    title: "Fenugreek Fennel Lactation Tea",
+    ingredients: [
+      { name: "Fenugreek seeds", quantity: "1 teaspoon" },
+      { name: "Fennel seeds", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Jaggery", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Lightly crush seeds",
+      "Boil in water for 10 minutes",
+      "Strain and add jaggery",
+      "Drink warm"
+    ],
+    how_often: "2-3 times daily",
+    precautions: ["May cause maple syrup smell", "Stop if baby has digestive issues"],
+    benefits: ["Increases milk supply", "Galactagogue properties", "Digestive aid"],
+    related_diseases: ["low-milk-supply", "breastfeeding-support", "lactation"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-194",
+    problem: "Menopause Symptoms",
+    title: "Shatavari Ashwagandha Women's Tonic",
+    ingredients: [
+      { name: "Shatavari powder", quantity: "½ teaspoon" },
+      { name: "Ashwagandha powder", quantity: "¼ teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm milk on low heat",
+      "Add shatavari and ashwagandha",
+      "Stir and simmer 2 minutes",
+      "Cool slightly and add honey",
+      "Drink at bedtime"
+    ],
+    how_often: "Daily at bedtime",
+    precautions: ["Consult doctor if on HRT", "Not with estrogen-sensitive conditions"],
+    benefits: ["Hormone balance", "Reduces hot flashes", "Stress relief"],
+    related_diseases: ["menopause", "perimenopause", "hormonal-changes"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-195",
+    problem: "Menopause Hot Flashes",
+    title: "Sage Flaxseed Cooling Tea",
+    ingredients: [
+      { name: "Sage leaves (dried)", quantity: "1 teaspoon" },
+      { name: "Flaxseed", quantity: "1 teaspoon" },
+      { name: "Peppermint", quantity: "½ teaspoon" },
+      { name: "Hot water", quantity: "1.5 cups" }
+    ],
+    method: [
+      "Crush flaxseeds lightly",
+      "Steep all ingredients in hot water",
+      "Cover and infuse 10 minutes",
+      "Strain and drink warm or cool"
+    ],
+    how_often: "1-2 times daily",
+    precautions: ["Sage may interact with medications", "Not during pregnancy"],
+    benefits: ["Reduces hot flash frequency", "Phytoestrogen support", "Cooling effect"],
+    related_diseases: ["hot-flashes", "night-sweats", "vasomotor-symptoms"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+  {
+    id: "disease-196",
+    problem: "Leucorrhea",
+    title: "Rice Water Vaginal Health Wash",
+    ingredients: [
+      { name: "Rice", quantity: "½ cup" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Neem leaves", quantity: "5-6" }
+    ],
+    method: [
+      "Wash rice and soak in water",
+      "Add neem leaves",
+      "Let sit for 30 minutes",
+      "Strain the water",
+      "Use for external washing only"
+    ],
+    how_often: "Daily external wash",
+    precautions: ["External use only", "See gynecologist if persistent"],
+    benefits: ["Antibacterial", "pH balance", "Reduces discharge"],
+    related_diseases: ["leucorrhea", "white-discharge", "vaginal-health"],
+    difficulty: "Easy",
+    preparation_time: "35 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-197",
+    problem: "Iron Deficiency (Women)",
+    title: "Jaggery Sesame Iron Balls",
+    ingredients: [
+      { name: "Black sesame seeds", quantity: "1 cup" },
+      { name: "Jaggery", quantity: "½ cup" },
+      { name: "Ghee", quantity: "1 tablespoon" },
+      { name: "Dry ginger powder", quantity: "¼ teaspoon" }
+    ],
+    method: [
+      "Dry roast sesame seeds",
+      "Melt jaggery with ghee",
+      "Mix sesame and ginger powder",
+      "Shape into small balls",
+      "Store in airtight container"
+    ],
+    how_often: "1-2 balls daily",
+    precautions: ["High in calories", "Limit if diabetic"],
+    benefits: ["Rich in iron", "Calcium boost", "Energy supplement"],
+    related_diseases: ["iron-deficiency", "anemia", "low-hemoglobin"],
+    difficulty: "Medium",
+    preparation_time: "25 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-198",
+    problem: "Postpartum Care",
+    title: "Ajwain Ginger Postpartum Water",
+    ingredients: [
+      { name: "Ajwain (carom seeds)", quantity: "1 tablespoon" },
+      { name: "Dry ginger powder", quantity: "½ teaspoon" },
+      { name: "Jaggery", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "4 cups" }
+    ],
+    method: [
+      "Boil all ingredients in water",
+      "Reduce to half",
+      "Strain and store",
+      "Drink warm throughout day"
+    ],
+    how_often: "Sip throughout the day",
+    precautions: ["Not during pregnancy", "Only after delivery"],
+    benefits: ["Aids digestion", "Reduces bloating", "Traditional postpartum care"],
+    related_diseases: ["postpartum-recovery", "after-delivery-care", "new-mother-care"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes",
+    region: "india"
+  },
+  {
+    id: "disease-199",
+    problem: "UTI (Women)",
+    title: "Cranberry Coriander UTI Drink",
+    ingredients: [
+      { name: "Unsweetened cranberry juice", quantity: "1 cup" },
+      { name: "Coriander seeds", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "½ cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Soak coriander seeds in water overnight",
+      "Strain in morning",
+      "Mix with cranberry juice",
+      "Add honey and drink"
+    ],
+    how_often: "Twice daily",
+    precautions: ["See doctor if fever or blood in urine", "Complete antibiotic course if prescribed"],
+    benefits: ["Prevents bacterial adhesion", "Cooling effect", "Urinary tract support"],
+    related_diseases: ["uti", "urinary-infection", "bladder-infection"],
+    difficulty: "Easy",
+    preparation_time: "Overnight + 5 min",
+    region: "global"
+  },
+  {
+    id: "disease-200",
+    problem: "Autoimmune Support",
+    title: "Golden Turmeric Anti-Inflammatory Milk",
+    ingredients: [
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Black pepper", quantity: "A pinch" },
+      { name: "Ginger powder", quantity: "¼ teaspoon" },
+      { name: "Coconut milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm coconut milk on low heat",
+      "Add turmeric, pepper, and ginger",
+      "Whisk well and simmer 5 minutes",
+      "Cool slightly and add honey",
+      "Drink warm"
+    ],
+    how_often: "Daily, preferably at night",
+    precautions: ["Consult doctor if on immunosuppressants", "Turmeric may interact with medications"],
+    benefits: ["Powerful anti-inflammatory", "Curcumin absorption", "Immune modulation"],
+    related_diseases: ["autoimmune-disease", "chronic-inflammation", "immune-support"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
   }
 ];
 
