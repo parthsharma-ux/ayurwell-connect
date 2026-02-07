@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { remedies, remedyCategories, getRemedyRegion } from "@/data/remedies";
-import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin, ChefHat, ArrowRight } from "lucide-react";
+import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin, ChefHat } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -14,6 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage, Region } from "@/contexts/LanguageContext";
+import { Card, CardContent } from "@/components/ui/card";
 
 // Kitchen remedies - quick access items with simple ingredients
 const kitchenRemedyIds = [
@@ -106,17 +107,17 @@ const allIngredients = [...new Set(
 // Body system categories with their associated conditions
 const bodySystems = {
   all: {
-    label: { en: "All Systems", hi: "सभी अंग" },
+    label: { en: "All", hi: "सभी" },
     icon: Sparkles,
     conditions: [] as string[]
   },
   heart: {
-    label: { en: "Heart & Blood", hi: "हृदय और रक्त" },
+    label: { en: "Heart", hi: "हृदय" },
     icon: Heart,
     conditions: ["Hypertension", "High Cholesterol", "Anemia", "Iron Deficiency (Women)", "Heart Health"]
   },
   brain: {
-    label: { en: "Brain & Mind", hi: "मस्तिष्क और मन" },
+    label: { en: "Brain", hi: "मस्तिष्क" },
     icon: Brain,
     conditions: ["Migraine", "Anxiety", "Insomnia", "Memory", "Stress", "Headache", "Vertigo", "Neuropathy", "Stroke Recovery"]
   },
@@ -131,22 +132,22 @@ const bodySystems = {
     conditions: ["Asthma", "Cold & Cough", "Sinusitis", "Cough", "Sore Throat", "Common Cold", "Chest Congestion", "Runny Nose", "Allergies", "Seasonal Allergies"]
   },
   kidney: {
-    label: { en: "Kidney & Urinary", hi: "गुर्दा और मूत्र" },
+    label: { en: "Kidney", hi: "गुर्दा" },
     icon: Droplets,
     conditions: ["Kidney Stones", "UTI", "UTI (Women)", "Dehydration"]
   },
   bones: {
-    label: { en: "Bones & Joints", hi: "हड्डी और जोड़" },
+    label: { en: "Bones", hi: "हड्डी" },
     icon: Bone,
     conditions: ["Arthritis", "Joint Pain", "Back Pain", "Muscle Cramps", "Leg Cramps", "Winter Joint Pain", "Autoimmune Support"]
   },
   skin: {
-    label: { en: "Skin & Hair", hi: "त्वचा और बाल" },
+    label: { en: "Skin", hi: "त्वचा" },
     icon: Zap,
     conditions: ["Skin Disorders", "Hair Fall", "Acne", "Dark Circles", "Dry Skin", "Dandruff", "Chapped Lips", "Cracked Heels", "Sunburn", "Dry Skin (Winter)", "Prickly Heat", "Fungal Infections"]
   },
   eyes: {
-    label: { en: "Eyes & Ears", hi: "आँख और कान" },
+    label: { en: "Eyes", hi: "आँख" },
     icon: Eye,
     conditions: ["Eye Strain", "Weak Eyesight", "Ear Infection"]
   },
@@ -306,280 +307,311 @@ const Remedies = () => {
 
   // Get kitchen remedies for quick access section
   const kitchenRemedies = useMemo(() => {
-    return remedies.filter(r => kitchenRemedyIds.includes(r.id) || r.id.startsWith('kitchen-')).slice(0, 12);
+    return remedies.filter(r => kitchenRemedyIds.includes(r.id) || r.id.startsWith('kitchen-')).slice(0, 8);
   }, []);
+
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case "Easy":
+        return "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
+      case "Medium":
+        return "bg-amber-500/10 text-amber-400 border-amber-500/20";
+      case "Advanced":
+        return "bg-rose-500/10 text-rose-400 border-rose-500/20";
+      default:
+        return "bg-muted text-muted-foreground";
+    }
+  };
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 py-12">
-        <h1 className="font-display text-4xl font-bold text-foreground mb-2">
-          {language === "hi" ? "घरेलू उपचार" : "Home Remedies"}
-        </h1>
-        <p className="text-muted-foreground mb-4">
-          {language === "hi" ? "रसोई की सामग्री से प्राकृतिक समाधान" : "Natural solutions using kitchen ingredients"}
-        </p>
-        
-        {/* Region Badge */}
-        <div className="flex items-center gap-2 mb-6">
-          <Badge variant="outline" className="gap-1.5 py-1.5 px-3">
-            <MapPin className="h-3.5 w-3.5" />
-            <span>{getRegionName(region, language)}</span>
-          </Badge>
-          <button
-            onClick={() => setPrioritizeLocal(!prioritizeLocal)}
-            className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-              prioritizeLocal 
-                ? 'bg-primary/10 border-primary text-primary' 
-                : 'border-border text-muted-foreground hover:text-foreground'
-            }`}
-          >
-            {prioritizeLocal 
-              ? (language === "hi" ? "✓ स्थानीय उपचार प्राथमिकता" : "✓ Local remedies first")
-              : (language === "hi" ? "सभी उपचार दिखाएं" : "Show all remedies")}
-          </button>
-        </div>
-
-        {/* Quick Kitchen Remedies Section */}
-        <section className="mb-10 bg-gradient-to-r from-secondary/10 via-primary/5 to-secondary/10 rounded-2xl p-6 border border-secondary/20">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-secondary/20 rounded-xl">
-                <ChefHat className="h-6 w-6 text-secondary" />
-              </div>
-              <div>
-                <h2 className="font-display text-xl font-semibold text-foreground">
-                  {language === "hi" ? "🍳 झटपट रसोई उपचार" : "🍳 Quick Kitchen Remedies"}
-                </h2>
-                <p className="text-sm text-muted-foreground">
-                  {language === "hi" ? "घर में उपलब्ध सामग्री से तुरंत राहत" : "Instant relief with ingredients already in your kitchen"}
-                </p>
+      <div className="min-h-screen">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-b from-primary/5 via-background to-background border-b border-border">
+          <div className="container mx-auto px-4 py-8 md:py-12">
+            <div className="max-w-3xl">
+              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
+                {language === "hi" ? "घरेलू उपचार" : "Home Remedies"}
+              </h1>
+              <p className="text-muted-foreground text-base md:text-lg mb-4">
+                {language === "hi" 
+                  ? "रसोई की सामग्री से प्राकृतिक समाधान - 200+ आयुर्वेदिक उपचार" 
+                  : "Natural solutions using kitchen ingredients - 200+ Ayurvedic treatments"}
+              </p>
+              
+              {/* Region Badge */}
+              <div className="flex items-center gap-3 flex-wrap">
+                <Badge variant="outline" className="gap-1.5 py-1.5 px-3 bg-card">
+                  <MapPin className="h-3.5 w-3.5" />
+                  <span>{getRegionName(region, language)}</span>
+                </Badge>
+                <button
+                  onClick={() => setPrioritizeLocal(!prioritizeLocal)}
+                  className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
+                    prioritizeLocal 
+                      ? 'bg-primary/10 border-primary/50 text-primary' 
+                      : 'border-border text-muted-foreground hover:text-foreground hover:border-muted-foreground'
+                  }`}
+                >
+                  {prioritizeLocal 
+                    ? (language === "hi" ? "✓ स्थानीय उपचार" : "✓ Local first")
+                    : (language === "hi" ? "सभी दिखाएं" : "Show all")}
+                </button>
               </div>
             </div>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {kitchenRemedies.map((remedy) => (
-              <LocalizedLink
-                key={remedy.id}
-                to={`/remedies/${remedy.id}`}
-                className="group bg-card hover:bg-card/80 rounded-xl p-4 border border-border hover:border-secondary/50 hover:shadow-md transition-all"
-              >
-                <div className="flex items-start justify-between mb-2">
-                  <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5">
-                    {remedy.problem}
-                  </Badge>
-                  <Clock className="h-3.5 w-3.5 text-muted-foreground" />
-                </div>
-                <h3 className="font-medium text-sm mb-1.5 group-hover:text-primary transition-colors line-clamp-2">
-                  {remedy.title}
-                </h3>
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <Leaf className="h-3 w-3 text-secondary" />
-                  <span className="truncate">{remedy.ingredients.slice(0, 2).map(i => i.name).join(", ")}</span>
-                </div>
-                <div className="mt-2 text-[10px] text-muted-foreground flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  {remedy.preparation_time}
-                </div>
-              </LocalizedLink>
-            ))}
           </div>
         </section>
 
-        {/* Category Group Tabs */}
-        <Tabs 
-          value={activeGroup} 
-          onValueChange={(val) => {
-            setActiveGroup(val as keyof typeof categoryGroups);
-            setCategory("all"); // Reset category when changing group
-          }}
-          className="mb-6"
-        >
-          <TabsList className="h-auto flex-wrap gap-2 bg-transparent p-0">
-            {Object.entries(categoryGroups).map(([key, group]) => {
-              const Icon = group.icon;
-              return (
-                <TabsTrigger 
-                  key={key}
-                  value={key}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-full border border-border data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary transition-all"
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{group.label[language]}</span>
-                  <Badge 
-                    variant="secondary" 
-                    className="ml-1 h-5 px-1.5 text-xs data-[state=active]:bg-primary-foreground/20 data-[state=active]:text-primary-foreground"
-                  >
-                    {groupCounts[key]}
-                  </Badge>
-                </TabsTrigger>
-              );
-            })}
-          </TabsList>
-        </Tabs>
+        <div className="container mx-auto px-4 py-6 md:py-8">
+          {/* Quick Kitchen Remedies Section */}
+          <section className="mb-8">
+            <Card className="bg-gradient-to-br from-secondary/5 via-card to-primary/5 border-secondary/20 overflow-hidden">
+              <CardContent className="p-4 md:p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-secondary/15 rounded-lg">
+                    <ChefHat className="h-5 w-5 text-secondary" />
+                  </div>
+                  <div>
+                    <h2 className="font-display text-lg md:text-xl font-semibold text-foreground">
+                      {language === "hi" ? "झटपट रसोई उपचार" : "Quick Kitchen Remedies"}
+                    </h2>
+                    <p className="text-xs md:text-sm text-muted-foreground">
+                      {language === "hi" ? "घर में उपलब्ध सामग्री से तुरंत राहत" : "Instant relief with common ingredients"}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-3">
+                  {kitchenRemedies.map((remedy) => (
+                    <LocalizedLink
+                      key={remedy.id}
+                      to={`/remedies/${remedy.id}`}
+                      className="group bg-card/80 hover:bg-card rounded-lg p-3 border border-border/50 hover:border-secondary/40 hover:shadow-md transition-all"
+                    >
+                      <Badge variant="secondary" className="text-[10px] px-1.5 py-0.5 mb-2 font-normal">
+                        {remedy.problem}
+                      </Badge>
+                      <h3 className="font-medium text-xs md:text-sm mb-1.5 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
+                        {remedy.title}
+                      </h3>
+                      <div className="flex items-center gap-1 text-[10px] md:text-xs text-muted-foreground">
+                        <Clock className="h-3 w-3 flex-shrink-0" />
+                        <span>{remedy.preparation_time}</span>
+                      </div>
+                    </LocalizedLink>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </section>
 
-        {/* Body System Filter - Compact Horizontal Bar */}
-        <div className="mb-6 -mx-4 px-4">
-          <div className="flex items-center gap-2 mb-2">
-            <Activity className="h-4 w-4 text-muted-foreground" />
-            <h3 className="text-sm font-medium text-muted-foreground">
-              {language === "hi" ? "शरीर के अंग" : "Body System"}
-            </h3>
-          </div>
-          <div className="overflow-x-auto scrollbar-hide -mx-4 px-4">
-            <div className="flex gap-1.5 pb-2 min-w-max">
-              {Object.entries(bodySystems).map(([key, system]) => {
-                const Icon = system.icon;
-                const count = bodySystemCounts[key] || 0;
-                const isActive = activeBodySystem === key;
-                return (
-                  <button
-                    key={key}
-                    onClick={() => setActiveBodySystem(key as keyof typeof bodySystems)}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
-                      isActive 
-                        ? "bg-primary text-primary-foreground shadow-sm" 
-                        : "bg-muted/50 hover:bg-muted text-muted-foreground hover:text-foreground border border-border/50"
-                    }`}
+          {/* Filters Section */}
+          <section className="mb-6">
+            <Card className="border-border/50">
+              <CardContent className="p-4 md:p-5 space-y-4">
+                {/* Category Group Tabs */}
+                <div>
+                  <Tabs 
+                    value={activeGroup} 
+                    onValueChange={(val) => {
+                      setActiveGroup(val as keyof typeof categoryGroups);
+                      setCategory("all");
+                    }}
                   >
-                    <Icon className="h-3.5 w-3.5" />
-                    <span className="hidden sm:inline">{system.label[language]}</span>
-                    <span className="sm:hidden">{key === "all" ? (language === "hi" ? "सभी" : "All") : system.label[language].split(" ")[0]}</span>
-                    <span className={`text-[10px] px-1 py-0.5 rounded-full min-w-[18px] text-center ${
-                      isActive ? "bg-primary-foreground/20" : "bg-background"
-                    }`}>
-                      {count}
+                    <TabsList className="h-auto flex flex-wrap gap-1.5 bg-transparent p-0 w-full justify-start">
+                      {Object.entries(categoryGroups).map(([key, group]) => {
+                        const Icon = group.icon;
+                        return (
+                          <TabsTrigger 
+                            key={key}
+                            value={key}
+                            className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs md:text-sm border border-transparent data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary bg-muted/50 hover:bg-muted transition-all"
+                          >
+                            <Icon className="h-3.5 w-3.5" />
+                            <span>{group.label[language]}</span>
+                            <span className="text-[10px] px-1.5 py-0.5 rounded bg-background/50 data-[state=active]:bg-primary-foreground/20 min-w-[20px] text-center">
+                              {groupCounts[key]}
+                            </span>
+                          </TabsTrigger>
+                        );
+                      })}
+                    </TabsList>
+                  </Tabs>
+                </div>
+
+                {/* Body System Filter */}
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Activity className="h-3.5 w-3.5 text-muted-foreground" />
+                    <span className="text-xs font-medium text-muted-foreground">
+                      {language === "hi" ? "शरीर के अंग" : "Body System"}
                     </span>
-                  </button>
-                );
-              })}
+                  </div>
+                  <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+                    <div className="flex gap-1.5 pb-1">
+                      {Object.entries(bodySystems).map(([key, system]) => {
+                        const Icon = system.icon;
+                        const count = bodySystemCounts[key] || 0;
+                        const isActive = activeBodySystem === key;
+                        return (
+                          <button
+                            key={key}
+                            onClick={() => setActiveBodySystem(key as keyof typeof bodySystems)}
+                            className={`flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all ${
+                              isActive 
+                                ? "bg-primary text-primary-foreground" 
+                                : "bg-muted/50 hover:bg-muted text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            <Icon className="h-3 w-3" />
+                            <span>{system.label[language]}</span>
+                            <span className={`text-[10px] px-1 rounded ${isActive ? "bg-primary-foreground/20" : "bg-background/80"}`}>
+                              {count}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Search and Dropdowns */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <div className="relative flex-1">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      type="text"
+                      placeholder={language === "hi" ? "खोजें..." : "Search remedies..."}
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                      className="h-10 pl-9 pr-4 rounded-lg text-sm"
+                    />
+                  </div>
+                  
+                  <div className="flex gap-2 flex-wrap sm:flex-nowrap">
+                    <Select value={category} onValueChange={setCategory}>
+                      <SelectTrigger className="w-full sm:w-[160px] h-10 rounded-lg text-sm">
+                        <Filter className="h-3.5 w-3.5 mr-1.5 text-muted-foreground" />
+                        <SelectValue placeholder={language === "hi" ? "लक्षण" : "Symptom"} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">{language === "hi" ? "सभी लक्षण" : "All Symptoms"}</SelectItem>
+                        {activeCategories.map((cat) => (
+                          <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+
+                    <Select value={selectedIngredient} onValueChange={setSelectedIngredient}>
+                      <SelectTrigger className="w-full sm:w-[160px] h-10 rounded-lg text-sm">
+                        <Leaf className="h-3.5 w-3.5 mr-1.5 text-muted-foreground" />
+                        <SelectValue placeholder={language === "hi" ? "सामग्री" : "Ingredient"} />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">{language === "hi" ? "सभी सामग्री" : "All Ingredients"}</SelectItem>
+                        {allIngredients.map((ing) => (
+                          <SelectItem key={ing} value={ing}>{ing}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+
+                    {hasActiveFilters && (
+                      <button
+                        onClick={clearFilters}
+                        className="flex items-center gap-1 px-3 h-10 text-xs text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
+                      >
+                        <X className="h-3.5 w-3.5" />
+                        {language === "hi" ? "साफ करें" : "Clear"}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Active filters display */}
+          {hasActiveFilters && (
+            <div className="flex items-center gap-2 mb-4 flex-wrap">
+              <span className="text-sm text-muted-foreground">
+                {language === "hi" ? `${filtered.length} उपचार` : `${filtered.length} remedies`}
+              </span>
+              {activeBodySystem !== "all" && (
+                <Badge variant="secondary" className="gap-1 text-xs">
+                  {bodySystems[activeBodySystem].label[language]}
+                  <X className="h-3 w-3 cursor-pointer" onClick={() => setActiveBodySystem("all")} />
+                </Badge>
+              )}
+              {category !== "all" && (
+                <Badge variant="secondary" className="gap-1 text-xs">
+                  {category}
+                  <X className="h-3 w-3 cursor-pointer" onClick={() => setCategory("all")} />
+                </Badge>
+              )}
+              {selectedIngredient !== "all" && (
+                <Badge variant="secondary" className="gap-1 text-xs">
+                  {selectedIngredient}
+                  <X className="h-3 w-3 cursor-pointer" onClick={() => setSelectedIngredient("all")} />
+                </Badge>
+              )}
             </div>
-          </div>
-        </div>
-        
-        {/* Search and Filters */}
-        <div className="flex flex-col gap-4 mb-6">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder={language === "hi" ? "उपचार, लक्षण या सामग्री खोजें..." : "Search by remedy name, symptom, or ingredient..."}
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="h-12 pl-12 pr-4 rounded-xl"
-            />
-          </div>
-          
-          <div className="flex flex-wrap gap-3">
-            <Select value={category} onValueChange={setCategory}>
-              <SelectTrigger className="w-[200px] h-10 rounded-lg">
-                <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
-                <SelectValue placeholder={language === "hi" ? "सभी लक्षण" : "All Symptoms"} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{language === "hi" ? "सभी लक्षण" : "All Symptoms"}</SelectItem>
-                {activeCategories.map((cat) => (
-                  <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+          )}
+
+          {/* Results Grid */}
+          <section>
+            {filtered.length === 0 ? (
+              <Card className="border-dashed">
+                <CardContent className="py-12 text-center">
+                  <Leaf className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
+                  <h3 className="text-lg font-medium mb-2">
+                    {language === "hi" ? "कोई उपचार नहीं मिला" : "No remedies found"}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    {language === "hi" ? "अपनी खोज या फ़िल्टर समायोजित करें" : "Try adjusting your search or filters"}
+                  </p>
+                  <button
+                    onClick={clearFilters}
+                    className="text-primary hover:underline text-sm"
+                  >
+                    {language === "hi" ? "सभी फ़िल्टर साफ करें" : "Clear all filters"}
+                  </button>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+                {filtered.map((remedy) => (
+                  <LocalizedLink
+                    key={remedy.id}
+                    to={`/remedies/${remedy.id}`}
+                    className="group bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-200"
+                  >
+                    <div className="p-4">
+                      <div className="flex items-start justify-between gap-2 mb-3">
+                        <Badge className="bg-primary/10 text-primary border-primary/20 text-[10px] font-medium px-2 py-0.5">
+                          {remedy.problem}
+                        </Badge>
+                        <Badge className={`text-[10px] font-medium px-2 py-0.5 border ${getDifficultyColor(remedy.difficulty)}`}>
+                          {remedy.difficulty}
+                        </Badge>
+                      </div>
+                      <h3 className="font-display text-sm md:text-base font-semibold mb-2 line-clamp-2 group-hover:text-primary transition-colors leading-snug">
+                        {remedy.title}
+                      </h3>
+                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Leaf className="h-3.5 w-3.5 text-secondary flex-shrink-0" />
+                        <span className="truncate">{remedy.ingredients.slice(0, 2).map((i) => i.name).join(", ")}</span>
+                      </div>
+                    </div>
+                    <div className="px-4 py-2.5 bg-muted/30 border-t border-border/50 flex items-center gap-1.5 text-xs text-muted-foreground">
+                      <Clock className="h-3.5 w-3.5" />
+                      <span>{remedy.preparation_time}</span>
+                    </div>
+                  </LocalizedLink>
                 ))}
-              </SelectContent>
-            </Select>
-
-            <Select value={selectedIngredient} onValueChange={setSelectedIngredient}>
-              <SelectTrigger className="w-[200px] h-10 rounded-lg">
-                <Leaf className="h-4 w-4 mr-2 text-muted-foreground" />
-                <SelectValue placeholder={language === "hi" ? "सभी सामग्री" : "All Ingredients"} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{language === "hi" ? "सभी सामग्री" : "All Ingredients"}</SelectItem>
-                {allIngredients.map((ing) => (
-                  <SelectItem key={ing} value={ing}>{ing}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-
-            {hasActiveFilters && (
-              <button
-                onClick={clearFilters}
-                className="flex items-center gap-1 px-3 h-10 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <X className="h-4 w-4" />
-                {language === "hi" ? "फ़िल्टर साफ करें" : "Clear filters"}
-              </button>
+              </div>
             )}
-          </div>
+          </section>
         </div>
-
-        {/* Active filters display */}
-        {hasActiveFilters && (
-          <div className="flex items-center gap-2 mb-6 flex-wrap">
-            <span className="text-sm text-muted-foreground">
-              {language === "hi" ? `${filtered.length} उपचार दिखा रहे हैं` : `Showing ${filtered.length} remedies`}
-            </span>
-            {activeBodySystem !== "all" && (
-              <Badge variant="secondary" className="gap-1">
-                {bodySystems[activeBodySystem].label[language]}
-                <X className="h-3 w-3 cursor-pointer" onClick={() => setActiveBodySystem("all")} />
-              </Badge>
-            )}
-            {category !== "all" && (
-              <Badge variant="secondary" className="gap-1">
-                {category}
-                <X className="h-3 w-3 cursor-pointer" onClick={() => setCategory("all")} />
-              </Badge>
-            )}
-            {selectedIngredient !== "all" && (
-              <Badge variant="secondary" className="gap-1">
-                {selectedIngredient}
-                <X className="h-3 w-3 cursor-pointer" onClick={() => setSelectedIngredient("all")} />
-              </Badge>
-            )}
-          </div>
-        )}
-
-        {/* Results */}
-        {filtered.length === 0 ? (
-          <div className="text-center py-12">
-            <Leaf className="h-12 w-12 mx-auto text-muted-foreground/50 mb-4" />
-            <h3 className="text-lg font-medium mb-2">
-              {language === "hi" ? "कोई उपचार नहीं मिला" : "No remedies found"}
-            </h3>
-            <p className="text-muted-foreground mb-4">
-              {language === "hi" ? "अपनी खोज या फ़िल्टर समायोजित करें" : "Try adjusting your search or filters"}
-            </p>
-            <button
-              onClick={clearFilters}
-              className="text-primary hover:underline"
-            >
-              {language === "hi" ? "सभी फ़िल्टर साफ करें" : "Clear all filters"}
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((remedy) => (
-              <LocalizedLink
-                key={remedy.id}
-                to={`/remedies/${remedy.id}`}
-                className="bg-card rounded-2xl overflow-hidden border border-border hover:shadow-card transition-all"
-              >
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded-full">{remedy.problem}</span>
-                    <span className="text-xs font-medium text-secondary bg-secondary/10 px-2 py-1 rounded-full">{remedy.difficulty}</span>
-                  </div>
-                  <h3 className="font-display text-lg font-semibold mb-2">{remedy.title}</h3>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Leaf className="h-4 w-4 text-secondary" />
-                    <span>{remedy.ingredients.slice(0, 2).map((i) => i.name).join(", ")}</span>
-                  </div>
-                </div>
-                <div className="px-6 py-4 bg-muted/50 border-t border-border flex items-center gap-2 text-sm text-muted-foreground">
-                  <Clock className="h-4 w-4" />
-                  <span>{remedy.preparation_time}</span>
-                </div>
-              </LocalizedLink>
-            ))}
-          </div>
-        )}
       </div>
     </Layout>
   );
