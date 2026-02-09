@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { remedies, remedyCategories, getRemedyRegion } from "@/data/remedies";
-import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin } from "lucide-react";
+import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin, User } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -206,6 +206,21 @@ const categoryGroups = {
       "PCOS", "Heavy Periods", "Pregnancy Nausea", "Lactation Support",
       "Menopause Symptoms", "Menopause Hot Flashes", "Leucorrhea",
       "Iron Deficiency (Women)", "Postpartum Care", "UTI (Women)"
+    ]
+  },
+  elderly: {
+    label: { en: "Elderly", hi: "बुज़ुर्ग" },
+    icon: User,
+    categories: [
+      "Parkinson's Support", "Alzheimer's Support", "Memory Loss (Elderly)",
+      "Arthritis (Elderly)", "Weak Bones (Elderly)", "Prostate Health (Elderly)",
+      "Heart Health (Elderly)", "Digestive Issues (Elderly)", "Constipation (Elderly)",
+      "Sleep Issues (Elderly)", "Weak Eyesight (Elderly)", "Weakness (Elderly)",
+      "Poor Circulation (Elderly)", "Muscle Cramps (Elderly)", "Joint Stiffness (Elderly)",
+      "Tremors (Elderly)", "Balance Issues (Elderly)", "Hearing Loss (Elderly)",
+      "Dry Mouth (Elderly)", "Loss of Appetite (Elderly)", "Weak Immunity (Elderly)",
+      "Urinary Incontinence (Elderly)", "Skin Aging (Elderly)", "Neuropathy (Elderly)",
+      "Dementia Support", "Healthy Aging"
     ]
   }
 };

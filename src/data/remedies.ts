@@ -14611,6 +14611,1244 @@ export const remedies: Remedy[] = [
     difficulty: "Easy",
     preparation_time: "10 minutes",
     region: "global"
+  },
+
+  // ===============================
+  // ELDERLY HEALTH REMEDIES (50+)
+  // ===============================
+
+  // Parkinson's Support
+  {
+    id: "elderly-201",
+    problem: "Parkinson's Support",
+    title: "Mucuna Pruriens (Kapikacchu) Powder",
+    ingredients: [
+      { name: "Mucuna pruriens powder", quantity: "½ teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm the milk gently",
+      "Add mucuna powder and stir well",
+      "Add honey once slightly cooled",
+      "Drink slowly"
+    ],
+    how_often: "Once daily, preferably morning",
+    precautions: ["Consult neurologist before use", "May interact with L-Dopa medications", "Start with small dose"],
+    benefits: ["Natural source of L-Dopa", "Supports dopamine production", "Neuroprotective properties"],
+    related_diseases: ["parkinsons", "tremors", "neurological-disorder"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-202",
+    problem: "Parkinson's Support",
+    title: "Brahmi & Ashwagandha Nerve Tonic",
+    ingredients: [
+      { name: "Brahmi powder", quantity: "¼ teaspoon" },
+      { name: "Ashwagandha powder", quantity: "¼ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Ghee", quantity: "½ teaspoon" }
+    ],
+    method: [
+      "Mix both powders in warm water",
+      "Add ghee and stir well",
+      "Let it cool slightly",
+      "Drink on empty stomach"
+    ],
+    how_often: "Twice daily",
+    precautions: ["Consult doctor if on medications", "Not during pregnancy", "Monitor for drowsiness"],
+    benefits: ["Nerve cell regeneration", "Reduces tremors", "Improves motor function"],
+    related_diseases: ["parkinsons", "nerve-damage", "tremors"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-203",
+    problem: "Parkinson's Support",
+    title: "Ginger-Turmeric Anti-Tremor Tea",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch piece" },
+      { name: "Turmeric powder", quantity: "½ teaspoon" },
+      { name: "Black pepper", quantity: "2-3 crushed" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: [
+      "Grate ginger and add to water",
+      "Boil for 10 minutes",
+      "Add turmeric and black pepper",
+      "Strain and drink warm"
+    ],
+    how_often: "2-3 times daily",
+    precautions: ["May increase bleeding risk", "Avoid before surgery", "Check with doctor"],
+    benefits: ["Anti-inflammatory for brain", "Reduces oxidative stress", "Supports motor control"],
+    related_diseases: ["parkinsons", "inflammation", "tremors"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+
+  // Alzheimer's Support
+  {
+    id: "elderly-204",
+    problem: "Alzheimer's Support",
+    title: "Brahmi Memory Enhancement Tonic",
+    ingredients: [
+      { name: "Brahmi (Bacopa) powder", quantity: "½ teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Almonds (soaked, peeled)", quantity: "5 pieces" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Grind soaked almonds to paste",
+      "Warm the milk and add brahmi powder",
+      "Mix in almond paste thoroughly",
+      "Add honey when lukewarm",
+      "Drink slowly"
+    ],
+    how_often: "Daily in the morning",
+    precautions: ["May cause digestive upset initially", "Consult doctor if on memory medications", "Be patient - takes weeks"],
+    benefits: ["Enhances cognitive function", "Protects brain cells", "Improves memory retention"],
+    related_diseases: ["alzheimers", "dementia", "memory-loss"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-205",
+    problem: "Alzheimer's Support",
+    title: "Shankhpushpi Brain Syrup",
+    ingredients: [
+      { name: "Shankhpushpi powder", quantity: "½ teaspoon" },
+      { name: "Brahmi powder", quantity: "¼ teaspoon" },
+      { name: "Honey", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "½ cup" }
+    ],
+    method: [
+      "Mix both powders in warm water",
+      "Stir until dissolved",
+      "Add honey and mix well",
+      "Consume immediately"
+    ],
+    how_often: "Twice daily after meals",
+    precautions: ["Not for children under 12", "Consult neurologist", "Avoid during pregnancy"],
+    benefits: ["Boosts brain circulation", "Reduces cognitive decline", "Calms anxiety"],
+    related_diseases: ["alzheimers", "anxiety", "memory-loss"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-206",
+    problem: "Alzheimer's Support",
+    title: "Coconut Oil Brain Fuel",
+    ingredients: [
+      { name: "Virgin coconut oil", quantity: "1 tablespoon" },
+      { name: "Turmeric powder", quantity: "¼ teaspoon" },
+      { name: "Cinnamon powder", quantity: "¼ teaspoon" }
+    ],
+    method: [
+      "Gently warm coconut oil",
+      "Mix in turmeric and cinnamon",
+      "Take directly or add to warm drink",
+      "Best taken in morning"
+    ],
+    how_often: "Once daily with breakfast",
+    precautions: ["May cause loose stools initially", "Start with ½ tablespoon", "Monitor cholesterol levels"],
+    benefits: ["MCTs provide brain energy", "Anti-inflammatory effect", "Supports neuronal health"],
+    related_diseases: ["alzheimers", "brain-fog", "cognitive-decline"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "global"
+  },
+  {
+    id: "elderly-207",
+    problem: "Alzheimer's Support",
+    title: "Walnut & Flaxseed Brain Mix",
+    ingredients: [
+      { name: "Walnuts", quantity: "5-6 pieces" },
+      { name: "Flaxseeds (ground)", quantity: "1 teaspoon" },
+      { name: "Pumpkin seeds", quantity: "1 tablespoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Soak walnuts overnight",
+      "Crush walnuts and mix with ground flaxseeds",
+      "Add pumpkin seeds",
+      "Drizzle honey and consume"
+    ],
+    how_often: "Daily as morning snack",
+    precautions: ["Nut allergies", "Moderate portion for weight management", "Ensure fresh flaxseeds"],
+    benefits: ["Omega-3 for brain health", "Vitamin E protection", "Cognitive support"],
+    related_diseases: ["alzheimers", "memory-loss", "brain-health"],
+    difficulty: "Easy",
+    preparation_time: "Overnight + 5 min",
+    region: "global"
+  },
+
+  // Memory Loss (Age-Related)
+  {
+    id: "elderly-208",
+    problem: "Memory Loss (Elderly)",
+    title: "Almond Milk Memory Elixir",
+    ingredients: [
+      { name: "Almonds (soaked overnight)", quantity: "10 pieces" },
+      { name: "Milk", quantity: "1 cup" },
+      { name: "Saffron strands", quantity: "3-4" },
+      { name: "Cardamom powder", quantity: "¼ teaspoon" }
+    ],
+    method: [
+      "Peel soaked almonds and grind with milk",
+      "Warm the mixture gently",
+      "Add saffron strands and cardamom",
+      "Drink warm in the morning"
+    ],
+    how_often: "Daily on empty stomach",
+    precautions: ["Nut allergies", "Expensive saffron - use genuine", "Moderate for diabetics"],
+    benefits: ["Sharpens memory", "Brain cell nourishment", "Improves concentration"],
+    related_diseases: ["memory-loss", "cognitive-decline", "brain-fog"],
+    difficulty: "Medium",
+    preparation_time: "Overnight + 10 min",
+    region: "india"
+  },
+  {
+    id: "elderly-209",
+    problem: "Memory Loss (Elderly)",
+    title: "Rosemary Infusion Tea",
+    ingredients: [
+      { name: "Fresh rosemary", quantity: "2 sprigs" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Lemon juice", quantity: "½ teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Steep rosemary in hot water for 10 minutes",
+      "Strain and add lemon juice",
+      "Add honey to taste",
+      "Drink warm"
+    ],
+    how_often: "1-2 cups daily",
+    precautions: ["Avoid large amounts during pregnancy", "May interact with blood thinners", "Seizure history - consult doctor"],
+    benefits: ["Improves memory recall", "Antioxidant protection", "Increases alertness"],
+    related_diseases: ["memory-loss", "concentration", "brain-fog"],
+    difficulty: "Easy",
+    preparation_time: "12 minutes",
+    region: "global"
+  },
+
+  // Arthritis (Elderly)
+  {
+    id: "elderly-210",
+    problem: "Arthritis (Elderly)",
+    title: "Sesame Oil Warm Massage",
+    ingredients: [
+      { name: "Sesame oil", quantity: "3 tablespoons" },
+      { name: "Camphor", quantity: "Small piece" },
+      { name: "Eucalyptus oil", quantity: "5 drops" }
+    ],
+    method: [
+      "Warm sesame oil gently",
+      "Dissolve camphor in warm oil",
+      "Add eucalyptus drops and mix",
+      "Massage affected joints for 15 minutes",
+      "Leave for 30 minutes before washing"
+    ],
+    how_often: "Twice daily",
+    precautions: ["Test for skin sensitivity", "Not on broken skin", "Wash hands after use"],
+    benefits: ["Reduces joint stiffness", "Improves mobility", "Relieves pain naturally"],
+    related_diseases: ["arthritis", "joint-pain", "stiffness"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes + 15 min massage",
+    region: "india"
+  },
+  {
+    id: "elderly-211",
+    problem: "Arthritis (Elderly)",
+    title: "Turmeric-Ginger Joint Paste",
+    ingredients: [
+      { name: "Turmeric powder", quantity: "2 teaspoons" },
+      { name: "Ginger powder", quantity: "1 teaspoon" },
+      { name: "Mustard oil", quantity: "2 tablespoons" },
+      { name: "Rock salt", quantity: "½ teaspoon" }
+    ],
+    method: [
+      "Mix all dry ingredients",
+      "Add mustard oil to make paste",
+      "Apply on swollen joints",
+      "Cover with warm cloth for 20 minutes",
+      "Wash with lukewarm water"
+    ],
+    how_often: "Once daily before bath",
+    precautions: ["Mustard oil may cause warmth", "Avoid on open wounds", "Test patch first"],
+    benefits: ["Anti-inflammatory action", "Reduces swelling", "Improves joint function"],
+    related_diseases: ["arthritis", "swelling", "inflammation"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes + 20 min application",
+    region: "india"
+  },
+
+  // Weak Bones (Osteoporosis - Elderly)
+  {
+    id: "elderly-212",
+    problem: "Weak Bones (Elderly)",
+    title: "Sesame Seed Calcium Powder",
+    ingredients: [
+      { name: "White sesame seeds (roasted)", quantity: "2 tablespoons" },
+      { name: "Jaggery", quantity: "1 tablespoon" },
+      { name: "Cardamom powder", quantity: "¼ teaspoon" }
+    ],
+    method: [
+      "Dry roast sesame seeds until golden",
+      "Grind to coarse powder when cooled",
+      "Mix with grated jaggery and cardamom",
+      "Consume as a sweet snack"
+    ],
+    how_often: "Daily after meals",
+    precautions: ["Moderate for diabetics due to jaggery", "Sesame allergies", "Count calories"],
+    benefits: ["Rich in calcium", "Strengthens bones", "Natural mineral source"],
+    related_diseases: ["osteoporosis", "weak-bones", "calcium-deficiency"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-213",
+    problem: "Weak Bones (Elderly)",
+    title: "Moringa Bone Builder",
+    ingredients: [
+      { name: "Moringa leaf powder", quantity: "1 teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Add moringa powder to warm milk",
+      "Stir well to dissolve",
+      "Add honey when slightly cooled",
+      "Drink daily"
+    ],
+    how_often: "Once daily",
+    precautions: ["May lower blood pressure", "Consult if on thyroid meds", "Start with small dose"],
+    benefits: ["High calcium and vitamin K", "Strengthens bone density", "Anti-inflammatory"],
+    related_diseases: ["osteoporosis", "bone-health", "calcium-deficiency"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+
+  // Prostate Health (Elderly Men)
+  {
+    id: "elderly-214",
+    problem: "Prostate Health (Elderly)",
+    title: "Pumpkin Seed Prostate Mix",
+    ingredients: [
+      { name: "Pumpkin seeds", quantity: "2 tablespoons" },
+      { name: "Sunflower seeds", quantity: "1 tablespoon" },
+      { name: "Flaxseeds", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Lightly roast all seeds",
+      "Mix together",
+      "Chew thoroughly as snack",
+      "Can also grind and add to smoothies"
+    ],
+    how_often: "Daily as snack",
+    precautions: ["Seed allergies", "Moderate portion for calories", "Stay hydrated"],
+    benefits: ["Zinc for prostate health", "Reduces inflammation", "Supports urinary flow"],
+    related_diseases: ["prostate-enlargement", "bph", "urinary-issues"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "elderly-215",
+    problem: "Prostate Health (Elderly)",
+    title: "Tomato Lycopene Drink",
+    ingredients: [
+      { name: "Ripe tomatoes", quantity: "2 medium" },
+      { name: "Olive oil", quantity: "1 teaspoon" },
+      { name: "Black pepper", quantity: "A pinch" },
+      { name: "Basil leaves", quantity: "4-5" }
+    ],
+    method: [
+      "Blend tomatoes until smooth",
+      "Add olive oil for lycopene absorption",
+      "Season with pepper and torn basil",
+      "Consume fresh"
+    ],
+    how_often: "Daily with meals",
+    precautions: ["Acidic - avoid if GERD", "Check for nightshade sensitivity", "Fresh is best"],
+    benefits: ["Lycopene protects prostate", "Antioxidant rich", "Reduces inflammation"],
+    related_diseases: ["prostate-health", "cancer-prevention", "men-health"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // Heart Health (Elderly)
+  {
+    id: "elderly-216",
+    problem: "Heart Health (Elderly)",
+    title: "Arjuna Bark Heart Tonic",
+    ingredients: [
+      { name: "Arjuna bark powder", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Add arjuna powder to warm water",
+      "Stir well and let sit 2 minutes",
+      "Add honey and mix",
+      "Drink on empty stomach"
+    ],
+    how_often: "Twice daily",
+    precautions: ["Consult cardiologist", "May interact with heart medications", "Monitor blood pressure"],
+    benefits: ["Strengthens heart muscles", "Regulates blood pressure", "Improves circulation"],
+    related_diseases: ["heart-disease", "hypertension", "weak-heart"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-217",
+    problem: "Heart Health (Elderly)",
+    title: "Garlic-Lemon Heart Elixir",
+    ingredients: [
+      { name: "Garlic cloves", quantity: "2 crushed" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Crush garlic and let sit 10 minutes",
+      "Add to warm water with lemon juice",
+      "Add honey and stir well",
+      "Drink in the morning"
+    ],
+    how_often: "Once daily morning",
+    precautions: ["May interact with blood thinners", "Strong taste", "Avoid before surgery"],
+    benefits: ["Lowers cholesterol", "Improves blood flow", "Natural blood thinner"],
+    related_diseases: ["heart-disease", "cholesterol", "circulation"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+
+  // Digestive Issues (Elderly)
+  {
+    id: "elderly-218",
+    problem: "Digestive Issues (Elderly)",
+    title: "Ajwain Digestive Water",
+    ingredients: [
+      { name: "Ajwain (carom seeds)", quantity: "1 teaspoon" },
+      { name: "Black salt", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" }
+    ],
+    method: [
+      "Dry roast ajwain lightly",
+      "Add to warm water",
+      "Add black salt and mix",
+      "Drink after meals"
+    ],
+    how_often: "After lunch and dinner",
+    precautions: ["Avoid if acid reflux severe", "Moderate salt intake", "Not during pregnancy"],
+    benefits: ["Aids digestion", "Reduces bloating", "Relieves gas"],
+    related_diseases: ["indigestion", "bloating", "gas"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-219",
+    problem: "Digestive Issues (Elderly)",
+    title: "Papaya Enzyme Smoothie",
+    ingredients: [
+      { name: "Ripe papaya", quantity: "1 cup cubed" },
+      { name: "Yogurt", quantity: "½ cup" },
+      { name: "Ginger", quantity: "Small piece" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Blend papaya with yogurt",
+      "Add grated ginger",
+      "Sweeten with honey",
+      "Consume fresh"
+    ],
+    how_often: "Daily, preferably afternoon",
+    precautions: ["Avoid unripe papaya", "Latex allergy caution", "Diabetics monitor sugar"],
+    benefits: ["Natural digestive enzymes", "Relieves constipation", "Soothes stomach"],
+    related_diseases: ["constipation", "indigestion", "stomach-issues"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // Constipation (Elderly)
+  {
+    id: "elderly-220",
+    problem: "Constipation (Elderly)",
+    title: "Triphala Gentle Laxative",
+    ingredients: [
+      { name: "Triphala powder", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon (optional)" }
+    ],
+    method: [
+      "Add triphala to warm water",
+      "Stir well and let steep 5 minutes",
+      "Add honey if taste is too strong",
+      "Drink before bedtime"
+    ],
+    how_often: "Nightly before bed",
+    precautions: ["Start with ½ teaspoon", "May cause loose stools initially", "Drink plenty of water"],
+    benefits: ["Gentle bowel movement", "Detoxifies system", "Improves gut health"],
+    related_diseases: ["constipation", "digestive-health", "detox"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-221",
+    problem: "Constipation (Elderly)",
+    title: "Prune and Fig Compote",
+    ingredients: [
+      { name: "Prunes", quantity: "5-6 pieces" },
+      { name: "Dried figs", quantity: "3-4 pieces" },
+      { name: "Warm water", quantity: "1 cup" }
+    ],
+    method: [
+      "Soak prunes and figs overnight in water",
+      "In morning, blend lightly or eat as is",
+      "Drink the soaking water too",
+      "Consume on empty stomach"
+    ],
+    how_often: "Daily morning",
+    precautions: ["High in sugar - moderate for diabetics", "May cause gas initially", "Increase water intake"],
+    benefits: ["Natural fiber boost", "Gentle laxative effect", "Improves regularity"],
+    related_diseases: ["constipation", "fiber-deficiency", "gut-health"],
+    difficulty: "Easy",
+    preparation_time: "Overnight + 5 min",
+    region: "global"
+  },
+
+  // Sleep Issues (Elderly)
+  {
+    id: "elderly-222",
+    problem: "Sleep Issues (Elderly)",
+    title: "Ashwagandha Night Milk",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "½ teaspoon" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Nutmeg powder", quantity: "A pinch" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Warm milk on low heat",
+      "Add ashwagandha and nutmeg",
+      "Stir well and remove from heat",
+      "Add honey when slightly cooled",
+      "Drink 30 minutes before bed"
+    ],
+    how_often: "Nightly before sleep",
+    precautions: ["May cause drowsiness", "Avoid if thyroid issues without consulting", "Start with small dose"],
+    benefits: ["Promotes deep sleep", "Reduces anxiety", "Calms nervous system"],
+    related_diseases: ["insomnia", "anxiety", "sleep-disorder"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-223",
+    problem: "Sleep Issues (Elderly)",
+    title: "Chamomile-Lavender Sleep Tea",
+    ingredients: [
+      { name: "Chamomile flowers (dried)", quantity: "1 tablespoon" },
+      { name: "Lavender buds", quantity: "½ teaspoon" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Steep chamomile and lavender in hot water",
+      "Cover and let infuse 10 minutes",
+      "Strain and add honey",
+      "Sip slowly before bedtime"
+    ],
+    how_often: "Nightly",
+    precautions: ["Ragweed allergy cross-reaction", "May interact with sedatives", "Avoid driving after"],
+    benefits: ["Natural sedative effect", "Reduces stress", "Promotes relaxation"],
+    related_diseases: ["insomnia", "anxiety", "restlessness"],
+    difficulty: "Easy",
+    preparation_time: "12 minutes",
+    region: "global"
+  },
+
+  // Weak Eyesight (Age-Related)
+  {
+    id: "elderly-224",
+    problem: "Weak Eyesight (Elderly)",
+    title: "Triphala Eye Wash",
+    ingredients: [
+      { name: "Triphala powder", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Rose water", quantity: "1 teaspoon (optional)" }
+    ],
+    method: [
+      "Soak triphala in water overnight",
+      "Strain through fine cloth in morning",
+      "Add rose water if desired",
+      "Use as eye wash with clean dropper or eye cup"
+    ],
+    how_often: "Once daily in morning",
+    precautions: ["Ensure completely strained", "Use fresh daily", "Stop if irritation occurs"],
+    benefits: ["Strengthens eye muscles", "Reduces dryness", "Improves vision clarity"],
+    related_diseases: ["weak-eyesight", "eye-strain", "dry-eyes"],
+    difficulty: "Medium",
+    preparation_time: "Overnight + 5 min",
+    region: "india"
+  },
+  {
+    id: "elderly-225",
+    problem: "Weak Eyesight (Elderly)",
+    title: "Carrot-Spinach Vision Juice",
+    ingredients: [
+      { name: "Carrots", quantity: "2 medium" },
+      { name: "Spinach leaves", quantity: "1 cup" },
+      { name: "Amla", quantity: "1 piece" },
+      { name: "Water", quantity: "½ cup" }
+    ],
+    method: [
+      "Wash all vegetables thoroughly",
+      "Juice carrots, spinach, and amla",
+      "Add water if too thick",
+      "Drink fresh immediately"
+    ],
+    how_often: "Daily in morning",
+    precautions: ["Oxalate content in spinach - kidney stone patients caution", "Wash produce well", "Drink immediately"],
+    benefits: ["Rich in beta-carotene", "Vitamin A for eyes", "Antioxidant protection"],
+    related_diseases: ["weak-eyesight", "macular-degeneration", "night-blindness"],
+    difficulty: "Medium",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+
+  // Weakness & Fatigue (Elderly)
+  {
+    id: "elderly-226",
+    problem: "Weakness (Elderly)",
+    title: "Chyawanprash Energy Booster",
+    ingredients: [
+      { name: "Chyawanprash", quantity: "1 tablespoon" },
+      { name: "Warm milk", quantity: "1 cup" }
+    ],
+    method: [
+      "Take chyawanprash in a spoon",
+      "Follow with warm milk",
+      "Or mix into milk and drink",
+      "Best taken in morning"
+    ],
+    how_often: "Once or twice daily",
+    precautions: ["Contains sugar - diabetics use sugar-free version", "Check for specific ingredient allergies", "Consult if on medications"],
+    benefits: ["Builds stamina", "Boosts immunity", "Rejuvenates body"],
+    related_diseases: ["weakness", "low-immunity", "fatigue"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-227",
+    problem: "Weakness (Elderly)",
+    title: "Dates & Milk Vitality Drink",
+    ingredients: [
+      { name: "Dates (pitted)", quantity: "4-5 pieces" },
+      { name: "Warm milk", quantity: "1 cup" },
+      { name: "Ghee", quantity: "½ teaspoon" },
+      { name: "Cardamom", quantity: "1 pod crushed" }
+    ],
+    method: [
+      "Soak dates in warm milk for 30 minutes",
+      "Blend together until smooth",
+      "Add ghee and cardamom",
+      "Drink warm"
+    ],
+    how_often: "Daily, preferably morning",
+    precautions: ["High in natural sugar", "Diabetics monitor intake", "Calorie-dense"],
+    benefits: ["Instant energy", "Iron and minerals", "Strengthens body"],
+    related_diseases: ["weakness", "anemia", "low-energy"],
+    difficulty: "Easy",
+    preparation_time: "35 minutes",
+    region: "india"
+  },
+
+  // Blood Circulation (Elderly)
+  {
+    id: "elderly-228",
+    problem: "Poor Circulation (Elderly)",
+    title: "Cinnamon Circulation Tea",
+    ingredients: [
+      { name: "Cinnamon stick", quantity: "1 small" },
+      { name: "Ginger (fresh)", quantity: "½ inch" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Boil cinnamon and ginger in water for 10 minutes",
+      "Strain into cup",
+      "Add honey when slightly cooled",
+      "Drink warm"
+    ],
+    how_often: "1-2 times daily",
+    precautions: ["Ceylon cinnamon preferred over cassia", "May lower blood sugar", "Check with doctor if on blood thinners"],
+    benefits: ["Improves blood flow", "Warms extremities", "Reduces numbness"],
+    related_diseases: ["poor-circulation", "cold-extremities", "numbness"],
+    difficulty: "Easy",
+    preparation_time: "12 minutes",
+    region: "global"
+  },
+  {
+    id: "elderly-229",
+    problem: "Poor Circulation (Elderly)",
+    title: "Cayenne Pepper Tonic",
+    ingredients: [
+      { name: "Cayenne pepper", quantity: "¼ teaspoon" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Add cayenne to warm water",
+      "Mix in lemon juice",
+      "Add honey and stir well",
+      "Drink slowly"
+    ],
+    how_often: "Once daily in morning",
+    precautions: ["Start with tiny amount", "May cause stomach irritation", "Avoid if ulcers"],
+    benefits: ["Stimulates blood flow", "Clears arteries", "Warms body"],
+    related_diseases: ["poor-circulation", "cold-hands-feet", "sluggish-blood-flow"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "global"
+  },
+
+  // Muscle Cramps (Elderly)
+  {
+    id: "elderly-230",
+    problem: "Muscle Cramps (Elderly)",
+    title: "Banana-Coconut Electrolyte Smoothie",
+    ingredients: [
+      { name: "Ripe banana", quantity: "1 medium" },
+      { name: "Coconut water", quantity: "1 cup" },
+      { name: "Dates", quantity: "2 pitted" },
+      { name: "Salt", quantity: "A pinch" }
+    ],
+    method: [
+      "Blend banana with coconut water",
+      "Add dates and blend until smooth",
+      "Add pinch of salt",
+      "Consume fresh"
+    ],
+    how_often: "Daily or when cramping",
+    precautions: ["Diabetics monitor sugar content", "Kidney patients check potassium", "Fresh is best"],
+    benefits: ["Replenishes potassium", "Natural electrolytes", "Prevents cramping"],
+    related_diseases: ["muscle-cramps", "electrolyte-imbalance", "leg-cramps"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "elderly-231",
+    problem: "Muscle Cramps (Elderly)",
+    title: "Epsom Salt Soak",
+    ingredients: [
+      { name: "Epsom salt", quantity: "2 cups" },
+      { name: "Warm water (bath)", quantity: "Full tub" },
+      { name: "Lavender essential oil", quantity: "5 drops (optional)" }
+    ],
+    method: [
+      "Fill tub with warm water",
+      "Dissolve epsom salt completely",
+      "Add lavender oil if desired",
+      "Soak for 20-30 minutes"
+    ],
+    how_often: "2-3 times per week",
+    precautions: ["Not too hot water", "Stay hydrated", "Get up slowly after"],
+    benefits: ["Magnesium absorption", "Relaxes muscles", "Reduces cramps"],
+    related_diseases: ["muscle-cramps", "body-ache", "tension"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes + 30 min soak",
+    region: "global"
+  },
+
+  // Joint Stiffness (Elderly)
+  {
+    id: "elderly-232",
+    problem: "Joint Stiffness (Elderly)",
+    title: "Castor Oil Hot Pack",
+    ingredients: [
+      { name: "Castor oil", quantity: "2 tablespoons" },
+      { name: "Flannel cloth", quantity: "1 piece" },
+      { name: "Hot water bottle", quantity: "1" }
+    ],
+    method: [
+      "Soak flannel in castor oil",
+      "Apply to stiff joint",
+      "Cover with plastic wrap",
+      "Place hot water bottle on top",
+      "Leave for 30-45 minutes"
+    ],
+    how_often: "Daily or as needed",
+    precautions: ["Protect bedding from oil", "Not on open wounds", "Moderate heat only"],
+    benefits: ["Deep penetrating relief", "Reduces inflammation", "Improves flexibility"],
+    related_diseases: ["joint-stiffness", "arthritis", "mobility-issues"],
+    difficulty: "Medium",
+    preparation_time: "10 min + 45 min application",
+    region: "global"
+  },
+  {
+    id: "elderly-233",
+    problem: "Joint Stiffness (Elderly)",
+    title: "Warm Ginger Compress",
+    ingredients: [
+      { name: "Fresh ginger (grated)", quantity: "3 tablespoons" },
+      { name: "Hot water", quantity: "2 cups" },
+      { name: "Clean towel", quantity: "1" }
+    ],
+    method: [
+      "Steep grated ginger in hot water 10 minutes",
+      "Strain and soak towel in ginger water",
+      "Wring excess and apply to stiff joints",
+      "Repeat when towel cools",
+      "Continue for 15-20 minutes"
+    ],
+    how_often: "1-2 times daily",
+    precautions: ["Test temperature first", "Not on sensitive skin", "Avoid if skin irritation"],
+    benefits: ["Increases blood flow", "Reduces stiffness", "Warming effect"],
+    related_diseases: ["joint-stiffness", "morning-stiffness", "arthritis"],
+    difficulty: "Medium",
+    preparation_time: "15 min + 20 min application",
+    region: "global"
+  },
+
+  // Tremors (Elderly)
+  {
+    id: "elderly-234",
+    problem: "Tremors (Elderly)",
+    title: "Valerian Root Calming Tea",
+    ingredients: [
+      { name: "Valerian root (dried)", quantity: "1 teaspoon" },
+      { name: "Passionflower", quantity: "½ teaspoon" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Steep valerian and passionflower in hot water",
+      "Cover and let infuse 15 minutes",
+      "Strain and add honey",
+      "Drink warm"
+    ],
+    how_often: "1-2 times daily",
+    precautions: ["May cause drowsiness", "Not with sedatives", "Consult neurologist"],
+    benefits: ["Calms nervous system", "Reduces trembling", "Promotes relaxation"],
+    related_diseases: ["tremors", "anxiety", "nervous-disorders"],
+    difficulty: "Easy",
+    preparation_time: "18 minutes",
+    region: "global"
+  },
+  {
+    id: "elderly-235",
+    problem: "Tremors (Elderly)",
+    title: "Omega-3 Flax Pudding",
+    ingredients: [
+      { name: "Flaxseed (ground)", quantity: "2 tablespoons" },
+      { name: "Chia seeds", quantity: "1 tablespoon" },
+      { name: "Almond milk", quantity: "1 cup" },
+      { name: "Berries", quantity: "¼ cup" }
+    ],
+    method: [
+      "Mix flax and chia with almond milk",
+      "Refrigerate overnight",
+      "Top with berries in morning",
+      "Consume as breakfast"
+    ],
+    how_often: "Daily",
+    precautions: ["Increase water intake", "May cause bloating initially", "Fresh ground flax best"],
+    benefits: ["Omega-3 for nerve health", "Reduces inflammation", "Supports brain function"],
+    related_diseases: ["tremors", "nerve-health", "inflammation"],
+    difficulty: "Easy",
+    preparation_time: "Overnight + 2 min",
+    region: "global"
+  },
+
+  // Balance Issues (Elderly)
+  {
+    id: "elderly-236",
+    problem: "Balance Issues (Elderly)",
+    title: "Ginkgo Biloba Circulation Tea",
+    ingredients: [
+      { name: "Ginkgo biloba leaves (dried)", quantity: "1 teaspoon" },
+      { name: "Green tea", quantity: "½ teaspoon" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Steep ginkgo and green tea in hot water",
+      "Cover for 10 minutes",
+      "Strain and add honey",
+      "Drink warm"
+    ],
+    how_often: "Once daily",
+    precautions: ["May interact with blood thinners", "Consult doctor first", "Not before surgery"],
+    benefits: ["Improves inner ear circulation", "Enhances balance", "Supports brain blood flow"],
+    related_diseases: ["balance-issues", "vertigo", "dizziness"],
+    difficulty: "Easy",
+    preparation_time: "12 minutes",
+    region: "global"
+  },
+
+  // Hearing Loss (Age-Related)
+  {
+    id: "elderly-237",
+    problem: "Hearing Loss (Elderly)",
+    title: "Garlic-Olive Oil Ear Drops",
+    ingredients: [
+      { name: "Garlic clove", quantity: "1 crushed" },
+      { name: "Olive oil", quantity: "2 tablespoons" }
+    ],
+    method: [
+      "Warm olive oil gently",
+      "Add crushed garlic and infuse 10 minutes",
+      "Strain and cool to body temperature",
+      "Put 2-3 drops in ear, lie on side 10 minutes"
+    ],
+    how_often: "Once daily for a week",
+    precautions: ["Never use if ear infection or perforated eardrum", "Test temperature", "Consult ENT first"],
+    benefits: ["Improves ear circulation", "Natural antimicrobial", "May improve hearing"],
+    related_diseases: ["hearing-loss", "ear-health", "ear-circulation"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+
+  // Dry Mouth (Elderly)
+  {
+    id: "elderly-238",
+    problem: "Dry Mouth (Elderly)",
+    title: "Fennel Seed Mouth Rinse",
+    ingredients: [
+      { name: "Fennel seeds", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Cardamom", quantity: "2 pods" }
+    ],
+    method: [
+      "Boil fennel and cardamom in water",
+      "Simmer for 10 minutes",
+      "Strain and cool",
+      "Use as mouth rinse and swish for 1 minute"
+    ],
+    how_often: "3-4 times daily",
+    precautions: ["Don't swallow large amounts", "Make fresh daily", "Check for allergies"],
+    benefits: ["Stimulates saliva", "Freshens breath", "Soothes dry mouth"],
+    related_diseases: ["dry-mouth", "oral-health", "medication-side-effects"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+
+  // Loss of Appetite (Elderly)
+  {
+    id: "elderly-239",
+    problem: "Loss of Appetite (Elderly)",
+    title: "Ginger-Lime Appetite Stimulant",
+    ingredients: [
+      { name: "Fresh ginger", quantity: "1 inch grated" },
+      { name: "Lime juice", quantity: "1 tablespoon" },
+      { name: "Rock salt", quantity: "¼ teaspoon" },
+      { name: "Jaggery", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Mix grated ginger with lime juice",
+      "Add rock salt and jaggery",
+      "Let sit 10 minutes",
+      "Chew this mixture before meals"
+    ],
+    how_often: "15 minutes before meals",
+    precautions: ["Avoid if severe acidity", "Diabetics skip jaggery", "Start with small amount"],
+    benefits: ["Stimulates digestive fire", "Increases appetite", "Improves taste"],
+    related_diseases: ["loss-of-appetite", "digestive-weakness", "elderly-nutrition"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-240",
+    problem: "Loss of Appetite (Elderly)",
+    title: "Hing (Asafoetida) Buttermilk",
+    ingredients: [
+      { name: "Buttermilk", quantity: "1 cup" },
+      { name: "Hing (asafoetida)", quantity: "A pinch" },
+      { name: "Cumin powder", quantity: "½ teaspoon" },
+      { name: "Salt", quantity: "To taste" }
+    ],
+    method: [
+      "Mix buttermilk until smooth",
+      "Add hing, cumin, and salt",
+      "Stir well",
+      "Drink with or after meals"
+    ],
+    how_often: "Once daily with lunch",
+    precautions: ["Lactose intolerance caution", "Use sparingly if hyperacidity", "Fresh buttermilk preferred"],
+    benefits: ["Improves digestion", "Stimulates appetite", "Cooling for body"],
+    related_diseases: ["loss-of-appetite", "indigestion", "poor-digestion"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+
+  // Immune Weakness (Elderly)
+  {
+    id: "elderly-241",
+    problem: "Weak Immunity (Elderly)",
+    title: "Tulsi-Giloy Immunity Kadha",
+    ingredients: [
+      { name: "Tulsi leaves", quantity: "10-12 leaves" },
+      { name: "Giloy stem", quantity: "1 inch piece" },
+      { name: "Black pepper", quantity: "2-3 crushed" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Boil tulsi, giloy, and pepper in water",
+      "Reduce to half",
+      "Strain and cool slightly",
+      "Add honey and drink warm"
+    ],
+    how_often: "Once daily",
+    precautions: ["Not during pregnancy", "May lower blood sugar", "Consult if on immunosuppressants"],
+    benefits: ["Boosts immunity", "Antiviral properties", "Detoxifies body"],
+    related_diseases: ["weak-immunity", "frequent-infections", "low-resistance"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes",
+    region: "india"
+  },
+  {
+    id: "elderly-242",
+    problem: "Weak Immunity (Elderly)",
+    title: "Elderberry Immune Syrup",
+    ingredients: [
+      { name: "Dried elderberries", quantity: "½ cup" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Cinnamon stick", quantity: "1" },
+      { name: "Honey", quantity: "½ cup" }
+    ],
+    method: [
+      "Simmer elderberries and cinnamon in water for 45 minutes",
+      "Mash berries and strain",
+      "Cool to lukewarm and add honey",
+      "Store in refrigerator up to 2 months"
+    ],
+    how_often: "1 tablespoon daily",
+    precautions: ["Never use raw elderberries", "Diabetics moderate honey", "Autoimmune conditions consult first"],
+    benefits: ["Rich in antioxidants", "Fights viral infections", "Strengthens immune response"],
+    related_diseases: ["weak-immunity", "cold-prevention", "flu-prevention"],
+    difficulty: "Medium",
+    preparation_time: "1 hour",
+    region: "global"
+  },
+
+  // Urinary Incontinence (Elderly)
+  {
+    id: "elderly-243",
+    problem: "Urinary Incontinence (Elderly)",
+    title: "Pumpkin Seed Extract",
+    ingredients: [
+      { name: "Pumpkin seeds (raw)", quantity: "3 tablespoons" },
+      { name: "Warm water", quantity: "1 cup" }
+    ],
+    method: [
+      "Grind pumpkin seeds to powder",
+      "Mix 1 tablespoon powder in warm water",
+      "Drink daily",
+      "Store remaining powder in airtight container"
+    ],
+    how_often: "Once daily",
+    precautions: ["May interact with diuretics", "Start slowly", "Monitor effects"],
+    benefits: ["Strengthens bladder muscles", "Reduces urgency", "Natural remedy"],
+    related_diseases: ["urinary-incontinence", "bladder-weakness", "overactive-bladder"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+
+  // Skin Aging (Elderly)
+  {
+    id: "elderly-244",
+    problem: "Skin Aging (Elderly)",
+    title: "Aloe-Vitamin E Night Serum",
+    ingredients: [
+      { name: "Fresh aloe vera gel", quantity: "2 tablespoons" },
+      { name: "Vitamin E capsule", quantity: "2 capsules" },
+      { name: "Rose water", quantity: "1 teaspoon" }
+    ],
+    method: [
+      "Extract fresh aloe gel",
+      "Pierce vitamin E capsules and squeeze out oil",
+      "Mix aloe, vitamin E, and rose water",
+      "Apply on face and neck before bed"
+    ],
+    how_often: "Nightly",
+    precautions: ["Patch test first", "Use fresh aloe", "Avoid eye area"],
+    benefits: ["Reduces wrinkles", "Hydrates deeply", "Promotes cell renewal"],
+    related_diseases: ["skin-aging", "wrinkles", "dry-skin"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "elderly-245",
+    problem: "Skin Aging (Elderly)",
+    title: "Papaya-Honey Face Mask",
+    ingredients: [
+      { name: "Ripe papaya", quantity: "¼ cup mashed" },
+      { name: "Honey", quantity: "1 tablespoon" },
+      { name: "Lemon juice", quantity: "½ teaspoon" }
+    ],
+    method: [
+      "Mash papaya to smooth paste",
+      "Mix in honey and lemon juice",
+      "Apply to clean face",
+      "Leave 15-20 minutes and rinse"
+    ],
+    how_often: "2-3 times per week",
+    precautions: ["Latex allergy - test first", "Avoid sun after lemon", "Rinse thoroughly"],
+    benefits: ["Natural enzymes exfoliate", "Brightens skin", "Reduces age spots"],
+    related_diseases: ["skin-aging", "age-spots", "dull-skin"],
+    difficulty: "Easy",
+    preparation_time: "5 min + 20 min application",
+    region: "global"
+  },
+
+  // Neuropathy (Elderly)
+  {
+    id: "elderly-246",
+    problem: "Neuropathy (Elderly)",
+    title: "Evening Primrose Oil Supplement",
+    ingredients: [
+      { name: "Evening primrose oil", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "To wash down" }
+    ],
+    method: [
+      "Take evening primrose oil directly",
+      "Or add to food",
+      "Follow with warm water",
+      "Best taken with meals"
+    ],
+    how_often: "Once daily",
+    precautions: ["May increase bleeding risk", "Consult if on blood thinners", "Not before surgery"],
+    benefits: ["GLA supports nerve function", "Reduces nerve pain", "Anti-inflammatory"],
+    related_diseases: ["neuropathy", "nerve-pain", "diabetic-neuropathy"],
+    difficulty: "Easy",
+    preparation_time: "1 minute",
+    region: "global"
+  },
+  {
+    id: "elderly-247",
+    problem: "Neuropathy (Elderly)",
+    title: "Alpha-Lipoic Acid Rich Spinach Juice",
+    ingredients: [
+      { name: "Fresh spinach", quantity: "2 cups" },
+      { name: "Broccoli", quantity: "½ cup" },
+      { name: "Apple", quantity: "1 small" },
+      { name: "Water", quantity: "½ cup" }
+    ],
+    method: [
+      "Wash all vegetables and fruit",
+      "Blend spinach, broccoli, and apple",
+      "Add water to thin",
+      "Drink fresh immediately"
+    ],
+    how_often: "Daily",
+    precautions: ["Kidney stone history - moderate spinach", "Thyroid issues - cook broccoli", "Fresh only"],
+    benefits: ["Natural alpha-lipoic acid", "Antioxidant protection", "Nerve regeneration support"],
+    related_diseases: ["neuropathy", "nerve-damage", "oxidative-stress"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+
+  // Dementia Support
+  {
+    id: "elderly-248",
+    problem: "Dementia Support",
+    title: "Turmeric-Coconut Brain Balls",
+    ingredients: [
+      { name: "Desiccated coconut", quantity: "1 cup" },
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "3 tablespoons" },
+      { name: "Cardamom powder", quantity: "½ teaspoon" }
+    ],
+    method: [
+      "Mix coconut and turmeric well",
+      "Add honey gradually and mix",
+      "Add cardamom and form small balls",
+      "Refrigerate for 30 minutes before eating"
+    ],
+    how_often: "1-2 balls daily",
+    precautions: ["Diabetics moderate intake", "Store in refrigerator", "Consume within a week"],
+    benefits: ["MCTs for brain fuel", "Curcumin neuroprotection", "Easy to eat snack"],
+    related_diseases: ["dementia", "cognitive-decline", "brain-health"],
+    difficulty: "Easy",
+    preparation_time: "15 min + 30 min chill",
+    region: "global"
+  },
+  {
+    id: "elderly-249",
+    problem: "Dementia Support",
+    title: "Lion's Mane Mushroom Tea",
+    ingredients: [
+      { name: "Lion's mane mushroom powder", quantity: "1 teaspoon" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Cinnamon", quantity: "A pinch" }
+    ],
+    method: [
+      "Add mushroom powder to hot water",
+      "Stir well until dissolved",
+      "Add cinnamon and honey",
+      "Drink warm"
+    ],
+    how_often: "Once daily",
+    precautions: ["Start with small dose", "May cause digestive upset", "Quality source important"],
+    benefits: ["Promotes nerve growth factor", "Supports memory", "Neuroprotective"],
+    related_diseases: ["dementia", "memory-loss", "cognitive-support"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // General Aging Support
+  {
+    id: "elderly-250",
+    problem: "Healthy Aging",
+    title: "Amla Rasayana (Rejuvenation)",
+    ingredients: [
+      { name: "Amla (Indian gooseberry) powder", quantity: "1 teaspoon" },
+      { name: "Ghee", quantity: "½ teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "For washing down" }
+    ],
+    method: [
+      "Mix amla powder with ghee to form paste",
+      "Add honey and mix well",
+      "Consume and follow with warm water",
+      "Take in the morning"
+    ],
+    how_often: "Daily",
+    precautions: ["Sour taste - may not suit all", "Avoid combining honey and ghee in equal parts", "Start slowly"],
+    benefits: ["Powerful rejuvenator", "Rich in Vitamin C", "Slows aging process"],
+    related_diseases: ["aging", "immunity", "vitality"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
   }
 ];
 
@@ -14792,5 +16030,32 @@ export const remedyCategories = [
   "Fatty Liver Support",
   "IBD Gut Support",
   "Rheumatoid Arthritis Support",
-  "Metabolic Syndrome Support"
+  "Metabolic Syndrome Support",
+  // Elderly Health
+  "Parkinson's Support",
+  "Alzheimer's Support",
+  "Memory Loss (Elderly)",
+  "Arthritis (Elderly)",
+  "Weak Bones (Elderly)",
+  "Prostate Health (Elderly)",
+  "Heart Health (Elderly)",
+  "Digestive Issues (Elderly)",
+  "Constipation (Elderly)",
+  "Sleep Issues (Elderly)",
+  "Weak Eyesight (Elderly)",
+  "Weakness (Elderly)",
+  "Poor Circulation (Elderly)",
+  "Muscle Cramps (Elderly)",
+  "Joint Stiffness (Elderly)",
+  "Tremors (Elderly)",
+  "Balance Issues (Elderly)",
+  "Hearing Loss (Elderly)",
+  "Dry Mouth (Elderly)",
+  "Loss of Appetite (Elderly)",
+  "Weak Immunity (Elderly)",
+  "Urinary Incontinence (Elderly)",
+  "Skin Aging (Elderly)",
+  "Neuropathy (Elderly)",
+  "Dementia Support",
+  "Healthy Aging"
 ];
