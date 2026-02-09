@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { remedies, remedyCategories, getRemedyRegion } from "@/data/remedies";
-import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin, ChefHat } from "lucide-react";
+import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -15,13 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage, Region } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
-
-// Kitchen remedies - quick access items with simple ingredients
-const kitchenRemedyIds = [
-  "kitchen-51", "kitchen-52", "kitchen-53", "kitchen-55", "kitchen-56",
-  "kitchen-57", "kitchen-58", "kitchen-74", "kitchen-75", "kitchen-76",
-  "kitchen-83", "kitchen-84", "kitchen-85", "kitchen-90", "kitchen-91"
-];
+import QuickKitchenSection from "@/components/remedies/QuickKitchenSection";
 import { getRegionName } from "@/hooks/useGeoLocation";
 
 // SEO JSON-LD structured data hook
@@ -305,11 +299,6 @@ const Remedies = () => {
     return counts;
   }, []);
 
-  // Get kitchen remedies for quick access section
-  const kitchenRemedies = useMemo(() => {
-    return remedies.filter(r => kitchenRemedyIds.includes(r.id) || r.id.startsWith('kitchen-')).slice(0, 8);
-  }, []);
-
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "Easy":
@@ -363,57 +352,10 @@ const Remedies = () => {
         </section>
 
         <div className="container mx-auto px-4 py-6 md:py-8">
-          {/* Quick Kitchen Remedies Section */}
+          {/* Quick Kitchen Remedies - Contained Section */}
           <section className="mb-8">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 bg-secondary/15 rounded-lg">
-                <ChefHat className="h-5 w-5 text-secondary" />
-              </div>
-              <div>
-                <h2 className="font-display text-lg md:text-xl font-semibold text-foreground">
-                  {language === "hi" ? "झटपट रसोई उपचार" : "Quick Kitchen Remedies"}
-                </h2>
-                <p className="text-xs md:text-sm text-muted-foreground">
-                  {language === "hi" ? "घर में उपलब्ध सामग्री से तुरंत राहत" : "Instant relief with common ingredients"}
-                </p>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
-              {kitchenRemedies.map((remedy) => (
-                <LocalizedLink
-                  key={remedy.id}
-                  to={`/remedies/${remedy.id}`}
-                  className="group bg-card rounded-xl border border-secondary/20 hover:border-secondary/50 hover:shadow-lg transition-all duration-200"
-                >
-                  <div className="p-4">
-                    <div className="flex items-start justify-between gap-2 mb-3">
-                      <Badge className="bg-secondary/10 text-secondary border-secondary/20 text-[10px] font-medium px-2 py-0.5">
-                        {remedy.problem}
-                      </Badge>
-                      <Badge className={`text-[10px] font-medium px-2 py-0.5 border ${getDifficultyColor(remedy.difficulty)}`}>
-                        {remedy.difficulty}
-                      </Badge>
-                    </div>
-                    <h3 className="font-display text-sm md:text-base font-semibold mb-2 line-clamp-2 group-hover:text-secondary transition-colors leading-snug">
-                      {remedy.title}
-                    </h3>
-                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <Leaf className="h-3.5 w-3.5 text-secondary flex-shrink-0" />
-                      <span className="truncate">{remedy.ingredients.slice(0, 2).map((i) => i.name).join(", ")}</span>
-                    </div>
-                  </div>
-                  <div className="px-4 py-2.5 bg-secondary/5 border-t border-secondary/10 flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <Clock className="h-3.5 w-3.5" />
-                    <span>{remedy.preparation_time}</span>
-                  </div>
-                </LocalizedLink>
-              ))}
-            </div>
+            <QuickKitchenSection maxItems={12} showViewAll={false} />
           </section>
-
-          {/* Divider */}
-          <div className="border-t border-border my-8" />
 
           {/* Filters Section */}
           <section className="mb-6">
