@@ -91,7 +91,32 @@ const DoctorAI = () => {
     }
   }, [isListening]);
 
-  // TTS function using browser's Web Speech API
+  // Preload voices for TTS (critical for mobile)
+  const voicesLoadedRef = useRef(false);
+  const [voicesReady, setVoicesReady] = useState(false);
+  
+  useEffect(() => {
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices();
+      if (voices.length > 0) {
+        voicesLoadedRef.current = true;
+        setVoicesReady(true);
+      }
+    };
+    
+    if ('speechSynthesis' in window) {
+      loadVoices();
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+    
+    return () => {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = null;
+      }
+    };
+  }, []);
+
+  // TTS function using browser's Web Speech API with mobile fixes
   const speakMessage = useCallback((text: string, messageIndex: number) => {
     // Don't start TTS if user is listening
     if (isListening) {
@@ -100,15 +125,6 @@ const DoctorAI = () => {
         description: language === "hinglish" ? "Voice input chal raha hai" : "Voice input is active",
         variant: "destructive",
       });
-      return;
-    }
-
-    if (window.speechSynthesis.speaking) {
-      window.speechSynthesis.cancel();
-    }
-
-    if (speakingMessageIndex === messageIndex) {
-      setSpeakingMessageIndex(null);
       return;
     }
 
@@ -121,7 +137,13 @@ const DoctorAI = () => {
       return;
     }
 
-    setSpeakingMessageIndex(messageIndex);
+    // Cancel any ongoing speech
+    window.speechSynthesis.cancel();
+
+    if (speakingMessageIndex === messageIndex) {
+      setSpeakingMessageIndex(null);
+      return;
+    }
 
     const cleaned = textForSpeech(text);
     if (!cleaned) {
@@ -134,30 +156,80 @@ const DoctorAI = () => {
       return;
     }
 
-    const utterance = new SpeechSynthesisUtterance(cleaned);
-    utterance.lang = language === "hinglish" ? "hi-IN" : "en-IN";
-    utterance.rate = 0.9;
-    utterance.pitch = 1;
-    
-    const voices = window.speechSynthesis.getVoices();
-    const preferredVoice = voices.find(voice => 
-      voice.lang.startsWith(language === "hinglish" ? "hi" : "en")
-    );
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
-    }
+    setSpeakingMessageIndex(messageIndex);
 
-    utterance.onend = () => setSpeakingMessageIndex(null);
-    utterance.onerror = () => {
-      setSpeakingMessageIndex(null);
-      toast({
-        title: "Speech Error",
-        description: language === "hinglish" ? "Awaaz nahi sun sakte" : "Could not generate speech",
-        variant: "destructive",
-      });
+    // Split long text into chunks for mobile (Chrome mobile cuts off after ~15s)
+    const maxChunkLength = 200;
+    const sentences = cleaned.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [cleaned];
+    const chunks: string[] = [];
+    let currentChunk = '';
+    
+    for (const sentence of sentences) {
+      if ((currentChunk + sentence).length > maxChunkLength && currentChunk) {
+        chunks.push(currentChunk.trim());
+        currentChunk = sentence;
+      } else {
+        currentChunk += sentence;
+      }
+    }
+    if (currentChunk.trim()) chunks.push(currentChunk.trim());
+
+    const voices = window.speechSynthesis.getVoices();
+    const langPrefix = language === "hinglish" ? "hi" : "en";
+    const preferredVoice = voices.find(v => v.lang.startsWith(langPrefix));
+
+    let chunkIndex = 0;
+    const speakNextChunk = () => {
+      if (chunkIndex >= chunks.length) {
+        setSpeakingMessageIndex(null);
+        return;
+      }
+
+      const utterance = new SpeechSynthesisUtterance(chunks[chunkIndex]);
+      utterance.lang = language === "hinglish" ? "hi-IN" : "en-IN";
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+      
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
+
+      utterance.onend = () => {
+        chunkIndex++;
+        speakNextChunk();
+      };
+      
+      utterance.onerror = (e) => {
+        // 'interrupted' and 'cancelled' are normal when user stops
+        if (e.error === 'interrupted' || e.error === 'canceled') return;
+        setSpeakingMessageIndex(null);
+        toast({
+          title: "Speech Error",
+          description: language === "hinglish" ? "Awaaz nahi sun sakte" : "Could not generate speech",
+          variant: "destructive",
+        });
+      };
+
+      window.speechSynthesis.speak(utterance);
+      
+      // Chrome mobile workaround: resume speech synthesis periodically
+      const resumeInterval = setInterval(() => {
+        if (!window.speechSynthesis.speaking) {
+          clearInterval(resumeInterval);
+          return;
+        }
+        window.speechSynthesis.pause();
+        window.speechSynthesis.resume();
+      }, 10000);
+      
+      utterance.onend = () => {
+        clearInterval(resumeInterval);
+        chunkIndex++;
+        speakNextChunk();
+      };
     };
 
-    window.speechSynthesis.speak(utterance);
+    speakNextChunk();
   }, [speakingMessageIndex, language, toast, textForSpeech, isListening]);
 
   useEffect(() => {

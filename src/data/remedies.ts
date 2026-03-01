@@ -15849,6 +15849,966 @@ export const remedies: Remedy[] = [
     difficulty: "Easy",
     preparation_time: "5 minutes",
     region: "india"
+  },
+
+  // ===== MEN'S HEALTH REMEDIES =====
+  // Low Testosterone
+  {
+    id: "mens-251",
+    problem: "Low Testosterone (Men)",
+    title: "Ashwagandha Testosterone Booster",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "1 teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Mix ashwagandha powder in warm milk", "Add honey and stir well", "Drink before bedtime"],
+    how_often: "Daily for 2-3 months",
+    precautions: ["Avoid if you have hyperthyroidism", "Consult doctor if on medications"],
+    benefits: ["Boosts testosterone naturally", "Reduces cortisol", "Improves vitality"],
+    related_diseases: ["testosterone", "vitality", "energy"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-252",
+    problem: "Low Testosterone (Men)",
+    title: "Shilajit & Milk Tonic",
+    ingredients: [
+      { name: "Shilajit (purified resin)", quantity: "Pea-sized amount" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Saffron strands", quantity: "2-3" }
+    ],
+    method: ["Dissolve shilajit in warm milk", "Add saffron strands", "Stir and drink in the morning"],
+    how_often: "Daily for 2 months",
+    precautions: ["Use only purified shilajit", "Avoid if you have gout"],
+    benefits: ["Natural testosterone enhancer", "Boosts energy and stamina", "Rich in fulvic acid"],
+    related_diseases: ["testosterone", "stamina", "energy"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-253",
+    problem: "Low Testosterone (Men)",
+    title: "Tribulus & Gokshura Decoction",
+    ingredients: [
+      { name: "Gokshura powder", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Boil gokshura powder in water for 5 minutes", "Strain and cool slightly", "Add honey and drink"],
+    how_often: "Twice daily",
+    precautions: ["May lower blood sugar", "Consult doctor if on hormonal therapy"],
+    benefits: ["Supports hormonal balance", "Improves libido", "Strengthens reproductive system"],
+    related_diseases: ["testosterone", "libido", "hormones"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+
+  // Hair Loss (Men)
+  {
+    id: "mens-254",
+    problem: "Hair Loss (Men)",
+    title: "Bhringraj Oil Scalp Massage",
+    ingredients: [
+      { name: "Bhringraj oil", quantity: "2 tablespoons" },
+      { name: "Coconut oil", quantity: "1 tablespoon" },
+      { name: "Amla oil", quantity: "1 tablespoon" }
+    ],
+    method: ["Mix all oils and warm slightly", "Massage into scalp using fingertips for 10 minutes", "Leave overnight and wash next morning"],
+    how_often: "3 times per week",
+    precautions: ["Use lukewarm oil, not hot", "Patch test if sensitive scalp"],
+    benefits: ["Stimulates hair follicles", "Reduces DHT on scalp", "Promotes new hair growth"],
+    related_diseases: ["hair loss", "baldness", "scalp health"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-255",
+    problem: "Hair Loss (Men)",
+    title: "Onion Juice & Fenugreek Hair Mask",
+    ingredients: [
+      { name: "Onion juice", quantity: "3 tablespoons" },
+      { name: "Fenugreek paste (soaked seeds)", quantity: "2 tablespoons" },
+      { name: "Coconut oil", quantity: "1 tablespoon" }
+    ],
+    method: ["Soak fenugreek seeds overnight and grind to paste", "Mix with fresh onion juice and coconut oil", "Apply to scalp, leave 30-45 minutes", "Wash with mild shampoo"],
+    how_often: "Twice per week",
+    precautions: ["Strong smell - rinse well", "Avoid if scalp has open wounds"],
+    benefits: ["Rich in sulfur for hair regrowth", "Strengthens hair roots", "Reduces hair thinning"],
+    related_diseases: ["hair loss", "thinning hair", "baldness"],
+    difficulty: "Medium",
+    preparation_time: "20 minutes",
+    region: "global"
+  },
+  {
+    id: "mens-256",
+    problem: "Hair Loss (Men)",
+    title: "Curry Leaf & Coconut Oil Treatment",
+    ingredients: [
+      { name: "Fresh curry leaves", quantity: "Handful" },
+      { name: "Coconut oil", quantity: "3 tablespoons" },
+      { name: "Black pepper", quantity: "2-3 crushed" }
+    ],
+    method: ["Heat coconut oil with curry leaves until leaves turn black", "Strain and cool slightly", "Massage into scalp for 10 minutes", "Leave for 1 hour before washing"],
+    how_often: "3 times per week",
+    precautions: ["Let oil cool before applying", "Avoid on irritated scalp"],
+    benefits: ["Prevents premature graying", "Strengthens hair follicles", "Provides essential nutrients"],
+    related_diseases: ["hair loss", "graying", "weak hair"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+
+  // Muscle Building (Men)
+  {
+    id: "mens-257",
+    problem: "Muscle Building (Men)",
+    title: "Ashwagandha Protein Shake",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "1 teaspoon" },
+      { name: "Banana", quantity: "1" },
+      { name: "Milk", quantity: "1 glass" },
+      { name: "Almonds", quantity: "5-6 soaked" }
+    ],
+    method: ["Blend all ingredients together", "Drink after workout", "Best consumed within 30 minutes of exercise"],
+    how_often: "Daily post-workout",
+    precautions: ["Adjust portions for body weight", "Skip if lactose intolerant - use plant milk"],
+    benefits: ["Supports muscle recovery", "Natural protein boost", "Increases strength"],
+    related_diseases: ["muscle growth", "fitness", "strength"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "mens-258",
+    problem: "Muscle Building (Men)",
+    title: "Shatavari & Dates Energy Balls",
+    ingredients: [
+      { name: "Shatavari powder", quantity: "1 teaspoon" },
+      { name: "Dates (pitted)", quantity: "5-6" },
+      { name: "Almonds", quantity: "10" },
+      { name: "Ghee", quantity: "1 teaspoon" }
+    ],
+    method: ["Grind dates and almonds into a paste", "Mix in shatavari powder and ghee", "Roll into small balls", "Refrigerate and eat 2 daily"],
+    how_often: "2 balls daily",
+    precautions: ["High calorie - adjust diet accordingly", "Store in refrigerator"],
+    benefits: ["Natural muscle fuel", "Rich in protein and healthy fats", "Supports testosterone"],
+    related_diseases: ["muscle building", "strength", "nutrition"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+
+  // Stamina & Endurance
+  {
+    id: "mens-259",
+    problem: "Stamina & Endurance (Men)",
+    title: "Safed Musli & Milk Tonic",
+    ingredients: [
+      { name: "Safed Musli powder", quantity: "1 teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Mishri (rock sugar)", quantity: "½ teaspoon" }
+    ],
+    method: ["Add safed musli to warm milk", "Stir in mishri", "Drink at night before bed"],
+    how_often: "Daily for 2 months",
+    precautions: ["Not for diabetics without monitoring", "Buy from trusted source"],
+    benefits: ["Increases physical stamina", "Natural adaptogen", "Boosts vitality"],
+    related_diseases: ["stamina", "endurance", "vitality"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-260",
+    problem: "Stamina & Endurance (Men)",
+    title: "Beetroot & Pomegranate Pre-Workout Juice",
+    ingredients: [
+      { name: "Beetroot", quantity: "1 medium" },
+      { name: "Pomegranate seeds", quantity: "½ cup" },
+      { name: "Ginger", quantity: "½ inch" },
+      { name: "Lemon juice", quantity: "1 teaspoon" }
+    ],
+    method: ["Juice beetroot and pomegranate together", "Add grated ginger and lemon", "Drink 30 minutes before workout"],
+    how_often: "Before workouts",
+    precautions: ["May stain teeth temporarily", "High in natural sugars"],
+    benefits: ["Boosts nitric oxide for endurance", "Increases blood flow", "Natural energy booster"],
+    related_diseases: ["stamina", "blood flow", "exercise"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "global"
+  },
+  {
+    id: "mens-261",
+    problem: "Stamina & Endurance (Men)",
+    title: "Chyawanprash Morning Booster",
+    ingredients: [
+      { name: "Chyawanprash", quantity: "1 tablespoon" },
+      { name: "Warm milk", quantity: "1 glass" }
+    ],
+    method: ["Take chyawanprash directly or mix with warm milk", "Consume on empty stomach in morning"],
+    how_often: "Daily",
+    precautions: ["Contains sugar - diabetics use sugar-free version", "May cause heat in pitta body types"],
+    benefits: ["Ancient Ayurvedic rejuvenator", "Boosts overall stamina", "Strengthens immunity"],
+    related_diseases: ["stamina", "immunity", "energy"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "india"
+  },
+
+  // Prostate Health (Men)
+  {
+    id: "mens-262",
+    problem: "Prostate Health (Men)",
+    title: "Pumpkin Seed & Turmeric Mix",
+    ingredients: [
+      { name: "Pumpkin seeds", quantity: "2 tablespoons" },
+      { name: "Turmeric powder", quantity: "½ teaspoon" },
+      { name: "Black pepper", quantity: "Pinch" }
+    ],
+    method: ["Lightly roast pumpkin seeds", "Sprinkle with turmeric and pepper", "Eat as a daily snack"],
+    how_often: "Daily",
+    precautions: ["Moderate portions to avoid excess zinc", "Chew well"],
+    benefits: ["Rich in zinc for prostate", "Anti-inflammatory", "Supports urinary health"],
+    related_diseases: ["prostate", "urinary health", "inflammation"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "mens-263",
+    problem: "Prostate Health (Men)",
+    title: "Varuna Bark Decoction",
+    ingredients: [
+      { name: "Varuna bark powder", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Boil varuna bark in water until reduced to 1 cup", "Strain and cool slightly", "Add honey and drink"],
+    how_often: "Twice daily",
+    precautions: ["Consult doctor if on prostate medication", "Buy from Ayurvedic pharmacy"],
+    benefits: ["Traditional prostate remedy", "Reduces inflammation", "Supports urinary flow"],
+    related_diseases: ["prostate", "urinary", "BPH"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+
+  // Erectile Dysfunction
+  {
+    id: "mens-264",
+    problem: "Erectile Dysfunction (Men)",
+    title: "Ashwagandha & Saffron Milk",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "1 teaspoon" },
+      { name: "Saffron strands", quantity: "4-5" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Soak saffron in warm milk for 5 minutes", "Add ashwagandha powder", "Stir in honey and drink at night"],
+    how_often: "Daily for 2-3 months",
+    precautions: ["Consult doctor if on ED medication", "Results take time - be patient"],
+    benefits: ["Improves blood circulation", "Reduces performance anxiety", "Boosts nitric oxide"],
+    related_diseases: ["erectile dysfunction", "circulation", "vitality"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-265",
+    problem: "Erectile Dysfunction (Men)",
+    title: "Garlic & Honey Vitality Remedy",
+    ingredients: [
+      { name: "Garlic cloves", quantity: "3-4 raw" },
+      { name: "Honey", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "½ cup" }
+    ],
+    method: ["Crush garlic cloves and let sit 10 minutes", "Mix with honey", "Consume on empty stomach with warm water"],
+    how_often: "Daily in morning",
+    precautions: ["May cause gastric issues initially", "Avoid if on blood thinners"],
+    benefits: ["Improves blood vessel health", "Natural vasodilator", "Boosts cardiovascular function"],
+    related_diseases: ["ED", "blood flow", "heart health"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // Low Sperm Count
+  {
+    id: "mens-266",
+    problem: "Low Sperm Count (Men)",
+    title: "Maca Root & Walnut Smoothie",
+    ingredients: [
+      { name: "Maca root powder", quantity: "1 teaspoon" },
+      { name: "Walnuts", quantity: "5-6" },
+      { name: "Banana", quantity: "1" },
+      { name: "Milk", quantity: "1 glass" }
+    ],
+    method: ["Blend all ingredients together", "Drink in the morning", "Consistency is key for results"],
+    how_often: "Daily for 3 months",
+    precautions: ["Start with small amount of maca", "May not suit hormone-sensitive conditions"],
+    benefits: ["Rich in omega-3 for sperm quality", "Maca improves sperm motility", "Essential nutrients for fertility"],
+    related_diseases: ["fertility", "sperm count", "reproductive health"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "mens-267",
+    problem: "Low Sperm Count (Men)",
+    title: "Kaunch Beej (Mucuna) Milk",
+    ingredients: [
+      { name: "Kaunch beej powder", quantity: "1 teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Mix kaunch beej powder in warm milk", "Add honey and stir", "Drink before bedtime"],
+    how_often: "Daily for 3 months",
+    precautions: ["Use processed/purified form only", "Consult Ayurvedic doctor for dosage"],
+    benefits: ["Increases sperm count", "Improves sperm motility", "Rich in L-DOPA"],
+    related_diseases: ["sperm count", "fertility", "reproductive"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+
+  // Belly Fat (Men)
+  {
+    id: "mens-268",
+    problem: "Belly Fat (Men)",
+    title: "Jeera (Cumin) Fat Burner Water",
+    ingredients: [
+      { name: "Cumin seeds", quantity: "2 teaspoons" },
+      { name: "Water", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "½ teaspoon" }
+    ],
+    method: ["Soak cumin seeds in water overnight", "Strain in morning and add lemon and honey", "Drink on empty stomach"],
+    how_often: "Daily morning",
+    precautions: ["Combine with exercise for best results", "Not a magic pill - requires lifestyle changes"],
+    benefits: ["Boosts metabolism", "Reduces visceral fat", "Improves digestion"],
+    related_diseases: ["belly fat", "weight loss", "metabolism"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes (overnight soak)",
+    region: "india"
+  },
+  {
+    id: "mens-269",
+    problem: "Belly Fat (Men)",
+    title: "Apple Cider Vinegar Belly Tonic",
+    ingredients: [
+      { name: "Apple cider vinegar (raw)", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Cinnamon powder", quantity: "¼ teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Mix ACV in warm water", "Add cinnamon and honey", "Drink 30 minutes before meals"],
+    how_often: "Twice daily before meals",
+    precautions: ["Dilute well to protect tooth enamel", "May cause acidity in some"],
+    benefits: ["Reduces belly fat accumulation", "Controls appetite", "Balances blood sugar"],
+    related_diseases: ["belly fat", "appetite", "metabolism"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "global"
+  },
+  {
+    id: "mens-270",
+    problem: "Belly Fat (Men)",
+    title: "Green Tea & Ginger Fat Cutter",
+    ingredients: [
+      { name: "Green tea leaves", quantity: "1 teaspoon" },
+      { name: "Fresh ginger", quantity: "½ inch grated" },
+      { name: "Lemon juice", quantity: "1 teaspoon" },
+      { name: "Hot water", quantity: "1 cup" }
+    ],
+    method: ["Steep green tea and ginger in hot water for 3-5 minutes", "Strain and add lemon juice", "Drink warm"],
+    how_often: "2-3 cups daily",
+    precautions: ["Avoid on empty stomach if sensitive", "Limit caffeine intake in evening"],
+    benefits: ["Boosts fat oxidation", "Thermogenic effect", "Rich in antioxidants"],
+    related_diseases: ["belly fat", "weight management", "metabolism"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // Beard Growth
+  {
+    id: "mens-271",
+    problem: "Beard Growth (Men)",
+    title: "Amla & Mustard Oil Beard Serum",
+    ingredients: [
+      { name: "Amla oil", quantity: "1 tablespoon" },
+      { name: "Mustard oil", quantity: "1 tablespoon" },
+      { name: "Fenugreek seeds", quantity: "1 teaspoon (ground)" }
+    ],
+    method: ["Mix oils together", "Add ground fenugreek", "Massage into beard area for 5 minutes", "Leave for 30 minutes before washing"],
+    how_often: "Daily",
+    precautions: ["Patch test for skin sensitivity", "Avoid contact with eyes"],
+    benefits: ["Stimulates facial hair follicles", "Provides nutrients for growth", "Conditions existing facial hair"],
+    related_diseases: ["beard growth", "facial hair", "grooming"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-272",
+    problem: "Beard Growth (Men)",
+    title: "Eucalyptus & Coconut Oil Beard Mask",
+    ingredients: [
+      { name: "Coconut oil", quantity: "2 tablespoons" },
+      { name: "Eucalyptus oil", quantity: "3-4 drops" },
+      { name: "Castor oil", quantity: "1 tablespoon" }
+    ],
+    method: ["Mix all oils together", "Apply to beard area and massage gently", "Leave for 20-30 minutes", "Wash with mild face wash"],
+    how_often: "3-4 times per week",
+    precautions: ["Do not apply pure eucalyptus oil directly", "Stop if irritation occurs"],
+    benefits: ["Promotes beard thickness", "Moisturizes skin underneath", "Encourages new growth"],
+    related_diseases: ["beard growth", "facial hair", "skin health"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // Premature Graying (Men)
+  {
+    id: "mens-273",
+    problem: "Premature Graying (Men)",
+    title: "Black Sesame & Amla Anti-Gray Tonic",
+    ingredients: [
+      { name: "Black sesame seeds", quantity: "1 tablespoon" },
+      { name: "Amla powder", quantity: "1 teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Roast sesame seeds lightly", "Grind to powder and mix with amla powder", "Take with honey and warm water"],
+    how_often: "Daily for 3+ months",
+    precautions: ["Results are gradual", "Will not reverse existing gray hair immediately"],
+    benefits: ["Rich in melanin-boosting minerals", "Nourishes hair follicles", "Slows graying process"],
+    related_diseases: ["graying", "hair pigment", "aging"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-274",
+    problem: "Premature Graying (Men)",
+    title: "Curry Leaves & Buttermilk Remedy",
+    ingredients: [
+      { name: "Fresh curry leaves", quantity: "10-12" },
+      { name: "Buttermilk", quantity: "1 glass" }
+    ],
+    method: ["Chew curry leaves in the morning", "Follow with buttermilk", "Can also blend curry leaves into buttermilk"],
+    how_often: "Daily",
+    precautions: ["Bitter taste - follow with buttermilk", "Consistency required for results"],
+    benefits: ["Rich in Vitamin B for pigmentation", "Prevents further graying", "Strengthens hair roots"],
+    related_diseases: ["premature graying", "hair health", "pigment"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "india"
+  },
+
+  // Body Odor (Men)
+  {
+    id: "mens-275",
+    problem: "Body Odor (Men)",
+    title: "Neem & Tulsi Detox Bath",
+    ingredients: [
+      { name: "Neem leaves", quantity: "Handful" },
+      { name: "Tulsi (basil) leaves", quantity: "10-12" },
+      { name: "Water", quantity: "For bathing" }
+    ],
+    method: ["Boil neem and tulsi leaves in 2 liters water for 10 minutes", "Add strained water to bath", "Bathe with this infused water"],
+    how_often: "Daily or alternate days",
+    precautions: ["May dry skin slightly", "Follow with moisturizer"],
+    benefits: ["Antibacterial - kills odor-causing bacteria", "Detoxifies skin", "Natural deodorant effect"],
+    related_diseases: ["body odor", "hygiene", "skin health"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-276",
+    problem: "Body Odor (Men)",
+    title: "ACV & Baking Soda Natural Deodorant",
+    ingredients: [
+      { name: "Apple cider vinegar", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "1 cup" },
+      { name: "Baking soda", quantity: "Pinch" }
+    ],
+    method: ["Dilute ACV in water", "Add baking soda", "Wipe underarms with cotton soaked in solution", "Let dry naturally"],
+    how_often: "After shower daily",
+    precautions: ["Do not use on broken or freshly shaved skin", "Patch test first"],
+    benefits: ["Neutralizes odor-causing bacteria", "Balances skin pH", "Chemical-free deodorant"],
+    related_diseases: ["body odor", "sweat", "bacteria"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "global"
+  },
+
+  // Stress & Burnout (Men)
+  {
+    id: "mens-277",
+    problem: "Stress & Burnout (Men)",
+    title: "Brahmi & Shankhpushpi Calm Tea",
+    ingredients: [
+      { name: "Brahmi powder", quantity: "½ teaspoon" },
+      { name: "Shankhpushpi powder", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Mix both powders in warm water", "Add honey and stir well", "Sip slowly in the evening"],
+    how_often: "Daily in evening",
+    precautions: ["May cause drowsiness", "Avoid driving after consumption"],
+    benefits: ["Calms nervous system", "Reduces cortisol levels", "Prevents mental burnout"],
+    related_diseases: ["stress", "burnout", "anxiety"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-278",
+    problem: "Stress & Burnout (Men)",
+    title: "Chamomile & Lavender Stress Relief Tea",
+    ingredients: [
+      { name: "Chamomile tea bag", quantity: "1" },
+      { name: "Dried lavender", quantity: "½ teaspoon" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Steep chamomile and lavender in hot water for 5 minutes", "Strain and add honey", "Drink while warm, preferably before bed"],
+    how_often: "Daily",
+    precautions: ["Avoid if allergic to daisy family flowers", "May interact with sedatives"],
+    benefits: ["Reduces work stress", "Promotes relaxation", "Improves sleep quality"],
+    related_diseases: ["stress", "burnout", "insomnia"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "mens-279",
+    problem: "Stress & Burnout (Men)",
+    title: "Jatamansi Root Calming Tonic",
+    ingredients: [
+      { name: "Jatamansi powder", quantity: "½ teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Mix jatamansi powder in warm milk", "Add honey", "Drink 30 minutes before bedtime"],
+    how_often: "Daily at night",
+    precautions: ["Consult doctor if on anti-anxiety medication", "Start with smaller dose"],
+    benefits: ["Powerful Ayurvedic nervine tonic", "Reduces mental fatigue", "Promotes deep sleep"],
+    related_diseases: ["stress", "mental fatigue", "burnout"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+
+  // Sleep Quality (Men)
+  {
+    id: "mens-280",
+    problem: "Sleep Quality (Men)",
+    title: "Nutmeg & Warm Milk Sleep Aid",
+    ingredients: [
+      { name: "Nutmeg powder", quantity: "¼ teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Add nutmeg to warm milk", "Stir in honey", "Drink 30 minutes before bedtime"],
+    how_often: "Daily at bedtime",
+    precautions: ["Do not exceed ¼ teaspoon nutmeg", "May cause drowsiness - don't drive after"],
+    benefits: ["Natural sleep inducer", "Calms the mind", "Improves sleep duration"],
+    related_diseases: ["insomnia", "sleep quality", "rest"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-281",
+    problem: "Sleep Quality (Men)",
+    title: "Tart Cherry & Magnesium Sleep Drink",
+    ingredients: [
+      { name: "Tart cherry juice", quantity: "½ cup" },
+      { name: "Magnesium powder", quantity: "200mg" },
+      { name: "Water", quantity: "½ cup" }
+    ],
+    method: ["Mix tart cherry juice with water", "Add magnesium powder and stir", "Drink 1 hour before bed"],
+    how_often: "Daily",
+    precautions: ["Check magnesium dosage with doctor", "May have laxative effect"],
+    benefits: ["Natural melatonin source", "Relaxes muscles", "Improves sleep onset"],
+    related_diseases: ["sleep", "insomnia", "muscle recovery"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "global"
+  },
+
+  // Joint Pain (Men)
+  {
+    id: "mens-282",
+    problem: "Joint Pain (Men)",
+    title: "Turmeric & Ginger Anti-Inflammatory Paste",
+    ingredients: [
+      { name: "Turmeric paste", quantity: "1 teaspoon" },
+      { name: "Ginger paste", quantity: "½ teaspoon" },
+      { name: "Sesame oil", quantity: "1 tablespoon" }
+    ],
+    method: ["Mix turmeric and ginger pastes", "Warm sesame oil slightly", "Apply mixture to affected joints", "Massage gently for 10 minutes"],
+    how_often: "Twice daily",
+    precautions: ["Turmeric stains skin and clothes", "Avoid on broken skin"],
+    benefits: ["Reduces joint inflammation", "Improves mobility", "Natural pain relief"],
+    related_diseases: ["joint pain", "arthritis", "inflammation"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-283",
+    problem: "Joint Pain (Men)",
+    title: "Epsom Salt & Essential Oil Soak",
+    ingredients: [
+      { name: "Epsom salt", quantity: "2 cups" },
+      { name: "Eucalyptus oil", quantity: "5 drops" },
+      { name: "Warm water", quantity: "Bucket or tub" }
+    ],
+    method: ["Add epsom salt to warm water", "Add eucalyptus oil drops", "Soak affected area for 20-30 minutes", "Pat dry gently"],
+    how_often: "3 times per week",
+    precautions: ["Not for open wounds", "May lower blood pressure temporarily"],
+    benefits: ["Magnesium absorption through skin", "Reduces swelling", "Relieves stiffness"],
+    related_diseases: ["joint pain", "stiffness", "muscle soreness"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // Heart Health (Men)
+  {
+    id: "mens-284",
+    problem: "Heart Health (Men)",
+    title: "Arjuna Bark Heart Tonic",
+    ingredients: [
+      { name: "Arjuna bark powder", quantity: "1 teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Jaggery", quantity: "Small piece" }
+    ],
+    method: ["Boil arjuna powder in milk for 5 minutes", "Add jaggery and stir", "Drink warm in the morning"],
+    how_often: "Daily",
+    precautions: ["Consult doctor if on heart medication", "Monitor blood pressure"],
+    benefits: ["Strengthens heart muscles", "Reduces cholesterol", "Traditional cardio-protective herb"],
+    related_diseases: ["heart disease", "cholesterol", "blood pressure"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-285",
+    problem: "Heart Health (Men)",
+    title: "Garlic & Flaxseed Heart Protector",
+    ingredients: [
+      { name: "Garlic cloves", quantity: "2 raw" },
+      { name: "Flaxseed powder", quantity: "1 tablespoon" },
+      { name: "Warm water", quantity: "1 glass" }
+    ],
+    method: ["Crush garlic and let rest 10 minutes", "Swallow garlic with warm water", "Follow with flaxseed powder mixed in water"],
+    how_often: "Daily morning",
+    precautions: ["Avoid if on blood thinners", "May cause garlic breath"],
+    benefits: ["Reduces LDL cholesterol", "Rich in omega-3", "Maintains artery health"],
+    related_diseases: ["heart health", "cholesterol", "arteries"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // Liver Detox (Men)
+  {
+    id: "mens-286",
+    problem: "Liver Detox (Men)",
+    title: "Kutki & Turmeric Liver Cleanse",
+    ingredients: [
+      { name: "Kutki powder", quantity: "½ teaspoon" },
+      { name: "Turmeric powder", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Mix kutki and turmeric in warm water", "Add honey and stir", "Drink on empty stomach"],
+    how_often: "Daily for 1 month",
+    precautions: ["Very bitter taste", "Avoid during pregnancy", "Not for long-term use without guidance"],
+    benefits: ["Powerful liver detoxifier", "Reduces fatty liver", "Regenerates liver cells"],
+    related_diseases: ["liver detox", "fatty liver", "alcohol damage"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-287",
+    problem: "Liver Detox (Men)",
+    title: "Lemon & Dandelion Root Detox Tea",
+    ingredients: [
+      { name: "Dandelion root tea bag", quantity: "1" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Hot water", quantity: "1 cup" }
+    ],
+    method: ["Steep dandelion root in hot water for 5 minutes", "Add fresh lemon juice", "Drink warm, preferably morning"],
+    how_often: "Daily for 2-3 weeks",
+    precautions: ["May interact with diuretics", "Avoid if allergic to ragweed"],
+    benefits: ["Supports bile production", "Flushes liver toxins", "Rich in antioxidants"],
+    related_diseases: ["liver health", "detox", "digestion"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // Kidney Health (Men)
+  {
+    id: "mens-288",
+    problem: "Kidney Health (Men)",
+    title: "Punarnava & Gokshura Kidney Tonic",
+    ingredients: [
+      { name: "Punarnava powder", quantity: "1 teaspoon" },
+      { name: "Gokshura powder", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" }
+    ],
+    method: ["Mix both powders in warm water", "Stir well and drink", "Best taken twice daily"],
+    how_often: "Twice daily",
+    precautions: ["Consult doctor if on kidney medication", "Increases urination"],
+    benefits: ["Rejuvenates kidneys", "Reduces water retention", "Supports urinary tract"],
+    related_diseases: ["kidney health", "urinary tract", "water retention"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-289",
+    problem: "Kidney Health (Men)",
+    title: "Parsley & Lemon Kidney Flush",
+    ingredients: [
+      { name: "Fresh parsley", quantity: "Handful" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: ["Boil parsley in water for 10 minutes", "Strain and add lemon juice", "Drink warm throughout the day"],
+    how_often: "2-3 times per week",
+    precautions: ["Avoid if you have kidney stones (oxalate type)", "May increase urination"],
+    benefits: ["Natural diuretic", "Flushes kidney toxins", "Rich in vitamins"],
+    related_diseases: ["kidney health", "detox", "urinary"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "global"
+  },
+
+  // Immunity Boost (Men)
+  {
+    id: "mens-290",
+    problem: "Immunity Boost (Men)",
+    title: "Tulsi, Giloy & Black Pepper Kadha",
+    ingredients: [
+      { name: "Tulsi leaves", quantity: "8-10" },
+      { name: "Giloy stem", quantity: "1 inch" },
+      { name: "Black pepper", quantity: "3-4 crushed" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: ["Boil all ingredients in water until reduced to 1 cup", "Strain and add honey if needed", "Drink warm"],
+    how_often: "Daily",
+    precautions: ["Giloy may lower blood sugar", "Reduce dosage if auto-immune condition"],
+    benefits: ["Triple immunity booster", "Antiviral properties", "Fights seasonal infections"],
+    related_diseases: ["immunity", "infections", "seasonal illness"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-291",
+    problem: "Immunity Boost (Men)",
+    title: "Elderberry & Vitamin C Syrup",
+    ingredients: [
+      { name: "Dried elderberries", quantity: "½ cup" },
+      { name: "Water", quantity: "2 cups" },
+      { name: "Honey", quantity: "1 cup" },
+      { name: "Cinnamon stick", quantity: "1" }
+    ],
+    method: ["Simmer elderberries, cinnamon in water for 45 minutes", "Mash berries and strain", "Cool and add honey", "Store in glass jar in refrigerator"],
+    how_often: "1 tablespoon daily",
+    precautions: ["Never eat raw elderberries", "Store refrigerated, use within 2 months"],
+    benefits: ["Powerful antiviral", "Rich in Vitamin C", "Boosts white blood cell production"],
+    related_diseases: ["immunity", "cold", "flu prevention"],
+    difficulty: "Medium",
+    preparation_time: "1 hour",
+    region: "global"
+  },
+
+  // Post-Workout Recovery (Men)
+  {
+    id: "mens-292",
+    problem: "Post-Workout Recovery (Men)",
+    title: "Turmeric Golden Milk Recovery Drink",
+    ingredients: [
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Black pepper", quantity: "Pinch" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Heat milk with turmeric and pepper", "Stir well, do not boil", "Add honey and drink warm post-workout"],
+    how_often: "After every workout",
+    precautions: ["Can stain teeth - rinse after drinking", "Black pepper enhances absorption 2000%"],
+    benefits: ["Reduces muscle inflammation", "Speeds recovery", "Anti-oxidant protection"],
+    related_diseases: ["muscle recovery", "inflammation", "fitness"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-293",
+    problem: "Post-Workout Recovery (Men)",
+    title: "Coconut Water & Banana Recovery Shake",
+    ingredients: [
+      { name: "Coconut water", quantity: "1 cup" },
+      { name: "Banana", quantity: "1" },
+      { name: "Dates", quantity: "2-3" },
+      { name: "Chia seeds", quantity: "1 teaspoon" }
+    ],
+    method: ["Blend all ingredients together", "Drink within 30 minutes of workout", "Add ice if preferred"],
+    how_often: "After workouts",
+    precautions: ["Contains natural sugars", "Best consumed fresh"],
+    benefits: ["Replenishes electrolytes", "Natural carbs for glycogen recovery", "Anti-cramp minerals"],
+    related_diseases: ["recovery", "electrolytes", "muscle cramps"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+  {
+    id: "mens-294",
+    problem: "Post-Workout Recovery (Men)",
+    title: "Tart Cherry & BCAA Natural Recovery",
+    ingredients: [
+      { name: "Tart cherry juice", quantity: "1 cup" },
+      { name: "Pineapple chunks", quantity: "½ cup" },
+      { name: "Ginger", quantity: "½ inch" },
+      { name: "Water", quantity: "½ cup" }
+    ],
+    method: ["Blend all ingredients together", "Drink cold post-workout", "Can add ice"],
+    how_often: "After intense workouts",
+    precautions: ["High in natural sugars", "May stain clothes"],
+    benefits: ["Reduces muscle soreness by 50%", "Natural anti-inflammatory", "Speeds muscle repair"],
+    related_diseases: ["DOMS", "muscle soreness", "recovery"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
+  },
+
+  // Weight Management (Men)
+  {
+    id: "mens-295",
+    problem: "Weight Management (Men)",
+    title: "Triphala Night Metabolism Booster",
+    ingredients: [
+      { name: "Triphala powder", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Honey", quantity: "½ teaspoon" }
+    ],
+    method: ["Mix triphala in warm water", "Add honey and stir", "Drink before bedtime"],
+    how_often: "Daily at bedtime",
+    precautions: ["May cause loose stools initially", "Start with ½ teaspoon"],
+    benefits: ["Boosts overnight metabolism", "Aids fat digestion", "Detoxifies colon"],
+    related_diseases: ["weight management", "metabolism", "digestion"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-296",
+    problem: "Weight Management (Men)",
+    title: "Chia Seed & Lemon Appetite Controller",
+    ingredients: [
+      { name: "Chia seeds", quantity: "2 tablespoons" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Water", quantity: "1 glass" },
+      { name: "Mint leaves", quantity: "4-5" }
+    ],
+    method: ["Soak chia seeds in water for 15 minutes", "Add lemon juice and crushed mint", "Drink 30 minutes before meals"],
+    how_often: "Before lunch and dinner",
+    precautions: ["Drink enough water throughout day", "May cause bloating initially"],
+    benefits: ["Creates fullness with fewer calories", "Rich in fiber and omega-3", "Controls portion size naturally"],
+    related_diseases: ["weight management", "appetite", "fiber"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes (soak time)",
+    region: "global"
+  },
+  {
+    id: "mens-297",
+    problem: "Weight Management (Men)",
+    title: "Guggul & Trikatu Fat Metabolism Capsule",
+    ingredients: [
+      { name: "Guggul powder", quantity: "½ teaspoon" },
+      { name: "Trikatu powder", quantity: "¼ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Mix guggul and trikatu powders", "Add to warm water with honey", "Drink after meals"],
+    how_often: "Twice daily after meals",
+    precautions: ["Avoid if on thyroid medication", "May cause stomach warmth"],
+    benefits: ["Enhances thyroid function for metabolism", "Burns stubborn fat", "Balances lipid levels"],
+    related_diseases: ["weight management", "thyroid", "metabolism"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "india"
+  },
+
+  // Additional men's health
+  {
+    id: "mens-298",
+    problem: "Low Testosterone (Men)",
+    title: "Fenugreek & Honey Testosterone Support",
+    ingredients: [
+      { name: "Fenugreek seeds (soaked)", quantity: "1 tablespoon" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 glass" }
+    ],
+    method: ["Soak fenugreek seeds overnight", "Eat seeds with honey in the morning", "Follow with warm water"],
+    how_often: "Daily morning",
+    precautions: ["May lower blood sugar", "Strong taste - follow with water"],
+    benefits: ["Clinically shown to boost testosterone", "Improves strength", "Enhances libido"],
+    related_diseases: ["testosterone", "strength", "libido"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes (overnight soak)",
+    region: "india"
+  },
+  {
+    id: "mens-299",
+    problem: "Muscle Building (Men)",
+    title: "Sattu Protein Drink",
+    ingredients: [
+      { name: "Sattu (roasted gram flour)", quantity: "2 tablespoons" },
+      { name: "Water or milk", quantity: "1 glass" },
+      { name: "Jaggery", quantity: "1 teaspoon" },
+      { name: "Lemon juice", quantity: "½ teaspoon" }
+    ],
+    method: ["Mix sattu in water or milk", "Add jaggery and lemon juice", "Stir vigorously and drink"],
+    how_often: "Daily - especially post workout",
+    precautions: ["May cause gas initially", "Start with smaller amount"],
+    benefits: ["Cheap plant protein source", "Provides sustained energy", "Cools the body"],
+    related_diseases: ["muscle building", "protein", "energy"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes",
+    region: "india"
+  },
+  {
+    id: "mens-300",
+    problem: "Hair Loss (Men)",
+    title: "Rosemary & Peppermint Scalp Spray",
+    ingredients: [
+      { name: "Rosemary essential oil", quantity: "5 drops" },
+      { name: "Peppermint essential oil", quantity: "3 drops" },
+      { name: "Water", quantity: "100ml" },
+      { name: "Aloe vera gel", quantity: "1 tablespoon" }
+    ],
+    method: ["Mix essential oils with water and aloe vera", "Pour into spray bottle", "Spray on scalp daily and massage", "No need to wash out"],
+    how_often: "Daily",
+    precautions: ["Do not ingest", "Dilute properly - never use undiluted essential oils"],
+    benefits: ["Rosemary shown to match minoxidil in studies", "Stimulates blood flow to scalp", "Strengthens hair follicles"],
+    related_diseases: ["hair loss", "male pattern baldness", "scalp health"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes",
+    region: "global"
   }
 ];
 
@@ -16057,5 +17017,26 @@ export const remedyCategories = [
   "Skin Aging (Elderly)",
   "Neuropathy (Elderly)",
   "Dementia Support",
-  "Healthy Aging"
+  "Healthy Aging",
+  // Men's Health
+  "Low Testosterone (Men)",
+  "Hair Loss (Men)",
+  "Muscle Building (Men)",
+  "Stamina & Endurance (Men)",
+  "Prostate Health (Men)",
+  "Erectile Dysfunction (Men)",
+  "Low Sperm Count (Men)",
+  "Belly Fat (Men)",
+  "Beard Growth (Men)",
+  "Premature Graying (Men)",
+  "Body Odor (Men)",
+  "Stress & Burnout (Men)",
+  "Sleep Quality (Men)",
+  "Joint Pain (Men)",
+  "Heart Health (Men)",
+  "Liver Detox (Men)",
+  "Kidney Health (Men)",
+  "Immunity Boost (Men)",
+  "Post-Workout Recovery (Men)",
+  "Weight Management (Men)"
 ];
