@@ -222,6 +222,19 @@ const categoryGroups = {
       "Urinary Incontinence (Elderly)", "Skin Aging (Elderly)", "Neuropathy (Elderly)",
       "Dementia Support", "Healthy Aging"
     ]
+  },
+  mens: {
+    label: { en: "Men's Health", hi: "पुरुष स्वास्थ्य" },
+    icon: Activity,
+    categories: [
+      "Low Testosterone (Men)", "Hair Loss (Men)", "Muscle Building (Men)",
+      "Stamina & Endurance (Men)", "Prostate Health (Men)", "Erectile Dysfunction (Men)",
+      "Low Sperm Count (Men)", "Belly Fat (Men)", "Beard Growth (Men)",
+      "Premature Graying (Men)", "Body Odor (Men)", "Stress & Burnout (Men)",
+      "Sleep Quality (Men)", "Joint Pain (Men)", "Heart Health (Men)",
+      "Liver Detox (Men)", "Kidney Health (Men)", "Immunity Boost (Men)",
+      "Post-Workout Recovery (Men)", "Weight Management (Men)"
+    ]
   }
 };
 
