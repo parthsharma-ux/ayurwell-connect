@@ -178,7 +178,14 @@ const categoryGroups = {
       "Dandruff", "Heartburn", "Chapped Lips", "Leg Cramps", "Motion Sickness", "Food Poisoning",
       "Vertigo", "Weak Eyesight", "Cracked Heels", "Stomach Ache", "Diarrhea", "Dehydration",
       "Gas", "Intestinal Worms", "Body Odor", "Common Cold", "Chest Congestion", "Runny Nose",
-      "Low Energy", "Hangover", "Bruises", "Bee Sting", "Minor Burns"
+      "Low Energy", "Hangover", "Bruises", "Bee Sting", "Minor Burns",
+      "PCOD/PCOS", "Varicose Veins", "Tinnitus (Ear Ringing)", "Frozen Shoulder",
+      "Heel Pain (Plantar Fasciitis)", "Carpal Tunnel Syndrome", "Cervical Spondylosis",
+      "Acid Reflux (GERD)", "Irregular Periods", "Snoring", "Dry Eyes", "Low Blood Pressure",
+      "Urticaria (Hives)", "Chronic Fatigue", "Nerve Weakness", "Water Retention",
+      "Hormonal Acne", "Diabetic Neuropathy", "Hiatal Hernia", "Gastric Ulcer", "Gallstones",
+      "Sinus Infection", "Infertility (Female)", "Leucorrhea (White Discharge)", "Night Blindness",
+      "Premature Greying", "Hemorrhoids (Piles)", "Tooth Sensitivity"
     ]
   },
   seasonal: {
