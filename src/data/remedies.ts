@@ -16809,6 +16809,850 @@ export const remedies: Remedy[] = [
     difficulty: "Easy",
     preparation_time: "5 minutes",
     region: "global"
+  },
+  // ===== NEW: Teeth Pain, PCOD, and More Common Conditions =====
+  {
+    id: "common-301",
+    problem: "Tooth Pain",
+    title: "Clove Oil Pain Relief",
+    ingredients: [
+      { name: "Clove oil", quantity: "2-3 drops" },
+      { name: "Cotton ball", quantity: "1 small piece" }
+    ],
+    method: ["Soak cotton ball in clove oil", "Place on the affected tooth", "Hold for 10-15 minutes", "Repeat as needed"],
+    how_often: "3-4 times daily until pain subsides",
+    precautions: ["Do not swallow clove oil", "Can cause burning if applied on gums", "Not a substitute for dental treatment"],
+    benefits: ["Eugenol in cloves is a natural anesthetic", "Reduces inflammation", "Kills bacteria in the mouth"],
+    related_diseases: ["tooth pain", "dental issues", "oral health"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "common-302",
+    problem: "Tooth Pain",
+    title: "Salt Water Gargle for Toothache",
+    ingredients: [
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Rock salt", quantity: "1 teaspoon" }
+    ],
+    method: ["Dissolve salt in warm water", "Gargle and swish around the affected area", "Hold for 30 seconds before spitting", "Repeat 3-4 times"],
+    how_often: "Every 2-3 hours",
+    precautions: ["Do not swallow salt water", "Use warm, not hot water", "See a dentist if pain persists beyond 2 days"],
+    benefits: ["Reduces swelling and inflammation", "Draws out infection", "Natural disinfectant"],
+    related_diseases: ["tooth pain", "gum disease", "mouth infection"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "common-303",
+    problem: "Tooth Pain",
+    title: "Turmeric & Black Pepper Tooth Paste",
+    ingredients: [
+      { name: "Turmeric powder", quantity: "½ teaspoon" },
+      { name: "Black pepper powder", quantity: "A pinch" },
+      { name: "Coconut oil", quantity: "½ teaspoon" }
+    ],
+    method: ["Mix turmeric and black pepper with coconut oil", "Apply paste directly on the painful tooth", "Leave for 10 minutes", "Rinse with warm water"],
+    how_often: "2-3 times daily",
+    precautions: ["Turmeric can stain teeth temporarily", "Avoid if allergic to turmeric"],
+    benefits: ["Anti-inflammatory and analgesic", "Curcumin fights infection", "Reduces swelling in gums"],
+    related_diseases: ["tooth pain", "gum inflammation", "oral health"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "common-304",
+    problem: "PCOD/PCOS",
+    title: "Spearmint Tea for Hormonal Balance",
+    ingredients: [
+      { name: "Spearmint leaves (fresh or dried)", quantity: "1 tablespoon" },
+      { name: "Hot water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon (optional)" }
+    ],
+    method: ["Steep spearmint leaves in hot water for 5-7 minutes", "Strain and add honey if desired", "Drink warm"],
+    how_often: "Twice daily for at least 30 days",
+    precautions: ["May interact with hormonal medications", "Consult doctor if pregnant", "Avoid excessive consumption"],
+    benefits: ["Clinically shown to reduce androgen levels", "Helps with hirsutism (excess hair growth)", "Supports hormonal balance naturally"],
+    related_diseases: ["PCOD", "PCOS", "hormonal imbalance", "hirsutism"],
+    difficulty: "Easy",
+    preparation_time: "7 minutes"
+  },
+  {
+    id: "common-305",
+    problem: "PCOD/PCOS",
+    title: "Cinnamon & Fenugreek Hormone Drink",
+    ingredients: [
+      { name: "Cinnamon stick", quantity: "1 inch piece" },
+      { name: "Fenugreek seeds (Methi)", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 glass" }
+    ],
+    method: ["Soak fenugreek seeds overnight in water", "In the morning, boil water with cinnamon stick for 5 minutes", "Add the soaked fenugreek water", "Strain and drink on empty stomach"],
+    how_often: "Daily on empty stomach",
+    precautions: ["May lower blood sugar - monitor if diabetic", "Avoid during pregnancy", "May cause stomach upset initially"],
+    benefits: ["Cinnamon improves insulin sensitivity", "Fenugreek balances hormones", "Helps regulate menstrual cycle"],
+    related_diseases: ["PCOD", "PCOS", "insulin resistance", "irregular periods"],
+    difficulty: "Easy",
+    preparation_time: "Overnight soaking + 10 minutes"
+  },
+  {
+    id: "common-306",
+    problem: "PCOD/PCOS",
+    title: "Shatavari & Ashwagandha Milk",
+    ingredients: [
+      { name: "Shatavari powder", quantity: "½ teaspoon" },
+      { name: "Ashwagandha powder", quantity: "½ teaspoon" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Warm the milk (do not boil)", "Mix in Shatavari and Ashwagandha powders", "Stir well and add honey", "Drink before bedtime"],
+    how_often: "Daily at bedtime for 2-3 months",
+    precautions: ["Consult doctor before starting", "Not recommended during pregnancy", "May cause drowsiness"],
+    benefits: ["Shatavari balances female hormones", "Ashwagandha reduces cortisol and stress", "Improves fertility and ovarian function"],
+    related_diseases: ["PCOD", "PCOS", "infertility", "stress"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-307",
+    problem: "Gum Disease",
+    title: "Oil Pulling with Coconut Oil",
+    ingredients: [
+      { name: "Virgin coconut oil", quantity: "1 tablespoon" }
+    ],
+    method: ["Take coconut oil in mouth on empty stomach", "Swish gently for 15-20 minutes", "Spit out into trash (not sink)", "Rinse mouth with warm water", "Brush teeth normally"],
+    how_often: "Daily in the morning before eating",
+    precautions: ["Do not swallow the oil", "Spit in trash to avoid clogging pipes", "Start with 5 minutes and increase gradually"],
+    benefits: ["Reduces harmful bacteria in mouth", "Heals bleeding gums", "Whitens teeth naturally"],
+    related_diseases: ["gum disease", "bad breath", "oral health"],
+    difficulty: "Easy",
+    preparation_time: "20 minutes"
+  },
+  {
+    id: "common-308",
+    problem: "Varicose Veins",
+    title: "Apple Cider Vinegar Compress",
+    ingredients: [
+      { name: "Apple cider vinegar", quantity: "2 tablespoons" },
+      { name: "Clean cloth", quantity: "1 piece" },
+      { name: "Warm water", quantity: "1 cup" }
+    ],
+    method: ["Mix ACV with warm water", "Soak cloth in the mixture", "Apply as a compress on affected veins", "Keep for 20-30 minutes with legs elevated"],
+    how_often: "Twice daily",
+    precautions: ["Do not apply on broken skin", "Dilute properly to avoid irritation", "Consult doctor for severe varicose veins"],
+    benefits: ["Improves blood circulation", "Reduces swelling and discomfort", "Strengthens vein walls"],
+    related_diseases: ["varicose veins", "poor circulation", "leg pain"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-309",
+    problem: "Tinnitus (Ear Ringing)",
+    title: "Sesame Oil Ear Drops",
+    ingredients: [
+      { name: "Sesame oil (warm)", quantity: "2-3 drops" }
+    ],
+    method: ["Warm sesame oil slightly (lukewarm, not hot)", "Lie on your side", "Put 2-3 drops in the affected ear", "Stay in position for 5 minutes", "Wipe excess with cotton"],
+    how_often: "Once daily before bed",
+    precautions: ["Ensure oil is lukewarm, not hot", "Do not use if eardrum is perforated", "Consult ENT specialist if persistent"],
+    benefits: ["Vata-pacifying in Ayurveda", "Lubricates and nourishes ear canal", "May reduce ringing sensation"],
+    related_diseases: ["tinnitus", "ear ringing", "vata imbalance"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "common-310",
+    problem: "Frozen Shoulder",
+    title: "Hot Castor Oil Massage",
+    ingredients: [
+      { name: "Castor oil", quantity: "2 tablespoons" },
+      { name: "Camphor (optional)", quantity: "A small piece" }
+    ],
+    method: ["Warm castor oil gently", "Add crushed camphor and mix", "Massage into the shoulder in circular motions for 15 minutes", "Apply a hot towel or heating pad over the area", "Rest for 30 minutes"],
+    how_often: "Daily before bed",
+    precautions: ["Do not massage if there is acute injury", "Ensure oil is warm, not hot", "Consult a physiotherapist for exercises"],
+    benefits: ["Castor oil penetrates deep tissue", "Reduces inflammation and stiffness", "Camphor provides warming relief"],
+    related_diseases: ["frozen shoulder", "joint stiffness", "shoulder pain"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-311",
+    problem: "Heel Pain (Plantar Fasciitis)",
+    title: "Epsom Salt Foot Soak",
+    ingredients: [
+      { name: "Epsom salt", quantity: "2 tablespoons" },
+      { name: "Warm water", quantity: "1 bucket (enough to soak feet)" },
+      { name: "Mustard oil", quantity: "1 teaspoon (for after)" }
+    ],
+    method: ["Dissolve Epsom salt in warm water", "Soak feet for 15-20 minutes", "Dry feet and massage with warm mustard oil", "Focus on the heel area with firm pressure"],
+    how_often: "Daily before bed",
+    precautions: ["Avoid if you have open wounds on feet", "Water should be warm, not scalding", "Diabetics should check water temperature carefully"],
+    benefits: ["Magnesium in Epsom salt reduces inflammation", "Relieves heel pain and stiffness", "Improves blood flow to the area"],
+    related_diseases: ["heel pain", "plantar fasciitis", "foot pain"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-312",
+    problem: "Carpal Tunnel Syndrome",
+    title: "Warm Turmeric Wrist Compress",
+    ingredients: [
+      { name: "Turmeric powder", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "½ cup" },
+      { name: "Clean cloth", quantity: "1 piece" }
+    ],
+    method: ["Mix turmeric with warm water to make paste", "Apply paste on the inner wrist", "Wrap with cloth and leave for 20 minutes", "Rinse and do gentle wrist stretches"],
+    how_often: "Twice daily - morning and night",
+    precautions: ["Turmeric stains skin and fabric", "Not a substitute for ergonomic corrections", "Consult doctor if numbness worsens"],
+    benefits: ["Anti-inflammatory curcumin reduces swelling", "Warmth improves circulation to nerves", "Relieves numbness and tingling"],
+    related_diseases: ["carpal tunnel", "wrist pain", "nerve compression"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-313",
+    problem: "Hemorrhoids (Piles)",
+    title: "Triphala & Aloe Vera Sitz Bath",
+    ingredients: [
+      { name: "Triphala powder", quantity: "1 tablespoon" },
+      { name: "Aloe vera gel", quantity: "2 tablespoons" },
+      { name: "Warm water", quantity: "Large tub" }
+    ],
+    method: ["Boil Triphala in water for 10 minutes and let cool to warm", "Add aloe vera gel to the warm water", "Sit in the bath for 15-20 minutes", "Pat dry gently after"],
+    how_often: "Twice daily during flare-ups",
+    precautions: ["Ensure water is warm, not hot", "Avoid straining during bowel movements", "Increase fiber and water intake"],
+    benefits: ["Triphala reduces inflammation", "Aloe vera soothes and heals", "Warm water improves blood circulation"],
+    related_diseases: ["hemorrhoids", "piles", "anal fissure"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "common-314",
+    problem: "Sciatica",
+    title: "Garlic Milk for Nerve Pain",
+    ingredients: [
+      { name: "Garlic cloves", quantity: "4 crushed" },
+      { name: "Milk", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Crush garlic and add to milk", "Simmer on low heat for 5 minutes", "Strain and add honey", "Drink warm"],
+    how_often: "Once daily in the evening",
+    precautions: ["May cause bad breath", "Avoid on empty stomach if you have acidity", "Not for those on blood thinners"],
+    benefits: ["Garlic has anti-inflammatory compounds", "Warms the body and improves nerve function", "Reduces sciatic nerve inflammation"],
+    related_diseases: ["sciatica", "nerve pain", "lower back pain"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "common-315",
+    problem: "Psoriasis",
+    title: "Neem & Turmeric Skin Paste",
+    ingredients: [
+      { name: "Neem leaves (fresh)", quantity: "10-15 leaves" },
+      { name: "Turmeric powder", quantity: "½ teaspoon" },
+      { name: "Coconut oil", quantity: "1 teaspoon" }
+    ],
+    method: ["Grind neem leaves into a paste", "Mix with turmeric and coconut oil", "Apply on affected patches", "Leave for 30 minutes and wash with lukewarm water"],
+    how_often: "Daily for 4-6 weeks",
+    precautions: ["Patch test first", "Turmeric stains skin temporarily", "See dermatologist for severe cases"],
+    benefits: ["Neem is anti-bacterial and anti-fungal", "Turmeric reduces scaling and redness", "Coconut oil moisturizes dry patches"],
+    related_diseases: ["psoriasis", "skin disorders", "auto-immune skin"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "common-316",
+    problem: "Eczema",
+    title: "Oatmeal & Ghee Soothing Cream",
+    ingredients: [
+      { name: "Colloidal oatmeal", quantity: "2 tablespoons" },
+      { name: "Pure ghee (clarified butter)", quantity: "1 tablespoon" },
+      { name: "Sandalwood powder", quantity: "½ teaspoon" }
+    ],
+    method: ["Mix oatmeal with ghee to form a smooth paste", "Add sandalwood powder", "Apply on eczema patches", "Leave for 20 minutes and rinse gently"],
+    how_often: "Twice daily",
+    precautions: ["Stop if irritation increases", "Use pure ghee only", "Consult dermatologist for infected eczema"],
+    benefits: ["Oatmeal relieves itching and inflammation", "Ghee deeply moisturizes and heals", "Sandalwood has cooling and antimicrobial properties"],
+    related_diseases: ["eczema", "dermatitis", "dry skin"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-317",
+    problem: "Thyroid (Hypothyroidism)",
+    title: "Ashwagandha & Black Seed Drink",
+    ingredients: [
+      { name: "Ashwagandha powder", quantity: "½ teaspoon" },
+      { name: "Black seed (Kalonji) oil", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Mix Ashwagandha powder in warm water", "Add black seed oil and honey", "Stir well and drink on empty stomach"],
+    how_often: "Daily for 2-3 months",
+    precautions: ["Do not take with thyroid medication simultaneously - gap of 2 hours", "Consult doctor if on medication", "Not for hyperthyroidism"],
+    benefits: ["Ashwagandha supports thyroid hormone production", "Black seed oil boosts metabolism", "Helps with fatigue and weight gain"],
+    related_diseases: ["hypothyroidism", "thyroid", "fatigue"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "common-318",
+    problem: "Gallstones",
+    title: "Apple & Lemon Gallstone Flush Drink",
+    ingredients: [
+      { name: "Apple juice (fresh)", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Olive oil", quantity: "1 teaspoon" }
+    ],
+    method: ["Juice fresh apples or use organic apple juice", "Add lemon juice and olive oil", "Mix well and drink on empty stomach", "Wait 30 minutes before eating"],
+    how_often: "Daily for 1 week, then thrice weekly",
+    precautions: ["Not a substitute for medical treatment for large stones", "Consult doctor before starting", "Avoid if you have diabetes (high sugar content)"],
+    benefits: ["Malic acid in apples softens gallstones", "Lemon juice stimulates bile flow", "Olive oil lubricates bile ducts"],
+    related_diseases: ["gallstones", "liver health", "bile duct issues"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-319",
+    problem: "Cervical Spondylosis",
+    title: "Ajwain & Mustard Oil Neck Massage",
+    ingredients: [
+      { name: "Ajwain (carom seeds)", quantity: "1 teaspoon" },
+      { name: "Mustard oil", quantity: "2 tablespoons" }
+    ],
+    method: ["Heat mustard oil with ajwain until seeds crackle", "Let oil cool to warm temperature", "Gently massage neck and shoulders for 15 minutes", "Apply a warm towel after massage"],
+    how_often: "Daily before bed",
+    precautions: ["Do not apply hot oil - wait until lukewarm", "Avoid sudden neck movements", "Consult doctor if numbness occurs in arms"],
+    benefits: ["Ajwain has anti-inflammatory thymol", "Mustard oil provides deep tissue warmth", "Improves blood flow to cervical spine"],
+    related_diseases: ["cervical spondylosis", "neck pain", "stiffness"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "common-320",
+    problem: "Acid Reflux (GERD)",
+    title: "Fennel & Cold Milk Remedy",
+    ingredients: [
+      { name: "Cold milk", quantity: "1 glass" },
+      { name: "Fennel seeds (saunf)", quantity: "1 teaspoon (crushed)" }
+    ],
+    method: ["Crush fennel seeds lightly", "Mix into cold milk", "Sip slowly after meals"],
+    how_often: "After meals, especially dinner",
+    precautions: ["Avoid if lactose intolerant", "Not for those with severe GERD - see doctor", "Do not lie down immediately after drinking"],
+    benefits: ["Cold milk neutralizes stomach acid instantly", "Fennel seeds prevent gas and bloating", "Soothes the esophageal lining"],
+    related_diseases: ["acid reflux", "GERD", "heartburn", "acidity"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "common-321",
+    problem: "Irregular Periods",
+    title: "Jaggery & Ginger Period Regulator",
+    ingredients: [
+      { name: "Jaggery (Gur)", quantity: "1 tablespoon" },
+      { name: "Ginger juice", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 glass" }
+    ],
+    method: ["Dissolve jaggery in warm water", "Add fresh ginger juice", "Mix well and drink"],
+    how_often: "Daily for 2 months, starting 1 week before expected period",
+    precautions: ["Diabetics should avoid due to jaggery", "Stop if bleeding becomes excessive", "Consult gynecologist if irregularity persists"],
+    benefits: ["Jaggery is rich in iron, supports healthy periods", "Ginger stimulates uterine contractions", "Warms the body and improves blood flow to uterus"],
+    related_diseases: ["irregular periods", "amenorrhea", "menstrual disorders"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-322",
+    problem: "Snoring",
+    title: "Peppermint & Eucalyptus Steam",
+    ingredients: [
+      { name: "Peppermint oil", quantity: "3 drops" },
+      { name: "Eucalyptus oil", quantity: "3 drops" },
+      { name: "Hot water", quantity: "1 bowl" }
+    ],
+    method: ["Boil water and pour into a bowl", "Add peppermint and eucalyptus oil", "Drape towel over head and inhale steam for 10 minutes", "Do this before bedtime"],
+    how_often: "Daily before sleeping",
+    precautions: ["Keep safe distance from hot water", "Not for children under 5", "Consult doctor if snoring is due to sleep apnea"],
+    benefits: ["Clears nasal passages", "Reduces nasal congestion that causes snoring", "Anti-inflammatory for throat tissues"],
+    related_diseases: ["snoring", "nasal congestion", "sleep quality"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-323",
+    problem: "Dry Eyes",
+    title: "Rose Water Eye Wash",
+    ingredients: [
+      { name: "Pure rose water", quantity: "2-3 drops per eye" },
+      { name: "Clean cotton pads", quantity: "2" }
+    ],
+    method: ["Ensure rose water is pure and preservative-free", "Soak cotton pads in rose water", "Place on closed eyes for 10 minutes", "Alternatively, put 2 drops directly in each eye"],
+    how_often: "2-3 times daily",
+    precautions: ["Use only pure, food-grade rose water", "Do not use if eyes are infected", "Consult ophthalmologist for persistent dry eyes"],
+    benefits: ["Natural moisturizer for dry eyes", "Reduces eye strain and redness", "Cooling and soothing effect"],
+    related_diseases: ["dry eyes", "eye strain", "computer vision syndrome"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "common-324",
+    problem: "Low Blood Pressure",
+    title: "Salt, Lemon & Sugar Energy Drink",
+    ingredients: [
+      { name: "Rock salt", quantity: "½ teaspoon" },
+      { name: "Lemon juice", quantity: "1 tablespoon" },
+      { name: "Sugar or jaggery", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 glass" }
+    ],
+    method: ["Mix all ingredients in water", "Stir well until dissolved", "Drink immediately when feeling lightheaded"],
+    how_often: "Whenever BP drops, 2-3 times daily",
+    precautions: ["Avoid if you have high BP", "Do not overdo salt intake", "See doctor for chronic low BP"],
+    benefits: ["Salt increases blood volume and pressure", "Lemon provides electrolytes", "Quick energy from sugar"],
+    related_diseases: ["low blood pressure", "hypotension", "dizziness"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "common-325",
+    problem: "Urticaria (Hives)",
+    title: "Coriander & Neem Cooling Drink",
+    ingredients: [
+      { name: "Coriander seeds", quantity: "1 tablespoon" },
+      { name: "Neem leaves", quantity: "5-6 leaves" },
+      { name: "Water", quantity: "2 glasses" }
+    ],
+    method: ["Soak coriander seeds overnight in water", "In the morning, boil neem leaves in the water for 5 minutes", "Strain and let cool to room temperature", "Drink on empty stomach"],
+    how_often: "Daily for 2 weeks",
+    precautions: ["Very bitter taste", "May cause stomach upset in some", "Consult doctor if hives persist or cause breathing difficulty"],
+    benefits: ["Coriander is a natural antihistamine", "Neem purifies blood", "Reduces allergic reactions"],
+    related_diseases: ["urticaria", "hives", "skin allergy", "itching"],
+    difficulty: "Easy",
+    preparation_time: "Overnight + 10 minutes"
+  },
+  {
+    id: "common-326",
+    problem: "Migraine",
+    title: "Ginger & Brahmi Brain Tonic",
+    ingredients: [
+      { name: "Brahmi powder", quantity: "½ teaspoon" },
+      { name: "Fresh ginger", quantity: "1 inch piece" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 cup" }
+    ],
+    method: ["Grate ginger and steep in warm water for 5 minutes", "Add Brahmi powder and stir", "Add honey and drink warm"],
+    how_often: "Twice daily during migraine episodes",
+    precautions: ["Brahmi may cause drowsiness", "Consult doctor if migraines are frequent", "Avoid during pregnancy"],
+    benefits: ["Ginger blocks prostaglandins that cause pain", "Brahmi calms the nervous system", "Reduces frequency and intensity of migraines"],
+    related_diseases: ["migraine", "headache", "neurological"],
+    difficulty: "Easy",
+    preparation_time: "7 minutes"
+  },
+  {
+    id: "common-327",
+    problem: "IBS (Irritable Bowel)",
+    title: "Cumin, Fennel & Coriander Tea (CCF Tea)",
+    ingredients: [
+      { name: "Cumin seeds", quantity: "½ teaspoon" },
+      { name: "Fennel seeds", quantity: "½ teaspoon" },
+      { name: "Coriander seeds", quantity: "½ teaspoon" },
+      { name: "Water", quantity: "2 cups" }
+    ],
+    method: ["Boil all seeds in water for 5 minutes", "Reduce to 1 cup on low heat", "Strain and sip warm throughout the day"],
+    how_often: "Daily - prepare fresh each morning",
+    precautions: ["Start with smaller quantities", "Avoid if you have very low BP", "Monitor symptoms and adjust"],
+    benefits: ["Classic Ayurvedic digestive tea", "Reduces bloating, gas, and cramping", "Regulates bowel movements"],
+    related_diseases: ["IBS", "bloating", "digestive issues", "gas"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "common-328",
+    problem: "Vitiligo Support",
+    title: "Bakuchi Seed & Coconut Oil Application",
+    ingredients: [
+      { name: "Bakuchi (Psoralea) seeds", quantity: "1 teaspoon (powdered)" },
+      { name: "Coconut oil", quantity: "2 tablespoons" }
+    ],
+    method: ["Soak Bakuchi seed powder in coconut oil overnight", "Apply the infused oil on white patches", "Expose to mild morning sunlight for 10-15 minutes", "Wash off after 30 minutes"],
+    how_often: "Daily for 3-6 months",
+    precautions: ["Avoid strong sunlight - use only mild morning sun", "May cause skin irritation - patch test first", "Consult dermatologist alongside"],
+    benefits: ["Bakuchi is the primary Ayurvedic herb for vitiligo", "Contains psoralen that stimulates melanin production", "Coconut oil nourishes depigmented skin"],
+    related_diseases: ["vitiligo", "skin depigmentation", "leucoderma"],
+    difficulty: "Medium",
+    preparation_time: "Overnight + 15 minutes"
+  },
+  {
+    id: "common-329",
+    problem: "Chronic Fatigue",
+    title: "Shilajit & Warm Milk Energy Booster",
+    ingredients: [
+      { name: "Shilajit resin", quantity: "Pea-sized amount" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Dissolve Shilajit in warm milk (not boiling)", "Add honey and stir", "Drink in the morning"],
+    how_often: "Daily for 2-3 months",
+    precautions: ["Buy authentic, purified Shilajit only", "Not for children", "Avoid with iron supplements"],
+    benefits: ["Contains 85+ minerals in ionic form", "Boosts mitochondrial energy production", "Improves stamina and reduces fatigue"],
+    related_diseases: ["chronic fatigue", "low energy", "weakness"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "common-330",
+    problem: "Nerve Weakness",
+    title: "Almond & Saffron Brain Tonic",
+    ingredients: [
+      { name: "Almonds (soaked overnight)", quantity: "7-8" },
+      { name: "Saffron strands", quantity: "4-5" },
+      { name: "Warm milk", quantity: "1 glass" },
+      { name: "Mishri (rock sugar)", quantity: "1 teaspoon" }
+    ],
+    method: ["Peel and grind soaked almonds into paste", "Soak saffron in warm milk for 5 minutes", "Mix almond paste into saffron milk", "Add mishri and drink warm"],
+    how_often: "Daily at bedtime",
+    precautions: ["Allergic to nuts? Avoid", "Use genuine saffron only", "High calorie - adjust diet accordingly"],
+    benefits: ["Almonds strengthen nerve sheaths", "Saffron improves nerve signal transmission", "Excellent brain and nervous system tonic"],
+    related_diseases: ["nerve weakness", "neuropathy", "memory loss"],
+    difficulty: "Easy",
+    preparation_time: "Overnight + 10 minutes"
+  },
+  {
+    id: "common-331",
+    problem: "Sinus Infection",
+    title: "Nasya with Anu Taila (Nasal Oil)",
+    ingredients: [
+      { name: "Anu Taila or sesame oil", quantity: "2 drops per nostril" }
+    ],
+    method: ["Lie down with head slightly tilted back", "Drop 2 drops of warm oil in each nostril", "Sniff gently so oil reaches sinuses", "Stay lying down for 5 minutes", "Spit out any oil that reaches throat"],
+    how_often: "Daily in the morning for chronic sinusitis",
+    precautions: ["Oil must be only slightly warm", "Do not do if you have active nosebleed", "Avoid immediately after meals"],
+    benefits: ["Classic Ayurvedic treatment for sinus", "Lubricates and cleans nasal passages", "Reduces chronic congestion"],
+    related_diseases: ["sinusitis", "nasal congestion", "chronic cold"],
+    difficulty: "Medium",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-332",
+    problem: "Water Retention",
+    title: "Parsley & Lemon Detox Water",
+    ingredients: [
+      { name: "Fresh parsley", quantity: "1 bunch" },
+      { name: "Lemon", quantity: "1 sliced" },
+      { name: "Water", quantity: "1 liter" }
+    ],
+    method: ["Wash parsley and chop roughly", "Add parsley and lemon slices to water", "Refrigerate overnight", "Drink throughout the day"],
+    how_often: "Daily for 1-2 weeks",
+    precautions: ["Avoid if you have kidney disease", "May increase urination", "Consult doctor if swelling is severe"],
+    benefits: ["Parsley is a natural diuretic", "Lemon aids kidney function", "Reduces puffiness and water retention"],
+    related_diseases: ["water retention", "edema", "bloating"],
+    difficulty: "Easy",
+    preparation_time: "Overnight"
+  },
+  {
+    id: "common-333",
+    problem: "Vertigo",
+    title: "Amla & Coriander Seed Remedy",
+    ingredients: [
+      { name: "Amla powder", quantity: "1 teaspoon" },
+      { name: "Coriander seeds", quantity: "1 teaspoon" },
+      { name: "Water", quantity: "1 glass" }
+    ],
+    method: ["Soak coriander seeds and amla powder in water overnight", "Strain in the morning", "Add a pinch of sugar if needed", "Drink on empty stomach"],
+    how_often: "Daily for 2-3 weeks",
+    precautions: ["Consult doctor if vertigo is severe or sudden", "Not a substitute for medical treatment", "Stay hydrated throughout the day"],
+    benefits: ["Amla is rich in Vitamin C - strengthens inner ear", "Coriander seeds balance vata dosha", "Reduces dizziness and nausea associated with vertigo"],
+    related_diseases: ["vertigo", "dizziness", "balance issues"],
+    difficulty: "Easy",
+    preparation_time: "Overnight + 5 minutes"
+  },
+  {
+    id: "common-334",
+    problem: "Premature Greying",
+    title: "Curry Leaves & Coconut Oil Hair Treatment",
+    ingredients: [
+      { name: "Curry leaves (fresh)", quantity: "15-20 leaves" },
+      { name: "Coconut oil", quantity: "3 tablespoons" }
+    ],
+    method: ["Heat coconut oil on low flame", "Add curry leaves and cook until they turn black", "Let oil cool and strain", "Apply on scalp and hair", "Leave overnight and wash in morning"],
+    how_often: "3 times per week",
+    precautions: ["May stain pillow - use old towel", "Be consistent for 3-6 months for results", "Fresh curry leaves work best"],
+    benefits: ["Curry leaves restore melanin production", "Coconut oil strengthens hair", "Prevents further greying"],
+    related_diseases: ["premature greying", "hair health", "aging"],
+    difficulty: "Easy",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "common-335",
+    problem: "Fatty Liver",
+    title: "Kutki & Turmeric Liver Detox",
+    ingredients: [
+      { name: "Kutki powder", quantity: "¼ teaspoon" },
+      { name: "Turmeric powder", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Lemon juice", quantity: "1 teaspoon" }
+    ],
+    method: ["Mix Kutki and turmeric in warm water", "Add lemon juice", "Drink on empty stomach"],
+    how_often: "Daily for 1-2 months",
+    precautions: ["Kutki is very bitter - start with small amount", "Not for pregnant women", "Consult doctor if liver enzymes are elevated"],
+    benefits: ["Kutki is the top Ayurvedic liver herb", "Protects liver cells from damage", "Reduces fatty deposits in liver"],
+    related_diseases: ["fatty liver", "liver health", "liver detox"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "common-336",
+    problem: "Kidney Health",
+    title: "Punarnava & Gokshura Kidney Tonic",
+    ingredients: [
+      { name: "Punarnava powder", quantity: "½ teaspoon" },
+      { name: "Gokshura powder", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 glass" }
+    ],
+    method: ["Mix both powders in warm water", "Stir well and drink", "Follow with a glass of plain water"],
+    how_often: "Twice daily for 1-2 months",
+    precautions: ["Consult doctor if you have kidney disease", "May increase urine output", "Not for pregnant women"],
+    benefits: ["Punarnava rejuvenates kidneys", "Gokshura supports kidney filtration", "Helps flush toxins and prevent stones"],
+    related_diseases: ["kidney health", "kidney stones", "urinary health"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "common-337",
+    problem: "Hormonal Acne",
+    title: "Manjistha & Neem Blood Purifier",
+    ingredients: [
+      { name: "Manjistha powder", quantity: "½ teaspoon" },
+      { name: "Neem powder", quantity: "¼ teaspoon" },
+      { name: "Warm water or honey", quantity: "1 glass / 1 teaspoon" }
+    ],
+    method: ["Mix Manjistha and Neem powder", "Take with warm water or mix with honey", "Drink on empty stomach"],
+    how_often: "Daily for 2-3 months",
+    precautions: ["Very bitter taste", "Not during pregnancy", "May cause detox symptoms initially"],
+    benefits: ["Manjistha is the best Ayurvedic blood purifier", "Neem clears skin infections from within", "Addresses root cause of hormonal acne"],
+    related_diseases: ["hormonal acne", "acne", "blood impurity"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "common-338",
+    problem: "Frozen Shoulder",
+    title: "Ajwain Potli (Herbal Hot Compress)",
+    ingredients: [
+      { name: "Ajwain seeds", quantity: "3 tablespoons" },
+      { name: "Rock salt", quantity: "2 tablespoons" },
+      { name: "Clean cotton cloth", quantity: "1 piece" }
+    ],
+    method: ["Dry roast ajwain and salt together until hot", "Pour into cotton cloth and make a bundle (potli)", "Press gently on shoulder and neck area", "Keep pressing for 10-15 minutes while warm"],
+    how_often: "Twice daily",
+    precautions: ["Ensure potli is not too hot to avoid burns", "Do gentle exercises alongside", "Consult physiotherapist for severe cases"],
+    benefits: ["Dry heat penetrates deep into frozen tissue", "Ajwain's thymol reduces inflammation", "Salt retains heat longer"],
+    related_diseases: ["frozen shoulder", "shoulder stiffness", "muscle pain"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "common-339",
+    problem: "Infertility (Female)",
+    title: "Shatavari & Ashoka Bark Decoction",
+    ingredients: [
+      { name: "Shatavari powder", quantity: "1 teaspoon" },
+      { name: "Ashoka bark powder", quantity: "½ teaspoon" },
+      { name: "Milk", quantity: "1 glass" }
+    ],
+    method: ["Add both powders to milk", "Simmer on low heat for 5 minutes", "Strain if needed and drink warm"],
+    how_often: "Daily after periods end until next cycle, for 3-6 months",
+    precautions: ["Consult Ayurvedic doctor for proper dosage", "Not during active menstruation", "Combine with healthy lifestyle"],
+    benefits: ["Shatavari nourishes reproductive tissues", "Ashoka bark supports uterine health", "Improves ovulation and egg quality"],
+    related_diseases: ["infertility", "reproductive health", "ovulation issues"],
+    difficulty: "Medium",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "common-340",
+    problem: "Diabetic Neuropathy",
+    title: "Giloy & Ashwagandha Nerve Support",
+    ingredients: [
+      { name: "Giloy (Guduchi) juice or powder", quantity: "1 tablespoon juice or ½ teaspoon powder" },
+      { name: "Ashwagandha powder", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 glass" }
+    ],
+    method: ["Mix Giloy and Ashwagandha in warm water", "Stir well and drink", "Take after meals"],
+    how_often: "Twice daily for 2-3 months",
+    precautions: ["Monitor blood sugar regularly", "Consult doctor if on diabetes medication", "Not during pregnancy"],
+    benefits: ["Giloy supports nerve regeneration", "Ashwagandha protects nerve cells", "Helps manage tingling and numbness"],
+    related_diseases: ["diabetic neuropathy", "nerve damage", "diabetes"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
+  },
+  {
+    id: "common-341",
+    problem: "Hiatal Hernia",
+    title: "Warm Water & Gentle Breathing Routine",
+    ingredients: [
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Apple cider vinegar (optional)", quantity: "1 teaspoon" }
+    ],
+    method: ["Drink a full glass of warm water first thing in the morning", "Stand on your toes and drop heels to floor 10 times (gentle jolt)", "Practice diaphragmatic breathing for 5 minutes", "Add ACV to water if acidity is an issue"],
+    how_often: "Daily in the morning",
+    precautions: ["Do not do vigorous jumping", "Avoid large meals - eat small, frequent meals", "Sleep with head elevated"],
+    benefits: ["Warm water relaxes the stomach muscles", "Gravity technique may help stomach settle", "Diaphragmatic breathing strengthens hiatal area"],
+    related_diseases: ["hiatal hernia", "acid reflux", "GERD"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "common-342",
+    problem: "Leucorrhea (White Discharge)",
+    title: "Lodhra & Ashoka Bark Kashayam",
+    ingredients: [
+      { name: "Lodhra bark powder", quantity: "½ teaspoon" },
+      { name: "Ashoka bark powder", quantity: "½ teaspoon" },
+      { name: "Water", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Boil both powders in water for 10 minutes", "Reduce to half quantity", "Strain, add honey when lukewarm", "Drink twice daily"],
+    how_often: "Twice daily for 1 month",
+    precautions: ["Consult gynecologist if discharge has odor or color", "Maintain proper hygiene", "Not during pregnancy"],
+    benefits: ["Lodhra is specific for leucorrhea in Ayurveda", "Ashoka bark tones uterine muscles", "Reduces excessive discharge"],
+    related_diseases: ["leucorrhea", "white discharge", "vaginal health"],
+    difficulty: "Medium",
+    preparation_time: "15 minutes"
+  },
+  {
+    id: "common-343",
+    problem: "Gastric Ulcer",
+    title: "Mulethi (Licorice) & Banana Remedy",
+    ingredients: [
+      { name: "Mulethi powder (Licorice)", quantity: "½ teaspoon" },
+      { name: "Ripe banana", quantity: "1" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Mash the ripe banana", "Mix in Mulethi powder and honey", "Eat on empty stomach"],
+    how_often: "Twice daily - morning and before bed",
+    precautions: ["Avoid if you have high blood pressure (licorice can raise BP)", "Not for prolonged use beyond 4 weeks", "Consult doctor for active ulcers"],
+    benefits: ["Mulethi coats and protects stomach lining", "Banana neutralizes excess acid", "Promotes healing of ulcer tissue"],
+    related_diseases: ["gastric ulcer", "stomach ulcer", "acidity"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-344",
+    problem: "Night Blindness",
+    title: "Triphala Eye Wash",
+    ingredients: [
+      { name: "Triphala powder", quantity: "1 teaspoon" },
+      { name: "Clean water", quantity: "1 cup" }
+    ],
+    method: ["Soak Triphala powder in water overnight", "Strain through a clean cloth in the morning (ensure no particles remain)", "Use as an eye wash - splash gently on open eyes", "Blink several times during the wash"],
+    how_often: "Daily in the morning",
+    precautions: ["Strain thoroughly - no particles should enter eyes", "Use clean, filtered water only", "Do not use if eyes are infected"],
+    benefits: ["Triphala is the classic Ayurvedic eye tonic", "Rich in Vitamin C and antioxidants", "Strengthens eye muscles and improves night vision"],
+    related_diseases: ["night blindness", "weak eyesight", "eye health"],
+    difficulty: "Easy",
+    preparation_time: "Overnight + 5 minutes"
+  },
+  {
+    id: "common-345",
+    problem: "Mouth Ulcers",
+    title: "Honey & Turmeric Mouth Ulcer Paste",
+    ingredients: [
+      { name: "Raw honey", quantity: "1 teaspoon" },
+      { name: "Turmeric powder", quantity: "A pinch" },
+      { name: "Ghee", quantity: "½ teaspoon" }
+    ],
+    method: ["Mix honey, turmeric, and ghee", "Apply directly on mouth ulcers", "Leave for 10 minutes (do not eat or drink)", "Repeat 3-4 times daily"],
+    how_often: "3-4 times daily until healed",
+    precautions: ["Do not swallow immediately - let it work on the ulcer", "Avoid spicy food during healing", "See doctor if ulcers persist beyond 2 weeks"],
+    benefits: ["Honey is naturally antibacterial", "Turmeric heals wounds rapidly", "Ghee provides a protective coating"],
+    related_diseases: ["mouth ulcers", "canker sores", "oral health"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "common-346",
+    problem: "Bloating",
+    title: "Hing (Asafoetida) & Warm Water",
+    ingredients: [
+      { name: "Hing (asafoetida)", quantity: "A pinch" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Ajwain seeds", quantity: "½ teaspoon" }
+    ],
+    method: ["Dissolve hing in warm water", "Add lightly crushed ajwain seeds", "Drink immediately after meals"],
+    how_often: "After heavy meals or when bloated",
+    precautions: ["Very strong flavor and smell", "Use only a tiny pinch", "Avoid during pregnancy in large amounts"],
+    benefits: ["Hing is the most powerful carminative in Ayurveda", "Expels gas within minutes", "Ajwain aids rapid digestion"],
+    related_diseases: ["bloating", "gas", "indigestion"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "common-347",
+    problem: "Tooth Sensitivity",
+    title: "Mustard Oil & Salt Gum Massage",
+    ingredients: [
+      { name: "Mustard oil", quantity: "½ teaspoon" },
+      { name: "Rock salt (finely ground)", quantity: "A pinch" }
+    ],
+    method: ["Mix mustard oil with fine rock salt", "Massage gently on gums and sensitive teeth with finger", "Leave for 5 minutes", "Rinse with warm water"],
+    how_often: "Twice daily - morning and night",
+    precautions: ["Be gentle - do not press hard on sensitive areas", "Spit out after massaging", "See dentist for severe sensitivity"],
+    benefits: ["Traditional Indian remedy for strong teeth", "Mustard oil strengthens gums", "Salt kills bacteria and reduces inflammation"],
+    related_diseases: ["tooth sensitivity", "gum disease", "dental health"],
+    difficulty: "Easy",
+    preparation_time: "2 minutes"
+  },
+  {
+    id: "common-348",
+    problem: "Anemia",
+    title: "Beetroot, Amla & Jaggery Iron Booster",
+    ingredients: [
+      { name: "Beetroot", quantity: "1 medium (juiced)" },
+      { name: "Amla (Indian gooseberry) juice", quantity: "2 tablespoons" },
+      { name: "Jaggery", quantity: "1 teaspoon (grated)" }
+    ],
+    method: ["Extract fresh beetroot juice", "Mix with amla juice", "Dissolve jaggery in the mixture", "Drink immediately to preserve nutrients"],
+    how_often: "Daily on empty stomach for 2-3 months",
+    precautions: ["May turn urine/stool reddish - this is normal", "Diabetics should limit jaggery", "Consult doctor for severe anemia"],
+    benefits: ["Beetroot is rich in iron and folate", "Amla's Vitamin C enhances iron absorption", "Jaggery adds iron and sweetness"],
+    related_diseases: ["anemia", "iron deficiency", "fatigue", "weakness"],
+    difficulty: "Easy",
+    preparation_time: "10 minutes"
+  },
+  {
+    id: "common-349",
+    problem: "Anxiety",
+    title: "Jatamansi & Brahmi Calming Tea",
+    ingredients: [
+      { name: "Jatamansi powder", quantity: "¼ teaspoon" },
+      { name: "Brahmi powder", quantity: "½ teaspoon" },
+      { name: "Warm water", quantity: "1 cup" },
+      { name: "Honey", quantity: "1 teaspoon" }
+    ],
+    method: ["Mix Jatamansi and Brahmi in warm water", "Let steep for 5 minutes", "Add honey when lukewarm", "Drink in the evening"],
+    how_often: "Daily in the evening for 1-2 months",
+    precautions: ["May cause drowsiness", "Do not drive after taking", "Consult doctor if on anti-anxiety medication"],
+    benefits: ["Jatamansi is a powerful Ayurvedic anxiolytic", "Brahmi calms racing thoughts", "Improves sleep quality naturally"],
+    related_diseases: ["anxiety", "stress", "insomnia", "panic attacks"],
+    difficulty: "Easy",
+    preparation_time: "5 minutes"
+  },
+  {
+    id: "common-350",
+    problem: "Obesity",
+    title: "Triphala & Honey Weight Loss Drink",
+    ingredients: [
+      { name: "Triphala powder", quantity: "1 teaspoon" },
+      { name: "Warm water", quantity: "1 glass" },
+      { name: "Honey", quantity: "1 teaspoon" },
+      { name: "Lemon juice", quantity: "½ teaspoon" }
+    ],
+    method: ["Mix Triphala powder in warm water", "Add honey and lemon juice", "Stir well and drink before bed"],
+    how_often: "Daily before bed for 3 months",
+    precautions: ["May cause loose stools initially", "Reduce dose if stomach is upset", "Combine with regular exercise"],
+    benefits: ["Triphala boosts metabolism and detoxifies", "Removes ama (toxins) that cause weight gain", "Improves digestion and nutrient absorption"],
+    related_diseases: ["obesity", "weight loss", "metabolism"],
+    difficulty: "Easy",
+    preparation_time: "3 minutes"
   }
 ];
 
@@ -17038,5 +17882,33 @@ export const remedyCategories = [
   "Kidney Health (Men)",
   "Immunity Boost (Men)",
   "Post-Workout Recovery (Men)",
-  "Weight Management (Men)"
+  "Weight Management (Men)",
+  // New Common Conditions
+  "PCOD/PCOS",
+  "Varicose Veins",
+  "Tinnitus (Ear Ringing)",
+  "Frozen Shoulder",
+  "Heel Pain (Plantar Fasciitis)",
+  "Carpal Tunnel Syndrome",
+  "Hemorrhoids (Piles)",
+  "Cervical Spondylosis",
+  "Acid Reflux (GERD)",
+  "Irregular Periods",
+  "Snoring",
+  "Dry Eyes",
+  "Low Blood Pressure",
+  "Urticaria (Hives)",
+  "IBS (Irritable Bowel)",
+  "Vitiligo Support",
+  "Chronic Fatigue",
+  "Nerve Weakness",
+  "Sinus Infection",
+  "Water Retention",
+  "Hormonal Acne",
+  "Infertility (Female)",
+  "Diabetic Neuropathy",
+  "Hiatal Hernia",
+  "Leucorrhea (White Discharge)",
+  "Gastric Ulcer",
+  "Gallstones"
 ];
