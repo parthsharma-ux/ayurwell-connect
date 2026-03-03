@@ -1,14 +1,12 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic, Volume2, Square, Crown, Lock, Star, Gem, Zap, Shield } from "lucide-react";
+import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic, Volume2, Square } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { useVaidyaChat } from "@/hooks/useVaidyaChat";
-import { useVaidyaAccess } from "@/hooks/useVaidyaAccess";
 import { AuthModal } from "@/components/vaidya/AuthModal";
 import { ChatHistory } from "@/components/vaidya/ChatHistory";
-import SubscriptionModal from "@/components/vaidya/SubscriptionModal";
 import ReactMarkdown from "react-markdown";
 import { useVoiceSearch } from "@/hooks/useVoiceSearch";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,15 +21,12 @@ const DoctorAI = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [language, setLanguage] = useState<UserLanguage>("hinglish");
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [speakingMessageIndex, setSpeakingMessageIndex] = useState<number | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
   const { user, signOut } = useAuth();
   
-  // Access control hook
-  const { hasAccess, reason, freeChatAvailable, freeChatsRemaining, freeTrial, trialHoursRemaining, loading: accessLoading, checkAccess, markFreeChatUsed } = useVaidyaAccess();
   
   const {
     sessions,
@@ -368,12 +363,6 @@ const DoctorAI = () => {
       return;
     }
     
-    // Check access - if no access and already used free chats, show paywall
-    if (!hasAccess && reason === "subscription_required") {
-      setShowSubscriptionModal(true);
-      return;
-    }
-    
     const newUserMsg: Message = { role: "user", content: userMessage };
     
     // Get current messages without the initial greeting for context
@@ -398,11 +387,6 @@ const DoctorAI = () => {
       }
 
       await streamChat(allMessages, sessionId);
-      
-      // Mark free chat as used after successful message (only if using free tier)
-      if (freeChatAvailable && reason === 'free_chat') {
-        await markFreeChatUsed();
-      }
     } catch (error) {
       console.error("Chat error:", error);
       toast({
@@ -413,7 +397,7 @@ const DoctorAI = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [isLoading, messages, currentSessionId, user, createSession, saveMessage, streamChat, toast, setMessages, hasAccess, reason, freeChatAvailable, markFreeChatUsed, language]);
+  }, [isLoading, messages, currentSessionId, user, createSession, saveMessage, streamChat, toast, setMessages, language]);
 
   const handleSend = () => {
     sendMessage(input.trim());
@@ -447,95 +431,31 @@ const DoctorAI = () => {
     ? ["Pet mein gas aur acidity", "Bahut stress ho raha hai", "Ghutno mein dard", "Skin pe pimples", "Neend nahi aati"]
     : ["Digestive issues", "Stress and anxiety", "Joint pain", "Skin problems", "Sleep issues"];
 
-  const isPremium = reason === "subscribed";
+  
 
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Premium Header with luxury animations */}
+        {/* Header */}
         <motion.div 
           className="text-center mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          {isPremium ? (
-            <motion.div 
-              className="relative inline-block mb-6"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* Glowing background effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-gold/30 via-primary/20 to-gold/30 blur-2xl rounded-full transform scale-150" />
-              
-              <motion.div 
-                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-gold/20 via-primary/10 to-gold/20 border-2 border-gold/50 shadow-glow-gold backdrop-blur-sm"
-                animate={{ 
-                  boxShadow: [
-                    "0 0 30px hsl(45 90% 55% / 0.3), 0 0 60px hsl(45 90% 55% / 0.15)",
-                    "0 0 50px hsl(45 90% 55% / 0.5), 0 0 100px hsl(45 90% 55% / 0.25)",
-                    "0 0 30px hsl(45 90% 55% / 0.3), 0 0 60px hsl(45 90% 55% / 0.15)"
-                  ]
-                }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <motion.div
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Crown className="h-6 w-6 text-gold drop-shadow-lg" />
-                </motion.div>
-                <span className="text-lg font-bold bg-gradient-to-r from-gold via-primary to-gold bg-clip-text text-transparent">
-                  {language === "hinglish" ? "प्रीमियम AI वैद्य" : "Premium AI Vaidya"}
-                </span>
-                <div className="flex gap-0.5">
-                  {[...Array(3)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      animate={{ 
-                        scale: [1, 1.3, 1],
-                        opacity: [0.7, 1, 0.7] 
-                      }}
-                      transition={{ 
-                        duration: 1.5, 
-                        repeat: Infinity, 
-                        delay: i * 0.2 
-                      }}
-                    >
-                      <Star className="h-4 w-4 text-gold fill-gold" />
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
-          ) : (
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              <Sparkles className="h-4 w-4" />
-              AI-Powered Ayurvedic Consultation
-            </div>
-          )}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+            <Sparkles className="h-4 w-4" />
+            AI-Powered Ayurvedic Consultation
+          </div>
           
-          <h1 className={`font-display text-3xl md:text-4xl font-bold mb-2 ${
-            isPremium 
-              ? "bg-gradient-to-r from-gold via-primary to-gold bg-[length:200%_auto] animate-shimmer bg-clip-text text-transparent" 
-              : ""
-          }`}>
-            {isPremium 
-              ? (language === "hinglish" ? "श्रेष्ठ आयुर्वेद विशेषज्ञ" : "Elite Ayurveda Expert")
-              : "Ayurveda AI Vaidya"
-            }
+          <h1 className="font-display text-3xl md:text-4xl font-bold mb-2">
+            Ayurveda AI Vaidya
           </h1>
           
-          <p className={`text-base ${isPremium ? "text-gold/80" : "text-muted-foreground"} mt-2 max-w-lg mx-auto`}>
-            {isPremium 
-              ? (language === "hinglish" 
-                  ? "✨ असीमित प्रीमियम परामर्श • व्यक्तिगत उपचार योजना • प्राथमिकता सहायता" 
-                  : "✨ Unlimited Premium Consultations • Personalized Treatment Plans • Priority Support")
-              : (language === "hinglish" 
-                  ? "Apni taklif batayein, personalized Ayurvedic guidance payein" 
-                  : "Share your concerns, receive personalized Ayurvedic guidance")
-            }
+          <p className="text-base text-muted-foreground mt-2 max-w-lg mx-auto">
+            {language === "hinglish" 
+              ? "Apni taklif batayein, personalized Ayurvedic guidance payein" 
+              : "Share your concerns, receive personalized Ayurvedic guidance"}
           </p>
           
           <div className="mt-5 flex items-center justify-center gap-3 flex-wrap">
@@ -543,11 +463,7 @@ const DoctorAI = () => {
               onClick={toggleLanguage}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all text-sm font-medium ${
-                isPremium 
-                  ? "border-gold/40 bg-gold/10 hover:bg-gold/20 text-gold shadow-sm" 
-                  : "border-border bg-card hover:bg-muted"
-              }`}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all text-sm font-medium border-border bg-card hover:bg-muted"
             >
               <Globe className="h-4 w-4" />
               {language === "hinglish" ? "Switch to English" : "हिंग्लिश में बदलें"}
@@ -555,84 +471,18 @@ const DoctorAI = () => {
             
             {user ? (
               <>
-                {/* Subscription Status Badge */}
-                {isPremium ? (
-                  <motion.div 
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gold/30 via-primary/20 to-gold/30 border-2 border-gold/50 shadow-glow-gold"
-                    animate={{ 
-                      scale: [1, 1.02, 1],
-                    }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  >
-                    <Gem className="h-5 w-5 text-gold" />
-                    <span className="text-sm font-bold text-gold">
-                      {language === "hinglish" ? "प्रीमियम सदस्य" : "Premium Member"}
-                    </span>
-                    <Shield className="h-4 w-4 text-gold/70" />
-                  </motion.div>
-                ) : freeTrial ? (
-                  <>
-                    {/* Free Trial Badge + Go Premium Button */}
-                    <motion.span 
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-semibold border border-emerald-500/30"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                    >
-                      <Sparkles className="h-4 w-4" />
-                      {language === "hinglish" 
-                        ? `🎉 3 दिन फ्री ट्रायल चालू!` 
-                        : `🎉 3-Day Free Trial Active!`}
-                    </motion.span>
-                    <motion.button
-                      onClick={() => setShowSubscriptionModal(true)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-gold/20 to-primary/20 text-gold text-sm font-semibold border border-gold/30 hover:border-gold/50 transition-all shadow-sm hover:shadow-glow-gold"
-                    >
-                      <Crown className="h-4 w-4" />
-                      {language === "hinglish" ? "प्रीमियम लें" : "Go Premium"}
-                    </motion.button>
-                  </>
-                ) : freeChatAvailable ? (
-                  <>
-                    <motion.span 
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-semibold border border-emerald-500/30"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                    >
-                      <Zap className="h-4 w-4" />
-                      {language === "hinglish" 
-                        ? `${freeChatsRemaining} मुफ्त चैट बाकी` 
-                        : `${freeChatsRemaining} Free Chats Left`}
-                    </motion.span>
-                    <motion.button
-                      onClick={() => setShowSubscriptionModal(true)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-gold/20 to-primary/20 text-gold text-sm font-semibold border border-gold/30 hover:border-gold/50 transition-all shadow-sm hover:shadow-glow-gold"
-                    >
-                      <Crown className="h-4 w-4" />
-                      {language === "hinglish" ? "प्रीमियम लें" : "Go Premium"}
-                    </motion.button>
-                  </>
-                ) : (
-                  <motion.button
-                    onClick={() => setShowSubscriptionModal(true)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-gold/20 to-primary/20 text-gold text-sm font-semibold border border-gold/30 hover:border-gold/50 transition-all shadow-sm hover:shadow-glow-gold"
-                  >
-                    <Lock className="h-4 w-4" />
-                    {language === "hinglish" ? "प्रीमियम अपग्रेड" : "Go Premium"}
-                  </motion.button>
-                )}
+                {/* Free unlimited badge */}
+                <motion.span 
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-semibold border border-emerald-500/30"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                >
+                  <Sparkles className="h-4 w-4" />
+                  {language === "hinglish" ? "✨ बिल्कुल मुफ्त • असीमित चैट" : "✨ Completely Free • Unlimited Chat"}
+                </motion.span>
                 <button
                   onClick={() => setShowHistory(!showHistory)}
-                  className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all text-sm ${
-                    isPremium 
-                      ? "border-gold/30 bg-gold/10 hover:bg-gold/20 text-gold" 
-                      : "border-border bg-card hover:bg-muted"
-                  }`}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all text-sm border-border bg-card hover:bg-muted"
                 >
                   <History className="h-4 w-4" />
                   {showHistory ? "Hide" : "History"}
@@ -666,17 +516,10 @@ const DoctorAI = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className={`rounded-xl p-4 mb-6 overflow-hidden ${
-                isPremium 
-                  ? "bg-gradient-to-r from-gold/5 via-card to-gold/5 border-2 border-gold/20" 
-                  : "bg-card border border-border"
-              }`}
+              className="rounded-xl p-4 mb-6 overflow-hidden bg-card border border-border"
             >
-              <h3 className={`font-medium text-sm mb-3 ${isPremium ? "text-gold" : ""}`}>
-                {isPremium 
-                  ? (language === "hinglish" ? "आपके प्रीमियम परामर्श" : "Your Premium Consultations")
-                  : "Your Consultations"
-                }
+              <h3 className="font-medium text-sm mb-3">
+                Your Consultations
               </h3>
               <ChatHistory
                 sessions={sessions}
@@ -691,17 +534,13 @@ const DoctorAI = () => {
         </AnimatePresence>
 
         <motion.div 
-          className={`rounded-xl p-4 mb-6 flex items-start gap-3 ${
-            isPremium 
-              ? "bg-gradient-to-r from-gold/10 via-card to-gold/10 border border-gold/30" 
-              : "bg-amber-950/30 border border-amber-700/30"
-          }`}
+          className="rounded-xl p-4 mb-6 flex items-start gap-3 bg-amber-950/30 border border-amber-700/30"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <AlertCircle className={`h-5 w-5 flex-shrink-0 mt-0.5 ${isPremium ? "text-gold" : "text-amber-500"}`} />
-          <p className={`text-sm ${isPremium ? "text-gold/80" : "text-amber-200/80"}`}>
+          <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5 text-amber-500" />
+          <p className="text-sm text-amber-200/80">
             {language === "hinglish" 
               ? "Yeh AI Vaidya sirf general Ayurvedic guidance deta hai. Serious problems ke liye physical doctor se milein."
               : "This AI Vaidya provides general Ayurvedic guidance only. Please consult a physical doctor for serious conditions."}
@@ -710,48 +549,11 @@ const DoctorAI = () => {
 
         {/* Chat Container - Premium luxury styling */}
         <motion.div 
-          className={`rounded-2xl overflow-hidden transition-all duration-500 ${
-            isPremium 
-              ? "bg-gradient-to-br from-card via-card to-gold/5 border-2 border-gold/40 shadow-glow-gold" 
-              : "bg-card border border-border shadow-card"
-          }`}
+          className="rounded-2xl overflow-hidden transition-all duration-500 bg-card border border-border shadow-card"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {/* Premium header bar with shimmer */}
-          {isPremium && (
-            <motion.div 
-              className="px-6 py-4 bg-gradient-to-r from-gold/10 via-transparent to-gold/10 border-b border-gold/30 flex items-center justify-between relative overflow-hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-            >
-              {/* Shimmer effect */}
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/10 to-transparent"
-                animate={{ x: ["-100%", "100%"] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              />
-              
-              <div className="flex items-center gap-3 relative z-10">
-                <motion.div 
-                  className="w-3 h-3 rounded-full bg-gold"
-                  animate={{ 
-                    scale: [1, 1.3, 1],
-                    opacity: [1, 0.7, 1] 
-                  }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                />
-                <span className="text-sm font-semibold text-gold">
-                  {language === "hinglish" ? "प्रीमियम सत्र सक्रिय" : "Premium Session Active"}
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-gold/70 relative z-10">
-                <Crown className="h-4 w-4 text-gold" />
-                <span>{language === "hinglish" ? "असीमित परामर्श" : "Unlimited Consultations"}</span>
-              </div>
-            </motion.div>
-          )}
           
           <div className="h-[450px] overflow-y-auto p-6 space-y-4 scroll-smooth">
             {messages.map((msg, i) => (
@@ -764,34 +566,22 @@ const DoctorAI = () => {
               >
                 {msg.role === "assistant" && (
                   <motion.div 
-                    className={`w-11 h-11 rounded-full flex items-center justify-center mr-3 flex-shrink-0 ${
-                      isPremium 
-                        ? "bg-gradient-to-br from-gold/40 to-primary/30 border-2 border-gold/50 shadow-glow-gold" 
-                        : "bg-secondary/20 border border-secondary/30"
-                    }`}
+                    className="w-11 h-11 rounded-full flex items-center justify-center mr-3 flex-shrink-0 bg-secondary/20 border border-secondary/30"
                     whileHover={{ scale: 1.05 }}
                   >
-                    {isPremium ? (
-                      <Crown className="h-5 w-5 text-gold drop-shadow-sm" />
-                    ) : (
-                      <Brain className="h-5 w-5 text-secondary" />
-                    )}
+                    <Brain className="h-5 w-5 text-secondary" />
                   </motion.div>
                 )}
                 <div className={`max-w-[85%] rounded-2xl transition-all ${
                   msg.role === "user" 
-                    ? (isPremium 
-                        ? "bg-gradient-to-r from-gold/25 to-primary/20 border border-gold/30 rounded-tr-sm shadow-sm" 
-                        : "bg-primary/20 border border-primary/20 rounded-tr-sm")
-                    : (isPremium 
-                        ? "bg-gradient-to-r from-muted via-muted to-gold/5 border border-gold/20 rounded-tl-sm shadow-sm" 
-                        : "bg-muted rounded-tl-sm")
+                    ? "bg-primary/20 border border-primary/20 rounded-tr-sm"
+                    : "bg-muted rounded-tl-sm"
                 }`}>
                   <div className="p-4">
                     {msg.role === "user" ? (
                       <p className="text-base leading-relaxed whitespace-pre-line">{msg.content}</p>
                     ) : (
-                      <div className={`prose prose-sm dark:prose-invert max-w-none text-base leading-relaxed [&>p]:my-2 [&>ul]:my-2 [&>ol]:my-2 [&>ul]:pl-4 [&>ol]:pl-4 [&>li]:my-1 [&>h1]:text-lg [&>h2]:text-base [&>h3]:text-base [&>code]:bg-background/50 [&>code]:px-1.5 [&>code]:py-0.5 [&>code]:rounded [&>pre]:bg-background/50 [&>pre]:p-3 [&>pre]:rounded-lg [&>blockquote]:border-l-3 [&>blockquote]:pl-4 [&>blockquote]:italic ${isPremium ? "[&>blockquote]:border-gold [&>strong]:text-gold" : "[&>blockquote]:border-primary"}`}>
+                      <div className="prose prose-sm dark:prose-invert max-w-none text-base leading-relaxed [&>p]:my-2 [&>ul]:my-2 [&>ol]:my-2 [&>ul]:pl-4 [&>ol]:pl-4 [&>li]:my-1 [&>h1]:text-lg [&>h2]:text-base [&>h3]:text-base [&>code]:bg-background/50 [&>code]:px-1.5 [&>code]:py-0.5 [&>code]:rounded [&>pre]:bg-background/50 [&>pre]:p-3 [&>pre]:rounded-lg [&>blockquote]:border-l-3 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:border-primary">
                         <ReactMarkdown>{msg.content}</ReactMarkdown>
                       </div>
                     )}
@@ -805,7 +595,7 @@ const DoctorAI = () => {
                         whileTap={{ scale: 0.95 }}
                         className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full transition-all ${
                           speakingMessageIndex === i
-                            ? (isPremium ? "bg-gold/20 text-gold" : "bg-primary/20 text-primary")
+                            ? "bg-primary/20 text-primary"
                             : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                         }`}
                         title={speakingMessageIndex === i 
@@ -828,14 +618,10 @@ const DoctorAI = () => {
                 </div>
                 {msg.role === "user" && (
                   <motion.div 
-                    className={`w-11 h-11 rounded-full flex items-center justify-center ml-3 flex-shrink-0 ${
-                      isPremium 
-                        ? "bg-gradient-to-r from-gold/30 to-primary/20 border-2 border-gold/40" 
-                        : "bg-primary/20 border border-primary/30"
-                    }`}
+                    className="w-11 h-11 rounded-full flex items-center justify-center ml-3 flex-shrink-0 bg-primary/20 border border-primary/30"
                     whileHover={{ scale: 1.05 }}
                   >
-                    <User className={`h-5 w-5 ${isPremium ? "text-gold" : "text-primary"}`} />
+                    <User className="h-5 w-5 text-primary" />
                   </motion.div>
                 )}
               </motion.div>
@@ -846,17 +632,15 @@ const DoctorAI = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0 ${
-                  isPremium ? "bg-gradient-to-br from-gold/30 to-primary/20 border border-gold/30" : "bg-secondary/20"
-                }`}>
-                  {isPremium ? <Crown className="h-4 w-4 text-gold" /> : <Brain className="h-4 w-4 text-secondary" />}
+                <div className="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0 bg-secondary/20">
+                  <Brain className="h-4 w-4 text-secondary" />
                 </div>
-                <div className={`rounded-2xl rounded-tl-sm p-4 ${isPremium ? "bg-gradient-to-r from-muted to-gold/5 border border-gold/20" : "bg-muted"}`}>
+                <div className="rounded-2xl rounded-tl-sm p-4 bg-muted">
                   <div className="flex gap-1.5">
                     {[0, 1, 2].map((i) => (
                       <motion.span 
                         key={i}
-                        className={`w-2.5 h-2.5 rounded-full ${isPremium ? "bg-gold/60" : "bg-muted-foreground/50"}`}
+                        className="w-2.5 h-2.5 rounded-full bg-muted-foreground/50"
                         animate={{ y: [0, -8, 0] }}
                         transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
                       />
@@ -885,11 +669,7 @@ const DoctorAI = () => {
                     onClick={() => setInput(prompt)}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`text-xs px-3 py-2 rounded-full border transition-all ${
-                      isPremium 
-                        ? "border-gold/30 bg-gold/5 hover:bg-gold/10 hover:border-gold/50 text-foreground" 
-                        : "border-border bg-muted/50 hover:bg-muted"
-                    }`}
+                    className="text-xs px-3 py-2 rounded-full border transition-all border-border bg-muted/50 hover:bg-muted"
                   >
                     {prompt}
                   </motion.button>
@@ -898,7 +678,7 @@ const DoctorAI = () => {
             </motion.div>
           )}
 
-          <div className={`p-4 border-t ${isPremium ? "border-gold/20 bg-gradient-to-r from-gold/5 via-transparent to-gold/5" : "border-border"}`}>
+          <div className="p-4 border-t border-border">
             {/* Show interim transcript while listening */}
             <AnimatePresence>
               {isListening && interimTranscript && (
@@ -926,12 +706,8 @@ const DoctorAI = () => {
                   whileTap={{ scale: 0.95 }}
                   className={`relative flex items-center justify-center rounded-xl h-12 w-12 transition-all select-none touch-none ${
                     isListening 
-                      ? (isPremium 
-                          ? "bg-gradient-to-br from-gold to-primary text-primary-foreground scale-110 shadow-glow-gold" 
-                          : "bg-primary text-primary-foreground scale-110 shadow-glow-terracotta")
-                      : (isPremium 
-                          ? "bg-gold/10 hover:bg-gold/20 text-gold border border-gold/30" 
-                          : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground")
+                      ? "bg-primary text-primary-foreground scale-110 shadow-glow-terracotta"
+                      : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground"
                   }`}
                   style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none' }}
                   title={language === "hinglish" ? "Dabaye rakhein aur bolein" : "Hold to speak"}
@@ -961,20 +737,16 @@ const DoctorAI = () => {
                     ? (language === "hinglish" ? "Sun raha hoon..." : "Listening...") 
                     : (language === "hinglish" ? "Apni taklif yahan likhein ya mic dabayein..." : "Type or tap mic to speak...")
                 }
-                className={`flex-1 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all ${
-                  isPremium 
-                    ? "bg-gold/5 border border-gold/20 focus:ring-gold/30 focus:border-gold/40 placeholder:text-gold/40" 
-                    : "bg-muted focus:ring-primary/50"
-                }`}
+                className="flex-1 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all bg-muted focus:ring-primary/50"
                 disabled={isLoading || isListening}
               />
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button 
-                  variant={isPremium ? "gold" : "gold"}
+                  variant="gold"
                   size="icon" 
                   onClick={handleSend}
                   disabled={!input.trim() || isLoading}
-                  className={`rounded-xl h-12 w-12 ${isPremium ? "shadow-glow-gold" : ""}`}
+                  className="rounded-xl h-12 w-12"
                 >
                   {isLoading ? (
                     <Loader2 className="h-5 w-5 animate-spin" />
@@ -989,11 +761,6 @@ const DoctorAI = () => {
       </div>
 
       <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
-      <SubscriptionModal 
-        open={showSubscriptionModal} 
-        onOpenChange={setShowSubscriptionModal}
-        onSuccess={checkAccess}
-      />
     </Layout>
   );
 };
