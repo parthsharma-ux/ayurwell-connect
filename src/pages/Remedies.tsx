@@ -242,6 +242,18 @@ const categoryGroups = {
       "Liver Detox (Men)", "Kidney Health (Men)", "Immunity Boost (Men)",
       "Post-Workout Recovery (Men)", "Weight Management (Men)"
     ]
+  },
+  sports: {
+    label: { en: "Sports & Fitness", hi: "खेल और फिटनेस" },
+    icon: Activity,
+    categories: [
+      "Muscle Strain (Sports)", "Ankle Sprain (Sports)", "Knee Injury (Sports)",
+      "Shin Splints (Sports)", "Tennis Elbow (Sports)", "Runner's Knee (Sports)",
+      "Hamstring Pull (Sports)", "Shoulder Injury (Sports)", "Pre-Workout Energy",
+      "Post-Workout Recovery", "Muscle Soreness (DOMS)", "Cramps During Exercise",
+      "Sports Hydration", "Ligament Support", "Joint Flexibility (Sports)",
+      "Endurance Building", "Muscle Fatigue (Sports)", "Sports Nutrition"
+    ]
   }
 };
 
