@@ -185,7 +185,37 @@ const categoryGroups = {
       "Urticaria (Hives)", "Chronic Fatigue", "Nerve Weakness", "Water Retention",
       "Hormonal Acne", "Diabetic Neuropathy", "Hiatal Hernia", "Gastric Ulcer", "Gallstones",
       "Sinus Infection", "Infertility (Female)", "Leucorrhea (White Discharge)", "Night Blindness",
-      "Premature Greying", "Hemorrhoids (Piles)", "Tooth Sensitivity"
+      "Premature Greying", "Hemorrhoids (Piles)", "Tooth Sensitivity",
+      "Gum Disease", "Wisdom Tooth Pain", "Jaw Pain (TMJ)", "Dry Socket (Post Extraction)",
+      "Tonsillitis", "Bronchitis Support", "Gastritis", "Gout", "IBS (Irritable Bowel)",
+      "Eczema Support", "Psoriasis Support", "Ringworm", "Rosacea Support", "Melasma (Pigmentation)",
+      "Abscess (Boil)", "Plantar Warts", "Corns & Calluses", "Stretch Marks", "Keloid Scar",
+      "Canker Sores", "Dry Mouth", "Burning Feet Syndrome", "Ingrown Toenail",
+      "Iron Deficiency Anemia", "Vitamin D Deficiency Support", "B12 Deficiency Support",
+      "Anxiety Disorder Support", "Depression Support", "Insomnia (Chronic)"
+    ]
+  },
+  recovery: {
+    label: { en: "Recovery & Surgery", hi: "रिकवरी और सर्जरी" },
+    icon: Heart,
+    categories: [
+      "Post-Surgery Recovery", "Post-Surgery Constipation", "Post-Surgery Swelling",
+      "Post-Surgery Weakness", "Post-Surgery Scar Reduction", "Bed Sores (Pressure Ulcer)",
+      "Hernia Support", "Appendix Pain Support", "Slip Disc Support", "Bell's Palsy Support",
+      "Fibromyalgia Support", "Nerve Pain (Neuralgia)", "Cellulitis Support",
+      "Pneumonia Support", "Peptic Ulcer Support", "Costochondritis (Chest Wall Pain)",
+      "Tennis Elbow", "Trigger Finger", "Rotator Cuff Pain", "Bursitis", "Tendonitis",
+      "Pilonidal Cyst Support", "Ganglion Cyst Support", "Lipoma Support",
+      "Laryngitis (Voice Loss)", "Chalazion (Eye Lump)", "Anal Fissure", "Fistula Support",
+      "Coccyx Pain (Tailbone)", "Chronic Kidney Disease Support", "Pancreatitis Support",
+      "Lupus Support", "Food Allergy Support", "Thyroid Nodules Support",
+      "Hemorrhagic Cough Support", "Peripheral Neuropathy", "Chronic Fatigue Syndrome",
+      "Edema (Water Retention)", "Raynaud's Disease Support", "Night Sweats",
+      "Sleep Apnea Support", "Restless Leg Syndrome", "Chronic Sinusitis",
+      "Interstitial Cystitis Support", "Prostatitis Support", "Endometriosis Support",
+      "Polycystic Ovary (PCOS)", "Ovarian Cyst Support", "Menstrual Migraine",
+      "Hot Flashes (Menopause)", "Plantar Fasciitis (Heel Pain)", "Chilblains (Winter Toe Pain)",
+      "Sciatica"
     ]
   },
   seasonal: {
