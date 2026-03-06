@@ -111,9 +111,20 @@ const bodySystems = {
     conditions: ["Hypertension", "High Cholesterol", "Anemia", "Iron Deficiency (Women)", "Heart Health"]
   },
   brain: {
-    label: { en: "Brain", hi: "मस्तिष्क" },
+    label: { en: "Brain & Neuro", hi: "मस्तिष्क और तंत्रिका" },
     icon: Brain,
-    conditions: ["Migraine", "Anxiety", "Insomnia", "Memory", "Stress", "Headache", "Vertigo", "Neuropathy", "Stroke Recovery"]
+    conditions: [
+      "Migraine", "Anxiety", "Insomnia", "Memory", "Stress", "Headache", "Vertigo",
+      "Neuropathy", "Stroke Recovery", "Epilepsy Support", "Parkinson's Support",
+      "Memory Loss", "Peripheral Neuropathy", "Sciatica", "Bell's Palsy Support",
+      "Alzheimer's Support", "Trigeminal Neuralgia", "Multiple Sclerosis Support",
+      "Stroke Recovery Support", "Insomnia (Neurological)", "Anxiety & Panic Attacks",
+      "Cervical Spondylosis", "Restless Leg Syndrome", "Carpal Tunnel Syndrome",
+      "Facial Tic (Nervous Twitch)", "Diabetic Neuropathy", "Tension Headache",
+      "Sleep Walking Support", "Attention Deficit Support", "Cluster Headache Support",
+      "Tremors (Essential)", "Chronic Dizziness", "Nerve Weakness",
+      "Post-Concussion Support", "Fibromyalgia Support", "Chronic Fatigue Syndrome"
+    ]
   },
   digestive: {
     label: { en: "Digestive", hi: "पाचन" },
@@ -141,9 +152,16 @@ const bodySystems = {
     conditions: ["Skin Disorders", "Hair Fall", "Acne", "Dark Circles", "Dry Skin", "Dandruff", "Chapped Lips", "Cracked Heels", "Sunburn", "Dry Skin (Winter)", "Prickly Heat", "Fungal Infections"]
   },
   eyes: {
-    label: { en: "Eyes", hi: "आँख" },
+    label: { en: "Eyes & ENT", hi: "आँख और ईएनटी" },
     icon: Eye,
-    conditions: ["Eye Strain", "Weak Eyesight", "Ear Infection"]
+    conditions: [
+      "Eye Strain", "Weak Eyesight", "Ear Infection", "Eye Strain (Digital)", "Dry Eyes",
+      "Conjunctivitis (Pink Eye)", "Eye Floaters", "Glaucoma Support", "Cataract Support",
+      "Night Blindness", "Macular Degeneration Support", "Stye (Eye Lump)",
+      "Tinnitus (Ear Ringing)", "Sinusitis", "Sore Throat", "Laryngitis (Voice Loss)",
+      "Nasal Polyps Support", "Hearing Loss Support", "Vertigo", "Nosebleed (Epistaxis)",
+      "Adenoid Swelling (Children)", "Allergic Rhinitis", "Ear Wax Removal"
+    ]
   },
   metabolic: {
     label: { en: "Metabolic", hi: "चयापचय" },
