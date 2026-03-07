@@ -4566,7 +4566,7 @@ export const diseases: Disease[] = [
     diet_tips: { foods_to_eat: ["Cooked foods", "Ginger", "Fennel tea", "Buttermilk", "Rice"], foods_to_avoid: ["Raw vegetables", "Dairy (if sensitive)", "Gluten", "FODMAPs", "Caffeine"] },
     yoga_postures: ["Pavanamuktasana", "Vajrasana", "Gentle twists", "Deep breathing"],
     category: "Digestive"
-  }
+  },
   // ========== RARE GENETIC DISORDERS ==========
   {
     id: "sickle-cell-disease",
