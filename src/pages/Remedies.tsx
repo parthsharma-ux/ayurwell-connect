@@ -302,6 +302,38 @@ const categoryGroups = {
       "Sports Hydration", "Ligament Support", "Joint Flexibility (Sports)",
       "Endurance Building", "Muscle Fatigue (Sports)", "Sports Nutrition"
     ]
+  },
+  genetic: {
+    label: { en: "Genetic Disorders", hi: "आनुवंशिक विकार" },
+    icon: Zap,
+    categories: [
+      "Sickle Cell Anemia Support", "Thalassemia Support", "Hemophilia Support",
+      "Cystic Fibrosis Support", "Down Syndrome Support", "Muscular Dystrophy Support",
+      "Ehlers-Danlos Support", "Turner Syndrome Support", "Marfan Syndrome Support",
+      "Phenylketonuria Support", "Huntington's Support", "Gaucher Disease Support",
+      "Wilson's Disease Support", "Fragile X Support", "Scleroderma Support",
+      "Albinism Support", "Gilbert Syndrome Support", "Hereditary Angioedema",
+      "Familial Hypercholesterolemia", "G6PD Deficiency Support",
+      "Celiac Disease (Genetic)", "Hemochromatosis Support", "Polycystic Kidney Disease",
+      "Hereditary Neuropathy Support", "Congenital Heart Defect Support"
+    ]
+  },
+  tropical: {
+    label: { en: "Tropical Diseases", hi: "उष्णकटिबंधीय रोग" },
+    icon: Sun,
+    categories: [
+      "Malaria Recovery", "Dengue Recovery", "Chikungunya Recovery",
+      "Typhoid Recovery", "Cholera Recovery", "Filariasis Support",
+      "Leptospirosis Recovery", "Japanese Encephalitis Support",
+      "Kala-Azar (Leishmaniasis) Support", "Zika Virus Recovery",
+      "Yellow Fever Recovery", "Scrub Typhus Recovery", "Amoebiasis Support",
+      "Giardiasis Support", "Hookworm Infestation Support",
+      "Elephantiasis Support", "Chagas Disease Support", "Bilharzia Support",
+      "Tropical Sprue Support", "Heat Exhaustion Recovery",
+      "Tropical Ulcer Support", "River Blindness Support",
+      "Sleeping Sickness Support", "Rabies Post-Exposure Support",
+      "Snakebite First Aid Support"
+    ]
   }
 };
 
