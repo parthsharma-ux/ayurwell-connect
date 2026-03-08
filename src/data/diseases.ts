@@ -8680,7 +8680,7 @@ export const diseases: Disease[] = [
     diet_tips: { foods_to_eat: ["High-protein diet", "Adequate calories", "L-alanine supplements", "Complex carbohydrates", "Nutrient-dense foods", "Small frequent meals", "Adequate fluids"], foods_to_avoid: ["Excessive simple sugars", "Low-calorie diets", "Fasting", "Processed foods", "Excessive carbohydrates", "Dehydration"] },
     yoga_postures: ["Physical therapy", "Respiratory exercises", "Gentle strengthening", "Swimming", "Adapted exercise"],
     category: "Metabolic Disorders"
-  }
+  },
   // ===== COMMON INDIAN HEALTH PROBLEMS =====
   {
     id: "gas-bloating",
