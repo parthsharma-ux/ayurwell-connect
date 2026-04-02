@@ -189,12 +189,16 @@ const DoctorAI = () => {
         utterance.voice = preferredVoice;
       }
 
+      let resumeInterval: ReturnType<typeof setInterval> | null = null;
+
       utterance.onend = () => {
+        if (resumeInterval) clearInterval(resumeInterval);
         chunkIndex++;
         speakNextChunk();
       };
       
       utterance.onerror = (e) => {
+        if (resumeInterval) clearInterval(resumeInterval);
         // 'interrupted' and 'cancelled' are normal when user stops
         if (e.error === 'interrupted' || e.error === 'canceled') return;
         setSpeakingMessageIndex(null);
@@ -207,21 +211,15 @@ const DoctorAI = () => {
 
       window.speechSynthesis.speak(utterance);
       
-      // Chrome mobile workaround: resume speech synthesis periodically
-      const resumeInterval = setInterval(() => {
+      // Chrome workaround: pause/resume every 5s to prevent auto-stop bug
+      resumeInterval = setInterval(() => {
         if (!window.speechSynthesis.speaking) {
-          clearInterval(resumeInterval);
+          if (resumeInterval) clearInterval(resumeInterval);
           return;
         }
         window.speechSynthesis.pause();
         window.speechSynthesis.resume();
-      }, 10000);
-      
-      utterance.onend = () => {
-        clearInterval(resumeInterval);
-        chunkIndex++;
-        speakNextChunk();
-      };
+      }, 5000);
     };
 
     speakNextChunk();
