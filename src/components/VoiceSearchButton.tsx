@@ -21,7 +21,7 @@ const VoiceSearchButton = ({
   size = 'md',
   mode = 'push-to-talk'
 }: VoiceSearchButtonProps) => {
-  const holdTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const holdTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const sizeClasses = {
     sm: 'h-8 w-8',
