@@ -420,6 +420,16 @@ const Remedies = () => {
     return results;
   }, [search, category, selectedIngredient, activeGroup, activeBodySystem, prioritizeLocal, region]);
 
+  // Reset pagination when filters change
+  useEffect(() => { setPage(1); }, [search, category, selectedIngredient, activeGroup, activeBodySystem]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const paginated = useMemo(
+    () => filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
+    [filtered, currentPage]
+  );
+
   const clearFilters = () => {
     setSearch("");
     setCategory("all");
