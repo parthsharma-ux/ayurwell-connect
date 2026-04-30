@@ -60,8 +60,15 @@ const Medicines = () => {
           </div>
         </div>
 
+        <div className="flex items-center justify-between mb-4 text-sm text-muted-foreground">
+          <span>
+            Showing {filtered.length === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filtered.length)} of {filtered.length}
+          </span>
+          <span>Page {currentPage} of {totalPages}</span>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filtered.map((medicine) => (
+          {paginated.map((medicine) => (
             <LocalizedLink
               key={medicine.id}
               to={`/medicines/${medicine.id}`}
@@ -84,6 +91,48 @@ const Medicines = () => {
             </LocalizedLink>
           ))}
         </div>
+
+        {filtered.length === 0 && (
+          <div className="text-center py-16 text-muted-foreground">
+            No medicines match your filters.
+          </div>
+        )}
+
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2 mt-8 flex-wrap">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="inline-flex items-center gap-1 h-10 px-4 rounded-lg border border-border bg-card hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronLeft className="h-4 w-4" /> Prev
+            </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1)
+              .filter((p) => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1)
+              .map((p, idx, arr) => (
+                <span key={p} className="flex items-center gap-2">
+                  {idx > 0 && arr[idx - 1] !== p - 1 && <span className="text-muted-foreground">…</span>}
+                  <button
+                    onClick={() => setPage(p)}
+                    className={`h-10 min-w-10 px-3 rounded-lg border transition-colors ${
+                      p === currentPage
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "bg-card border-border hover:bg-muted"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                </span>
+              ))}
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className="inline-flex items-center gap-1 h-10 px-4 rounded-lg border border-border bg-card hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            >
+              Next <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+        )}
 
         {/* Sticky WhatsApp CTA */}
         <a
