@@ -24499,3 +24499,13 @@ const additionalRemedies: Remedy[] = [
 ];
 
 remedies.push(...additionalRemedies);
+
+// Auto-derive remedy categories from actual data so newly added remedies always appear in filters
+const _derivedRemedyCategories = Array.from(
+  new Set(remedies.map((r) => r.problem).filter(Boolean))
+).sort();
+const _mergedRemedyCategories = Array.from(
+  new Set([...remedyCategories, ..._derivedRemedyCategories])
+);
+(remedyCategories as string[]).length = 0;
+(remedyCategories as string[]).push(..._mergedRemedyCategories);
