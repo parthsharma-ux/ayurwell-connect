@@ -8006,3 +8006,14 @@ export const medicineCategories = [
   "Blood Builder",
   "Rasayana"
 ];
+
+// Auto-derive categories from actual data so newly added medicines always appear in filters
+const _derivedMedicineCategories = Array.from(
+  new Set(medicines.map((m) => m.category).filter(Boolean))
+).sort();
+// Merge static + derived to preserve ordering hints, then dedupe
+const _mergedMedicineCategories = Array.from(
+  new Set([...medicineCategories, ..._derivedMedicineCategories])
+);
+(medicineCategories as string[]).length = 0;
+(medicineCategories as string[]).push(..._mergedMedicineCategories);

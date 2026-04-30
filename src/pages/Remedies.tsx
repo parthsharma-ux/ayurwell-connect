@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { remedies, remedyCategories, getRemedyRegion } from "@/data/remedies";
-import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin, User } from "lucide-react";
+import { Search, Filter, Clock, Leaf, X, Baby, Heart, Sun, Sparkles, Brain, Eye, Bone, Activity, Droplets, Wind, Zap, MapPin, User, ChevronLeft, ChevronRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -373,6 +373,8 @@ const Remedies = () => {
   const [activeGroup, setActiveGroup] = useState<keyof typeof categoryGroups>("all");
   const [activeBodySystem, setActiveBodySystem] = useState<keyof typeof bodySystems>("all");
   const [prioritizeLocal, setPrioritizeLocal] = useState(true);
+  const [page, setPage] = useState(1);
+  const PAGE_SIZE = 24;
 
   // Apply SEO structured data
   useRemediesSEO(language);
@@ -417,6 +419,16 @@ const Remedies = () => {
 
     return results;
   }, [search, category, selectedIngredient, activeGroup, activeBodySystem, prioritizeLocal, region]);
+
+  // Reset pagination when filters change
+  useEffect(() => { setPage(1); }, [search, category, selectedIngredient, activeGroup, activeBodySystem]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const paginated = useMemo(
+    () => filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
+    [filtered, currentPage]
+  );
 
   const clearFilters = () => {
     setSearch("");
@@ -684,37 +696,85 @@ const Remedies = () => {
                 </CardContent>
               </Card>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
-                {filtered.map((remedy) => (
-                  <LocalizedLink
-                    key={remedy.id}
-                    to={`/remedies/${remedy.id}`}
-                    className="group bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-200"
-                  >
-                    <div className="p-4">
-                      <div className="flex items-start justify-between gap-2 mb-3">
-                        <Badge className="bg-primary/10 text-primary border-primary/20 text-[10px] font-medium px-2 py-0.5">
-                          {remedy.problem}
-                        </Badge>
-                        <Badge className={`text-[10px] font-medium px-2 py-0.5 border ${getDifficultyColor(remedy.difficulty)}`}>
-                          {remedy.difficulty}
-                        </Badge>
+              <>
+                <div className="flex items-center justify-between mb-4 text-xs md:text-sm text-muted-foreground">
+                  <span>
+                    {language === "hi" ? "दिखा रहे" : "Showing"}{" "}
+                    {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filtered.length)}{" "}
+                    {language === "hi" ? "में से" : "of"} {filtered.length}
+                  </span>
+                  <span>{language === "hi" ? "पृष्ठ" : "Page"} {currentPage} / {totalPages}</span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+                  {paginated.map((remedy) => (
+                    <LocalizedLink
+                      key={remedy.id}
+                      to={`/remedies/${remedy.id}`}
+                      className="group bg-card rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-200"
+                    >
+                      <div className="p-4">
+                        <div className="flex items-start justify-between gap-2 mb-3">
+                          <Badge className="bg-primary/10 text-primary border-primary/20 text-[10px] font-medium px-2 py-0.5">
+                            {remedy.problem}
+                          </Badge>
+                          <Badge className={`text-[10px] font-medium px-2 py-0.5 border ${getDifficultyColor(remedy.difficulty)}`}>
+                            {remedy.difficulty}
+                          </Badge>
+                        </div>
+                        <h3 className="font-display text-sm md:text-base font-semibold mb-2 line-clamp-2 group-hover:text-primary transition-colors leading-snug">
+                          {remedy.title}
+                        </h3>
+                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                          <Leaf className="h-3.5 w-3.5 text-secondary flex-shrink-0" />
+                          <span className="truncate">{remedy.ingredients.slice(0, 2).map((i) => i.name).join(", ")}</span>
+                        </div>
                       </div>
-                      <h3 className="font-display text-sm md:text-base font-semibold mb-2 line-clamp-2 group-hover:text-primary transition-colors leading-snug">
-                        {remedy.title}
-                      </h3>
-                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                        <Leaf className="h-3.5 w-3.5 text-secondary flex-shrink-0" />
-                        <span className="truncate">{remedy.ingredients.slice(0, 2).map((i) => i.name).join(", ")}</span>
+                      <div className="px-4 py-2.5 bg-muted/30 border-t border-border/50 flex items-center gap-1.5 text-xs text-muted-foreground">
+                        <Clock className="h-3.5 w-3.5" />
+                        <span>{remedy.preparation_time}</span>
                       </div>
-                    </div>
-                    <div className="px-4 py-2.5 bg-muted/30 border-t border-border/50 flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <Clock className="h-3.5 w-3.5" />
-                      <span>{remedy.preparation_time}</span>
-                    </div>
-                  </LocalizedLink>
-                ))}
-              </div>
+                    </LocalizedLink>
+                  ))}
+                </div>
+
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-2 mt-8 flex-wrap">
+                    <button
+                      onClick={() => { setPage((p) => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                      disabled={currentPage === 1}
+                      className="inline-flex items-center gap-1 h-9 px-3 rounded-lg border border-border bg-card hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed transition-colors text-sm"
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                      {language === "hi" ? "पिछला" : "Prev"}
+                    </button>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                      .filter((p) => p === 1 || p === totalPages || Math.abs(p - currentPage) <= 1)
+                      .map((p, idx, arr) => (
+                        <span key={p} className="flex items-center gap-2">
+                          {idx > 0 && arr[idx - 1] !== p - 1 && <span className="text-muted-foreground text-sm">…</span>}
+                          <button
+                            onClick={() => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                            className={`h-9 min-w-9 px-3 rounded-lg border transition-colors text-sm ${
+                              p === currentPage
+                                ? "bg-primary text-primary-foreground border-primary"
+                                : "bg-card border-border hover:bg-muted"
+                            }`}
+                          >
+                            {p}
+                          </button>
+                        </span>
+                      ))}
+                    <button
+                      onClick={() => { setPage((p) => Math.min(totalPages, p + 1)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                      disabled={currentPage === totalPages}
+                      className="inline-flex items-center gap-1 h-9 px-3 rounded-lg border border-border bg-card hover:bg-muted disabled:opacity-40 disabled:cursor-not-allowed transition-colors text-sm"
+                    >
+                      {language === "hi" ? "अगला" : "Next"}
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
+              </>
             )}
           </section>
         </div>
