@@ -373,6 +373,8 @@ const Remedies = () => {
   const [activeGroup, setActiveGroup] = useState<keyof typeof categoryGroups>("all");
   const [activeBodySystem, setActiveBodySystem] = useState<keyof typeof bodySystems>("all");
   const [prioritizeLocal, setPrioritizeLocal] = useState(true);
+  const [page, setPage] = useState(1);
+  const PAGE_SIZE = 24;
 
   // Apply SEO structured data
   useRemediesSEO(language);
