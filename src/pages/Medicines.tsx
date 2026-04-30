@@ -1,19 +1,32 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { medicines, medicineCategories } from "@/data/medicines";
-import { Search, Filter, Package, Tag, MessageCircle } from "lucide-react";
+import { Search, Filter, Package, Tag, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
+
+const PAGE_SIZE = 24;
 
 const Medicines = () => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
+  const [page, setPage] = useState(1);
 
-  const filtered = medicines.filter((m) => {
-    const matchesSearch = m.name.toLowerCase().includes(search.toLowerCase()) ||
-      m.uses.some((u) => u.toLowerCase().includes(search.toLowerCase()));
-    const matchesCategory = !category || m.category === category;
-    return matchesSearch && matchesCategory;
-  });
+  const filtered = useMemo(() => {
+    const q = search.toLowerCase();
+    return medicines.filter((m) => {
+      const matchesSearch = !q || m.name.toLowerCase().includes(q) ||
+        m.uses.some((u) => u.toLowerCase().includes(q));
+      const matchesCategory = !category || m.category === category;
+      return matchesSearch && matchesCategory;
+    });
+  }, [search, category]);
+
+  // Reset to first page when filters change
+  useEffect(() => { setPage(1); }, [search, category]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const paginated = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   return (
     <Layout>
