@@ -17,6 +17,7 @@ import { useLanguage, Region } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
 import QuickKitchenSection from "@/components/remedies/QuickKitchenSection";
 import { getRegionName } from "@/hooks/useGeoLocation";
+import SearchSuggestions from "@/components/SearchSuggestions";
 
 // SEO JSON-LD structured data hook
 const useRemediesSEO = (language: string) => {
@@ -678,23 +679,18 @@ const Remedies = () => {
           {/* Results Grid */}
           <section>
             {filtered.length === 0 ? (
-              <Card className="border-dashed">
-                <CardContent className="py-12 text-center">
-                  <Leaf className="h-12 w-12 mx-auto text-muted-foreground/40 mb-4" />
-                  <h3 className="text-lg font-medium mb-2">
-                    {language === "hi" ? "कोई उपचार नहीं मिला" : "No remedies found"}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {language === "hi" ? "अपनी खोज या फ़िल्टर समायोजित करें" : "Try adjusting your search or filters"}
-                  </p>
-                  <button
-                    onClick={clearFilters}
-                    className="text-primary hover:underline text-sm"
-                  >
-                    {language === "hi" ? "सभी फ़िल्टर साफ करें" : "Clear all filters"}
-                  </button>
-                </CardContent>
-              </Card>
+              <SearchSuggestions
+                query={search}
+                items={remedies.map((r) => ({ name: r.title }))}
+                categories={remedyCategories}
+                activeCategory={category === "all" ? undefined : category}
+                language={language as "en" | "hi"}
+                onPickQuery={(q) => { setSearch(q); setCategory("all"); setSelectedIngredient("all"); setActiveBodySystem("all"); }}
+                onPickCategory={(c) => { setCategory(c); setSearch(""); setSelectedIngredient("all"); setActiveBodySystem("all"); }}
+                onClear={clearFilters}
+                popular={["Diabetes", "Hypertension", "Acidity", "Migraine", "Cold & Cough", "Insomnia", "Hair Fall", "Joint Pain"]}
+                emptyTitle={language === "hi" ? "कोई उपचार नहीं मिला" : "No remedies found"}
+              />
             ) : (
               <>
                 <div className="flex items-center justify-between mb-4 text-xs md:text-sm text-muted-foreground">

@@ -3,6 +3,7 @@ import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { medicines, medicineCategories } from "@/data/medicines";
 import { Search, Filter, Package, Tag, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import SearchSuggestions from "@/components/SearchSuggestions";
 
 const PAGE_SIZE = 24;
 
@@ -93,9 +94,17 @@ const Medicines = () => {
         </div>
 
         {filtered.length === 0 && (
-          <div className="text-center py-16 text-muted-foreground">
-            No medicines match your filters.
-          </div>
+          <SearchSuggestions
+            query={search}
+            items={medicines}
+            categories={medicineCategories}
+            activeCategory={category}
+            onPickQuery={(q) => { setSearch(q); setCategory(""); }}
+            onPickCategory={(c) => { setCategory(c); setSearch(""); }}
+            onClear={() => { setSearch(""); setCategory(""); }}
+            popular={["Chyawanprash", "Triphala", "Ashwagandha", "Brahmi", "Arjuna", "Guggulu"]}
+            emptyTitle="No medicines match your search"
+          />
         )}
 
         {totalPages > 1 && (
