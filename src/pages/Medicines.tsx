@@ -3,6 +3,7 @@ import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
 import { medicines, medicineCategories } from "@/data/medicines";
 import { Search, Filter, Package, Tag, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import SearchSuggestions from "@/components/SearchSuggestions";
 
 const PAGE_SIZE = 24;
 
