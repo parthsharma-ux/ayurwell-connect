@@ -17,6 +17,7 @@ import { useLanguage, Region } from "@/contexts/LanguageContext";
 import { Card, CardContent } from "@/components/ui/card";
 import QuickKitchenSection from "@/components/remedies/QuickKitchenSection";
 import { getRegionName } from "@/hooks/useGeoLocation";
+import SearchSuggestions from "@/components/SearchSuggestions";
 
 // SEO JSON-LD structured data hook
 const useRemediesSEO = (language: string) => {
