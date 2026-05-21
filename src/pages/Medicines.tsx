@@ -97,6 +97,7 @@ const Medicines = () => {
 
         {filtered.length === 0 && (
           <SearchSuggestions
+            surface="medicines"
             query={search}
             items={medicines}
             categories={medicineCategories}

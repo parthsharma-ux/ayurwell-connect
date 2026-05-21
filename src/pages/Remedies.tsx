@@ -681,6 +681,7 @@ const Remedies = () => {
           <section>
             {filtered.length === 0 ? (
               <SearchSuggestions
+                surface="remedies"
                 query={search}
                 items={remedies.map((r) => ({ name: r.title }))}
                 categories={remedyCategories}
