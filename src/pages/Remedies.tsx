@@ -18,6 +18,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import QuickKitchenSection from "@/components/remedies/QuickKitchenSection";
 import { getRegionName } from "@/hooks/useGeoLocation";
 import SearchSuggestions from "@/components/SearchSuggestions";
+import { phoneticMatch } from "@/lib/fuzzySearch";
 
 // SEO JSON-LD structured data hook
 const useRemediesSEO = (language: string) => {
@@ -386,24 +387,24 @@ const Remedies = () => {
   }, [activeGroup]);
 
   const filtered = useMemo(() => {
+    const q = search.trim();
     let results = remedies.filter((r) => {
-      const searchLower = search.toLowerCase();
-      const matchesSearch = !search || 
-        r.title.toLowerCase().includes(searchLower) || 
-        r.problem.toLowerCase().includes(searchLower) ||
-        r.ingredients.some(i => i.name.toLowerCase().includes(searchLower));
-      
-      const matchesGroup = activeGroup === "all" || 
+      const matchesSearch = !q ||
+        phoneticMatch(q, r.title) ||
+        phoneticMatch(q, r.problem) ||
+        r.ingredients.some((i) => phoneticMatch(q, i.name));
+
+      const matchesGroup = activeGroup === "all" ||
         categoryGroups[activeGroup].categories.includes(r.problem);
-      
+
       const matchesCategory = category === "all" || r.problem === category;
-      
-      const matchesIngredient = selectedIngredient === "all" || 
-        r.ingredients.some(i => i.name === selectedIngredient);
-      
-      const matchesBodySystem = activeBodySystem === "all" || 
+
+      const matchesIngredient = selectedIngredient === "all" ||
+        r.ingredients.some((i) => i.name === selectedIngredient);
+
+      const matchesBodySystem = activeBodySystem === "all" ||
         bodySystems[activeBodySystem].conditions.includes(r.problem);
-      
+
       return matchesSearch && matchesGroup && matchesCategory && matchesIngredient && matchesBodySystem;
     });
 
