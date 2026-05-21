@@ -1,7 +1,7 @@
 import { Lightbulb, Search as SearchIcon, Tag } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { findDidYouMean, getSimilarity, normalize } from "@/lib/fuzzySearch";
+import { findDidYouMean, getSimilarity, normalize, phoneticKey, transliterateHiToEn } from "@/lib/fuzzySearch";
 
 interface SuggestionItem {
   name?: string;
@@ -40,12 +40,41 @@ const SearchSuggestions = ({
   // Closest matches (Did you mean?)
   const didYouMean = query.trim().length >= 2 ? findDidYouMean(query, items, 0.4, 5) : [];
 
-  // Related categories: fuzzy match on the query
-  const q = normalize(query);
-  const relatedCategories = q.length >= 2
+  // Related categories: rank with the same similarity scoring as Did-you-mean
+  // (substring + transliteration + phonetic + Levenshtein), then sort by score.
+  const qNorm = normalize(query);
+  const qLatin = normalize(transliterateHiToEn(query));
+  const qPhon = phoneticKey(query);
+  const relatedCategories = qNorm.length >= 2
     ? categories
         .filter((c) => c && c !== activeCategory)
-        .map((c) => ({ c, score: Math.max(getSimilarity(q, normalize(c)), normalize(c).includes(q) ? 0.9 : 0) }))
+        .map((c) => {
+          const cNorm = normalize(c);
+          const cLatin = normalize(transliterateHiToEn(c));
+          const cPhon = phoneticKey(c);
+
+          // Substring hits get a strong score; otherwise fall back to similarity.
+          let score = 0;
+          if (cNorm.includes(qNorm)) score = Math.max(score, 0.95);
+          if (qLatin && cLatin.includes(qLatin)) score = Math.max(score, 0.92);
+          if (qPhon && cPhon.includes(qPhon)) score = Math.max(score, 0.88);
+
+          score = Math.max(score, getSimilarity(qNorm, cNorm));
+          if (qLatin && cLatin) score = Math.max(score, getSimilarity(qLatin, cLatin));
+          if (qPhon && cPhon) score = Math.max(score, getSimilarity(qPhon, cPhon) * 0.95);
+
+          // Token-level boost (e.g. "joint" should rank "Joint Pain" highly)
+          for (const tok of c.split(/[\s\-_/()]+/).filter(Boolean)) {
+            const tn = normalize(tok);
+            if (!tn) continue;
+            if (tn.startsWith(qNorm)) score = Math.max(score, 0.85);
+            score = Math.max(score, getSimilarity(qNorm, tn));
+            const tp = phoneticKey(tok);
+            if (qPhon && tp && qPhon === tp) score = Math.max(score, 0.9);
+          }
+
+          return { c, score };
+        })
         .filter((x) => x.score >= 0.45)
         .sort((a, b) => b.score - a.score)
         .slice(0, 8)
