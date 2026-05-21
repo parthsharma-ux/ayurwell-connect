@@ -7,7 +7,7 @@ import { medicines } from "@/data/medicines";
 import { remedies } from "@/data/remedies";
 import { Search as SearchIcon, Pill, Leaf, Activity, Filter, X, Sparkles, Loader2, AlertCircle, Mic } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { normalize, findDidYouMean, popularDiseases } from "@/lib/fuzzySearch";
+import { normalize, findDidYouMean, popularDiseases, phoneticMatch } from "@/lib/fuzzySearch";
 import { useVoiceSearch } from "@/hooks/useVoiceSearch";
 import VoiceSearchButton from "@/components/VoiceSearchButton";
 import { useToast } from "@/hooks/use-toast";
@@ -71,27 +71,32 @@ const Search = () => {
     handleSearch(term);
   };
 
-  const q = query.toLowerCase();
-  const normalizedQ = normalize(query);
-  
-  const filteredDiseases = useMemo(() => diseases.filter((d) => 
-    d.name.toLowerCase().includes(q) || 
-    normalize(d.name).includes(normalizedQ) ||
-    d.symptoms.some((s) => s.toLowerCase().includes(q) || normalize(s).includes(normalizedQ))
-  ), [q, normalizedQ]);
-  
-  const filteredMedicines = useMemo(() => medicines.filter((m) => 
-    m.name.toLowerCase().includes(q) || 
-    normalize(m.name).includes(normalizedQ) ||
-    m.uses.some((u) => u.toLowerCase().includes(q) || normalize(u).includes(normalizedQ))
-  ), [q, normalizedQ]);
-  
-  const filteredRemedies = useMemo(() => remedies.filter((r) => 
-    r.title.toLowerCase().includes(q) || 
-    normalize(r.title).includes(normalizedQ) ||
-    r.problem.toLowerCase().includes(q) || 
-    normalize(r.problem).includes(normalizedQ)
-  ), [q, normalizedQ]);
+  const q = query.trim();
+
+  const filteredDiseases = useMemo(() => {
+    if (!q) return [] as typeof diseases;
+    return diseases.filter((d) =>
+      phoneticMatch(q, d.name) ||
+      d.symptoms.some((s) => phoneticMatch(q, s))
+    );
+  }, [q]);
+
+  const filteredMedicines = useMemo(() => {
+    if (!q) return [] as typeof medicines;
+    return medicines.filter((m) =>
+      phoneticMatch(q, m.name) ||
+      m.uses.some((u) => phoneticMatch(q, u))
+    );
+  }, [q]);
+
+  const filteredRemedies = useMemo(() => {
+    if (!q) return [] as typeof remedies;
+    return remedies.filter((r) =>
+      phoneticMatch(q, r.title) ||
+      phoneticMatch(q, r.problem) ||
+      r.ingredients.some((i) => phoneticMatch(q, i.name))
+    );
+  }, [q]);
 
   const totalResults = filteredDiseases.length + filteredMedicines.length + filteredRemedies.length;
 

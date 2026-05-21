@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import { medicines, medicineCategories } from "@/data/medicines";
 import { Search, Filter, Package, Tag, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import SearchSuggestions from "@/components/SearchSuggestions";
+import { phoneticMatch } from "@/lib/fuzzySearch";
 
 const PAGE_SIZE = 24;
 
@@ -13,10 +14,11 @@ const Medicines = () => {
   const [page, setPage] = useState(1);
 
   const filtered = useMemo(() => {
-    const q = search.toLowerCase();
+    const q = search.trim();
     return medicines.filter((m) => {
-      const matchesSearch = !q || m.name.toLowerCase().includes(q) ||
-        m.uses.some((u) => u.toLowerCase().includes(q));
+      const matchesSearch = !q ||
+        phoneticMatch(q, m.name) ||
+        m.uses.some((u) => phoneticMatch(q, u));
       const matchesCategory = !category || m.category === category;
       return matchesSearch && matchesCategory;
     });
