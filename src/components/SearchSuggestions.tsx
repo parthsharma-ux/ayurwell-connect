@@ -1,7 +1,9 @@
+import { useEffect, useRef } from "react";
 import { Lightbulb, Search as SearchIcon, Tag } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { findDidYouMean, getSimilarity, normalize, phoneticKey, transliterateHiToEn } from "@/lib/fuzzySearch";
+import HighlightedMatch from "@/components/HighlightedMatch";
+import { trackSuggestionClick, trackZeroResultSearch } from "@/lib/analytics";
 
 interface SuggestionItem {
   name?: string;
@@ -14,6 +16,7 @@ interface SearchSuggestionsProps {
   categories: string[];
   activeCategory?: string;
   language?: "en" | "hi";
+  surface?: "search" | "medicines" | "remedies";
   onPickQuery: (q: string) => void;
   onPickCategory: (c: string) => void;
   onClear: () => void;
@@ -28,6 +31,7 @@ const SearchSuggestions = ({
   categories,
   activeCategory,
   language = "en",
+  surface = "search",
   onPickQuery,
   onPickCategory,
   onClear,
@@ -40,8 +44,7 @@ const SearchSuggestions = ({
   // Closest matches (Did you mean?)
   const didYouMean = query.trim().length >= 2 ? findDidYouMean(query, items, 0.4, 5) : [];
 
-  // Related categories: rank with the same similarity scoring as Did-you-mean
-  // (substring + transliteration + phonetic + Levenshtein), then sort by score.
+  // Related categories — same scoring family as Did-you-mean
   const qNorm = normalize(query);
   const qLatin = normalize(transliterateHiToEn(query));
   const qPhon = phoneticKey(query);
@@ -53,7 +56,6 @@ const SearchSuggestions = ({
           const cLatin = normalize(transliterateHiToEn(c));
           const cPhon = phoneticKey(c);
 
-          // Substring hits get a strong score; otherwise fall back to similarity.
           let score = 0;
           if (cNorm.includes(qNorm)) score = Math.max(score, 0.95);
           if (qLatin && cLatin.includes(qLatin)) score = Math.max(score, 0.92);
@@ -63,7 +65,6 @@ const SearchSuggestions = ({
           if (qLatin && cLatin) score = Math.max(score, getSimilarity(qLatin, cLatin));
           if (qPhon && cPhon) score = Math.max(score, getSimilarity(qPhon, cPhon) * 0.95);
 
-          // Token-level boost (e.g. "joint" should rank "Joint Pain" highly)
           for (const tok of c.split(/[\s\-_/()]+/).filter(Boolean)) {
             const tn = normalize(tok);
             if (!tn) continue;
@@ -80,6 +81,31 @@ const SearchSuggestions = ({
         .slice(0, 8)
         .map((x) => x.c)
     : [];
+
+  // Fire zero-result analytics once per (query, surface, activeCategory) tuple.
+  const loggedKeyRef = useRef<string | null>(null);
+  useEffect(() => {
+    const key = `${surface}::${query}::${activeCategory || ""}`;
+    if (!query.trim() || loggedKeyRef.current === key) return;
+    loggedKeyRef.current = key;
+    trackZeroResultSearch({
+      query,
+      surface,
+      activeCategory,
+      suggestionCount: didYouMean.length,
+      relatedCategoriesCount: relatedCategories.length,
+    });
+  }, [query, surface, activeCategory, didYouMean.length, relatedCategories.length]);
+
+  const handlePick = (
+    type: "did_you_mean" | "related_category" | "popular",
+    value: string,
+    position: number,
+    cb: () => void
+  ) => {
+    trackSuggestionClick({ query, surface, suggestionType: type, value, position });
+    cb();
+  };
 
   return (
     <Card className="border-dashed">
@@ -105,13 +131,13 @@ const SearchSuggestions = ({
               {t("Did you mean?", "क्या आपका मतलब था?")}
             </div>
             <div className="flex flex-wrap gap-2">
-              {didYouMean.map((s) => (
+              {didYouMean.map((s, i) => (
                 <button
                   key={s}
-                  onClick={() => onPickQuery(s)}
+                  onClick={() => handlePick("did_you_mean", s, i, () => onPickQuery(s))}
                   className="px-3 py-1.5 rounded-full text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 transition-colors"
                 >
-                  {s}
+                  <HighlightedMatch text={s} query={query} />
                 </button>
               ))}
             </div>
@@ -125,13 +151,13 @@ const SearchSuggestions = ({
               {t("Related categories", "संबंधित श्रेणियाँ")}
             </div>
             <div className="flex flex-wrap gap-2">
-              {relatedCategories.map((c) => (
+              {relatedCategories.map((c, i) => (
                 <button
                   key={c}
-                  onClick={() => onPickCategory(c)}
+                  onClick={() => handlePick("related_category", c, i, () => onPickCategory(c))}
                   className="px-3 py-1.5 rounded-full text-xs font-medium bg-accent/10 text-accent-foreground hover:bg-accent/20 border border-accent/20 transition-colors"
                 >
-                  {c}
+                  <HighlightedMatch text={c} query={query} />
                 </button>
               ))}
             </div>
@@ -145,10 +171,10 @@ const SearchSuggestions = ({
               {t("Popular searches", "लोकप्रिय खोजें")}
             </div>
             <div className="flex flex-wrap gap-2">
-              {popular.slice(0, 8).map((p) => (
+              {popular.slice(0, 8).map((p, i) => (
                 <button
                   key={p}
-                  onClick={() => onPickQuery(p)}
+                  onClick={() => handlePick("popular", p, i, () => onPickQuery(p))}
                   className="px-3 py-1.5 rounded-full text-xs font-medium bg-muted text-foreground hover:bg-muted/70 border border-border transition-colors"
                 >
                   {p}
