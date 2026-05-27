@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
-import { Lightbulb, Search as SearchIcon, Tag } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Lightbulb, Search as SearchIcon, Tag, MessageSquareWarning } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { findDidYouMean, getSimilarity, normalize, phoneticKey, transliterateHiToEn } from "@/lib/fuzzySearch";
 import HighlightedMatch from "@/components/HighlightedMatch";
+import SearchFeedbackDialog from "@/components/SearchFeedbackDialog";
 import { trackSuggestionClick, trackZeroResultSearch } from "@/lib/analytics";
 
 interface SuggestionItem {
@@ -40,6 +41,7 @@ const SearchSuggestions = ({
   emptyDescription,
 }: SearchSuggestionsProps) => {
   const t = (en: string, hi: string) => (language === "hi" ? hi : en);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   // Closest matches (Did you mean?)
   const didYouMean = query.trim().length >= 2 ? findDidYouMean(query, items, 0.4, 5) : [];
@@ -184,15 +186,31 @@ const SearchSuggestions = ({
           </div>
         )}
 
-        <div className="text-center pt-2">
+        <div className="flex items-center justify-center gap-4 pt-2 flex-wrap">
           <button
             onClick={onClear}
             className="text-primary hover:underline text-sm font-medium"
           >
             {t("Clear all filters", "सभी फ़िल्टर साफ करें")}
           </button>
+          <button
+            onClick={() => setFeedbackOpen(true)}
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <MessageSquareWarning className="h-3.5 w-3.5" />
+            {t("Not what you expected?", "जैसी अपेक्षा नहीं थी?")}
+          </button>
         </div>
       </CardContent>
+
+      <SearchFeedbackDialog
+        open={feedbackOpen}
+        onOpenChange={setFeedbackOpen}
+        query={query}
+        surface={surface}
+        activeCategory={activeCategory}
+        language={language}
+      />
     </Card>
   );
 };
