@@ -66,7 +66,7 @@ const SearchFeedbackDialog = ({
         comment: comment.trim() || null,
         session_id: getSessionId(),
         language,
-      });
+      } as any);
 
       if (error) throw error;
 
