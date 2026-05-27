@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
-import { Lightbulb, Search as SearchIcon, Tag } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Lightbulb, Search as SearchIcon, Tag, MessageSquareWarning } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { findDidYouMean, getSimilarity, normalize, phoneticKey, transliterateHiToEn } from "@/lib/fuzzySearch";
 import HighlightedMatch from "@/components/HighlightedMatch";
+import SearchFeedbackDialog from "@/components/SearchFeedbackDialog";
 import { trackSuggestionClick, trackZeroResultSearch } from "@/lib/analytics";
 
 interface SuggestionItem {
