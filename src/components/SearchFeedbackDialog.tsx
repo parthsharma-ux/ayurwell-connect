@@ -58,7 +58,7 @@ const SearchFeedbackDialog = ({
     setSubmitting(true);
 
     try {
-      const { error } = await supabase.from("search_feedback").insert({
+      const { error } = await (supabase as any).from("search_feedback").insert({
         query: query.trim(),
         surface,
         active_category: activeCategory || null,
