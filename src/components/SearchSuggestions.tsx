@@ -186,15 +186,31 @@ const SearchSuggestions = ({
           </div>
         )}
 
-        <div className="text-center pt-2">
+        <div className="flex items-center justify-center gap-4 pt-2 flex-wrap">
           <button
             onClick={onClear}
             className="text-primary hover:underline text-sm font-medium"
           >
             {t("Clear all filters", "सभी फ़िल्टर साफ करें")}
           </button>
+          <button
+            onClick={() => setFeedbackOpen(true)}
+            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <MessageSquareWarning className="h-3.5 w-3.5" />
+            {t("Not what you expected?", "जैसी अपेक्षा नहीं थी?")}
+          </button>
         </div>
       </CardContent>
+
+      <SearchFeedbackDialog
+        open={feedbackOpen}
+        onOpenChange={setFeedbackOpen}
+        query={query}
+        surface={surface}
+        activeCategory={activeCategory}
+        language={language}
+      />
     </Card>
   );
 };
