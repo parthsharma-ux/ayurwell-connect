@@ -41,6 +41,7 @@ const SearchSuggestions = ({
   emptyDescription,
 }: SearchSuggestionsProps) => {
   const t = (en: string, hi: string) => (language === "hi" ? hi : en);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   // Closest matches (Did you mean?)
   const didYouMean = query.trim().length >= 2 ? findDidYouMean(query, items, 0.4, 5) : [];
