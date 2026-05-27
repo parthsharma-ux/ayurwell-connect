@@ -72,3 +72,19 @@ export const trackSuggestionClick = (params: {
     position: params.position,
   });
 };
+
+export const trackSearchFeedback = (params: {
+  query: string;
+  surface: "search" | "medicines" | "remedies";
+  activeCategory?: string;
+  triedSuggestions: boolean;
+  hasComment: boolean;
+}) => {
+  trackEvent("search_feedback_submitted", {
+    query: params.query.slice(0, 120),
+    surface: params.surface,
+    active_category: params.activeCategory,
+    tried_suggestions: params.triedSuggestions,
+    has_comment: params.hasComment,
+  });
+};
