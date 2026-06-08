@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { medicines, medicineCategories } from "@/data/medicines";
 import { Search, Filter, Package, Tag, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import SearchSuggestions from "@/components/SearchSuggestions";
@@ -31,11 +32,30 @@ const Medicines = () => {
   const currentPage = Math.min(page, totalPages);
   const paginated = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
+  const itemListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Ayurvedic Medicines",
+    numberOfItems: filtered.length,
+    itemListElement: paginated.slice(0, 20).map((m, i) => ({
+      "@type": "ListItem",
+      position: (currentPage - 1) * PAGE_SIZE + i + 1,
+      url: `https://ancient-healer-ai.lovable.app/en/medicines/${m.id}`,
+      name: m.name,
+    })),
+  };
+
   return (
     <Layout>
+      <SEO
+        title="Ayurvedic Medicines — Classical & Proprietary Formulations | AyurVeda"
+        description="Browse classical and proprietary Ayurvedic medicines with uses, ingredients, dosage and brands. Find the right formulation for your condition."
+        jsonLd={itemListLd}
+      />
       <div className="container mx-auto px-4 py-12">
         <h1 className="font-display text-4xl font-bold text-foreground mb-2">Ayurvedic Medicines</h1>
         <p className="text-muted-foreground mb-8">Classical and proprietary Ayurvedic formulations</p>
+        <h2 className="sr-only">Search and filter Ayurvedic medicines</h2>
         
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="relative flex-1">
@@ -70,6 +90,7 @@ const Medicines = () => {
           <span>Page {currentPage} of {totalPages}</span>
         </div>
 
+        <h2 className="sr-only">All medicines</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {paginated.map((medicine) => (
             <LocalizedLink
