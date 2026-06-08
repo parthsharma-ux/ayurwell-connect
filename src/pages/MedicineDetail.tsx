@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { medicines } from "@/data/medicines";
 import { ArrowLeft, Package, Tag, AlertTriangle, Pill, MessageCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -20,8 +21,28 @@ const MedicineDetail = () => {
   const medicine = getLocalizedMedicine(rawMedicine, language);
   const alternatives = medicines.filter((m) => rawMedicine.alternatives.includes(m.name) || rawMedicine.alternatives.some((a) => m.name.includes(a))).slice(0, 3);
 
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: rawMedicine.name,
+    description: medicine.description,
+    brand: { "@type": "Brand", name: rawMedicine.brand },
+    category: rawMedicine.category,
+    additionalProperty: rawMedicine.ingredients.map((ing) => ({
+      "@type": "PropertyValue",
+      name: "ingredient",
+      value: ing,
+    })),
+  };
+
   return (
     <Layout>
+      <SEO
+        title={`${rawMedicine.name} — Uses, Ingredients & Dosage | AyurVeda`}
+        description={medicine.description.slice(0, 155)}
+        ogType="product"
+        jsonLd={productLd}
+      />
       <div className="container mx-auto px-4 py-12">
         <LocalizedLink to="/medicines" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6">
           <ArrowLeft className="h-4 w-4" /> {t("backToMedicines")}
