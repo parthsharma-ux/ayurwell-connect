@@ -134,6 +134,7 @@ const Yoga = () => {
         </p>
 
         {/* Yoga Grid */}
+        <h2 className="sr-only">{language === "hi" ? "सभी आसन" : "All asanas"}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredAsanas.map((asana) => (
             <LocalizedLink

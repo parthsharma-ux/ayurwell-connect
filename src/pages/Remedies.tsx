@@ -703,7 +703,9 @@ const Remedies = () => {
                   </span>
                   <span>{language === "hi" ? "पृष्ठ" : "Page"} {currentPage} / {totalPages}</span>
                 </div>
+                <h2 className="sr-only">All remedies</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
+
                   {paginated.map((remedy) => (
                     <LocalizedLink
                       key={remedy.id}
