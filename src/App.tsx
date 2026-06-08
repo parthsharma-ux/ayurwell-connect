@@ -10,6 +10,7 @@ import CartDrawer from "@/components/cart/CartDrawer";
 import LanguageRouter from "@/components/LanguageRouter";
 import LanguageRedirect from "@/components/LanguageRedirect";
 import ScrollToTop from "@/components/ScrollToTop";
+import CanonicalManager from "@/components/CanonicalManager";
 import Index from "./pages/Index";
 import Diseases from "./pages/Diseases";
 import DiseaseDetail from "./pages/DiseaseDetail";
@@ -45,6 +46,7 @@ const App = () => (
           <CartDrawer />
           <BrowserRouter>
             <ScrollToTop />
+            <CanonicalManager />
             <Routes>
               {/* Redirect root to language-prefixed route */}
               <Route path="/" element={<LanguageRedirect />} />

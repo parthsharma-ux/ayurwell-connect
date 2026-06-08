@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://ayurveda.app/sitemap.xml
+Sitemap: https://ancient-healer-ai.lovable.app/sitemap.xml

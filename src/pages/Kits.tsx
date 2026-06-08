@@ -2,6 +2,7 @@ import LocalizedLink from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
 import { Heart, ShoppingCart, Info, Package, MessageCircle } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
+import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/contexts/CartContext';
@@ -10,8 +11,26 @@ import { kits } from '@/data/kits';
 const Kits = () => {
   const { addToCart } = useCart();
 
+  const itemListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Ayurvedic Wellness Kits",
+    numberOfItems: kits.length,
+    itemListElement: kits.slice(0, 20).map((k, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `https://ancient-healer-ai.lovable.app/en/kits/${k.slug}`,
+      name: k.name,
+    })),
+  };
+
   return (
     <Layout>
+      <SEO
+        title="Ayurvedic Wellness Kits — Curated Herbal Bundles | AyurVeda"
+        description="Premium, lab-verified Ayurvedic wellness kits for immunity, digestion, stress, sleep and more. Handcrafted herbal bundles with guided plans."
+        jsonLd={itemListLd}
+      />
       <div className="min-h-screen bg-background py-12 px-4 sm:px-8 lg:px-16">
         {/* Page header */}
         <motion.header
@@ -68,6 +87,7 @@ const Kits = () => {
 
         {/* Grid of kits */}
         <motion.main className="max-w-7xl mx-auto mt-8">
+          <h2 className="sr-only">All wellness kits</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {kits.map((kit, i) => (
               <motion.article
@@ -89,7 +109,11 @@ const Kits = () => {
                     {kit.duration}
                   </Badge>
 
-                  <button className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm p-2 rounded-lg shadow hover:bg-background transition-colors">
+                  <button
+                    type="button"
+                    aria-label={`Save ${kit.name} to favourites`}
+                    className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm p-2 rounded-lg shadow hover:bg-background transition-colors"
+                  >
                     <Heart className="h-4 w-4 text-muted-foreground hover:text-terracotta transition-colors" />
                   </button>
                 </div>
@@ -102,16 +126,17 @@ const Kits = () => {
                     <span className="text-xl font-bold text-primary">₹{kit.price}</span>
 
                     <div className="flex items-center gap-2">
-                      <Button 
-                        size="sm" 
-                        variant="gold" 
+                      <Button
+                        size="sm"
+                        variant="gold"
                         className="shadow-glow-gold"
+                        aria-label={`Add ${kit.name} to cart`}
                         onClick={() => addToCart({ id: kit.id, name: kit.name, price: kit.price, duration: kit.duration })}
                       >
                         <ShoppingCart className="h-4 w-4" />
                       </Button>
                       <LocalizedLink to={`/kits/${kit.slug}`}>
-                        <Button size="sm" variant="outline">
+                        <Button size="sm" variant="outline" aria-label={`View details for ${kit.name}`}>
                           <Info className="h-4 w-4" />
                         </Button>
                       </LocalizedLink>

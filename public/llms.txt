@@ -1,0 +1,24 @@
+# AyurVeda
+
+> India's largest Ayurvedic health platform — search 1000+ diseases and find Ayurvedic medicines, home remedies, diet tips, yoga practices and herbal kits for holistic, natural healing.
+
+AyurVeda is a bilingual (English / Hindi) information platform on classical Ayurvedic medicine. It combines a curated database of diseases, herbal medicines, home remedies, yoga, and dosha (Vata/Pitta/Kapha) guidance with a free AI consultation assistant (Doctor AI / AI Vaidya) that always prioritises natural healing and home remedies over pharmaceutical drugs.
+
+## Pages
+
+- [Home](/en): Overview of the platform, featured remedies, kits and guides.
+- [Diseases](/en/diseases): Searchable directory of 1000+ conditions with Ayurvedic causes, symptoms and treatments.
+- [Medicines](/en/medicines): Catalogue of classical Ayurvedic medicines with uses, dosage and ingredients.
+- [Remedies](/en/remedies): Home remedies organised by condition, ingredient and region.
+- [Kits](/en/kits): Curated multi-product wellness kits (immunity, digestion, stress, sleep, etc.).
+- [Yoga](/en/yoga): Yoga asanas and pranayama guides linked to health conditions and doshas.
+- [Doctor AI](/en/doctor-ai): Free unlimited AI Vaidya — gives a "triple threat" answer of remedy, diet and herbs.
+- [About Ayurveda](/en/about-ayurveda): Introduction to the principles and history of Ayurveda.
+- [Dosha Types](/en/dosha-types): Vata, Pitta and Kapha explained with self-assessment guidance.
+- [Herb Mapping](/en/herb-mapping): Cross-reference of Ayurvedic herbs to Western names and uses.
+- [Blog](/en/blog): Long-form articles on Ayurvedic lifestyle, recipes and herbs.
+
+## Optional
+
+- [Privacy Policy](/en/privacy-policy)
+- [Disclaimer](/en/disclaimer)

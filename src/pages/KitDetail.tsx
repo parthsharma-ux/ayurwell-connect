@@ -3,6 +3,7 @@ import LocalizedLink from '@/components/LocalizedLink';
 import { motion } from 'framer-motion';
 import { ShoppingCart, Heart, ArrowLeft, Check, AlertTriangle, Clock, Package, Leaf, MessageCircle } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
+import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -42,8 +43,29 @@ const KitDetail = () => {
   const kit = getLocalizedKit(rawKit, language);
   const relatedKits = kits.filter(k => k.id !== rawKit.id).slice(0, 4).map(k => getLocalizedKit(k, language));
 
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: rawKit.name,
+    description: kit.short,
+    brand: { "@type": "Brand", name: "AyurVeda" },
+    category: "Ayurvedic Wellness Kit",
+    offers: {
+      "@type": "Offer",
+      price: String(rawKit.price),
+      priceCurrency: "INR",
+      availability: "https://schema.org/InStock",
+    },
+  };
+
   return (
     <Layout>
+      <SEO
+        title={`${rawKit.name} — Ayurvedic Wellness Kit | AyurVeda`}
+        description={(kit.short || `Premium Ayurvedic ${rawKit.name} kit with ${rawKit.duration} plan.`).slice(0, 155)}
+        ogType="product"
+        jsonLd={productLd}
+      />
       <div className="min-h-screen bg-background py-8 px-4 sm:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto">
           {/* Breadcrumb */}
