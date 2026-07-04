@@ -434,6 +434,10 @@ const DoctorAI = () => {
 
   return (
     <Layout>
+      <SEO
+        title="AI Vaidya — Free Ayurvedic Doctor Chat | AyurVeda"
+        description="Chat free with AI Vaidya for Ayurvedic remedies, diet, and herbs tailored to your symptoms. Bilingual (English/Hindi) with voice support."
+      />
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
         <motion.div 
