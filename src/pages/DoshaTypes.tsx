@@ -103,6 +103,10 @@ const DoshaTypes = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Dosha Types — Vata, Pitta, Kapha Body Types | AyurVeda"
+        description="Learn about the three Ayurvedic doshas — Vata, Pitta, Kapha. Take the free dosha quiz to discover your body type and personalised wellness tips."
+      />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
           <h1 className="font-display text-4xl font-bold text-foreground mb-4">
