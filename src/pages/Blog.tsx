@@ -176,6 +176,10 @@ const Blog = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Ayurveda Blog — Wisdom, Herbs & Wellness | AyurVeda"
+        description="Read expert Ayurveda articles on doshas, herbs, diet, yoga, seasonal wellness, women's and children's health, and lifestyle."
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-accent/10 to-background py-16">
         <div className="container mx-auto px-4">
