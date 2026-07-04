@@ -3,6 +3,7 @@ import Layout from "@/components/layout/Layout";
 import { Wind, Flame, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DoshaQuizModal from "@/components/dosha/DoshaQuizModal";
+import SEO from "@/components/SEO";
 
 const DoshaTypes = () => {
   const [quizOpen, setQuizOpen] = useState(false);
