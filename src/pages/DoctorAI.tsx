@@ -10,6 +10,7 @@ import { ChatHistory } from "@/components/vaidya/ChatHistory";
 import ReactMarkdown from "react-markdown";
 import { useVoiceSearch } from "@/hooks/useVoiceSearch";
 import { motion, AnimatePresence } from "framer-motion";
+import SEO from "@/components/SEO";
 
 type Message = { role: "user" | "assistant"; content: string };
 type UserLanguage = "hinglish" | "english";
