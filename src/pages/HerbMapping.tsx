@@ -754,6 +754,10 @@ const HerbMapping = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Herb Mapping — Ayurvedic Herbs by Condition | AyurVeda"
+        description="Explore a comprehensive map of Ayurvedic herbs organised by body system, condition, and symptom. Find the right herb for your health goal."
+      />
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
         {/* Hero Section */}
         <section className="py-12 md:py-16 bg-gradient-to-b from-primary/5 to-transparent">
