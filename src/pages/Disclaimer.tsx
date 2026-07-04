@@ -1,9 +1,14 @@
 import Layout from "@/components/layout/Layout";
 import { AlertTriangle, Info, Stethoscope, FileWarning, Scale } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const Disclaimer = () => {
   return (
     <Layout>
+      <SEO
+        title="Medical Disclaimer | AyurVeda"
+        description="Important medical disclaimer: information on AyurVeda is educational and does not replace professional medical advice, diagnosis, or treatment."
+      />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <h1 className="font-display text-4xl font-bold text-foreground mb-4">

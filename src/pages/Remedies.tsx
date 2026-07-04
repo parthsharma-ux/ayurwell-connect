@@ -388,25 +388,50 @@ const Remedies = () => {
 
   const filtered = useMemo(() => {
     const q = search.trim();
-    let results = remedies.filter((r) => {
-      const matchesSearch = !q ||
-        phoneticMatch(q, r.title) ||
-        phoneticMatch(q, r.problem) ||
-        r.ingredients.some((i) => phoneticMatch(q, i.name));
+    const qLower = q.toLowerCase();
+
+    // Score each remedy for relevance so best matches surface first
+    const scored: { r: typeof remedies[number]; score: number }[] = [];
+
+    for (const r of remedies) {
+      const titleMatch = !q ? false : phoneticMatch(q, r.title);
+      const problemMatch = !q ? false : phoneticMatch(q, r.problem);
+      const ingMatch = !q ? false : r.ingredients.some((i) => phoneticMatch(q, i.name));
+      const matchesSearch = !q || titleMatch || problemMatch || ingMatch;
 
       const matchesGroup = activeGroup === "all" ||
         categoryGroups[activeGroup].categories.includes(r.problem);
-
       const matchesCategory = category === "all" || r.problem === category;
-
       const matchesIngredient = selectedIngredient === "all" ||
         r.ingredients.some((i) => i.name === selectedIngredient);
-
       const matchesBodySystem = activeBodySystem === "all" ||
         bodySystems[activeBodySystem].conditions.includes(r.problem);
 
-      return matchesSearch && matchesGroup && matchesCategory && matchesIngredient && matchesBodySystem;
-    });
+      if (!(matchesSearch && matchesGroup && matchesCategory && matchesIngredient && matchesBodySystem)) continue;
+
+      let score = 0;
+      if (q) {
+        const t = r.title.toLowerCase();
+        const p = r.problem.toLowerCase();
+        if (t === qLower) score += 100;
+        else if (t.startsWith(qLower)) score += 60;
+        else if (t.includes(qLower)) score += 40;
+        else if (titleMatch) score += 25;
+        if (p === qLower) score += 50;
+        else if (p.includes(qLower)) score += 20;
+        else if (problemMatch) score += 12;
+        if (ingMatch) score += 8;
+      }
+      // Prefer easier, faster remedies as a light tiebreaker
+      if (r.difficulty === "Easy") score += 2;
+      else if (r.difficulty === "Medium") score += 1;
+
+      scored.push({ r, score });
+    }
+
+    // Sort by score (desc). Stable order kept when scores equal.
+    scored.sort((a, b) => b.score - a.score);
+    let results = scored.map((s) => s.r);
 
     // Sort to prioritize user's region if enabled
     if (prioritizeLocal && region !== 'global') {

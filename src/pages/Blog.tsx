@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Layout from "@/components/layout/Layout";
 import LocalizedLink from "@/components/LocalizedLink";
+import SEO from "@/components/SEO";
 import { blogPosts, categories } from "@/data/blogPosts";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -175,6 +176,10 @@ const Blog = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Ayurveda Blog — Wisdom, Herbs & Wellness | AyurVeda"
+        description="Read expert Ayurveda articles on doshas, herbs, diet, yoga, seasonal wellness, women's and children's health, and lifestyle."
+      />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-accent/10 to-background py-16">
         <div className="container mx-auto px-4">

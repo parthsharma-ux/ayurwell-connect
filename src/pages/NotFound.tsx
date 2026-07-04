@@ -4,6 +4,7 @@ import LocalizedLink from "@/components/LocalizedLink";
 import { Button } from "@/components/ui/button";
 import { Home, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const NotFound = () => {
   const location = useLocation();
@@ -31,6 +32,11 @@ const NotFound = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <Helmet>
+        <title>Page Not Found — 404 | AyurVeda</title>
+        <meta name="description" content="The page you're looking for doesn't exist. Return home to explore Ayurvedic remedies, herbs, and diseases." />
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <motion.div 
         className="text-center max-w-md"
         initial={{ opacity: 0, y: 20 }}

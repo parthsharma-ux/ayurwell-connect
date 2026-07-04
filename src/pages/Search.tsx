@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import LocalizedLink from "@/components/LocalizedLink";
 import Layout from "@/components/layout/Layout";
+import SEO from "@/components/SEO";
 import { diseases } from "@/data/diseases";
 import { medicines } from "@/data/medicines";
 import { remedies } from "@/data/remedies";
@@ -124,6 +125,10 @@ const Search = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Search Ayurvedic Remedies, Herbs & Diseases | AyurVeda"
+        description="Search across 300+ home remedies, classical medicines, herbs, and diseases. Fuzzy matching and voice search in English and Hindi."
+      />
       <div className="min-h-screen bg-glow">
         {/* Hero Search Section */}
         <div className="relative py-12 md:py-16 border-b border-border/50">

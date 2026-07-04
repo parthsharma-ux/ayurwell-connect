@@ -10,6 +10,7 @@ import { ChatHistory } from "@/components/vaidya/ChatHistory";
 import ReactMarkdown from "react-markdown";
 import { useVoiceSearch } from "@/hooks/useVoiceSearch";
 import { motion, AnimatePresence } from "framer-motion";
+import SEO from "@/components/SEO";
 
 type Message = { role: "user" | "assistant"; content: string };
 type UserLanguage = "hinglish" | "english";
@@ -433,6 +434,10 @@ const DoctorAI = () => {
 
   return (
     <Layout>
+      <SEO
+        title="AI Vaidya — Free Ayurvedic Doctor Chat | AyurVeda"
+        description="Chat free with AI Vaidya for Ayurvedic remedies, diet, and herbs tailored to your symptoms. Bilingual (English/Hindi) with voice support."
+      />
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
         <motion.div 

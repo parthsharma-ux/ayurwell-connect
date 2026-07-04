@@ -1,9 +1,14 @@
 import Layout from "@/components/layout/Layout";
 import { Shield, Lock, Eye, Database, UserCheck, Mail } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const PrivacyPolicy = () => {
   return (
     <Layout>
+      <SEO
+        title="Privacy Policy | AyurVeda"
+        description="Read the AyurVeda privacy policy: what data we collect, how we use it, cookies, and your rights over your personal information."
+      />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <h1 className="font-display text-4xl font-bold text-foreground mb-4">
