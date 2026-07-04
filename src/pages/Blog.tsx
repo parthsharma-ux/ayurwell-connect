@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Layout from "@/components/layout/Layout";
 import LocalizedLink from "@/components/LocalizedLink";
+import SEO from "@/components/SEO";
 import { blogPosts, categories } from "@/data/blogPosts";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
