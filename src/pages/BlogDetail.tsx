@@ -361,6 +361,11 @@ const BlogDetail = () => {
 
   return (
     <Layout>
+      <SEO
+        title={`${(language === "hi" ? post.titleHi : post.title) || "Article"} | AyurVeda Blog`}
+        description={((language === "hi" ? post.excerptHi : post.excerpt) || "Ayurveda article on AyurVeda.")}
+        ogType="article"
+      />
       {/* Hero Image Section */}
       <div className="relative h-[300px] md:h-[400px] w-full overflow-hidden">
         <img 
