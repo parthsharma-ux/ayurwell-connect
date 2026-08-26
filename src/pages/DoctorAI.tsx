@@ -11,6 +11,7 @@ import ReactMarkdown from "react-markdown";
 import { useVoiceSearch } from "@/hooks/useVoiceSearch";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "@/components/SEO";
+import SymptomStarter, { hasRedFlag } from "@/components/vaidya/SymptomStarter";
 
 type Message = { role: "user" | "assistant"; content: string };
 type UserLanguage = "hinglish" | "english";
@@ -655,6 +656,16 @@ const DoctorAI = () => {
             <div ref={messagesEndRef} />
           </div>
 
+          {messages.length === 0 && (
+            <div className="px-6 pb-4">
+              <SymptomStarter
+                language={language}
+                disabled={isLoading}
+                onSubmit={(msg) => sendMessage(msg)}
+              />
+            </div>
+          )}
+
           {messages.length <= 1 && (
             <motion.div 
               className="px-6 pb-4"
@@ -680,6 +691,7 @@ const DoctorAI = () => {
               </div>
             </motion.div>
           )}
+
 
           <div className="p-4 border-t border-border">
             {/* Show interim transcript while listening */}
