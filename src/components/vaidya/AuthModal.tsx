@@ -88,6 +88,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
             />
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
+          {info && <p className="text-sm text-primary">{info}</p>}
           <Button type="submit" className="w-full" disabled={loading}>
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {isSignUp ? "Create Account" : "Sign In"}
