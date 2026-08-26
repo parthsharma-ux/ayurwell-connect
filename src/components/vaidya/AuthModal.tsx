@@ -17,11 +17,24 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [info, setInfo] = useState("");
   const { signIn, signUp } = useAuth();
+
+  const friendly = (msg: string) => {
+    const m = msg.toLowerCase();
+    if (m.includes("invalid login")) return "Wrong email or password. Please try again.";
+    if (m.includes("email not confirmed")) return "Please confirm your email first — check your inbox.";
+    if (m.includes("already registered") || m.includes("already been registered"))
+      return "This email is already registered. Please sign in instead.";
+    if (m.includes("failed to fetch") || m.includes("network"))
+      return "Could not reach the server. Check your connection and try again.";
+    return msg;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setInfo("");
     setLoading(true);
 
     const result = isSignUp 
@@ -29,7 +42,10 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
       : await signIn(email, password);
 
     if (result.error) {
-      setError(result.error.message);
+      setError(friendly(result.error.message));
+    } else if (isSignUp) {
+      setInfo("Account created! Check your email to confirm, then sign in.");
+      setPassword("");
     } else {
       onOpenChange(false);
       setEmail("");
@@ -37,6 +53,7 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
     }
     setLoading(false);
   };
+
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
