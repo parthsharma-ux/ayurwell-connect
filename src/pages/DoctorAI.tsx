@@ -11,7 +11,7 @@ import ReactMarkdown from "react-markdown";
 import { useVoiceSearch } from "@/hooks/useVoiceSearch";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "@/components/SEO";
-import SymptomStarter, { hasRedFlag } from "@/components/vaidya/SymptomStarter";
+import SymptomStarter from "@/components/vaidya/SymptomStarter";
 
 type Message = { role: "user" | "assistant"; content: string };
 type UserLanguage = "hinglish" | "english";
@@ -403,6 +403,10 @@ const DoctorAI = () => {
     sendMessage(input.trim());
   };
 
+  const handleStarterSubmit = (message: string) => {
+    sendMessage(message);
+  };
+
   // Auto-send voice message after listening stops
   useEffect(() => {
     if (!isListening && pendingVoiceMessageRef.current) {
@@ -656,12 +660,12 @@ const DoctorAI = () => {
             <div ref={messagesEndRef} />
           </div>
 
-          {messages.length === 0 && (
+          {messages.length <= 1 && (
             <div className="px-6 pb-4">
               <SymptomStarter
                 language={language}
                 disabled={isLoading}
-                onSubmit={(msg) => sendMessage(msg)}
+                onSubmit={handleStarterSubmit}
               />
             </div>
           )}
@@ -674,7 +678,7 @@ const DoctorAI = () => {
               transition={{ delay: 0.4 }}
             >
               <p className="text-xs text-muted-foreground mb-2">
-                {language === "hinglish" ? "Ya inme se chunein:" : "Or choose from:"}
+                {language === "hinglish" ? "Ya seedha message bhejein:" : "Or start with a quick message:"}
               </p>
               <div className="flex flex-wrap gap-2">
                 {suggestedPrompts.map((prompt, i) => (
@@ -746,7 +750,13 @@ const DoctorAI = () => {
                 type="text"
                 value={isListening ? interimTranscript || input : input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSend();
+                  }
+                }}
+                aria-label={language === "hinglish" ? "Apni taklif likhein" : "Describe your health concern"}
                 placeholder={
                   isListening 
                     ? (language === "hinglish" ? "Sun raha hoon..." : "Listening...") 

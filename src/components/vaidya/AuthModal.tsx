@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/contexts/AuthContext";
-import { Loader2 } from "lucide-react";
+import { Loader2, LockKeyhole, Mail, UserRound } from "lucide-react";
 
 type AuthModalProps = {
   open: boolean;
@@ -13,6 +13,7 @@ type AuthModalProps = {
 
 export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -37,19 +38,21 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
     setInfo("");
     setLoading(true);
 
-    const result = isSignUp 
-      ? await signUp(email, password) 
+    const result = isSignUp
+      ? await signUp(email, password, displayName)
       : await signIn(email, password);
 
     if (result.error) {
       setError(friendly(result.error.message));
     } else if (isSignUp) {
-      setInfo("Account created! Check your email to confirm, then sign in.");
+      setInfo("Account created. You can start your consultation now.");
       setPassword("");
+      setDisplayName("");
     } else {
       onOpenChange(false);
       setEmail("");
       setPassword("");
+      setDisplayName("");
     }
     setLoading(false);
   };
@@ -59,33 +62,42 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>
-            {isSignUp ? "Create Account" : "Sign In"} to Save Consultations
-          </DialogTitle>
+          <DialogTitle>{isSignUp ? "Create your account" : "Welcome back"}</DialogTitle>
+          <p className="text-sm text-muted-foreground">
+            {isSignUp ? "Save consultations and return to your health journey anytime." : "Sign in to continue your private AI Vaidya consultation."}
+          </p>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {isSignUp && (
+            <div className="space-y-2">
+              <Label htmlFor="display-name">Your name</Label>
+              <div className="relative">
+                <UserRound className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  id="display-name"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  placeholder="Aarav Sharma"
+                  className="pl-9"
+                  autoComplete="name"
+                  required
+                />
+              </div>
+            </div>
+          )}
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              required
-            />
+            <div className="relative">
+              <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" className="pl-9" autoComplete="email" required />
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              minLength={6}
-              required
-            />
+            <div className="relative">
+              <LockKeyhole className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="At least 6 characters" className="pl-9" autoComplete={isSignUp ? "new-password" : "current-password"} minLength={6} required />
+            </div>
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
           {info && <p className="text-sm text-primary">{info}</p>}
@@ -95,13 +107,14 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
           </Button>
           <p className="text-center text-sm text-muted-foreground">
             {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
-            <button
+            <Button
               type="button"
+              variant="link"
+              size="sm"
               onClick={() => setIsSignUp(!isSignUp)}
-              className="text-primary hover:underline"
             >
               {isSignUp ? "Sign In" : "Sign Up"}
-            </button>
+            </Button>
           </p>
         </form>
       </DialogContent>
