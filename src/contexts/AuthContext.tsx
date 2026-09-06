@@ -6,7 +6,7 @@ type AuthContextType = {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  signUp: (email: string, password: string) => Promise<{ error: Error | null }>;
+  signUp: (email: string, password: string, displayName?: string) => Promise<{ error: Error | null }>;
   signIn: (email: string, password: string) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 };
@@ -38,12 +38,30 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signUp = async (email: string, password: string) => {
+  const signUp = async (email: string, password: string, displayName?: string) => {
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: { emailRedirectTo: window.location.origin },
+      options: {
+        emailRedirectTo: window.location.origin,
+        data: { display_name: displayName?.trim() || null },
+      },
     });
+
+    if (!error) {
+      const { data: { user: createdUser } } = await supabase.auth.getUser();
+      if (createdUser) {
+        const { error: profileError } = await supabase
+          .from("profiles")
+          .upsert({
+            user_id: createdUser.id,
+            display_name: displayName?.trim() || null,
+          });
+
+        if (profileError) return { error: new Error("Your account was created, but your profile could not be saved.") };
+      }
+    }
+
     return { error: error ? new Error(error.message) : null };
   };
 
