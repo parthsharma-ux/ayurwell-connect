@@ -38,12 +38,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => subscription.unsubscribe();
   }, []);
 
+  const ensureProfile = async (account: User, displayName?: string) => {
+    const fallbackName = account.user_metadata?.display_name || account.email?.split("@")[0] || null;
+    const { error } = await supabase.from("profiles").upsert({
+      user_id: account.id,
+      display_name: displayName?.trim() || fallbackName,
+    });
+    return error;
+  };
+
   const signUp = async (email: string, password: string, displayName?: string) => {
     const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo: window.location.origin,
         data: { display_name: displayName?.trim() || null },
       },
     });
@@ -51,13 +59,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (!error) {
       const { data: { user: createdUser } } = await supabase.auth.getUser();
       if (createdUser) {
-        const { error: profileError } = await supabase
-          .from("profiles")
-          .upsert({
-            user_id: createdUser.id,
-            display_name: displayName?.trim() || null,
-          });
-
+        const profileError = await ensureProfile(createdUser, displayName);
         if (profileError) return { error: new Error("Your account was created, but your profile could not be saved.") };
       }
     }
@@ -66,7 +68,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (!error && data.user) await ensureProfile(data.user);
     return { error: error ? new Error(error.message) : null };
   };
 
