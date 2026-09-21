@@ -23,7 +23,6 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   const friendly = (msg: string) => {
     const m = msg.toLowerCase();
     if (m.includes("invalid login")) return "Wrong email or password. Please try again.";
-    if (m.includes("email not confirmed")) return "Please confirm your email first — check your inbox.";
     if (m.includes("already registered") || m.includes("already been registered"))
       return "This email is already registered. Please sign in instead.";
     if (m.includes("failed to fetch") || m.includes("network"))
