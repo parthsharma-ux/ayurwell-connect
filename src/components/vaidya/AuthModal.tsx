@@ -18,7 +18,6 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [info, setInfo] = useState("");
   const { signIn, signUp } = useAuth();
 
   const friendly = (msg: string) => {
@@ -35,7 +34,6 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-    setInfo("");
     setLoading(true);
 
     const result = isSignUp
@@ -45,7 +43,8 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
     if (result.error) {
       setError(friendly(result.error.message));
     } else if (isSignUp) {
-      setInfo("Account created. You can start your consultation now.");
+      onOpenChange(false);
+      setEmail("");
       setPassword("");
       setDisplayName("");
     } else {
@@ -100,7 +99,6 @@ export const AuthModal = ({ open, onOpenChange }: AuthModalProps) => {
             </div>
           </div>
           {error && <p className="text-sm text-destructive">{error}</p>}
-          {info && <p className="text-sm text-primary">{info}</p>}
           <Button type="submit" className="w-full" disabled={loading}>
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {isSignUp ? "Create Account" : "Sign In"}
