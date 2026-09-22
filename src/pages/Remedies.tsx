@@ -701,6 +701,34 @@ const Remedies = () => {
                     )}
                   </div>
                 </div>
+
+                {/* Dosha quick filters */}
+                <div>
+                  <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">
+                    {language === "hi" ? "अपनी प्रकृति चुनें" : "Match my body type"}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {(["all", "vata", "pitta", "kapha"] as const).map((d) => {
+                      const isActive = selectedDosha === d;
+                      const label = d === "all"
+                        ? (language === "hi" ? "सभी" : "All types")
+                        : DOSHA_LABELS[d][language === "hi" ? "hi" : "en"];
+                      return (
+                        <button
+                          key={d}
+                          onClick={() => setSelectedDosha(d)}
+                          className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+                            isActive
+                              ? "bg-secondary text-secondary-foreground border-secondary"
+                              : "bg-muted/50 hover:bg-muted text-muted-foreground border-border"
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </section>
