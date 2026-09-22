@@ -19,6 +19,7 @@ import QuickKitchenSection from "@/components/remedies/QuickKitchenSection";
 import { getRegionName } from "@/hooks/useGeoLocation";
 import SearchSuggestions from "@/components/SearchSuggestions";
 import { phoneticMatch } from "@/lib/fuzzySearch";
+import { doshaScore, DOSHA_LABELS, type Dosha } from "@/lib/doshaMatch";
 
 // SEO JSON-LD structured data hook
 const useRemediesSEO = (language: string) => {
@@ -375,8 +376,11 @@ const Remedies = () => {
   const [activeGroup, setActiveGroup] = useState<keyof typeof categoryGroups>("all");
   const [activeBodySystem, setActiveBodySystem] = useState<keyof typeof bodySystems>("all");
   const [prioritizeLocal, setPrioritizeLocal] = useState(true);
+  const [selectedDosha, setSelectedDosha] = useState<Dosha | "all">("all");
+  const [showAll, setShowAll] = useState(false);
   const [page, setPage] = useState(1);
   const PAGE_SIZE = 24;
+  const TOP_N = 5;
 
   // Apply SEO structured data
   useRemediesSEO(language);
