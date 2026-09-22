@@ -1757,6 +1757,24 @@ export const blogPosts: BlogPost[] = [
       <h2>Ayurvedic Perspective on Weight Gain</h2>
       <p>In Ayurveda, excess weight (Sthaulya) is primarily a Kapha disorder caused by weak digestive fire (Agni), sedentary lifestyle, and improper eating habits. The goal is to kindle Agni and remove Ama (toxins).</p>
       
+      <h2>Find Your Dosha Pattern First</h2>
+      <p>Weight gain looks different in every body type. Matching your plan to your dominant dosha (Prakriti) is what makes Ayurvedic weight loss sustainable instead of punishing.</p>
+
+      <h3>Kapha-Type Weight Gain (most common)</h3>
+      <p><strong>Signs:</strong> Steady, all-over weight, heaviness after meals, daytime sleepiness, water retention, slow digestion, low motivation.</p>
+      <p><strong>Approach:</strong> Stimulate Agni. Warm, light, dry, spiced food. Vigorous daily movement. Skip breakfast if not truly hungry; never snack out of boredom.</p>
+      <p><strong>Best herbs:</strong> Trikatu, Guggul, Punarnava, ginger, Triphala.</p>
+
+      <h3>Pitta-Type Weight Gain</h3>
+      <p><strong>Signs:</strong> Muscular build turning soft, strong hunger with irritability if meals are missed, acidity, weight held around the middle.</p>
+      <p><strong>Approach:</strong> Never crash-diet — it fuels acidity and binge eating. Regular, cooling, moderately portioned meals. Bitter greens, coriander and fennel.</p>
+      <p><strong>Best herbs:</strong> Amla, Triphala, fennel, Guduchi, aloe vera juice.</p>
+
+      <h3>Vata-Type Weight Gain</h3>
+      <p><strong>Signs:</strong> Irregular appetite, stress and anxiety eating, bloating, weight mostly on the belly, fluctuating scales.</p>
+      <p><strong>Approach:</strong> Regularity beats restriction. Fixed meal times, warm cooked food, healthy fats, gentle yoga. Avoid fasting and raw salads.</p>
+      <p><strong>Best herbs:</strong> Ashwagandha, Shatavari, Brahmi, warm cumin water.</p>
+
       <h2>Morning Drinks for Weight Loss</h2>
       
       <h3>1. Warm Lemon Honey Water</h3>
@@ -1844,6 +1862,24 @@ export const blogPosts: BlogPost[] = [
       <h2>वजन बढ़ने पर आयुर्वेदिक दृष्टिकोण</h2>
       <p>आयुर्वेद में, अतिरिक्त वजन (स्थौल्य) मुख्य रूप से कफ विकार है जो कमजोर पाचन अग्नि, गतिहीन जीवनशैली और अनुचित खान-पान की आदतों के कारण होता है।</p>
       
+      <h2>पहले अपना दोष पहचानें</h2>
+      <p>हर शरीर में वजन अलग तरह से बढ़ता है। अपनी प्रकृति के अनुसार योजना बनाने से वजन घटाना स्थायी होता है।</p>
+
+      <h3>कफ प्रकार (सबसे आम)</h3>
+      <p><strong>लक्षण:</strong> पूरे शरीर पर धीरे-धीरे वजन, खाने के बाद भारीपन, दिन में नींद, पानी की सूजन, सुस्त पाचन।</p>
+      <p><strong>उपाय:</strong> गर्म, हल्का, सूखा और मसालेदार भोजन; रोज़ तेज़ व्यायाम; बेवजह स्नैकिंग बंद।</p>
+      <p><strong>जड़ी-बूटियां:</strong> त्रिकटु, गुग्गुल, पुनर्नवा, अदरक, त्रिफला।</p>
+
+      <h3>पित्त प्रकार</h3>
+      <p><strong>लक्षण:</strong> तेज़ भूख, भोजन छूटने पर चिड़चिड़ापन, अम्लता, कमर के आसपास चर्बी।</p>
+      <p><strong>उपाय:</strong> क्रैश डाइट बिल्कुल नहीं; नियमित, ठंडी तासीर वाला संतुलित भोजन; कड़वी सब्जियां, धनिया, सौंफ।</p>
+      <p><strong>जड़ी-बूटियां:</strong> आंवला, त्रिफला, सौंफ, गुडूची, एलोवेरा रस।</p>
+
+      <h3>वात प्रकार</h3>
+      <p><strong>लक्षण:</strong> अनियमित भूख, तनाव में खाना, पेट फूलना, वजन में उतार-चढ़ाव।</p>
+      <p><strong>उपाय:</strong> निश्चित समय पर गर्म पका भोजन, अच्छे वसा, हल्का योग; उपवास और कच्चे सलाद से बचें।</p>
+      <p><strong>जड़ी-बूटियां:</strong> अश्वगंधा, शतावरी, ब्राह्मी, गर्म जीरा पानी।</p>
+
       <h2>वजन घटाने के लिए सुबह के पेय</h2>
       
       <h3>1. गर्म नींबू शहद पानी</h3>
@@ -1895,6 +1931,6 @@ export const blogPosts: BlogPost[] = [
     category: "lifestyle",
     tags: ["weight loss", "fat burning", "home remedies", "metabolism", "natural diet", "kapha"],
     tagsHi: ["वजन घटाना", "वसा जलाना", "घरेलू उपचार", "चयापचय", "प्राकृतिक आहार", "कफ"],
-    featured: false
+    featured: true
   }
 ];

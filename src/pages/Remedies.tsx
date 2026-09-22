@@ -19,6 +19,7 @@ import QuickKitchenSection from "@/components/remedies/QuickKitchenSection";
 import { getRegionName } from "@/hooks/useGeoLocation";
 import SearchSuggestions from "@/components/SearchSuggestions";
 import { phoneticMatch } from "@/lib/fuzzySearch";
+import { doshaScore, DOSHA_LABELS, type Dosha } from "@/lib/doshaMatch";
 
 // SEO JSON-LD structured data hook
 const useRemediesSEO = (language: string) => {
@@ -375,8 +376,11 @@ const Remedies = () => {
   const [activeGroup, setActiveGroup] = useState<keyof typeof categoryGroups>("all");
   const [activeBodySystem, setActiveBodySystem] = useState<keyof typeof bodySystems>("all");
   const [prioritizeLocal, setPrioritizeLocal] = useState(true);
+  const [selectedDosha, setSelectedDosha] = useState<Dosha | "all">("all");
+  const [showAll, setShowAll] = useState(false);
   const [page, setPage] = useState(1);
   const PAGE_SIZE = 24;
+  const TOP_N = 5;
 
   // Apply SEO structured data
   useRemediesSEO(language);
@@ -390,7 +394,7 @@ const Remedies = () => {
     const q = search.trim();
     const qLower = q.toLowerCase();
 
-    // Score each remedy for relevance so best matches surface first
+    // One relevance score per remedy: symptom match + ingredient match + dosha fit
     const scored: { r: typeof remedies[number]; score: number }[] = [];
 
     for (const r of remedies) {
@@ -409,24 +413,44 @@ const Remedies = () => {
 
       if (!(matchesSearch && matchesGroup && matchesCategory && matchesIngredient && matchesBodySystem)) continue;
 
-      let score = 0;
+      // Dosha compatibility: skip clearly aggravating remedies when a dosha is picked
+      const dScore = selectedDosha === "all" ? 0 : doshaScore(r, selectedDosha);
+      if (selectedDosha !== "all" && dScore < 0) continue;
+
+      // 1. Symptom relevance (title + problem)
+      let symptomScore = 0;
       if (q) {
         const t = r.title.toLowerCase();
         const p = r.problem.toLowerCase();
-        if (t === qLower) score += 100;
-        else if (t.startsWith(qLower)) score += 60;
-        else if (t.includes(qLower)) score += 40;
-        else if (titleMatch) score += 25;
-        if (p === qLower) score += 50;
-        else if (p.includes(qLower)) score += 20;
-        else if (problemMatch) score += 12;
-        if (ingMatch) score += 8;
+        if (t === qLower) symptomScore += 100;
+        else if (t.startsWith(qLower)) symptomScore += 60;
+        else if (t.includes(qLower)) symptomScore += 40;
+        else if (titleMatch) symptomScore += 25;
+        if (p === qLower) symptomScore += 50;
+        else if (p.includes(qLower)) symptomScore += 20;
+        else if (problemMatch) symptomScore += 12;
       }
-      // Prefer easier, faster remedies as a light tiebreaker
-      if (r.difficulty === "Easy") score += 2;
-      else if (r.difficulty === "Medium") score += 1;
 
-      scored.push({ r, score });
+      // 2. Ingredient relevance (exact ingredient name beats a fuzzy hit)
+      let ingredientScore = 0;
+      if (q) {
+        for (const i of r.ingredients) {
+          const n = i.name.toLowerCase();
+          if (n === qLower) ingredientScore += 18;
+          else if (n.includes(qLower)) ingredientScore += 10;
+          else if (phoneticMatch(q, i.name)) ingredientScore += 6;
+        }
+        ingredientScore = Math.min(ingredientScore, 30);
+      }
+      if (selectedIngredient !== "all") ingredientScore += 10;
+
+      // 3. Dosha compatibility, weighted so it re-ranks but never overrides a direct match
+      const doshaBoost = selectedDosha === "all" ? 0 : dScore * 8;
+
+      // Light tiebreaker: prefer easier remedies
+      const easeBonus = r.difficulty === "Easy" ? 2 : r.difficulty === "Medium" ? 1 : 0;
+
+      scored.push({ r, score: symptomScore + ingredientScore + doshaBoost + easeBonus });
     }
 
     // Sort by score (desc). Stable order kept when scores equal.
@@ -445,16 +469,21 @@ const Remedies = () => {
     }
 
     return results;
-  }, [search, category, selectedIngredient, activeGroup, activeBodySystem, prioritizeLocal, region]);
+  }, [search, category, selectedIngredient, activeGroup, activeBodySystem, prioritizeLocal, region, selectedDosha]);
 
   // Reset pagination when filters change
-  useEffect(() => { setPage(1); }, [search, category, selectedIngredient, activeGroup, activeBodySystem]);
+  useEffect(() => { setPage(1); setShowAll(false); }, [search, category, selectedIngredient, activeGroup, activeBodySystem, selectedDosha]);
+
+  // Top 5 view: when the user is actively searching or filtering by dosha,
+  // show only the 5 best matches until they ask for everything.
+  const isRanked = Boolean(search.trim()) || selectedDosha !== "all";
+  const topMode = isRanked && !showAll && filtered.length > TOP_N;
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
   const paginated = useMemo(
-    () => filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
-    [filtered, currentPage]
+    () => (topMode ? filtered.slice(0, TOP_N) : filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)),
+    [filtered, currentPage, topMode]
   );
 
   const clearFilters = () => {
@@ -462,9 +491,10 @@ const Remedies = () => {
     setCategory("all");
     setSelectedIngredient("all");
     setActiveBodySystem("all");
+    setSelectedDosha("all");
   };
 
-  const hasActiveFilters = search || category !== "all" || selectedIngredient !== "all" || activeBodySystem !== "all";
+  const hasActiveFilters = search || category !== "all" || selectedIngredient !== "all" || activeBodySystem !== "all" || selectedDosha !== "all";
 
   // Get count per group for display
   const groupCounts = useMemo(() => {
@@ -671,6 +701,34 @@ const Remedies = () => {
                     )}
                   </div>
                 </div>
+
+                {/* Dosha quick filters */}
+                <div>
+                  <p className="text-[11px] uppercase tracking-wide text-muted-foreground mb-2">
+                    {language === "hi" ? "अपनी प्रकृति चुनें" : "Match my body type"}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {(["all", "vata", "pitta", "kapha"] as const).map((d) => {
+                      const isActive = selectedDosha === d;
+                      const label = d === "all"
+                        ? (language === "hi" ? "सभी" : "All types")
+                        : DOSHA_LABELS[d][language === "hi" ? "hi" : "en"];
+                      return (
+                        <button
+                          key={d}
+                          onClick={() => setSelectedDosha(d)}
+                          className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all border ${
+                            isActive
+                              ? "bg-secondary text-secondary-foreground border-secondary"
+                              : "bg-muted/50 hover:bg-muted text-muted-foreground border-border"
+                          }`}
+                        >
+                          {label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </section>
@@ -699,6 +757,12 @@ const Remedies = () => {
                   <X className="h-3 w-3 cursor-pointer" onClick={() => setSelectedIngredient("all")} />
                 </Badge>
               )}
+              {selectedDosha !== "all" && (
+                <Badge variant="secondary" className="gap-1 text-xs">
+                  {DOSHA_LABELS[selectedDosha][language === "hi" ? "hi" : "en"]}
+                  <X className="h-3 w-3 cursor-pointer" onClick={() => setSelectedDosha("all")} />
+                </Badge>
+              )}
             </div>
           )}
 
@@ -720,13 +784,44 @@ const Remedies = () => {
               />
             ) : (
               <>
-                <div className="flex items-center justify-between mb-4 text-xs md:text-sm text-muted-foreground">
-                  <span>
-                    {language === "hi" ? "दिखा रहे" : "Showing"}{" "}
-                    {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filtered.length)}{" "}
-                    {language === "hi" ? "में से" : "of"} {filtered.length}
-                  </span>
-                  <span>{language === "hi" ? "पृष्ठ" : "Page"} {currentPage} / {totalPages}</span>
+                <div className="flex items-center justify-between gap-3 mb-4 text-xs md:text-sm text-muted-foreground flex-wrap">
+                  {topMode ? (
+                    <>
+                      <span className="font-medium text-foreground">
+                        {language === "hi"
+                          ? `शीर्ष ${Math.min(TOP_N, filtered.length)} सर्वश्रेष्ठ मिलान`
+                          : `Top ${Math.min(TOP_N, filtered.length)} best matches`}
+                      </span>
+                      <button
+                        onClick={() => setShowAll(true)}
+                        className="inline-flex items-center gap-1 h-8 px-3 rounded-full border border-border bg-card hover:bg-muted transition-colors text-xs font-medium"
+                      >
+                        {language === "hi"
+                          ? `सभी ${filtered.length} देखें`
+                          : `Show all ${filtered.length}`}
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <span>
+                        {language === "hi" ? "दिखा रहे" : "Showing"}{" "}
+                        {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filtered.length)}{" "}
+                        {language === "hi" ? "में से" : "of"} {filtered.length}
+                      </span>
+                      <div className="flex items-center gap-3">
+                        {isRanked && showAll && filtered.length > TOP_N && (
+                          <button
+                            onClick={() => { setShowAll(false); setPage(1); }}
+                            className="inline-flex items-center gap-1 h-8 px-3 rounded-full border border-border bg-card hover:bg-muted transition-colors text-xs font-medium"
+                          >
+                            {language === "hi" ? `केवल शीर्ष ${TOP_N}` : `Show top ${TOP_N} only`}
+                          </button>
+                        )}
+                        <span>{language === "hi" ? "पृष्ठ" : "Page"} {currentPage} / {totalPages}</span>
+                      </div>
+                    </>
+                  )}
                 </div>
                 <h2 className="sr-only">All remedies</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
@@ -762,7 +857,7 @@ const Remedies = () => {
                   ))}
                 </div>
 
-                {totalPages > 1 && (
+                {!topMode && totalPages > 1 && (
                   <div className="flex items-center justify-center gap-2 mt-8 flex-wrap">
                     <button
                       onClick={() => { setPage((p) => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
