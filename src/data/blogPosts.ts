@@ -1931,6 +1931,6 @@ export const blogPosts: BlogPost[] = [
     category: "lifestyle",
     tags: ["weight loss", "fat burning", "home remedies", "metabolism", "natural diet", "kapha"],
     tagsHi: ["वजन घटाना", "वसा जलाना", "घरेलू उपचार", "चयापचय", "प्राकृतिक आहार", "कफ"],
-    featured: false
+    featured: true
   }
 ];
