@@ -851,7 +851,7 @@ const Remedies = () => {
                   ))}
                 </div>
 
-                {totalPages > 1 && (
+                {!topMode && totalPages > 1 && (
                   <div className="flex items-center justify-center gap-2 mt-8 flex-wrap">
                     <button
                       onClick={() => { setPage((p) => Math.max(1, p - 1)); window.scrollTo({ top: 0, behavior: "smooth" }); }}
