@@ -778,13 +778,44 @@ const Remedies = () => {
               />
             ) : (
               <>
-                <div className="flex items-center justify-between mb-4 text-xs md:text-sm text-muted-foreground">
-                  <span>
-                    {language === "hi" ? "दिखा रहे" : "Showing"}{" "}
-                    {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filtered.length)}{" "}
-                    {language === "hi" ? "में से" : "of"} {filtered.length}
-                  </span>
-                  <span>{language === "hi" ? "पृष्ठ" : "Page"} {currentPage} / {totalPages}</span>
+                <div className="flex items-center justify-between gap-3 mb-4 text-xs md:text-sm text-muted-foreground flex-wrap">
+                  {topMode ? (
+                    <>
+                      <span className="font-medium text-foreground">
+                        {language === "hi"
+                          ? `शीर्ष ${Math.min(TOP_N, filtered.length)} सर्वश्रेष्ठ मिलान`
+                          : `Top ${Math.min(TOP_N, filtered.length)} best matches`}
+                      </span>
+                      <button
+                        onClick={() => setShowAll(true)}
+                        className="inline-flex items-center gap-1 h-8 px-3 rounded-full border border-border bg-card hover:bg-muted transition-colors text-xs font-medium"
+                      >
+                        {language === "hi"
+                          ? `सभी ${filtered.length} देखें`
+                          : `Show all ${filtered.length}`}
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <span>
+                        {language === "hi" ? "दिखा रहे" : "Showing"}{" "}
+                        {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filtered.length)}{" "}
+                        {language === "hi" ? "में से" : "of"} {filtered.length}
+                      </span>
+                      <div className="flex items-center gap-3">
+                        {isRanked && showAll && filtered.length > TOP_N && (
+                          <button
+                            onClick={() => { setShowAll(false); setPage(1); }}
+                            className="inline-flex items-center gap-1 h-8 px-3 rounded-full border border-border bg-card hover:bg-muted transition-colors text-xs font-medium"
+                          >
+                            {language === "hi" ? `केवल शीर्ष ${TOP_N}` : `Show top ${TOP_N} only`}
+                          </button>
+                        )}
+                        <span>{language === "hi" ? "पृष्ठ" : "Page"} {currentPage} / {totalPages}</span>
+                      </div>
+                    </>
+                  )}
                 </div>
                 <h2 className="sr-only">All remedies</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4">
