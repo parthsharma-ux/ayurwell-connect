@@ -1757,6 +1757,24 @@ export const blogPosts: BlogPost[] = [
       <h2>Ayurvedic Perspective on Weight Gain</h2>
       <p>In Ayurveda, excess weight (Sthaulya) is primarily a Kapha disorder caused by weak digestive fire (Agni), sedentary lifestyle, and improper eating habits. The goal is to kindle Agni and remove Ama (toxins).</p>
       
+      <h2>Find Your Dosha Pattern First</h2>
+      <p>Weight gain looks different in every body type. Matching your plan to your dominant dosha (Prakriti) is what makes Ayurvedic weight loss sustainable instead of punishing.</p>
+
+      <h3>Kapha-Type Weight Gain (most common)</h3>
+      <p><strong>Signs:</strong> Steady, all-over weight, heaviness after meals, daytime sleepiness, water retention, slow digestion, low motivation.</p>
+      <p><strong>Approach:</strong> Stimulate Agni. Warm, light, dry, spiced food. Vigorous daily movement. Skip breakfast if not truly hungry; never snack out of boredom.</p>
+      <p><strong>Best herbs:</strong> Trikatu, Guggul, Punarnava, ginger, Triphala.</p>
+
+      <h3>Pitta-Type Weight Gain</h3>
+      <p><strong>Signs:</strong> Muscular build turning soft, strong hunger with irritability if meals are missed, acidity, weight held around the middle.</p>
+      <p><strong>Approach:</strong> Never crash-diet — it fuels acidity and binge eating. Regular, cooling, moderately portioned meals. Bitter greens, coriander and fennel.</p>
+      <p><strong>Best herbs:</strong> Amla, Triphala, fennel, Guduchi, aloe vera juice.</p>
+
+      <h3>Vata-Type Weight Gain</h3>
+      <p><strong>Signs:</strong> Irregular appetite, stress and anxiety eating, bloating, weight mostly on the belly, fluctuating scales.</p>
+      <p><strong>Approach:</strong> Regularity beats restriction. Fixed meal times, warm cooked food, healthy fats, gentle yoga. Avoid fasting and raw salads.</p>
+      <p><strong>Best herbs:</strong> Ashwagandha, Shatavari, Brahmi, warm cumin water.</p>
+
       <h2>Morning Drinks for Weight Loss</h2>
       
       <h3>1. Warm Lemon Honey Water</h3>
