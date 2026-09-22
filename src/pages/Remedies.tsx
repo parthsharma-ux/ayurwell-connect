@@ -394,7 +394,7 @@ const Remedies = () => {
     const q = search.trim();
     const qLower = q.toLowerCase();
 
-    // Score each remedy for relevance so best matches surface first
+    // One relevance score per remedy: symptom match + ingredient match + dosha fit
     const scored: { r: typeof remedies[number]; score: number }[] = [];
 
     for (const r of remedies) {
@@ -413,24 +413,44 @@ const Remedies = () => {
 
       if (!(matchesSearch && matchesGroup && matchesCategory && matchesIngredient && matchesBodySystem)) continue;
 
-      let score = 0;
+      // Dosha compatibility: skip clearly aggravating remedies when a dosha is picked
+      const dScore = selectedDosha === "all" ? 0 : doshaScore(r, selectedDosha);
+      if (selectedDosha !== "all" && dScore < 0) continue;
+
+      // 1. Symptom relevance (title + problem)
+      let symptomScore = 0;
       if (q) {
         const t = r.title.toLowerCase();
         const p = r.problem.toLowerCase();
-        if (t === qLower) score += 100;
-        else if (t.startsWith(qLower)) score += 60;
-        else if (t.includes(qLower)) score += 40;
-        else if (titleMatch) score += 25;
-        if (p === qLower) score += 50;
-        else if (p.includes(qLower)) score += 20;
-        else if (problemMatch) score += 12;
-        if (ingMatch) score += 8;
+        if (t === qLower) symptomScore += 100;
+        else if (t.startsWith(qLower)) symptomScore += 60;
+        else if (t.includes(qLower)) symptomScore += 40;
+        else if (titleMatch) symptomScore += 25;
+        if (p === qLower) symptomScore += 50;
+        else if (p.includes(qLower)) symptomScore += 20;
+        else if (problemMatch) symptomScore += 12;
       }
-      // Prefer easier, faster remedies as a light tiebreaker
-      if (r.difficulty === "Easy") score += 2;
-      else if (r.difficulty === "Medium") score += 1;
 
-      scored.push({ r, score });
+      // 2. Ingredient relevance (exact ingredient name beats a fuzzy hit)
+      let ingredientScore = 0;
+      if (q) {
+        for (const i of r.ingredients) {
+          const n = i.name.toLowerCase();
+          if (n === qLower) ingredientScore += 18;
+          else if (n.includes(qLower)) ingredientScore += 10;
+          else if (phoneticMatch(q, i.name)) ingredientScore += 6;
+        }
+        ingredientScore = Math.min(ingredientScore, 30);
+      }
+      if (selectedIngredient !== "all") ingredientScore += 10;
+
+      // 3. Dosha compatibility, weighted so it re-ranks but never overrides a direct match
+      const doshaBoost = selectedDosha === "all" ? 0 : dScore * 8;
+
+      // Light tiebreaker: prefer easier remedies
+      const easeBonus = r.difficulty === "Easy" ? 2 : r.difficulty === "Medium" ? 1 : 0;
+
+      scored.push({ r, score: symptomScore + ingredientScore + doshaBoost + easeBonus });
     }
 
     // Sort by score (desc). Stable order kept when scores equal.
@@ -449,16 +469,21 @@ const Remedies = () => {
     }
 
     return results;
-  }, [search, category, selectedIngredient, activeGroup, activeBodySystem, prioritizeLocal, region]);
+  }, [search, category, selectedIngredient, activeGroup, activeBodySystem, prioritizeLocal, region, selectedDosha]);
 
   // Reset pagination when filters change
-  useEffect(() => { setPage(1); }, [search, category, selectedIngredient, activeGroup, activeBodySystem]);
+  useEffect(() => { setPage(1); setShowAll(false); }, [search, category, selectedIngredient, activeGroup, activeBodySystem, selectedDosha]);
+
+  // Top 5 view: when the user is actively searching or filtering by dosha,
+  // show only the 5 best matches until they ask for everything.
+  const isRanked = Boolean(search.trim()) || selectedDosha !== "all";
+  const topMode = isRanked && !showAll && filtered.length > TOP_N;
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
   const paginated = useMemo(
-    () => filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE),
-    [filtered, currentPage]
+    () => (topMode ? filtered.slice(0, TOP_N) : filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)),
+    [filtered, currentPage, topMode]
   );
 
   const clearFilters = () => {
@@ -466,9 +491,10 @@ const Remedies = () => {
     setCategory("all");
     setSelectedIngredient("all");
     setActiveBodySystem("all");
+    setSelectedDosha("all");
   };
 
-  const hasActiveFilters = search || category !== "all" || selectedIngredient !== "all" || activeBodySystem !== "all";
+  const hasActiveFilters = search || category !== "all" || selectedIngredient !== "all" || activeBodySystem !== "all" || selectedDosha !== "all";
 
   // Get count per group for display
   const groupCounts = useMemo(() => {
