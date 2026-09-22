@@ -757,6 +757,12 @@ const Remedies = () => {
                   <X className="h-3 w-3 cursor-pointer" onClick={() => setSelectedIngredient("all")} />
                 </Badge>
               )}
+              {selectedDosha !== "all" && (
+                <Badge variant="secondary" className="gap-1 text-xs">
+                  {DOSHA_LABELS[selectedDosha][language === "hi" ? "hi" : "en"]}
+                  <X className="h-3 w-3 cursor-pointer" onClick={() => setSelectedDosha("all")} />
+                </Badge>
+              )}
             </div>
           )}
 
