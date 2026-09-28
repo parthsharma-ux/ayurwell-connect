@@ -4,9 +4,11 @@ import { Wind, Flame, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DoshaQuizModal from "@/components/dosha/DoshaQuizModal";
 import SEO from "@/components/SEO";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const DoshaTypes = () => {
   const [quizOpen, setQuizOpen] = useState(false);
+  const { language } = useLanguage();
 
   const doshas = [
     {
@@ -104,8 +106,10 @@ const DoshaTypes = () => {
   return (
     <Layout>
       <SEO
-        title="Dosha Types — Vata, Pitta, Kapha Body Types | AyurVeda"
-        description="Learn about the three Ayurvedic doshas — Vata, Pitta, Kapha. Take the free dosha quiz to discover your body type and personalised wellness tips."
+        title={language === "hi" ? "वात, पित्त और कफ दोष | AyurVeda" : "Vata, Pitta & Kapha Doshas | AyurVeda"}
+        description={language === "hi"
+          ? "वात, पित्त और कफ के आयुर्वेदिक गुण, असंतुलन के संकेत और संतुलन के सुझाव जानें। अपनी प्रकृति समझने के लिए दोष क्विज़ लें।"
+          : "Explore Vata, Pitta, and Kapha characteristics, imbalance signs, and Ayurveda-inspired balancing tips. Take the dosha quiz to learn about your constitution."}
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
