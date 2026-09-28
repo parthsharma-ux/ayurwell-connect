@@ -6,6 +6,7 @@ import { remedies } from "@/data/remedies";
 import { ArrowLeft, Clock, AlertTriangle, CheckCircle, Leaf } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getLocalizedRemedy, useDataTranslations } from "@/lib/localizedData";
+import SEO from "@/components/SEO";
 
 const RemedyDetail = () => {
   const { id } = useParams();
@@ -17,18 +18,6 @@ const RemedyDetail = () => {
   // SEO JSON-LD for individual remedy
   useEffect(() => {
     if (!rawRemedy) return;
-
-    document.title = `${rawRemedy.title} - ${language === "hi" ? "आयुर्वेदिक उपचार" : "Ayurvedic Remedy"} | AyurVeda`;
-
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute('content', 
-      `${rawRemedy.problem} के लिए ${rawRemedy.title}। सामग्री: ${rawRemedy.ingredients.map(i => i.name).join(", ")}। ${rawRemedy.preparation_time} में तैयार।`
-    );
 
     const existingScript = document.querySelector('script[type="application/ld+json"][data-page="remedy-detail"]');
     if (existingScript) existingScript.remove();
@@ -84,9 +73,14 @@ const RemedyDetail = () => {
   }
 
   const remedy = getLocalizedRemedy(rawRemedy, language);
+  const seoTitle = `${remedy.title} | AyurVeda`;
+  const seoDescription = language === "hi"
+    ? `${remedy.title}, ${remedy.problem} के लिए आयुर्वेदिक घरेलू उपाय। सामग्री, बनाने की विधि और सावधानियां जानें। उपयोग से पहले योग्य चिकित्सक से सलाह लें।`
+    : `Explore ${remedy.title}, an Ayurvedic home remedy for ${remedy.problem}. See ingredients, preparation steps, and precautions. Consult a qualified practitioner before use.`;
 
   return (
     <Layout>
+      <SEO title={seoTitle} description={seoDescription} />
       <div className="container mx-auto px-4 py-12 max-w-4xl">
         <LocalizedLink to="/remedies" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground mb-6">
           <ArrowLeft className="h-4 w-4" /> {t("backToRemedies")}

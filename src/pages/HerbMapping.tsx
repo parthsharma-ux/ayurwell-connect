@@ -755,8 +755,10 @@ const HerbMapping = () => {
   return (
     <Layout>
       <SEO
-        title="Herb Mapping — Ayurvedic Herbs by Condition | AyurVeda"
-        description="Explore a comprehensive map of Ayurvedic herbs organised by body system, condition, and symptom. Find the right herb for your health goal."
+        title={language === "hi" ? "आयुर्वेदिक जड़ी-बूटी मार्गदर्शिका | AyurVeda" : "Ayurvedic Herb Guide by Name & Use | AyurVeda"}
+        description={language === "hi"
+          ? "अश्वगंधा, ब्राह्मी और तुलसी सहित आयुर्वेदिक जड़ी-बूटियों के पारंपरिक उपयोग, गुण, खुराक और सावधानियां लक्षणों के अनुसार खोजें।"
+          : "Explore Ayurvedic herbs by name, symptom, and health concern. Review traditional uses, properties, dosage guidance, and precautions for herbs such as ashwagandha, brahmi, and tulsi."}
       />
       <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
         {/* Hero Section */}
