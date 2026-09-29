@@ -33,7 +33,7 @@ import SEO from "@/components/SEO";
 import LocalizedLink from "@/components/LocalizedLink";
 
 // Comprehensive herb profiles with detailed information
-const herbProfiles: Record<string, {
+export const herbProfiles: Record<string, {
   name: string;
   nameHi: string;
   sanskrit: string;
@@ -977,7 +977,9 @@ const HerbMapping = () => {
                         <div className="flex items-start justify-between">
                           <div>
                             <CardTitle className="text-xl">
-                              {language === 'hi' ? herb.nameHi : herb.name}
+                              <LocalizedLink to={`/herbs/${key}`} className="transition-colors hover:text-primary">
+                                {language === 'hi' ? herb.nameHi : herb.name}
+                              </LocalizedLink>
                             </CardTitle>
                             <p className="text-sm text-muted-foreground italic mt-1">
                               {herb.botanicalName}
