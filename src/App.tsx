@@ -29,6 +29,7 @@ import KitDetail from "./pages/KitDetail";
 import Yoga from "./pages/Yoga";
 import YogaDetail from "./pages/YogaDetail";
 import HerbMapping from "./pages/HerbMapping";
+import HerbDetail from "./pages/HerbDetail";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import NotFound from "./pages/NotFound";
@@ -71,6 +72,7 @@ const App = () => (
                 <Route path="yoga" element={<Yoga />} />
                 <Route path="yoga/:id" element={<YogaDetail />} />
                 <Route path="herb-mapping" element={<HerbMapping />} />
+                <Route path="herbs/:id" element={<HerbDetail />} />
                 <Route path="blog" element={<Blog />} />
                 <Route path="blog/:id" element={<BlogDetail />} />
               </Route>

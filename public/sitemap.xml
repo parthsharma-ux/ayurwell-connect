@@ -424,23 +424,7 @@
   </url>
 
 
-  <!-- Herb guide and individual remedy pages -->
-  <url>
-    <loc>https://ancient-healer-ai.lovable.app/en/herb-mapping</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herb-mapping"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herb-mapping"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herb-mapping"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ancient-healer-ai.lovable.app/hi/herb-mapping</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herb-mapping"/>
-    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herb-mapping"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herb-mapping"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- Individual herb and remedy pages -->
   <url>
     <loc>https://ancient-healer-ai.lovable.app/en/remedies/remedy-1</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/remedies/remedy-1"/>
@@ -29334,6 +29318,710 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/remedies/rem-new-99"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/remedies/rem-new-99"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/remedies/rem-new-99"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/ashwagandha</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/ashwagandha"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/ashwagandha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/ashwagandha"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/ashwagandha</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/ashwagandha"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/ashwagandha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/ashwagandha"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/brahmi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/brahmi"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/brahmi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/brahmi"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/brahmi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/brahmi"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/brahmi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/brahmi"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/turmeric</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/turmeric"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/turmeric"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/turmeric"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/turmeric</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/turmeric"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/turmeric"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/turmeric"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/tulsi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/tulsi"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/tulsi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/tulsi"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/tulsi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/tulsi"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/tulsi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/tulsi"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/triphala</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/triphala"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/triphala"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/triphala"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/triphala</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/triphala"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/triphala"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/triphala"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/guggulu</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/guggulu"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/guggulu"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/guggulu"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/guggulu</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/guggulu"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/guggulu"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/guggulu"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/neem</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/neem"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/neem"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/neem"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/neem</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/neem"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/neem"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/neem"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/amla</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/amla"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/amla"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/amla"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/amla</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/amla"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/amla"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/amla"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/shatavari</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/shatavari"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/shatavari"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/shatavari"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/shatavari</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/shatavari"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/shatavari"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/shatavari"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/arjuna</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/arjuna"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/arjuna"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/arjuna"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/arjuna</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/arjuna"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/arjuna"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/arjuna"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/giloy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/giloy"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/giloy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/giloy"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/giloy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/giloy"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/giloy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/giloy"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/shilajit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/shilajit"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/shilajit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/shilajit"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/shilajit</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/shilajit"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/shilajit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/shilajit"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/sarpagandha</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/sarpagandha"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/sarpagandha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/sarpagandha"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/sarpagandha</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/sarpagandha"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/sarpagandha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/sarpagandha"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/manjishtha</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/manjishtha"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/manjishtha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/manjishtha"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/manjishtha</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/manjishtha"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/manjishtha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/manjishtha"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/gudmar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/gudmar"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/gudmar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/gudmar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/gudmar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/gudmar"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/gudmar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/gudmar"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/punarnava</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/punarnava"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/punarnava"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/punarnava"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/punarnava</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/punarnava"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/punarnava"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/punarnava"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/kutki</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/kutki"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/kutki"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/kutki"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/kutki</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/kutki"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/kutki"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/kutki"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/haritaki</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/haritaki"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/haritaki"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/haritaki"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/haritaki</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/haritaki"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/haritaki"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/haritaki"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/vidanga</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/vidanga"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/vidanga"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/vidanga"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/vidanga</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/vidanga"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/vidanga"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/vidanga"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/yashtimadhu</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/yashtimadhu"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/yashtimadhu"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/yashtimadhu"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/yashtimadhu</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/yashtimadhu"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/yashtimadhu"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/yashtimadhu"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/bhringaraj</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/bhringaraj"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/bhringaraj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/bhringaraj"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/bhringaraj</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/bhringaraj"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/bhringaraj"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/bhringaraj"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/shankhpushpi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/shankhpushpi"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/shankhpushpi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/shankhpushpi"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/shankhpushpi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/shankhpushpi"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/shankhpushpi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/shankhpushpi"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/vacha</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/vacha"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/vacha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/vacha"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/vacha</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/vacha"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/vacha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/vacha"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/joint-pain</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/joint-pain"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/joint-pain"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/joint-pain"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/joint-pain</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/joint-pain"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/joint-pain"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/joint-pain"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/back-pain</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/back-pain"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/back-pain"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/back-pain"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/back-pain</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/back-pain"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/back-pain"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/back-pain"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/headache</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/headache"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/headache"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/headache"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/headache</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/headache"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/headache"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/headache"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/acidity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/acidity"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/acidity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/acidity"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/acidity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/acidity"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/acidity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/acidity"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/constipation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/constipation"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/constipation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/constipation"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/constipation</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/constipation"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/constipation"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/constipation"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/bloating</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/bloating"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/bloating"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/bloating"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/bloating</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/bloating"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/bloating"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/bloating"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/cough</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/cough"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/cough"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/cough"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/cough</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/cough"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/cough"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/cough"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/breathing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/breathing"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/breathing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/breathing"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/breathing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/breathing"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/breathing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/breathing"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/high-bp</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/high-bp"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/high-bp"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/high-bp"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/high-bp</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/high-bp"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/high-bp"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/high-bp"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/heart-weakness</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/heart-weakness"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/heart-weakness"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/heart-weakness"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/heart-weakness</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/heart-weakness"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/heart-weakness"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/heart-weakness"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/anxiety</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/anxiety"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/anxiety"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/anxiety"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/anxiety</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/anxiety"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/anxiety"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/anxiety"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/insomnia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/insomnia"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/insomnia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/insomnia"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/insomnia</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/insomnia"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/insomnia"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/insomnia"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/memory</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/memory"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/memory"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/memory"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/memory</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/memory"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/memory"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/memory"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/diabetes</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/diabetes"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/diabetes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/diabetes"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/diabetes</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/diabetes"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/diabetes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/diabetes"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/obesity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/obesity"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/obesity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/obesity"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/obesity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/obesity"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/obesity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/obesity"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/skin-rashes</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/skin-rashes"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/skin-rashes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/skin-rashes"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/skin-rashes</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/skin-rashes"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/skin-rashes"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/skin-rashes"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/acne</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/acne"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/acne"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/acne"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/acne</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/acne"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/acne"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/acne"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/weakness</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/weakness"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/weakness"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/weakness"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/weakness</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/weakness"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/weakness"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/weakness"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/immunity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/immunity"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/immunity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/immunity"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/immunity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/immunity"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/immunity"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/immunity"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/menstrual</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/menstrual"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/menstrual"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/menstrual"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/menstrual</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/menstrual"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/menstrual"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/menstrual"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/herbs/menopause</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/menopause"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/menopause"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/menopause"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/herbs/menopause</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/herbs/menopause"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/herbs/menopause"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/herbs/menopause"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
