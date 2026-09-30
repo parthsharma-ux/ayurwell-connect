@@ -65,6 +65,7 @@ const App = () => (
                 <Route path="doctor-ai" element={<DoctorAI />} />
                 <Route path="about-ayurveda" element={<AboutAyurveda />} />
                 <Route path="dosha-types" element={<DoshaTypes />} />
+                <Route path="dosha-types/:id" element={<DoshaTypes />} />
                 <Route path="privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="disclaimer" element={<Disclaimer />} />
                 <Route path="kits" element={<Kits />} />
