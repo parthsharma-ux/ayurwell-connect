@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
@@ -29,10 +30,23 @@ const SEO = ({
   const desc = description.length > 160 ? description.slice(0, 157) + "..." : description;
   const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
+  useEffect(() => {
+    const metaDescription = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (!metaDescription) return;
+
+    const previousDescription = metaDescription.content;
+    metaDescription.content = desc;
+
+    return () => {
+      if (metaDescription.isConnected && metaDescription.content === desc) {
+        metaDescription.content = previousDescription;
+      }
+    };
+  }, [desc]);
+
   return (
     <Helmet>
       <title>{fullTitle}</title>
-      <meta name="description" content={desc} />
       <link rel="canonical" href={url} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={desc} />
