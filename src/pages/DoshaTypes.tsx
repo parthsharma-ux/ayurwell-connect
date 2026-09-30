@@ -1,17 +1,21 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Wind, Flame, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DoshaQuizModal from "@/components/dosha/DoshaQuizModal";
 import SEO from "@/components/SEO";
 import { useLanguage } from "@/contexts/LanguageContext";
+import LocalizedLink from "@/components/LocalizedLink";
 
 const DoshaTypes = () => {
   const [quizOpen, setQuizOpen] = useState(false);
   const { language } = useLanguage();
+  const { id: doshaId } = useParams<{ id?: string }>();
 
   const doshas = [
     {
+      id: "vata",
       name: "Vata Dosha",
       hindi: "वात दोष",
       elements: "Vayu + Akash (Air + Space)",
@@ -42,6 +46,7 @@ const DoshaTypes = () => {
       ]
     },
     {
+      id: "pitta",
       name: "Pitta Dosha",
       hindi: "पित्त दोष",
       elements: "Agni + Jal (Fire + Water)",
@@ -72,6 +77,7 @@ const DoshaTypes = () => {
       ]
     },
     {
+      id: "kapha",
       name: "Kapha Dosha",
       hindi: "कफ दोष",
       elements: "Prithvi + Jal (Earth + Water)",
@@ -103,13 +109,28 @@ const DoshaTypes = () => {
     }
   ];
 
+  const activeDosha = doshas.find((dosha) => dosha.id === doshaId);
+  const shownDoshas = activeDosha ? [activeDosha] : doshas;
+  const pageTitle = activeDosha
+    ? language === "hi"
+      ? `${activeDosha.hindi} — आयुर्वेदिक दोष मार्गदर्शिका | AyurVeda`
+      : `${activeDosha.name} — Ayurvedic Guide | AyurVeda`
+    : language === "hi"
+      ? "वात, पित्त और कफ दोष | AyurVeda"
+      : "Vata, Pitta & Kapha Doshas | AyurVeda";
+  const pageDescription = activeDosha
+    ? language === "hi"
+      ? `${activeDosha.hindi} के आयुर्वेदिक गुण, असंतुलन के संकेत और संतुलन के सुझाव जानें। अपनी प्रकृति और दिनचर्या के बारे में अधिक समझें।`
+      : `Learn about ${activeDosha.name}: its Ayurvedic qualities, common imbalance signs, and traditional balancing tips for everyday wellness.`
+    : language === "hi"
+      ? "वात, पित्त और कफ के आयुर्वेदिक गुण, असंतुलन के संकेत और संतुलन के सुझाव जानें। अपनी प्रकृति समझने के लिए दोष क्विज़ लें।"
+      : "Explore Vata, Pitta, and Kapha characteristics, imbalance signs, and Ayurveda-inspired balancing tips. Take the dosha quiz to learn about your constitution.";
+
   return (
     <Layout>
       <SEO
-        title={language === "hi" ? "वात, पित्त और कफ दोष | AyurVeda" : "Vata, Pitta & Kapha Doshas | AyurVeda"}
-        description={language === "hi"
-          ? "वात, पित्त और कफ के आयुर्वेदिक गुण, असंतुलन के संकेत और संतुलन के सुझाव जानें। अपनी प्रकृति समझने के लिए दोष क्विज़ लें।"
-          : "Explore Vata, Pitta, and Kapha characteristics, imbalance signs, and Ayurveda-inspired balancing tips. Take the dosha quiz to learn about your constitution."}
+        title={pageTitle}
+        description={pageDescription}
       />
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
@@ -131,7 +152,7 @@ const DoshaTypes = () => {
           </div>
 
           <div className="space-y-8">
-            {doshas.map((dosha) => (
+            {shownDoshas.map((dosha) => (
               <div key={dosha.name} className="bg-card rounded-2xl border border-border overflow-hidden">
                 <div className={`p-6 ${dosha.bgColor} border-b border-border`}>
                   <div className="flex items-center gap-4">
@@ -139,7 +160,11 @@ const DoshaTypes = () => {
                       <dosha.icon className={`h-8 w-8 ${dosha.color}`} />
                     </div>
                     <div>
-                      <h2 className="font-display text-2xl font-bold text-foreground">{dosha.name}</h2>
+                      <h2 className="font-display text-2xl font-bold text-foreground">
+                        <LocalizedLink to={`/dosha-types/${dosha.id}`} className="transition-colors hover:text-primary">
+                          {dosha.name}
+                        </LocalizedLink>
+                      </h2>
                       <p className="text-muted-foreground">{dosha.hindi} • {dosha.elements}</p>
                     </div>
                   </div>

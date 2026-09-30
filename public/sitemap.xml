@@ -424,6 +424,54 @@
   </url>
 
 
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/dosha-types/vata</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/dosha-types/vata"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/dosha-types/vata"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/dosha-types/vata"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/dosha-types/vata</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/dosha-types/vata"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/dosha-types/vata"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/dosha-types/vata"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/dosha-types/pitta</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/dosha-types/pitta"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/dosha-types/pitta"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/dosha-types/pitta"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/dosha-types/pitta</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/dosha-types/pitta"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/dosha-types/pitta"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/dosha-types/pitta"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/en/dosha-types/kapha</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/dosha-types/kapha"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/dosha-types/kapha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/dosha-types/kapha"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ancient-healer-ai.lovable.app/hi/dosha-types/kapha</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ancient-healer-ai.lovable.app/en/dosha-types/kapha"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://ancient-healer-ai.lovable.app/hi/dosha-types/kapha"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ancient-healer-ai.lovable.app/en/dosha-types/kapha"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <!-- Individual herb and remedy pages -->
   <url>
     <loc>https://ancient-healer-ai.lovable.app/en/remedies/remedy-1</loc>
