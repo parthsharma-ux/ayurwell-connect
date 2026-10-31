@@ -62,7 +62,7 @@ const statusVariant = (status: string): "default" | "secondary" | "destructive" 
   return "outline";
 };
 
-const escapeCsv = (value: string) => `"${value.replaceAll('"', '""')}"`;
+const escapeCsv = (value: string) => `"${value.replace(/"/g, '""')}"`;
 
 const AdminPanel = () => {
   const { user, loading: authLoading, signIn, signOut } = useAuth();
@@ -370,7 +370,7 @@ const OrdersTable = ({ orders, loading }: { orders: OrderRecord[]; loading: bool
           <TableRow key={order.id}>
             <TableCell className="font-mono text-xs">{order.id.slice(0, 8).toUpperCase()}</TableCell>
             <TableCell><span className="block font-medium">{order.customer_name || "Guest"}</span><span className="text-xs text-muted-foreground">{order.customer_email || "—"}</span></TableCell>
-            <TableCell className="capitalize text-muted-foreground">{order.order_type.replaceAll("_", " ")}</TableCell>
+            <TableCell className="capitalize text-muted-foreground">{order.order_type.replace(/_/g, " ")}</TableCell>
             <TableCell className="whitespace-nowrap tabular-nums">{formatAmount(order.total_amount, order.currency)}</TableCell>
             <TableCell><Badge variant={statusVariant(order.status)}>{order.status}</Badge></TableCell>
             <TableCell className="whitespace-nowrap text-muted-foreground">{formatDate(order.created_at)}</TableCell>
