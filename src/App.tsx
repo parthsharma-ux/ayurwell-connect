@@ -33,6 +33,7 @@ import HerbDetail from "./pages/HerbDetail";
 import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import NotFound from "./pages/NotFound";
+import AdminPanel from "./pages/AdminPanel";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,8 @@ const App = () => (
             <ScrollToTop />
             <CanonicalManager />
             <Routes>
+              <Route path="/admin" element={<AdminPanel />} />
+
               {/* Redirect root to language-prefixed route */}
               <Route path="/" element={<LanguageRedirect />} />
               
