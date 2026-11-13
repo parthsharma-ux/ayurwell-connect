@@ -8,6 +8,20 @@
       "when": 1793468025081,
       "tag": "0000_admin_roles_and_read_access",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794553888265,
+      "tag": "0001_secure_admin_role_grants",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794553948893,
+      "tag": "0002_lock_role_assignment_to_service",
+      "breakpoints": true
     }
   ]
 }
