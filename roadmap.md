@@ -7,4 +7,5 @@
 - [x] Apply administrator role and protected data-access policies.
 - [x] Verify Cloud readiness, register the first administrator only after exact account lookup, and confirm stored role and protected access.
 - [x] Verify admin workspace as the assigned administrator, including overview, order list, subscriber list, and CSV export.
+- [ ] Verify admin-page and direct data API denial while signed in as an ordinary account — waiting for an ordinary-account preview session; signed-out page and anonymous API checks passed.
 - [x] Add a protected administration workspace for order and subscriber overview.
