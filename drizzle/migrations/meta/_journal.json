@@ -22,6 +22,13 @@
       "when": 1794553948893,
       "tag": "0002_lock_role_assignment_to_service",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794646797278,
+      "tag": "0003_harden_admin_role_helper",
+      "breakpoints": true
     }
   ]
 }
