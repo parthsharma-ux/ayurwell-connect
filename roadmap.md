@@ -6,5 +6,5 @@
 - [ ] Submit the sitemap in Search Console — blocked until the site is published and its Search Console property is verified.
 - [x] Apply administrator role and protected data-access policies.
 - [x] Verify Cloud readiness, register the first administrator only after exact account lookup, and confirm stored role and protected access.
-- [ ] Verify admin workspace while signed in as the administrator — no signed-in preview session is available yet.
+- [x] Verify admin workspace as the assigned administrator, including overview, order list, subscriber list, and CSV export.
 - [x] Add a protected administration workspace for order and subscriber overview.
