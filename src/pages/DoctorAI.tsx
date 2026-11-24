@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Brain, Send, Sparkles, AlertCircle, Globe, User, Loader2, History, LogIn, LogOut, Mic, Volume2, Square } from "lucide-react";
+import { Stethoscope, Send, AlertCircle, User, Loader2, History, LogIn, LogOut, Mic, Volume2, Square, ShieldCheck, Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { useVaidyaChat } from "@/hooks/useVaidyaChat";
@@ -421,8 +421,9 @@ const DoctorAI = () => {
     }
   }, [isListening, sendMessage]);
 
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === "hinglish" ? "english" : "hinglish");
+  const changeLanguage = (nextLanguage: UserLanguage) => {
+    if (nextLanguage === language) return;
+    setLanguage(nextLanguage);
     startNewChat();
   };
 
@@ -443,92 +444,91 @@ const DoctorAI = () => {
         title="AI Vaidya — Free Ayurvedic Doctor Chat | AyurVeda"
         description="Chat free with AI Vaidya for Ayurvedic remedies, diet, and herbs tailored to your symptoms. Bilingual (English/Hindi) with voice support."
       />
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        {/* Header */}
-        <motion.div 
-          className="text-center mb-8"
-          initial={{ opacity: 0, y: -20 }}
+      <div className="container mx-auto max-w-4xl px-4 py-5 md:py-7">
+        <motion.header
+          className="mb-5 flex flex-col gap-4 border-b border-border pb-5 sm:flex-row sm:items-center sm:justify-between"
+          initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.3 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            <Sparkles className="h-4 w-4" />
-            AI-Powered Ayurvedic Consultation
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-secondary/30 bg-secondary/10 text-secondary">
+              <Stethoscope className="h-5 w-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <h1 className="font-display text-2xl font-semibold">AI Vaidya</h1>
+                <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <ShieldCheck className="h-3.5 w-3.5 text-secondary" />
+                  {language === "hinglish" ? "मुफ़्त • असीमित" : "Free • Unlimited"}
+                </span>
+              </div>
+              <p className="mt-0.5 text-sm text-muted-foreground">
+                {language === "hinglish" ? "Ayurvedic health guidance" : "Ayurvedic health guidance"}
+              </p>
+            </div>
           </div>
-          
-          <h1 className="font-display text-3xl md:text-4xl font-bold mb-2">
-            Ayurveda AI Vaidya
-          </h1>
-          
-          <p className="text-base text-muted-foreground mt-2 max-w-lg mx-auto">
-            {language === "hinglish" 
-              ? "Apni taklif batayein, personalized Ayurvedic guidance payein" 
-              : "Share your concerns, receive personalized Ayurvedic guidance"}
-          </p>
-          
-          <div className="mt-5 flex items-center justify-center gap-3 flex-wrap">
-            <motion.button
-              onClick={toggleLanguage}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all text-sm font-medium border-border bg-card hover:bg-muted"
-            >
-              <Globe className="h-4 w-4" />
-              {language === "hinglish" ? "Switch to English" : "हिंग्लिश में बदलें"}
-            </motion.button>
-            
+
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex rounded-md border border-border p-1" aria-label="Chat language">
+              <Button
+                type="button"
+                size="sm"
+                variant={language === "hinglish" ? "secondary" : "ghost"}
+                aria-pressed={language === "hinglish"}
+                onClick={() => changeLanguage("hinglish")}
+                className="h-8 px-3 text-xs"
+              >
+                हिंग्लिश
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant={language === "english" ? "secondary" : "ghost"}
+                aria-pressed={language === "english"}
+                onClick={() => changeLanguage("english")}
+                className="h-8 px-3 text-xs"
+              >
+                English
+              </Button>
+            </div>
             {user ? (
               <>
-                {/* Free unlimited badge */}
-                <motion.span 
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-500/20 text-emerald-400 text-sm font-semibold border border-emerald-500/30"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                >
-                  <Sparkles className="h-4 w-4" />
-                  {language === "hinglish" ? "✨ बिल्कुल मुफ्त • असीमित चैट" : "✨ Completely Free • Unlimited Chat"}
-                </motion.span>
-                <button
+                <Button
+                  type="button"
+                  variant={showHistory ? "secondary" : "outline"}
+                  size="sm"
                   onClick={() => setShowHistory(!showHistory)}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all text-sm border-border bg-card hover:bg-muted"
+                  aria-label={showHistory ? "Hide consultation history" : "Show consultation history"}
+                  className="h-10 gap-2"
                 >
                   <History className="h-4 w-4" />
-                  {showHistory ? "Hide" : "History"}
-                </button>
-                <button
-                  onClick={() => signOut()}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-border bg-card hover:bg-muted transition-colors text-sm"
-                >
+                  <span className="hidden sm:inline">{language === "hinglish" ? "इतिहास" : "History"}</span>
+                </Button>
+                <Button type="button" variant="ghost" size="icon" onClick={() => signOut()} aria-label="Sign out" title="Sign out">
                   <LogOut className="h-4 w-4" />
-                </button>
+                </Button>
               </>
             ) : (
-              <motion.button
-                onClick={() => setShowAuthModal(true)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-gold text-primary-foreground font-semibold text-sm shadow-lg hover:shadow-glow-terracotta transition-all"
-              >
+              <Button type="button" variant="outline" size="sm" onClick={() => setShowAuthModal(true)} className="h-10 gap-2">
                 <LogIn className="h-4 w-4" />
-                {language === "hinglish" ? "लॉगिन करें" : "Sign In to Chat"}
-              </motion.button>
+                {language === "hinglish" ? "साइन इन" : "Sign in"}
+              </Button>
             )}
           </div>
-        </motion.div>
+        </motion.header>
 
-        {/* Chat History Panel */}
         <AnimatePresence>
           {user && showHistory && (
-            <motion.div 
+            <motion.section
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="rounded-xl p-4 mb-6 overflow-hidden bg-card border border-border"
+              transition={{ duration: 0.2 }}
+              className="mb-5 overflow-hidden border-b border-border pb-5"
+              aria-label="Consultation history"
             >
-              <h3 className="font-medium text-sm mb-3">
-                Your Consultations
-              </h3>
+              <h2 className="mb-3 text-sm font-semibold">{language === "hinglish" ? "Pichhli baatcheet" : "Past consultations"}</h2>
               <ChatHistory
                 sessions={sessions}
                 currentSessionId={currentSessionId}
@@ -537,252 +537,170 @@ const DoctorAI = () => {
                 onDeleteSession={deleteSession}
                 onNewChat={handleNewChat}
               />
-            </motion.div>
+            </motion.section>
           )}
         </AnimatePresence>
 
-        <motion.div 
-          className="rounded-xl p-4 mb-6 flex items-start gap-3 bg-amber-950/30 border border-amber-700/30"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-        >
-          <AlertCircle className="h-5 w-5 flex-shrink-0 mt-0.5 text-amber-500" />
-          <p className="text-sm text-amber-200/80">
-            {language === "hinglish" 
-              ? "Yeh AI Vaidya sirf general Ayurvedic guidance deta hai. Serious problems ke liye physical doctor se milein."
-              : "This AI Vaidya provides general Ayurvedic guidance only. Please consult a physical doctor for serious conditions."}
+        <div className="mb-3 flex items-start gap-2 text-sm leading-6 text-muted-foreground">
+          <AlertCircle className="mt-1 h-4 w-4 shrink-0 text-secondary" />
+          <p>
+            {language === "hinglish"
+              ? "Yeh general Ayurvedic guidance hai, diagnosis nahi. Gambhir ya achanak lakshan par turant doctor se sampark karein."
+              : "General Ayurvedic guidance, not a diagnosis. Contact a clinician for serious or sudden symptoms."}
           </p>
-        </motion.div>
+        </div>
 
-        {/* Chat Container - Premium luxury styling */}
-        <motion.div 
-          className="rounded-2xl overflow-hidden transition-all duration-500 bg-card border border-border shadow-card"
-          initial={{ opacity: 0, y: 20 }}
+        <motion.section
+          className="overflow-hidden rounded-md border border-border bg-card shadow-soft"
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0.35, delay: 0.05 }}
+          aria-label={language === "hinglish" ? "AI Vaidya consultation" : "AI Vaidya consultation"}
         >
-          
-          <div className="h-[450px] overflow-y-auto p-6 space-y-4 scroll-smooth">
+          <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-3">
+            <div className="flex min-w-0 items-center gap-2.5">
+              <Stethoscope className="h-4 w-4 shrink-0 text-secondary" />
+              <div className="min-w-0">
+                <p className="text-sm font-semibold">{language === "hinglish" ? "Baatcheet" : "Consultation"}</p>
+                <p className="text-xs text-muted-foreground">{language === "hinglish" ? "Aapki baat private rehti hai" : "Your conversation stays private"}</p>
+              </div>
+            </div>
+            {messages.length > 1 && (
+              <Button type="button" variant="ghost" size="sm" onClick={handleNewChat} className="h-9 shrink-0 gap-1.5 px-2 text-xs">
+                <Plus className="h-4 w-4" />
+                <span>{language === "hinglish" ? "Nayi baatcheet" : "New chat"}</span>
+              </Button>
+            )}
+          </div>
+
+          <div className="h-[300px] space-y-4 overflow-y-auto p-4 scroll-smooth sm:h-[340px] sm:p-5">
             {messages.map((msg, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-                initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
               >
                 {msg.role === "assistant" && (
-                  <motion.div 
-                    className="w-11 h-11 rounded-full flex items-center justify-center mr-3 flex-shrink-0 bg-secondary/20 border border-secondary/30"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <Brain className="h-5 w-5 text-secondary" />
-                  </motion.div>
-                )}
-                <div className={`max-w-[85%] rounded-2xl transition-all ${
-                  msg.role === "user" 
-                    ? "bg-primary/20 border border-primary/20 rounded-tr-sm"
-                    : "bg-muted rounded-tl-sm"
-                }`}>
-                  <div className="p-4">
-                    {msg.role === "user" ? (
-                      <p className="text-base leading-relaxed whitespace-pre-line">{msg.content}</p>
-                    ) : (
-                      <div className="prose prose-sm dark:prose-invert max-w-none text-base leading-relaxed [&>p]:my-2 [&>ul]:my-2 [&>ol]:my-2 [&>ul]:pl-4 [&>ol]:pl-4 [&>li]:my-1 [&>h1]:text-lg [&>h2]:text-base [&>h3]:text-base [&>code]:bg-background/50 [&>code]:px-1.5 [&>code]:py-0.5 [&>code]:rounded [&>pre]:bg-background/50 [&>pre]:p-3 [&>pre]:rounded-lg [&>blockquote]:border-l-3 [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:border-primary">
-                        <ReactMarkdown>{msg.content}</ReactMarkdown>
-                      </div>
-                    )}
+                  <div className="mr-2.5 mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-secondary/10 text-secondary">
+                    <Stethoscope className="h-4 w-4" />
                   </div>
-                  {/* TTS Button for AI messages */}
-                  {msg.role === "assistant" && i > 0 && (
-                    <div className="px-4 pb-3 pt-0">
-                      <motion.button
-                        onClick={() => speakMessage(msg.content, i)}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full transition-all ${
-                          speakingMessageIndex === i
-                            ? "bg-primary/20 text-primary"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                        }`}
-                        title={speakingMessageIndex === i 
-                          ? (language === "hinglish" ? "Awaaz band karein" : "Stop speaking") 
-                          : (language === "hinglish" ? "Sunein" : "Listen")}
-                      >
-                        {speakingMessageIndex === i ? (
-                          <Square className="h-3.5 w-3.5" />
-                        ) : (
-                          <Volume2 className="h-3.5 w-3.5" />
-                        )}
-                        <span>
-                          {speakingMessageIndex === i 
-                            ? (language === "hinglish" ? "Band" : "Stop") 
-                            : (language === "hinglish" ? "Sunein" : "Listen")}
-                        </span>
-                      </motion.button>
+                )}
+                <div className={`max-w-[88%] min-w-0 rounded-md px-4 py-3 ${
+                  msg.role === "user" ? "border border-primary/20 bg-primary/10" : "bg-muted/70"
+                }`}>
+                  <p className="mb-1.5 text-xs font-medium text-muted-foreground">
+                    {msg.role === "user" ? (language === "hinglish" ? "Aap" : "You") : "AI Vaidya"}
+                  </p>
+                  {msg.role === "user" ? (
+                    <p className="whitespace-pre-line text-base leading-relaxed">{msg.content}</p>
+                  ) : (
+                    <div className="prose prose-sm dark:prose-invert max-w-none text-base leading-relaxed [&>p]:my-2 [&>ul]:my-2 [&>ol]:my-2 [&>ul]:pl-4 [&>ol]:pl-4 [&>li]:my-1 [&>h1]:text-lg [&>h2]:text-base [&>h3]:text-base [&>code]:rounded [&>code]:bg-background/50 [&>code]:px-1.5 [&>code]:py-0.5 [&>pre]:rounded-md [&>pre]:bg-background/50 [&>pre]:p-3 [&>blockquote]:border-l-2 [&>blockquote]:border-primary [&>blockquote]:pl-4 [&>blockquote]:italic">
+                      <ReactMarkdown>{msg.content}</ReactMarkdown>
                     </div>
+                  )}
+                  {msg.role === "assistant" && i > 0 && (
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => speakMessage(msg.content, i)}
+                      aria-label={speakingMessageIndex === i ? "Stop speaking" : "Listen to response"}
+                      title={speakingMessageIndex === i ? "Stop speaking" : "Listen to response"}
+                      className="mt-2 h-8 gap-1.5 px-2 text-xs text-muted-foreground"
+                    >
+                      {speakingMessageIndex === i ? <Square className="h-3.5 w-3.5" /> : <Volume2 className="h-3.5 w-3.5" />}
+                      {speakingMessageIndex === i ? (language === "hinglish" ? "Band karein" : "Stop") : (language === "hinglish" ? "Sunein" : "Listen")}
+                    </Button>
                   )}
                 </div>
                 {msg.role === "user" && (
-                  <motion.div 
-                    className="w-11 h-11 rounded-full flex items-center justify-center ml-3 flex-shrink-0 bg-primary/20 border border-primary/30"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <User className="h-5 w-5 text-primary" />
-                  </motion.div>
+                  <div className="ml-2.5 mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
+                    <User className="h-4 w-4" />
+                  </div>
                 )}
               </motion.div>
             ))}
             {isLoading && messages[messages.length - 1]?.role === "user" && (
-              <motion.div 
-                className="flex justify-start"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-              >
-                <div className="w-10 h-10 rounded-full flex items-center justify-center mr-3 flex-shrink-0 bg-secondary/20">
-                  <Brain className="h-4 w-4 text-secondary" />
-                </div>
-                <div className="rounded-2xl rounded-tl-sm p-4 bg-muted">
-                  <div className="flex gap-1.5">
-                    {[0, 1, 2].map((i) => (
-                      <motion.span 
-                        key={i}
-                        className="w-2.5 h-2.5 rounded-full bg-muted-foreground/50"
-                        animate={{ y: [0, -8, 0] }}
-                        transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
+              <div className="flex items-center gap-2.5 text-sm text-muted-foreground" role="status" aria-live="polite">
+                <Loader2 className="h-4 w-4 animate-spin text-secondary" />
+                {language === "hinglish" ? "Aapki baat samajh raha hoon…" : "Considering what you shared…"}
+              </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
           {messages.length <= 1 && (
-            <div className="px-6 pb-4">
-              <SymptomStarter
-                language={language}
-                disabled={isLoading}
-                onSubmit={handleStarterSubmit}
-              />
+            <div className="border-t border-border px-4 py-4 sm:px-5">
+              <SymptomStarter language={language} disabled={isLoading} onSubmit={handleStarterSubmit} />
             </div>
           )}
 
-          {messages.length <= 1 && (
-            <motion.div 
-              className="px-6 pb-4"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <p className="text-xs text-muted-foreground mb-2">
-                {language === "hinglish" ? "Ya seedha message bhejein:" : "Or start with a quick message:"}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {suggestedPrompts.map((prompt, i) => (
-                  <motion.button
-                    key={i}
-                    onClick={() => setInput(prompt)}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="text-xs px-3 py-2 rounded-full border transition-all border-border bg-muted/50 hover:bg-muted"
-                  >
-                    {prompt}
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-
-
-          <div className="p-4 border-t border-border">
-            {/* Show interim transcript while listening */}
+          <div className="border-t border-border p-3 sm:p-4">
             <AnimatePresence>
               {isListening && interimTranscript && (
-                <motion.div 
+                <motion.p
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mb-2 text-sm text-muted-foreground italic px-2"
+                  className="mb-2 px-1 text-sm text-muted-foreground"
+                  aria-live="polite"
                 >
-                  {interimTranscript}...
-                </motion.div>
+                  {interimTranscript}…
+                </motion.p>
               )}
             </AnimatePresence>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               {voiceSupported && (
-                <motion.button
+                <Button
                   type="button"
+                  variant={isListening ? "secondary" : "outline"}
+                  size="icon"
                   onPointerDown={() => !isLoading && startListening()}
                   onPointerUp={stopListening}
                   onPointerLeave={stopListening}
                   onPointerCancel={stopListening}
-                  onContextMenu={(e) => e.preventDefault()}
+                  onContextMenu={(event) => event.preventDefault()}
                   disabled={isLoading}
-                  whileHover={{ scale: isListening ? 1 : 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`relative flex items-center justify-center rounded-xl h-12 w-12 transition-all select-none touch-none ${
-                    isListening 
-                      ? "bg-primary text-primary-foreground scale-110 shadow-glow-terracotta"
-                      : "bg-muted hover:bg-muted/80 text-muted-foreground hover:text-foreground"
-                  }`}
-                  style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none' }}
+                  aria-label={language === "hinglish" ? "Dabaye rakhein aur bolein" : "Hold to speak"}
                   title={language === "hinglish" ? "Dabaye rakhein aur bolein" : "Hold to speak"}
+                  className={`h-11 w-11 shrink-0 touch-none select-none ${isListening ? "text-primary" : "text-muted-foreground"}`}
                 >
-                  <Mic className={`h-5 w-5 ${isListening ? "animate-pulse" : ""}`} />
-                  <AnimatePresence>
-                    {isListening && (
-                      <motion.span 
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -5 }}
-                        className="absolute -bottom-5 text-[9px] font-semibold text-primary whitespace-nowrap"
-                      >
-                        {language === "hinglish" ? "Chhod dein" : "Release"}
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </motion.button>
+                  <Mic className={`h-4 w-4 ${isListening ? "animate-pulse" : ""}`} />
+                </Button>
               )}
               <input
                 type="text"
                 value={isListening ? interimTranscript || input : input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
+                onChange={(event) => setInput(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" && !event.shiftKey) {
+                    event.preventDefault();
                     handleSend();
                   }
                 }}
                 aria-label={language === "hinglish" ? "Apni taklif likhein" : "Describe your health concern"}
-                placeholder={
-                  isListening 
-                    ? (language === "hinglish" ? "Sun raha hoon..." : "Listening...") 
-                    : (language === "hinglish" ? "Apni taklif yahan likhein ya mic dabayein..." : "Type or tap mic to speak...")
-                }
-                className="flex-1 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 transition-all bg-muted focus:ring-primary/50"
+                placeholder={isListening
+                  ? (language === "hinglish" ? "Sun raha hoon…" : "Listening…")
+                  : (language === "hinglish" ? "Apni taklif likhein…" : "Describe what is troubling you…")}
+                className="h-11 min-w-0 flex-1 rounded-md border border-input bg-background px-3 text-base text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
                 disabled={isLoading || isListening}
               />
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Button 
-                  variant="gold"
-                  size="icon" 
-                  onClick={handleSend}
-                  disabled={!input.trim() || isLoading}
-                  className="rounded-xl h-12 w-12"
-                >
-                  {isLoading ? (
-                    <Loader2 className="h-5 w-5 animate-spin" />
-                  ) : (
-                    <Send className="h-5 w-5" />
-                  )}
-                </Button>
-              </motion.div>
+              <Button
+                type="button"
+                variant="default"
+                size="icon"
+                onClick={handleSend}
+                disabled={!input.trim() || isLoading}
+                aria-label={language === "hinglish" ? "Bhejein" : "Send message"}
+                className="h-11 w-11 shrink-0 rounded-md"
+              >
+                {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
+              </Button>
             </div>
           </div>
-        </motion.div>
+        </motion.section>
       </div>
 
       <AuthModal open={showAuthModal} onOpenChange={setShowAuthModal} />
