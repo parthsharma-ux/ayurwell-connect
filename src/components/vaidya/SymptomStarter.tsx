@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { AlertTriangle, Stethoscope, Send } from "lucide-react";
+import { AlertTriangle, ChevronDown, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 type Lang = "hinglish" | "english";
 
@@ -60,11 +61,7 @@ export const hasRedFlag = (text: string) => {
 };
 
 const chipClass = (active: boolean) =>
-  `text-xs px-3 py-1.5 rounded-full border transition-all ${
-    active
-      ? "bg-primary text-primary-foreground border-primary"
-      : "border-border bg-muted/50 hover:bg-muted text-foreground"
-  }`;
+  `h-8 rounded-md border px-3 text-xs ${active ? "border-secondary/60 bg-secondary/15 text-secondary-foreground" : "border-border bg-muted/30 text-muted-foreground hover:border-secondary/40 hover:bg-muted"}`;
 
 export const SymptomStarter = ({ language, disabled, onSubmit }: Props) => {
   const hi = language === "hinglish";
@@ -74,6 +71,7 @@ export const SymptomStarter = ({ language, disabled, onSubmit }: Props) => {
   const [severity, setSeverity] = useState("");
   const [dosha, setDosha] = useState("");
   const [emergency, setEmergency] = useState(false);
+  const [showAllSymptoms, setShowAllSymptoms] = useState(false);
 
   const chosen = custom.trim() || symptom;
   const ready = chosen.length > 1;
@@ -99,83 +97,92 @@ export const SymptomStarter = ({ language, disabled, onSubmit }: Props) => {
   };
 
   return (
-    <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-4">
-      <div className="flex items-center gap-2">
-        <Stethoscope className="h-4 w-4 text-secondary" />
-        <h2 className="text-sm font-semibold">
-          {hi ? "Shuruaat karein — apne lakshan batayein" : "Start here — tell us your symptoms"}
+    <div className="space-y-4">
+      <div>
+        <h2 className="text-base font-semibold">
+          {hi ? "Aapko kis takleef mein madad chahiye?" : "What is troubling you today?"}
         </h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          {hi ? "Pehle kuch zaroori baatein samajhte hain." : "A few details will help me understand."}
+        </p>
       </div>
 
-      <div>
-        <p className="text-xs text-muted-foreground mb-2">
-          {hi ? "1. Main takleef kya hai?" : "1. What is the main problem?"}
-        </p>
+      <div className="space-y-2">
+        <p className="text-sm font-medium">{hi ? "Mukhya lakshan" : "Main concern"}</p>
         <div className="flex flex-wrap gap-2">
-          {COMMON_SYMPTOMS.map((s) => {
-            const label = hi ? s.hi : s.en;
-            return (
-              <button
-                key={s.en}
-                type="button"
-                onClick={() => { setSymptom(s.en); setCustom(""); setEmergency(false); }}
-                className={chipClass(symptom === s.en && !custom.trim())}
-              >
-                {label}
-              </button>
-            );
-          })}
+          {(showAllSymptoms ? COMMON_SYMPTOMS : COMMON_SYMPTOMS.slice(0, 6)).map((s) => (
+            <Button
+              key={s.en}
+              type="button"
+              variant="ghost"
+              size="sm"
+              aria-pressed={symptom === s.en && !custom.trim()}
+              onClick={() => { setSymptom(s.en); setCustom(""); setEmergency(false); }}
+              className={chipClass(symptom === s.en && !custom.trim())}
+            >
+              {hi ? s.hi : s.en}
+            </Button>
+          ))}
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => setShowAllSymptoms((current) => !current)}
+            aria-expanded={showAllSymptoms}
+            className="h-8 gap-1 px-2 text-xs text-muted-foreground"
+          >
+            {showAllSymptoms ? (hi ? "Kam" : "Less") : (hi ? "Aur" : "More")}
+            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${showAllSymptoms ? "rotate-180" : ""}`} />
+          </Button>
         </div>
         <Input
           value={custom}
-          onChange={(e) => { setCustom(e.target.value); setEmergency(false); }}
-          placeholder={hi ? "Ya apne shabdon me likhein..." : "Or describe it in your own words..."}
-          className="mt-2 h-9 text-sm"
+          onChange={(event) => { setCustom(event.target.value); setEmergency(false); }}
+          placeholder={hi ? "Ya apne shabdon mein batayein…" : "Or describe it in your own words…"}
+          aria-label={hi ? "Apne lakshan likhein" : "Describe your symptoms"}
+          className="h-10 text-base"
         />
       </div>
 
-      <div>
-        <p className="text-xs text-muted-foreground mb-2">
-          {hi ? "2. Kitne samay se?" : "2. How long has it lasted?"}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {DURATIONS.map((d) => (
-            <button key={d.key} type="button" onClick={() => setDuration(d.key)} className={chipClass(duration === d.key)}>
-              {hi ? d.hi : d.en}
-            </button>
-          ))}
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
+          <p className="text-sm font-medium">{hi ? "Kitne samay se?" : "How long?"}</p>
+          <div className="flex flex-wrap gap-2">
+            {DURATIONS.map((d) => (
+              <Button key={d.key} type="button" variant="ghost" size="sm" aria-pressed={duration === d.key} onClick={() => setDuration(d.key)} className={chipClass(duration === d.key)}>
+                {hi ? d.hi : d.en}
+              </Button>
+            ))}
+          </div>
+        </div>
+        <div className="space-y-2">
+          <p className="text-sm font-medium">{hi ? "Takleef kitni hai?" : "How severe is it?"}</p>
+          <div className="flex flex-wrap gap-2">
+            {SEVERITIES.map((s) => (
+              <Button key={s.key} type="button" variant="ghost" size="sm" aria-pressed={severity === s.key} onClick={() => setSeverity(s.key)} className={chipClass(severity === s.key)}>
+                {hi ? s.hi : s.en}
+              </Button>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div>
-        <p className="text-xs text-muted-foreground mb-2">
-          {hi ? "3. Kitna tez hai?" : "3. How severe is it?"}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {SEVERITIES.map((s) => (
-            <button key={s.key} type="button" onClick={() => setSeverity(s.key)} className={chipClass(severity === s.key)}>
-              {hi ? s.hi : s.en}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <p className="text-xs text-muted-foreground mb-2">
-          {hi ? "4. Aapki prakriti (optional)" : "4. Your body type / dosha (optional)"}
-        </p>
-        <div className="flex flex-wrap gap-2">
+      <details className="border-t border-border pt-3">
+        <summary className="cursor-pointer text-sm text-muted-foreground">
+          {hi ? "Prakriti ke baare mein (optional)" : "Share your body type (optional)"}
+        </summary>
+        <div className="mt-3 flex flex-wrap gap-2">
           {DOSHAS.map((d) => (
-            <button key={d.key} type="button" onClick={() => setDosha(d.key)} className={chipClass(dosha === d.key)}>
+            <Button key={d.key} type="button" variant="ghost" size="sm" aria-pressed={dosha === d.key} onClick={() => setDosha(d.key)} className={chipClass(dosha === d.key)}>
               {hi ? d.hi : d.en}
-            </button>
+            </Button>
           ))}
         </div>
-      </div>
+      </details>
 
       {emergency && (
-        <div className="flex items-start gap-3 rounded-lg border border-destructive/40 bg-destructive/10 p-3">
-          <AlertTriangle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
+        <div className="flex items-start gap-3 rounded-md border border-destructive/40 bg-destructive/10 p-3" role="alert">
+          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-destructive" />
           <p className="text-sm text-destructive">
             {hi
               ? "Yeh emergency lakshan lagta hai. Turant nazdeeki hospital jayein ya emergency number (India: 108) par call karein. Home remedy safe nahi hai."
@@ -184,21 +191,17 @@ export const SymptomStarter = ({ language, disabled, onSubmit }: Props) => {
         </div>
       )}
 
-      <button
-        type="button"
-        onClick={handleStart}
-        disabled={!ready || disabled}
-        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-primary to-gold text-primary-foreground text-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        <Send className="h-4 w-4" />
-        {hi ? "AI Vaidya se poochein" : "Ask AI Vaidya"}
-      </button>
-
-      <p className="text-[11px] text-muted-foreground">
-        {hi
-          ? "Suraksha: pregnancy, bachche, chronic bimari ya dawai chal rahi ho to pehle doctor se poochein."
-          : "Safety: if you are pregnant, treating a child, have a chronic illness, or take medication, consult a doctor first."}
-      </p>
+      <div className="flex flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="max-w-xl text-xs leading-5 text-muted-foreground">
+          {hi
+            ? "Pregnancy, bachchon, chronic bimari ya chal rahi dawai ke liye doctor se salah lein."
+            : "For pregnancy, children, chronic conditions, or current medication, consult a clinician."}
+        </p>
+        <Button type="button" onClick={handleStart} disabled={!ready || disabled} className="h-10 shrink-0 gap-2 rounded-md">
+          <Send className="h-4 w-4" />
+          {hi ? "Vaidya se poochein" : "Continue"}
+        </Button>
+      </div>
     </div>
   );
 };

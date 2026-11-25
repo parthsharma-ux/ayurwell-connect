@@ -237,8 +237,8 @@ const DoctorAI = () => {
   useEffect(() => {
     if (!currentSessionId && messages.length === 0) {
       const greeting = language === "hinglish"
-        ? "Namaste! 🙏 Main aapka Ayurveda AI Vaidya hoon. Aapki sehat ki chinta mujhe bhi hai.\n\nMujhe batayein, aaj aap kis taklif se guzar rahe hain? (Jaise: pet mein problem, sar dard, stress, joint pain, skin issues...)"
-        : "Namaste! 🙏 I am your Ayurveda AI Vaidya. Your health is my priority.\n\nPlease tell me, what health concern brings you here today? (For example: digestive issues, headache, stress, joint pain, skin problems...)";
+        ? "Namaste. Pehle kuch sawal, phir samanya Ayurvedic margdarshan."
+        : "Namaste. I’ll ask a few questions first, then share general Ayurvedic guidance.";
       
       setMessages([{ role: "assistant", content: greeting }]);
     }
@@ -432,12 +432,6 @@ const DoctorAI = () => {
     setMessages([]);
   };
 
-  const suggestedPrompts = language === "hinglish" 
-    ? ["Pet mein gas aur acidity", "Bahut stress ho raha hai", "Ghutno mein dard", "Skin pe pimples", "Neend nahi aati"]
-    : ["Digestive issues", "Stress and anxiety", "Joint pain", "Skin problems", "Sleep issues"];
-
-  
-
   return (
     <Layout>
       <SEO
@@ -464,7 +458,7 @@ const DoctorAI = () => {
                 </span>
               </div>
               <p className="mt-0.5 text-sm text-muted-foreground">
-                {language === "hinglish" ? "Ayurvedic health guidance" : "Ayurvedic health guidance"}
+                {language === "hinglish" ? "Ayurvedic sehat margdarshan" : "Ayurvedic health guidance"}
               </p>
             </div>
           </div>
@@ -545,8 +539,8 @@ const DoctorAI = () => {
           <AlertCircle className="mt-1 h-4 w-4 shrink-0 text-secondary" />
           <p>
             {language === "hinglish"
-              ? "Yeh general Ayurvedic guidance hai, diagnosis nahi. Gambhir ya achanak lakshan par turant doctor se sampark karein."
-              : "General Ayurvedic guidance, not a diagnosis. Contact a clinician for serious or sudden symptoms."}
+              ? "Yeh samanya margdarshan hai, diagnosis nahi. Gambhir ya achanak lakshan par doctor ko dikhayein."
+              : "General guidance, not a diagnosis. Seek care for serious or sudden symptoms."}
           </p>
         </div>
 
@@ -562,7 +556,7 @@ const DoctorAI = () => {
               <Stethoscope className="h-4 w-4 shrink-0 text-secondary" />
               <div className="min-w-0">
                 <p className="text-sm font-semibold">{language === "hinglish" ? "Baatcheet" : "Consultation"}</p>
-                <p className="text-xs text-muted-foreground">{language === "hinglish" ? "Aapki baat private rehti hai" : "Your conversation stays private"}</p>
+                <p className="text-xs text-muted-foreground">{language === "hinglish" ? "Samanya swasthya margdarshan" : "General health guidance"}</p>
               </div>
             </div>
             {messages.length > 1 && (
@@ -573,7 +567,7 @@ const DoctorAI = () => {
             )}
           </div>
 
-          <div className="h-[300px] space-y-4 overflow-y-auto p-4 scroll-smooth sm:h-[340px] sm:p-5">
+          <div className={`${messages.length <= 1 ? "min-h-[100px]" : "h-[300px] sm:h-[340px]"} space-y-4 overflow-y-auto p-4 scroll-smooth sm:p-5`}>
             {messages.map((msg, i) => (
               <motion.div
                 key={i}
