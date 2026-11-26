@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Stethoscope, Send, AlertCircle, User, Loader2, History, LogIn, LogOut, Mic, Volume2, Square, ShieldCheck, Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useVaidyaChat } from "@/hooks/useVaidyaChat";
 import { AuthModal } from "@/components/vaidya/AuthModal";
 import { ChatHistory } from "@/components/vaidya/ChatHistory";
@@ -19,13 +20,15 @@ type UserLanguage = "hinglish" | "english";
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/vaidya-chat`;
 
 const DoctorAI = () => {
+  const { language: siteLanguage, setLanguage: setSiteLanguage } = useLanguage();
+  const language: UserLanguage = siteLanguage === "hi" ? "hinglish" : "english";
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [language, setLanguage] = useState<UserLanguage>("hinglish");
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [speakingMessageIndex, setSpeakingMessageIndex] = useState<number | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const previousLanguageRef = useRef(language);
   const { toast } = useToast();
   const { user, signOut } = useAuth();
   
@@ -244,6 +247,12 @@ const DoctorAI = () => {
     }
   }, [language, currentSessionId, messages.length, setMessages]);
 
+  useEffect(() => {
+    if (previousLanguageRef.current === language) return;
+    previousLanguageRef.current = language;
+    startNewChat();
+  }, [language, startNewChat]);
+
   const streamChat = useCallback(async (userMessages: Message[], sessionId: string | null) => {
     const resp = await fetch(CHAT_URL, {
       method: "POST",
@@ -423,8 +432,7 @@ const DoctorAI = () => {
 
   const changeLanguage = (nextLanguage: UserLanguage) => {
     if (nextLanguage === language) return;
-    setLanguage(nextLanguage);
-    startNewChat();
+    setSiteLanguage(nextLanguage === "hinglish" ? "hi" : "en");
   };
 
   const handleNewChat = () => {
